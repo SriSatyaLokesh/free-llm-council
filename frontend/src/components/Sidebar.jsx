@@ -324,24 +324,27 @@ export default function Sidebar({
           </div>
         </div>
 
-        <div className="sidebar-action-buttons">
+        <div className="sidebar-action-row">
           <button
             type="button"
-            className="new-conversation-btn"
+            className="new-debate-btn"
             onClick={() => onNewConversation(null)}
             title="Start a new standalone debate (Ctrl/⌘ + K)"
           >
-            <Plus size={13} />
-            <span>New Debate</span>
+            <span className="new-debate-label">
+              <Plus size={14} />
+              <span>New Debate</span>
+            </span>
             <kbd className="sidebar-kbd-hint">⌘K</kbd>
           </button>
           <button
             type="button"
-            className="new-project-btn"
+            className="new-folder-action-btn"
             onClick={handleStartCreateProject}
-            title="Create a new workspace folder"
+            title="Create new workspace folder"
+            aria-label="Create new workspace folder"
           >
-            <FolderPlus size={13} /> New Folder
+            <FolderPlus size={15} />
           </button>
         </div>
       </div>
@@ -381,7 +384,18 @@ export default function Sidebar({
         <div className="sidebar-section">
           <div className="section-header">
             <span className="section-title">PROJECT WORKSPACES</span>
-            <span className="section-badge">{projects.length}</span>
+            <div className="section-header-meta">
+              <span className="section-badge">{projects.length}</span>
+              <button
+                type="button"
+                className="section-add-folder-btn"
+                onClick={handleStartCreateProject}
+                title="Create workspace folder"
+                aria-label="Add folder"
+              >
+                <Plus size={11} />
+              </button>
+            </div>
           </div>
 
           {projects.length === 0 ? (

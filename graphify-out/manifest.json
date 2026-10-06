@@ -54,8 +54,8 @@
     "semantic_hash": ""
   },
   "backend/provider_keys.py": {
-    "mtime": 1791300780.200771,
-    "seen": 1791300935.3746061,
+    "mtime": 1791301020.5514114,
+    "seen": 1791301024.867724,
     "ast_hash": "2c93da2ac95fbadbfdc029885d993ccc",
     "semantic_hash": ""
   },
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791299472.5574434,
-    "seen": 1791299534.9868267,
-    "ast_hash": "ee9d37bfa01bfdc9b7bbe8820d6845b8",
+    "mtime": 1791302737.6052911,
+    "seen": 1791302853.6100266,
+    "ast_hash": "0c6b4c09269d9fa68a210f38783c56e2",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ProviderKeyModal.jsx": {
-    "mtime": 1791300844.2173994,
-    "seen": 1791300935.3746305,
-    "ast_hash": "70c973a4a4be06c260cd99c41cff4c98",
+    "mtime": 1791301020.554016,
+    "seen": 1791301024.8678288,
+    "ast_hash": "c7b1062cfaf656b67854b000ee2ab2e3",
     "semantic_hash": ""
   },
   "frontend/src/components/RunRail.jsx": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791299425.4278123,
-    "seen": 1791299534.986847,
-    "ast_hash": "3e53b2bd9f48b9b5358f485abdf43d43",
+    "mtime": 1791302656.1184042,
+    "seen": 1791302853.610053,
+    "ast_hash": "5c30680ec58e595fa82b82e6746db6fb",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -282,8 +282,8 @@
     "semantic_hash": ""
   },
   "tests/unit/test_hybrid_providers.py": {
-    "mtime": 1791300800.3054886,
-    "seen": 1791300935.3746648,
+    "mtime": 1791301020.5780017,
+    "seen": 1791301024.8679054,
     "ast_hash": "c9a15ccf3d97cd1d59eb0980b1305e41",
     "semantic_hash": ""
   },
@@ -354,8 +354,8 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1791300675.4058952,
-    "seen": 1791300935.374682,
+    "mtime": 1791301020.5508955,
+    "seen": 1791301024.8679395,
     "ast_hash": "0dedac296205cea45155fe2d0bdfb5da",
     "semantic_hash": ""
   },
@@ -420,9 +420,9 @@
     "semantic_hash": ""
   },
   ".agents/rules/git-workflow.md": {
-    "mtime": 1791300669.5536458,
-    "seen": 1791300935.3746758,
-    "ast_hash": "b22634bdea3c206410552d8ec174e123",
+    "mtime": 1791301020.5503564,
+    "seen": 1791302853.6101472,
+    "ast_hash": "f0f8b9375015d5e2316567f7da61436a",
     "semantic_hash": ""
   }
 }
