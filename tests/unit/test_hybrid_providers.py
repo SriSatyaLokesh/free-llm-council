@@ -36,6 +36,28 @@ def test_provider_key_sanitization_and_redaction():
     assert provider_keys.get_key_statuses()["openrouter"]["configured"] is False
 
 
+def test_expanded_provider_keys_and_alias_lookup(monkeypatch):
+    """
+    Test expanded provider keys (google, groq, deepseek, mistral, xai, together, cohere)
+    and verify alias environment variable resolution (GEMINI_API_KEY -> google).
+    """
+    statuses = provider_keys.get_key_statuses()
+    for prov in ("openrouter", "openai", "anthropic", "google", "groq", "deepseek", "mistral", "xai", "together", "cohere"):
+        assert prov in statuses
+
+    # Test alias resolution via GEMINI_API_KEY
+    provider_keys.delete_key("google")
+    monkeypatch.setenv("GEMINI_API_KEY", "AIzaSyFakeGeminiKey123456789")
+    assert provider_keys.get_key("google") == "AIzaSyFakeGeminiKey123456789"
+    assert provider_keys.get_key_statuses()["google"]["configured"] is True
+
+    # Test alias resolution via GROK_API_KEY
+    provider_keys.delete_key("xai")
+    monkeypatch.setenv("GROK_API_KEY", "xai-fakegrokkey987654321")
+    assert provider_keys.get_key("xai") == "xai-fakegrokkey987654321"
+    assert provider_keys.get_key_statuses()["xai"]["configured"] is True
+
+
 @pytest.mark.asyncio
 async def test_provider_keys_http_api():
     """

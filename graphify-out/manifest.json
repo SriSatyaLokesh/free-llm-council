@@ -54,9 +54,9 @@
     "semantic_hash": ""
   },
   "backend/provider_keys.py": {
-    "mtime": 1791284205.640306,
-    "seen": 1791284927.4276483,
-    "ast_hash": "73c3298cdc489280614a7802c5ff1a1b",
+    "mtime": 1791300780.200771,
+    "seen": 1791300935.3746061,
+    "ast_hash": "2c93da2ac95fbadbfdc029885d993ccc",
     "semantic_hash": ""
   },
   "backend/settings.py": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ProviderKeyModal.jsx": {
-    "mtime": 1791284205.6511624,
-    "seen": 1791284927.427673,
-    "ast_hash": "9e8fcbaf5dcb9968f33e2a8df3903ca3",
+    "mtime": 1791300844.2173994,
+    "seen": 1791300935.3746305,
+    "ast_hash": "70c973a4a4be06c260cd99c41cff4c98",
     "semantic_hash": ""
   },
   "frontend/src/components/RunRail.jsx": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "tests/unit/test_hybrid_providers.py": {
-    "mtime": 1791284205.6908462,
-    "seen": 1791284927.427718,
-    "ast_hash": "3c583c20f6a400c83007b7fd86673617",
+    "mtime": 1791300800.3054886,
+    "seen": 1791300935.3746648,
+    "ast_hash": "c9a15ccf3d97cd1d59eb0980b1305e41",
     "semantic_hash": ""
   },
   "tests/unit/test_model_eviction.py": {
@@ -354,9 +354,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1791284205.6336699,
-    "seen": 1791284927.4277308,
-    "ast_hash": "21ceb6533048be51308e69e7b74a35cf",
+    "mtime": 1791300675.4058952,
+    "seen": 1791300935.374682,
+    "ast_hash": "0dedac296205cea45155fe2d0bdfb5da",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -417,6 +417,12 @@
     "mtime": 1791299339.8563805,
     "seen": 1791299534.9869564,
     "ast_hash": "1c4f4150615fb408e965e88bb07d67aa",
+    "semantic_hash": ""
+  },
+  ".agents/rules/git-workflow.md": {
+    "mtime": 1791300669.5536458,
+    "seen": 1791300935.3746758,
+    "ast_hash": "b22634bdea3c206410552d8ec174e123",
     "semantic_hash": ""
   }
 }
