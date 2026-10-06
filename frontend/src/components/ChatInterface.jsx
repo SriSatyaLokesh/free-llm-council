@@ -5,7 +5,7 @@ import VerdictHero from './VerdictHero';
 import ProcessPanel from './ProcessPanel';
 import ModelRoster from './ModelRoster';
 import { api } from '../api';
-import { Folder, FileText, Copy, Package, Check } from './icons';
+import { Folder, FileText, Copy, Package, Check, GroupAILogo } from './icons';
 import './ChatInterface.css';
 
 export default function ChatInterface({
@@ -212,6 +212,7 @@ export default function ChatInterface({
       <div className="messages-container" ref={messagesContainerRef}>
         {isEmpty ? (
           <div className="empty-state">
+            <GroupAILogo size={56} className="empty-state-logo" />
             <h2>Start a council</h2>
             <p>
               Bring an idea, a decision, or a design question. Every model available

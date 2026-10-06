@@ -178,3 +178,61 @@ export function XMark({ size = 16, className = '' }) {
     </svg>
   );
 }
+
+export function GroupAILogo({ size = 20, className = '' }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 32 32"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient id="logo-bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#1E293B" />
+          <stop offset="100%" stopColor="#0B0D14" />
+        </linearGradient>
+        <linearGradient id="logo-blue" x1="16" y1="4" x2="16" y2="12" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#60A5FA" />
+          <stop offset="100%" stopColor="#2563EB" />
+        </linearGradient>
+        <linearGradient id="logo-purple" x1="5" y1="18" x2="12" y2="26" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#C084FC" />
+          <stop offset="100%" stopColor="#7C3AED" />
+        </linearGradient>
+        <linearGradient id="logo-emerald" x1="20" y1="18" x2="27" y2="26" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#34D399" />
+          <stop offset="100%" stopColor="#059669" />
+        </linearGradient>
+        <linearGradient id="logo-spark" x1="13" y1="13" x2="19" y2="19" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="50%" stopColor="#38BDF8" />
+          <stop offset="100%" stopColor="#0284C7" />
+        </linearGradient>
+      </defs>
+
+      <rect width="32" height="32" rx="7.5" fill="url(#logo-bg)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+      <path d="M16 8 C11 12 8 17 8 22" stroke="#3B82F6" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 2" opacity="0.65" />
+      <path d="M16 8 C21 12 24 17 24 22" stroke="#10B981" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 2" opacity="0.65" />
+      <path d="M8 22 C13 23.5 19 23.5 24 22" stroke="#8B5CF6" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 2" opacity="0.65" />
+
+      <line x1="16" y1="8" x2="16" y2="15.5" stroke="#60A5FA" strokeWidth="1" strokeLinecap="round" opacity="0.75" />
+      <line x1="8" y1="22" x2="16" y2="15.5" stroke="#C084FC" strokeWidth="1" strokeLinecap="round" opacity="0.75" />
+      <line x1="24" y1="22" x2="16" y2="15.5" stroke="#34D399" strokeWidth="1" strokeLinecap="round" opacity="0.75" />
+
+      <circle cx="16" cy="8" r="3.2" fill="url(#logo-blue)" />
+      <circle cx="16" cy="8" r="1.2" fill="#FFFFFF" />
+
+      <circle cx="8" cy="22" r="3.2" fill="url(#logo-purple)" />
+      <circle cx="8" cy="22" r="1.2" fill="#FFFFFF" />
+
+      <circle cx="24" cy="22" r="3.2" fill="url(#logo-emerald)" />
+      <circle cx="24" cy="22" r="1.2" fill="#FFFFFF" />
+
+      <path d="M16 12 C16 14.3 14.3 15.5 12.5 15.5 C14.3 15.5 16 16.7 16 19 C16 16.7 17.7 15.5 19.5 15.5 C17.7 15.5 16 14.3 16 12 Z" fill="url(#logo-spark)" />
+    </svg>
+  );
+}

@@ -17,6 +17,7 @@ import {
   Key,
   Plus,
   XMark,
+  GroupAILogo,
 } from './icons';
 import './Sidebar.css';
 
@@ -304,7 +305,10 @@ export default function Sidebar({
     <div className="sidebar">
       <div className="sidebar-header">
         <div className="sidebar-brand">
-          <h1>LLM Council</h1>
+          <div className="sidebar-brand-title">
+            <GroupAILogo size={22} className="sidebar-brand-logo" />
+            <h1>LLM Council</h1>
+          </div>
           <div
             className={`health-badge ${isOk ? 'health-ok' : healthLoading ? 'health-loading' : 'health-warn'}`}
             title={health?.diagnostics?.detail || (health?.opencode?.status || 'OpenCode Status')}

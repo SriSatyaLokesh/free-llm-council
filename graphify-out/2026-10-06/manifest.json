@@ -108,9 +108,9 @@
     "semantic_hash": "413ebe8011b8bd0cf4d20f043b197e54"
   },
   "frontend/src/App.jsx": {
-    "mtime": 1791284205.6451936,
-    "seen": 1791284927.4276643,
-    "ast_hash": "1148c5cc1c4185a5363c7ca9ab471a0e",
+    "mtime": 1791298387.9579015,
+    "seen": 1791298588.8293674,
+    "ast_hash": "66e1a49065533f3597e1882adf2d7562",
     "semantic_hash": ""
   },
   "frontend/src/api.js": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791284205.6529517,
-    "seen": 1791284927.4276793,
-    "ast_hash": "76e5d17b5922d341b529d88f4e226a79",
+    "mtime": 1791298434.4391904,
+    "seen": 1791298588.8293974,
+    "ast_hash": "8801cc730a705364f93c66bbcb08437a",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -399,6 +399,24 @@
     "mtime": 1790659504.4777288,
     "seen": 1791278244.019737,
     "ast_hash": "909633e731e29fc3e94cdb592515279b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/taste/SKILL.md": {
+    "mtime": 1790579213.5846777,
+    "seen": 1791298588.829505,
+    "ast_hash": "648c8bf98f84fbe7f14bf2da035c57fe",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1791298171.1870701,
+    "seen": 1791298588.8295195,
+    "ast_hash": "ac60f62077973691c197cc9b66103002",
+    "semantic_hash": ""
+  },
+  "llms.txt": {
+    "mtime": 1791284926.3570795,
+    "seen": 1791298588.8295336,
+    "ast_hash": "802d62980a724bf203a31fce1233d67d",
     "semantic_hash": ""
   }
 }
