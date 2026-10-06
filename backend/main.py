@@ -121,13 +121,19 @@ async def root():
 
 @app.get("/api/health")
 async def health():
-    """Detailed health check validating connection to OpenCode."""
+    """Detailed health check validating connection to OpenCode and BYOK readiness."""
     diagnosis = await diagnose_connection()
-    status_code = 200 if diagnosis.get("status") == "connected" else 503
+    is_opencode_connected = diagnosis.get("status") == "connected"
+    any_byok_keys = any(s.get("configured") for s in provider_keys.get_key_statuses().values())
+
+    mode = "hybrid" if (is_opencode_connected and any_byok_keys) else "opencode" if is_opencode_connected else "byok" if any_byok_keys else "setup"
+    is_ok = is_opencode_connected or any_byok_keys
+
     return JSONResponse(
-        status_code=status_code,
+        status_code=200,
         content={
-            "status": "ok" if status_code == 200 else "degraded",
+            "status": "ok" if is_ok else "setup",
+            "mode": mode,
             "opencode": diagnosis,
         },
     )
@@ -157,13 +163,13 @@ async def post_provider_key(request: ProviderKeyUpdate):
 async def get_models():
     """
     The council roster, read live from OpenCode and configured custom providers.
+    Supports running purely with BYOK keys when OpenCode daemon is offline.
     """
     try:
         models = await list_unified_models()
-    except OpencodeUnavailable as exc:
-        raise HTTPException(status_code=503, detail=str(exc))
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"Failed to list models: {exc}")
+        print(f"[models] Error listing models: {exc}")
+        models = []
 
     try:
         chairman = await default_chairman(models)

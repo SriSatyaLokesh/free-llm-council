@@ -1138,8 +1138,9 @@ async def generate_conversation_title(user_query: str) -> str:
     # Prefer a small-context model; titles are a trivial task.
     model = min(models, key=lambda m: (m.get("context") or 0))
 
+    from .hybrid_client import HybridCouncilSession
     async with httpx.AsyncClient(timeout=60.0) as client:
-        session = CouncilSession(model["id"], client, agent=COUNCIL_AGENT or None)
+        session = HybridCouncilSession(model["id"], client, agent=COUNCIL_AGENT or None)
         try:
             await session.create()
             result = await session.ask(prompts.title_prompt(user_query), timeout=45.0)

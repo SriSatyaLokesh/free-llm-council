@@ -192,3 +192,48 @@ async def test_keyed_model_401_triggers_immediate_eviction():
     assert "openrouter/openai/gpt-4o" in evicted_models
     assert "opencode/big-pickle" in run.active_members
     assert result["verdict"]["model"] == "opencode/big-pickle"
+
+
+@pytest.mark.asyncio
+async def test_standalone_byok_operation_without_opencode(monkeypatch):
+    """
+    Verify full standalone BYOK operation when OpenCode daemon is completely offline.
+    list_unified_models(), /api/models, and /api/health must function smoothly with BYOK keys.
+    """
+    from backend.opencode_client import OpencodeUnavailable
+    import backend.opencode_client
+    monkeypatch.setattr(
+        backend.opencode_client,
+        "list_models",
+        AsyncMock(side_effect=OpencodeUnavailable("Connection refused")),
+    )
+
+    # Configure direct BYOK keys for OpenAI and Groq
+    provider_keys.set_key("openai", "sk-proj-testkey123")
+    provider_keys.set_key("groq", "gsk-testkey456")
+
+    try:
+        # 1. list_unified_models returns keyed models without throwing
+        models = await list_unified_models()
+        assert len(models) >= 2
+        model_ids = [m["id"] for m in models]
+        assert "openai/gpt-4o" in model_ids
+        assert "groq/llama-3.3-70b-versatile" in model_ids
+
+        # 2. HTTP endpoints succeed in BYOK mode
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            res_models = await client.get("/api/models")
+            assert res_models.status_code == 200
+            data_models = res_models.json()
+            assert len(data_models["models"]) >= 2
+            assert data_models["defaultChairman"] is not None
+
+            res_health = await client.get("/api/health")
+            assert res_health.status_code == 200
+            data_health = res_health.json()
+            assert data_health["status"] == "ok"
+            assert data_health["mode"] in ("byok", "hybrid")
+    finally:
+        provider_keys.delete_key("openai")
+        provider_keys.delete_key("groq")
