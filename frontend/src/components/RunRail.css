@@ -1,0 +1,297 @@
+/* Run rail — live progress that replaces the multi-minute spinner. */
+
+.run-rail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 2px solid var(--border);
+  position: relative;
+}
+
+.run-steps {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.run-step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-1);
+  border: 1px solid transparent;
+  color: var(--fg-subtle);
+  transition: color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.run-step + .run-step {
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Never colour alone: the dot carries a number or a tick, the label carries
+   the name. State is also in the text. */
+.run-step-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--fg-subtle);
+  transition: all var(--dur-base) var(--ease-out);
+}
+
+.run-step-label {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.run-step.done {
+  color: var(--fg-muted);
+}
+
+.run-step.done .run-step-dot {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.run-step.active {
+  color: var(--fg);
+  border-color: var(--border);
+  background: var(--surface-raised);
+}
+
+.run-step.active .run-step-dot {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.run-rail-meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.run-rail-detail {
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+}
+
+.run-rail-idle {
+  color: var(--fg-subtle);
+}
+
+.run-rail-timer {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+.run-rail-level {
+  padding: 2px var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--info);
+}
+
+/* A single pulsing accent bar. The skill flags excessive motion as Severity
+   High, so exactly one thing on the screen moves. */
+.run-rail-pulse {
+  position: absolute;
+  left: -2px;
+  top: -1px;
+  bottom: -1px;
+  width: 2px;
+  background: var(--accent);
+  animation: rail-pulse 1.6s var(--ease-linear) infinite;
+}
+
+@keyframes rail-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 767px) {
+  .run-rail {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .run-rail-meta {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .run-step-label {
+    display: none;
+  }
+
+  .run-step.active .run-step-label {
+    display: inline;
+  }
+}
+
+/* Steering Interface Styles */
+.run-rail-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.run-rail-steer-btn {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--dur-base) var(--ease-out);
+}
+
+.run-rail-steer-btn:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+.run-rail-steer-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.run-rail-steer-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.steer-form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.steer-form-header strong {
+  font-size: var(--text-sm);
+  color: var(--fg);
+}
+
+.steer-form-sub {
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+}
+
+.steer-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.steer-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+.steer-textarea,
+.steer-input {
+  width: 100%;
+  padding: 6px 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  font-family: inherit;
+  font-size: var(--text-xs);
+}
+
+.steer-textarea:focus,
+.steer-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.steer-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.steer-success-msg {
+  font-size: var(--text-xs);
+  color: var(--success, #10b981);
+  margin-right: auto;
+}
+
+.steer-error-msg {
+  font-size: var(--text-xs);
+  color: var(--error, #ef4444);
+  margin-right: auto;
+}
+
+.steer-cancel-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.steer-cancel-btn:hover {
+  background: var(--surface-raised);
+}
+
+.steer-submit-btn {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.steer-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

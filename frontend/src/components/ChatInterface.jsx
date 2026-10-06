@@ -1,29 +1,110 @@
 import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
-import Stage1 from './Stage1';
-import Stage2 from './Stage2';
-import Stage3 from './Stage3';
+import RunRail from './RunRail';
+import VerdictHero from './VerdictHero';
+import ProcessPanel from './ProcessPanel';
+import ModelRoster from './ModelRoster';
+import { api } from '../api';
+import { Folder, FileText, Copy, Package, Check } from './icons';
 import './ChatInterface.css';
 
 export default function ChatInterface({
   conversation,
+  projects = [],
   onSendMessage,
   isLoading,
+  councilConfig,
+  onConfigChange,
+  error,
 }) {
   const [input, setInput] = useState('');
-  const messagesEndRef = useRef(null);
+  const [startedAt, setStartedAt] = useState(null);
+  const [idCopied, setIdCopied] = useState(false);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const messagesContainerRef = useRef(null);
+  const lastUserMsgRef = useRef(null);
+  const lastAssistantMsgRef = useRef(null);
+  const justSubmittedRef = useRef(false);
+  const prevMessageCountRef = useRef(conversation?.messages?.length || 0);
+  const prevVerdictRef = useRef(
+    Boolean(conversation?.messages?.[conversation?.messages?.length - 1]?.council?.verdict)
+  );
+  const prevConvIdRef = useRef(conversation?.id);
+
+  /**
+   * Scroll within the scoped messages container without triggering
+   * viewport-level / document-level scroll jumps in the single-window shell.
+   */
+  const scrollToElement = (elem, align = 'top') => {
+    if (!messagesContainerRef.current || !elem) return;
+    const container = messagesContainerRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const elemRect = elem.getBoundingClientRect();
+
+    if (align === 'top') {
+      const targetTop = container.scrollTop + (elemRect.top - containerRect.top) - 16;
+      container.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth',
+      });
+    } else if (align === 'bottom') {
+      const targetTop = container.scrollTop + (elemRect.bottom - containerRect.bottom) + 16;
+      container.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth',
+      });
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (!conversation) return;
+
+    // Reset when switching to a different conversation
+    if (conversation.id !== prevConvIdRef.current) {
+      prevConvIdRef.current = conversation.id;
+      prevMessageCountRef.current = conversation.messages?.length || 0;
+      prevVerdictRef.current = Boolean(
+        conversation.messages?.[conversation.messages?.length - 1]?.council?.verdict
+      );
+      if (conversation.messages?.length > 0 && lastAssistantMsgRef.current) {
+        scrollToElement(lastAssistantMsgRef.current, 'top');
+      }
+      return;
+    }
+
+    const currentCount = conversation.messages?.length || 0;
+    const lastMsg = conversation.messages?.[currentCount - 1];
+    const hasVerdict = Boolean(lastMsg?.role === 'assistant' && lastMsg?.council?.verdict);
+
+    // 1. When a new message is submitted / appended, scroll to show the new exchange
+    if (justSubmittedRef.current || currentCount > prevMessageCountRef.current) {
+      justSubmittedRef.current = false;
+      prevMessageCountRef.current = currentCount;
+      if (lastUserMsgRef.current) {
+        scrollToElement(lastUserMsgRef.current, 'top');
+      } else if (lastAssistantMsgRef.current) {
+        scrollToElement(lastAssistantMsgRef.current, 'top');
+      }
+      return;
+    }
+
+    // 2. When the council verdict arrives, smoothly bring the verdict hero into view from its top
+    if (hasVerdict && !prevVerdictRef.current) {
+      prevVerdictRef.current = true;
+      if (lastAssistantMsgRef.current) {
+        scrollToElement(lastAssistantMsgRef.current, 'top');
+      }
+      return;
+    }
+
+    prevVerdictRef.current = hasVerdict;
   }, [conversation]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim() && !isLoading) {
+      justSubmittedRef.current = true;
+      setStartedAt(Date.now());
       onSendMessage(input);
       setInput('');
     }
@@ -41,25 +122,114 @@ export default function ChatInterface({
     return (
       <div className="chat-interface">
         <div className="empty-state">
-          <h2>Welcome to LLM Council</h2>
-          <p>Create a new conversation to get started</p>
+          <h2>LLM Council</h2>
+          <p>Create a new conversation to get started.</p>
         </div>
       </div>
     );
   }
 
+  const isEmpty = !conversation.messages || conversation.messages.length === 0;
+  const activeProject = projects.find((p) => p.id === conversation.project_id);
+
+  const handleCopyId = () => {
+    if (!conversation?.id) return;
+    navigator.clipboard.writeText(conversation.id);
+    setIdCopied(true);
+    setTimeout(() => setIdCopied(false), 2000);
+  };
+
+  const handleExportReport = () => {
+    if (!conversation?.id) return;
+    window.open(api.getReportExportUrl(conversation.id), '_blank');
+  };
+
+  const handleExportZip = () => {
+    if (!conversation?.id) return;
+    window.open(api.getZipExportUrl(conversation.id), '_blank');
+  };
+
   return (
     <div className="chat-interface">
-      <div className="messages-container">
-        {conversation.messages.length === 0 ? (
+      <div className="workspace-header">
+        <div className="workspace-breadcrumb">
+          {activeProject ? (
+            <span className="breadcrumb-folder">
+              <Folder size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
+              {activeProject.name}
+            </span>
+          ) : (
+            <span className="breadcrumb-independent">
+              <FileText size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
+              Standalone Debate
+            </span>
+          )}
+          <span className="breadcrumb-sep">/</span>
+          <span className="breadcrumb-title">{conversation.title || 'New Debate'}</span>
+          <button
+            type="button"
+            className="conv-id-badge"
+            onClick={handleCopyId}
+            title={`Conversation ID: ${conversation.id}\nClick to copy full ID`}
+          >
+            <span className="conv-id-prefix">ID:</span>
+            <span className="conv-id-value">{conversation.id.slice(0, 8)}…</span>
+            <span className="conv-id-icon">
+              {idCopied ? (
+                <>
+                  <Check size={11} style={{ verticalAlign: 'middle', marginRight: 3 }} />
+                  Copied
+                </>
+              ) : (
+                <Copy size={11} style={{ verticalAlign: 'middle' }} />
+              )}
+            </span>
+          </button>
+        </div>
+
+        <div className="workspace-actions">
+          <button
+            type="button"
+            className="export-btn export-report-btn"
+            onClick={handleExportReport}
+            title="Download deliberation as a Markdown report document"
+          >
+            <FileText size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
+            Export Report
+          </button>
+          <button
+            type="button"
+            className="export-btn export-zip-btn"
+            onClick={handleExportZip}
+            title="Download full council deliberation package as a .zip (report.md, conversation.json, summary.txt)"
+          >
+            <Package size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
+            Export ZIP
+          </button>
+        </div>
+      </div>
+
+      <div className="messages-container" ref={messagesContainerRef}>
+        {isEmpty ? (
           <div className="empty-state">
-            <h2>Start a conversation</h2>
-            <p>Ask a question to consult the LLM Council</p>
+            <h2>Start a council</h2>
+            <p>
+              Bring an idea, a decision, or a design question. Every model available
+              in your opencode researches it, argues with the others, and a chairman
+              returns a decision with the tradeoffs.
+            </p>
           </div>
         ) : (
-          conversation.messages.map((msg, index) => (
-            <div key={index} className="message-group">
-              {msg.role === 'user' ? (
+          conversation.messages.map((msg, index) => {
+            const isLastUser = msg.role === 'user' && index >= conversation.messages.length - 2;
+            const isLastAssistant = msg.role === 'assistant' && index === conversation.messages.length - 1;
+
+            return msg.role === 'user' ? (
+              <div
+                key={index}
+                className="message-group user-group"
+                ref={isLastUser ? lastUserMsgRef : null}
+              >
                 <div className="user-message">
                   <div className="message-label">You</div>
                   <div className="message-content">
@@ -68,63 +238,79 @@ export default function ChatInterface({
                     </div>
                   </div>
                 </div>
-              ) : (
+              </div>
+            ) : (
+              <div
+                key={index}
+                className="message-group assistant-group"
+                ref={isLastAssistant ? lastAssistantMsgRef : null}
+              >
                 <div className="assistant-message">
-                  <div className="message-label">LLM Council</div>
-
-                  {/* Stage 1 */}
-                  {msg.loading?.stage1 && (
-                    <div className="stage-loading">
-                      <div className="spinner"></div>
-                      <span>Running Stage 1: Collecting individual responses...</span>
-                    </div>
-                  )}
-                  {msg.stage1 && <Stage1 responses={msg.stage1} />}
-
-                  {/* Stage 2 */}
-                  {msg.loading?.stage2 && (
-                    <div className="stage-loading">
-                      <div className="spinner"></div>
-                      <span>Running Stage 2: Peer rankings...</span>
-                    </div>
-                  )}
-                  {msg.stage2 && (
-                    <Stage2
-                      rankings={msg.stage2}
-                      labelToModel={msg.metadata?.label_to_model}
-                      aggregateRankings={msg.metadata?.aggregate_rankings}
+                  {msg.loading && Object.values(msg.loading).some(Boolean) && (
+                    <RunRail
+                      council={msg.council}
+                      loading={msg.loading}
+                      members={msg.council?.metadata?.members}
+                      chairman={msg.council?.metadata?.chairman}
+                      startedAt={startedAt}
+                      conversationId={conversation?.id}
                     />
                   )}
 
-                  {/* Stage 3 */}
-                  {msg.loading?.stage3 && (
+                  {msg.council?.verdict && (
+                    <VerdictHero
+                      verdict={msg.council.verdict}
+                      compression={msg.council.metadata?.caveman}
+                      metadata={msg.council.metadata}
+                      conversationId={conversation?.id}
+                    />
+                  )}
+
+                  <ProcessPanel council={msg.council} />
+
+                  {msg.loading?.verdict && !msg.council?.verdict && (
                     <div className="stage-loading">
-                      <div className="spinner"></div>
-                      <span>Running Stage 3: Final synthesis...</span>
+                      <span className="spinner" aria-hidden="true" />
+                      <span>The chairman is weighing the transcript…</span>
                     </div>
                   )}
-                  {msg.stage3 && <Stage3 finalResponse={msg.stage3} />}
                 </div>
-              )}
-            </div>
-          ))
+              </div>
+            );
+          })
         )}
 
-        {isLoading && (
-          <div className="loading-indicator">
-            <div className="spinner"></div>
-            <span>Consulting the council...</span>
+        {error && (
+          <div className="stream-error" role="alert">
+            <strong>The council run failed.</strong> {error}
           </div>
         )}
-
-        <div ref={messagesEndRef} />
       </div>
 
-      {conversation.messages.length === 0 && (
-        <form className="input-form" onSubmit={handleSubmit}>
+      <form className="input-form" onSubmit={handleSubmit}>
+        <ModelRoster
+          config={councilConfig}
+          onChange={onConfigChange}
+          disabled={isLoading}
+          evictedModels={
+            [...(conversation.messages || [])]
+              .reverse()
+              .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
+          }
+          retiredModels={
+            [...(conversation.messages || [])]
+              .reverse()
+              .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
+          }
+        />
+        <div className="input-row">
+          <label className="sr-only" htmlFor="composer">
+            Ask the council a question
+          </label>
           <textarea
+            id="composer"
             className="message-input"
-            placeholder="Ask your question... (Shift+Enter for new line, Enter to send)"
+            placeholder="Bring the council an idea, a decision, or a question… (Shift+Enter for a new line)"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -136,10 +322,10 @@ export default function ChatInterface({
             className="send-button"
             disabled={!input.trim() || isLoading}
           >
-            Send
+            {isLoading ? 'Running' : 'Send'}
           </button>
-        </form>
-      )}
+        </div>
+      </form>
     </div>
   );
 }
