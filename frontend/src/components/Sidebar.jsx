@@ -307,20 +307,7 @@ export default function Sidebar({
         <div className="sidebar-brand">
           <div className="sidebar-brand-title">
             <GroupAILogo size={22} className="sidebar-brand-logo" />
-            <h1>LLM Council</h1>
-          </div>
-          <div
-            className={`health-badge ${isOk ? 'health-ok' : healthLoading ? 'health-loading' : 'health-warn'}`}
-            title={health?.diagnostics?.detail || (health?.opencode?.status || 'OpenCode Status')}
-          >
-            <span className="health-dot" />
-            <span className="health-label">
-              {healthLoading && !health
-                ? 'Connecting…'
-                : isOk
-                ? `:${health?.opencode?.port || 4097} (${health?.opencode?.models_count || 0} models)`
-                : 'Degraded'}
-            </span>
+            <h1>Free LLM Council</h1>
           </div>
         </div>
 
@@ -551,6 +538,20 @@ export default function Sidebar({
       </div>
 
       <div className="sidebar-footer">
+        <div
+          className={`opencode-status-pill ${isOk ? 'status-connected' : healthLoading ? 'status-connecting' : 'status-offline'}`}
+          title={health?.diagnostics?.detail || (health?.opencode?.status || 'OpenCode Status')}
+        >
+          <span className="status-dot" />
+          <span className="status-text">
+            {healthLoading && !health
+              ? 'Connecting to OpenCode…'
+              : isOk
+              ? `OpenCode :${health?.opencode?.port || 4097} (${health?.opencode?.models_count || 0} models)`
+              : 'OpenCode Offline • BYOK Mode'}
+          </span>
+        </div>
+
         <button
           type="button"
           className="provider-keys-btn"

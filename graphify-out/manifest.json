@@ -24,21 +24,21 @@
     "semantic_hash": ""
   },
   "backend/council.py": {
-    "mtime": 1791284205.6369886,
-    "seen": 1791284927.4276395,
-    "ast_hash": "a3f2a4b061b89fab70984fffcbf660bc",
+    "mtime": 1791303796.3855982,
+    "seen": 1791303873.2332923,
+    "ast_hash": "6fd17265971144904f16ef2ef334e83b",
     "semantic_hash": ""
   },
   "backend/hybrid_client.py": {
-    "mtime": 1791284205.637529,
-    "seen": 1791284927.4276414,
-    "ast_hash": "dc13219ded601f1b826257888671445d",
+    "mtime": 1791303769.178126,
+    "seen": 1791303873.2332935,
+    "ast_hash": "47c2b4e159b99e14041356dd543f3e12",
     "semantic_hash": ""
   },
   "backend/main.py": {
-    "mtime": 1791284205.6386755,
-    "seen": 1791284927.4276428,
-    "ast_hash": "73a93045326a5c20878847cf8458c2b9",
+    "mtime": 1791303817.5269327,
+    "seen": 1791303873.2332942,
+    "ast_hash": "1d8c238a2f986f3d400b02428cbb5405",
     "semantic_hash": ""
   },
   "backend/opencode_client.py": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791302737.6052911,
-    "seen": 1791302853.6100266,
+    "mtime": 1791302919.2220783,
+    "seen": 1791302922.7873995,
     "ast_hash": "0c6b4c09269d9fa68a210f38783c56e2",
     "semantic_hash": ""
   },
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791302656.1184042,
-    "seen": 1791302853.610053,
-    "ast_hash": "5c30680ec58e595fa82b82e6746db6fb",
+    "mtime": 1791303634.9904106,
+    "seen": 1791303873.2333107,
+    "ast_hash": "e968023087b679168695c9b7c63d3e79",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "tests/unit/test_hybrid_providers.py": {
-    "mtime": 1791301020.5780017,
-    "seen": 1791301024.8679054,
-    "ast_hash": "c9a15ccf3d97cd1d59eb0980b1305e41",
+    "mtime": 1791303841.5536747,
+    "seen": 1791303873.233328,
+    "ast_hash": "5b68ccdc7d7bc542cec698f70950a219",
     "semantic_hash": ""
   },
   "tests/unit/test_model_eviction.py": {

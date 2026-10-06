@@ -774,9 +774,71 @@
 }
 
 .sidebar-footer {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3);
   border-top: 1px solid var(--border-subtle);
   background: var(--surface-sunken);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.opencode-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-connected .status-dot {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.status-connected {
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.status-connecting .status-dot {
+  background: #f59e0b;
+}
+
+.status-connecting {
+  color: #f59e0b;
+}
+
+.status-offline .status-dot {
+  background: var(--fg-subtle);
+}
+
+.status-offline {
+  color: var(--fg-subtle);
+  border-color: var(--border-subtle);
+}
+
+.status-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .provider-keys-btn {
@@ -801,6 +863,10 @@
   background: var(--surface);
   color: var(--fg);
   border-color: var(--border);
+}
+
+.provider-keys-btn:active {
+  transform: scale(0.98);
 }
 
 @media (max-width: 1023px) and (min-width: 768px) {

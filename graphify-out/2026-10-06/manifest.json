@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791299472.5574434,
-    "seen": 1791299534.9868267,
-    "ast_hash": "ee9d37bfa01bfdc9b7bbe8820d6845b8",
+    "mtime": 1791302919.2220783,
+    "seen": 1791302922.7873995,
+    "ast_hash": "0c6b4c09269d9fa68a210f38783c56e2",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791299425.4278123,
-    "seen": 1791299534.986847,
-    "ast_hash": "3e53b2bd9f48b9b5358f485abdf43d43",
+    "mtime": 1791302919.224095,
+    "seen": 1791302922.7874205,
+    "ast_hash": "5c30680ec58e595fa82b82e6746db6fb",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -417,6 +417,12 @@
     "mtime": 1791299339.8563805,
     "seen": 1791299534.9869564,
     "ast_hash": "1c4f4150615fb408e965e88bb07d67aa",
+    "semantic_hash": ""
+  },
+  ".agents/rules/git-workflow.md": {
+    "mtime": 1791301020.5503564,
+    "seen": 1791302853.6101472,
+    "ast_hash": "f0f8b9375015d5e2316567f7da61436a",
     "semantic_hash": ""
   }
 }
