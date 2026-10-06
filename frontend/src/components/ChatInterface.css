@@ -11,71 +11,110 @@
 }
 
 .workspace-header {
-  padding: 6px var(--space-5);
+  padding: 0 var(--space-5);
+  height: 52px;
+  min-height: 52px;
   border-bottom: 1px solid var(--border-subtle);
   background: var(--surface-sunken);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 34px;
+  gap: var(--space-4);
+  flex-shrink: 0;
 }
 
 .workspace-breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--text-xs);
-  color: var(--fg-muted);
+  gap: 10px;
+  min-width: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .breadcrumb-folder {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
   color: var(--accent);
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  font-size: var(--text-xs);
+  flex-shrink: 0;
 }
 
-.breadcrumb-independent {
-  color: var(--fg-muted);
-  font-weight: 500;
-}
-
-.breadcrumb-sep {
-  color: var(--border-subtle);
-}
-
-.breadcrumb-title {
-  color: var(--fg);
-  font-weight: 500;
+.breadcrumb-folder-name {
+  max-width: 140px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.breadcrumb-independent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-muted);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.breadcrumb-icon {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.breadcrumb-sep {
+  color: var(--fg-subtle);
+  opacity: 0.4;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.breadcrumb-title {
+  margin: 0;
+  color: var(--fg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 440px;
 }
 
 .conv-id-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 2px 6px;
+  padding: 3px 8px;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--fg-muted);
   cursor: pointer;
   transition: all var(--dur-fast) var(--ease-out);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .conv-id-badge:hover {
   background: var(--surface-raised);
   border-color: var(--accent);
   color: var(--fg);
+}
+
+.conv-id-badge:active {
+  transform: scale(0.97);
 }
 
 .conv-id-prefix {
@@ -89,26 +128,34 @@
 
 .conv-id-icon {
   font-size: 0.68rem;
-  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--fg-subtle);
+}
+
+.conv-copied-text {
+  color: #10b981;
+  font-weight: 600;
 }
 
 .workspace-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .export-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   background: var(--surface);
-  color: var(--fg-muted);
-  border: 1px solid var(--border-subtle);
+  color: var(--fg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 3px 8px;
-  font-size: 0.72rem;
+  padding: 6px 12px;
+  font-size: var(--text-xs);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--dur-fast) var(--ease-out);
@@ -117,18 +164,23 @@
 
 .export-btn:hover {
   background: var(--surface-raised);
-  color: var(--fg);
-  border-color: var(--border);
+  border-color: var(--border-strong);
+}
+
+.export-btn:active {
+  transform: scale(0.97);
 }
 
 .export-report-btn:hover {
+  background: rgba(59, 130, 246, 0.12);
   border-color: var(--accent);
-  color: var(--accent);
+  color: #ffffff;
 }
 
 .export-zip-btn:hover {
-  border-color: #50fa7b;
-  color: #50fa7b;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: #10b981;
+  color: #ffffff;
 }
 
 .messages-container {
@@ -359,6 +411,18 @@
 }
 
 @media (max-width: 767px) {
+  .workspace-header {
+    height: auto;
+    min-height: 48px;
+    padding: var(--space-2) var(--space-3);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .breadcrumb-title {
+    max-width: 180px;
+  }
+
   .messages-container {
     padding: var(--space-4) var(--space-3) var(--space-5);
   }

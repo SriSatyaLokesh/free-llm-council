@@ -154,34 +154,36 @@ export default function ChatInterface({
       <div className="workspace-header">
         <div className="workspace-breadcrumb">
           {activeProject ? (
-            <span className="breadcrumb-folder">
-              <Folder size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
-              {activeProject.name}
+            <span className="breadcrumb-folder" title={`Workspace: ${activeProject.name}`}>
+              <Folder size={14} className="breadcrumb-icon" />
+              <span className="breadcrumb-folder-name">{activeProject.name}</span>
             </span>
           ) : (
-            <span className="breadcrumb-independent">
-              <FileText size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
-              Standalone Debate
+            <span className="breadcrumb-independent" title="Standalone deliberation workspace">
+              <FileText size={14} className="breadcrumb-icon" />
+              <span>Standalone Debate</span>
             </span>
           )}
-          <span className="breadcrumb-sep">/</span>
-          <span className="breadcrumb-title">{conversation.title || 'New Debate'}</span>
+          <span className="breadcrumb-sep" aria-hidden="true">/</span>
+          <h2 className="breadcrumb-title" title={conversation.title || 'New Debate'}>
+            {conversation.title || 'New Debate'}
+          </h2>
           <button
             type="button"
             className="conv-id-badge"
             onClick={handleCopyId}
-            title={`Conversation ID: ${conversation.id}\nClick to copy full ID`}
+            title={`Conversation ID: ${conversation.id || 'unsaved'}\nClick to copy full ID`}
           >
             <span className="conv-id-prefix">ID:</span>
-            <span className="conv-id-value">{conversation.id.slice(0, 8)}…</span>
+            <span className="conv-id-value">{conversation.id ? conversation.id.slice(0, 8) : 'new'}…</span>
             <span className="conv-id-icon">
               {idCopied ? (
                 <>
-                  <Check size={11} style={{ verticalAlign: 'middle', marginRight: 3 }} />
-                  Copied
+                  <Check size={12} />
+                  <span className="conv-copied-text">Copied</span>
                 </>
               ) : (
-                <Copy size={11} style={{ verticalAlign: 'middle' }} />
+                <Copy size={12} />
               )}
             </span>
           </button>
@@ -194,8 +196,8 @@ export default function ChatInterface({
             onClick={handleExportReport}
             title="Download deliberation as a Markdown report document"
           >
-            <FileText size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
-            Export Report
+            <FileText size={14} />
+            <span>Export Report</span>
           </button>
           <button
             type="button"
@@ -203,8 +205,8 @@ export default function ChatInterface({
             onClick={handleExportZip}
             title="Download full council deliberation package as a .zip (report.md, conversation.json, summary.txt)"
           >
-            <Package size={13} style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: 5 }} />
-            Export ZIP
+            <Package size={14} />
+            <span>Export ZIP</span>
           </button>
         </div>
       </div>
