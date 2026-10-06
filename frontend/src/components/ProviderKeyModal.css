@@ -1,0 +1,232 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.modal-content {
+  background: #18191f;
+  border: 1px solid #2e303b;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #282a36;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f8f8f2;
+  margin: 0 0 0.25rem 0;
+}
+
+.modal-subtitle {
+  font-size: 0.85rem;
+  color: #8b8f9e;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: #8b8f9e;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.modal-close-btn:hover {
+  color: #f8f8f2;
+  background: #252631;
+}
+
+.modal-alert {
+  margin: 1rem 1.5rem 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.modal-alert-success {
+  background: rgba(80, 250, 123, 0.1);
+  border: 1px solid rgba(80, 250, 123, 0.3);
+  color: #50fa7b;
+}
+
+.modal-alert-error {
+  background: rgba(255, 85, 85, 0.1);
+  border: 1px solid rgba(255, 85, 85, 0.3);
+  color: #ff5555;
+}
+
+.provider-list {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.provider-card {
+  background: #1e2029;
+  border: 1px solid #2d2f3d;
+  border-radius: 8px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.provider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.provider-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.provider-name {
+  font-weight: 600;
+  color: #f8f8f2;
+  font-size: 0.95rem;
+}
+
+.provider-status {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-family: monospace;
+}
+
+.provider-status.configured {
+  background: rgba(80, 250, 123, 0.15);
+  color: #50fa7b;
+  border: 1px solid rgba(80, 250, 123, 0.3);
+}
+
+.provider-status.unconfigured {
+  background: rgba(139, 143, 158, 0.15);
+  color: #8b8f9e;
+  border: 1px solid rgba(139, 143, 158, 0.3);
+}
+
+.provider-docs-link {
+  font-size: 0.8rem;
+  color: #bd93f9;
+  text-decoration: none;
+}
+
+.provider-docs-link:hover {
+  text-decoration: underline;
+}
+
+.provider-desc {
+  font-size: 0.82rem;
+  color: #8b8f9e;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.provider-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.provider-input {
+  flex: 1;
+  background: #13141a;
+  border: 1px solid #333644;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: #f8f8f2;
+  font-size: 0.85rem;
+  font-family: monospace;
+}
+
+.provider-input:focus {
+  outline: none;
+  border-color: #bd93f9;
+}
+
+.provider-save-btn {
+  background: #bd93f9;
+  color: #18191f;
+  font-weight: 600;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: opacity 0.15s;
+}
+
+.provider-save-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.provider-save-btn:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.provider-remove-btn {
+  background: transparent;
+  color: #ff5555;
+  border: 1px solid rgba(255, 85, 85, 0.3);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+}
+
+.provider-remove-btn:hover {
+  background: rgba(255, 85, 85, 0.1);
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #282a36;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-done-btn {
+  background: #44475a;
+  color: #f8f8f2;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal-done-btn:hover {
+  background: #6272a4;
+}

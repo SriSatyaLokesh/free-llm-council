@@ -1,0 +1,127 @@
+/* Tool call audit trail. */
+
+.tool-trace {
+  margin: 0 var(--space-3) var(--space-3) 0;
+}
+
+.tool-trace-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-subtle);
+  margin: var(--space-2) 0 var(--space-1) 0;
+}
+
+.tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.tool-chip-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.tool-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 2px var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  cursor: pointer;
+  max-width: 100%;
+  min-height: 24px;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.tool-chip:hover,
+.tool-chip.open {
+  border-color: var(--info);
+  color: var(--fg);
+}
+
+.tool-chip-name {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--info);
+}
+
+.tool-chip-detail {
+  color: var(--fg-subtle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240px;
+}
+
+/* Denied is stated in words as well as colour, never colour alone. */
+.tool-chip.denied {
+  border-color: var(--destructive);
+}
+
+.tool-chip.denied .tool-chip-name {
+  color: var(--destructive);
+}
+
+.tool-chip-badge {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--destructive);
+}
+
+.tool-chip-output {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  z-index: 20;
+  width: min(520px, 76vw);
+  padding: var(--space-3);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.tool-chip-url {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--info);
+  margin-bottom: var(--space-2);
+  word-break: break-all;
+}
+
+.tool-chip-output pre {
+  margin: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--fg-muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 767px) {
+  .tool-chip-detail {
+    max-width: 150px;
+  }
+
+  .tool-chip-output {
+    /* Anchored right on narrow screens so a chip near the right margin does
+       not push the panel past the viewport edge. */
+    left: auto;
+    right: 0;
+    width: min(420px, 90vw);
+  }
+}

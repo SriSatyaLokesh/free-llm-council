@@ -1,99 +1,140 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import ToolTrace from './ToolTrace';
+import { shortModel, formatTokens } from '../format';
+import { Target, AlertTriangle } from './icons';
 import './Stage2.css';
+import './DebateMode.css';
 
-function deAnonymizeText(text, labelToModel) {
-  if (!labelToModel) return text;
+/**
+ * Stage 2: the open debate.
+ *
+ * Members see each other by real name here, so the layout is a round selector
+ * plus a per-model column - it should read like a transcript, not a set of
+ * disconnected answers.
+ */
+export default function Stage2({ debate, earlyConclusion, injectedGuidance = [] }) {
+  const [roundIndex, setRoundIndex] = useState(0);
 
-  let result = text;
-  // Replace each "Response X" with the actual model name
-  Object.entries(labelToModel).forEach(([label, model]) => {
-    const modelShortName = model.split('/')[1] || model;
-    result = result.replace(new RegExp(label, 'g'), `**${modelShortName}**`);
-  });
-  return result;
-}
-
-export default function Stage2({ rankings, labelToModel, aggregateRankings }) {
-  const [activeTab, setActiveTab] = useState(0);
-
-  if (!rankings || rankings.length === 0) {
+  if (!debate || debate.length === 0) {
     return null;
+  }
+
+  const safeIndex = Math.min(roundIndex, debate.length - 1);
+  const current = debate[safeIndex];
+  const statements = current?.statements || [];
+
+  if (statements.length === 0) {
+    return (
+      <div className="stage stage2">
+        <h3 className="stage-title">Stage 2: Debate</h3>
+        <p className="stage-hint">No debate rounds were run.</p>
+      </div>
+    );
   }
 
   return (
     <div className="stage stage2">
-      <h3 className="stage-title">Stage 2: Peer Rankings</h3>
-
-      <h4>Raw Evaluations</h4>
-      <p className="stage-description">
-        Each model evaluated all responses (anonymized as Response A, B, C, etc.) and provided rankings.
-        Below, model names are shown in <strong>bold</strong> for readability, but the original evaluation used anonymous labels.
+      <h3 className="stage-title">Stage 2: Debate</h3>
+      <p className="stage-hint">
+        Members respond to each other by name - rebutting peers, conceding points,
+        and saying whether they updated or held their position.
       </p>
 
-      <div className="tabs">
-        {rankings.map((rank, index) => (
-          <button
-            key={index}
-            className={`tab ${activeTab === index ? 'active' : ''}`}
-            onClick={() => setActiveTab(index)}
-          >
-            {rank.model.split('/')[1] || rank.model}
-          </button>
-        ))}
-      </div>
-
-      <div className="tab-content">
-        <div className="ranking-model">
-          {rankings[activeTab].model}
-        </div>
-        <div className="ranking-content markdown-content">
-          <ReactMarkdown>
-            {deAnonymizeText(rankings[activeTab].ranking, labelToModel)}
-          </ReactMarkdown>
-        </div>
-
-        {rankings[activeTab].parsed_ranking &&
-         rankings[activeTab].parsed_ranking.length > 0 && (
-          <div className="parsed-ranking">
-            <strong>Extracted Ranking:</strong>
-            <ol>
-              {rankings[activeTab].parsed_ranking.map((label, i) => (
-                <li key={i}>
-                  {labelToModel && labelToModel[label]
-                    ? labelToModel[label].split('/')[1] || labelToModel[label]
-                    : label}
-                </li>
-              ))}
-            </ol>
+      {injectedGuidance && injectedGuidance.length > 0 && (
+        <div className="human-guidance-card">
+          <div className="human-guidance-badge">
+            <Target size={12} style={{ verticalAlign: 'middle', marginRight: 4 }} />
+            Human Guidance Injected
           </div>
-        )}
-      </div>
-
-      {aggregateRankings && aggregateRankings.length > 0 && (
-        <div className="aggregate-rankings">
-          <h4>Aggregate Rankings (Street Cred)</h4>
-          <p className="stage-description">
-            Combined results across all peer evaluations (lower score is better):
-          </p>
-          <div className="aggregate-list">
-            {aggregateRankings.map((agg, index) => (
-              <div key={index} className="aggregate-item">
-                <span className="rank-position">#{index + 1}</span>
-                <span className="rank-model">
-                  {agg.model.split('/')[1] || agg.model}
-                </span>
-                <span className="rank-score">
-                  Avg: {agg.average_rank.toFixed(2)}
-                </span>
-                <span className="rank-count">
-                  ({agg.rankings_count} votes)
-                </span>
-              </div>
-            ))}
-          </div>
+          {injectedGuidance.map((g, idx) => (
+            <div key={idx} className="human-guidance-item">
+              <div className="human-guidance-msg">"{g.message}"</div>
+              {g.resources && g.resources.length > 0 && (
+                <div className="human-guidance-resources">
+                  <span className="resources-label">Resources: </span>
+                  {g.resources.map((r, i) => (
+                    <a
+                      key={i}
+                      href={r}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="guidance-link"
+                    >
+                      {r}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
+
+      {earlyConclusion && (
+        <div className="debate-early-banner">
+          <AlertTriangle size={13} style={{ verticalAlign: 'middle', marginRight: 5 }} />
+          Debate concluded early: {typeof earlyConclusion === 'object' ? `${earlyConclusion.reason || 'budget reached'}` : earlyConclusion}. Handed off cleanly to review and verdict.
+        </div>
+      )}
+
+      {debate.length > 1 && (
+        <div className="round-selector">
+          {debate.map((round, index) => (
+            <button
+              key={round.round}
+              className={`round-tab ${safeIndex === index ? 'active' : ''}`}
+              onClick={() => setRoundIndex(index)}
+            >
+              Round {round.round}
+              {round.cavemanLevel && round.cavemanLevel !== 'off' && (
+                <span className="round-mode-badge">{round.cavemanLevel}</span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {current?.compressed && (
+        <p className="stage-hint">
+          This round ran in <strong>{current.cavemanLevel}</strong> compression via
+          the official Caveman skill: members argued in shorthand and did no new
+          web research. The chairman expands it back into full prose.
+        </p>
+      )}
+
+      {current?.tokens?.total > 0 && (
+        <div className="stage-tokens">
+          Round {current.round} used{' '}
+          <strong>{current.tokens.total.toLocaleString()}</strong> tokens
+          {current.tokens.output > 0 && ` (${current.tokens.output.toLocaleString()} written)`}
+        </div>
+      )}
+
+      <div className="debate-grid">
+        {statements.map((statement) => (
+          <div key={statement.model} className="debate-card">
+            <div className="stage-entry-header">
+              <span className="model-name">{shortModel(statement.model)}</span>
+              {formatTokens(statement.tokens) && (
+                <span className="stage-entry-meta">
+                  {formatTokens(statement.tokens)}
+                </span>
+              )}
+            </div>
+
+            {statement.error ? (
+              <div className="stage-error">{statement.error}</div>
+            ) : (
+              <div className="debate-text markdown-content">
+                <ReactMarkdown>{statement.response}</ReactMarkdown>
+              </div>
+            )}
+
+            <ToolTrace toolCalls={statement.toolCalls} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
