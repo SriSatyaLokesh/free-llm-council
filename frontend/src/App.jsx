@@ -83,6 +83,18 @@ function App() {
     };
   }, [currentConversationId]);
 
+  // Antigravity ergonomics: Cmd/Ctrl + K to start a new deliberation instantly
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        handleNewConversation();
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [currentConversation]);
+
   /** Refresh the sidebar and projects, e.g. after a run or folder action. */
   function reloadConversations() {
     api

@@ -272,7 +272,7 @@
   padding: var(--space-3) var(--space-4);
   background: var(--surface);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   color: var(--fg);
   font-family: var(--font-sans);
   font-size: var(--text-base);
@@ -281,7 +281,7 @@
   resize: vertical;
   min-height: 72px;
   max-height: 280px;
-  transition: border-color var(--dur-fast) var(--ease-out);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .message-input::placeholder {
@@ -289,11 +289,13 @@
 }
 
 .message-input:focus {
-  border-color: var(--border);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 .message-input:focus-visible {
   border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--border-glow);
 }
 
 .message-input:disabled {
@@ -305,7 +307,7 @@
   padding: var(--space-3) var(--space-5);
   background: var(--accent);
   border: 1px solid var(--accent);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   color: var(--accent-fg);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
@@ -314,11 +316,15 @@
   white-space: nowrap;
   align-self: flex-end;
   min-height: 44px; /* touch target */
-  transition: filter var(--dur-fast) var(--ease-out);
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .send-button:hover:not(:disabled) {
   filter: brightness(1.1);
+}
+
+.send-button:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .send-button:disabled {
