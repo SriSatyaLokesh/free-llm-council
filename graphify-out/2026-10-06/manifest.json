@@ -108,9 +108,9 @@
     "semantic_hash": "413ebe8011b8bd0cf4d20f043b197e54"
   },
   "frontend/src/App.jsx": {
-    "mtime": 1791298387.9579015,
-    "seen": 1791298588.8293674,
-    "ast_hash": "66e1a49065533f3597e1882adf2d7562",
+    "mtime": 1791304976.8386095,
+    "seen": 1791305206.9005423,
+    "ast_hash": "b4da93a15648afe808971b8dd9be2eac",
     "semantic_hash": ""
   },
   "frontend/src/api.js": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791304372.0714302,
-    "seen": 1791304372.1382082,
-    "ast_hash": "fe60e5c1f845d984beb57b51a4de12e1",
+    "mtime": 1791305130.3629243,
+    "seen": 1791305206.9005494,
+    "ast_hash": "7c0a45ee7c82e4188521f4e3247352c2",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/icons.jsx": {
-    "mtime": 1791299391.014519,
-    "seen": 1791299534.9868627,
-    "ast_hash": "c4d2e51eff0fe4ba22d9fcfc68963b44",
+    "mtime": 1791304935.161694,
+    "seen": 1791305206.9005544,
+    "ast_hash": "2b17442cfab0e7477bcb45d2aea88034",
     "semantic_hash": ""
   },
   "frontend/src/format.js": {
@@ -264,9 +264,9 @@
     "semantic_hash": ""
   },
   "tests/unit/test_clean_lifecycle_and_presets.py": {
-    "mtime": 1791284205.68971,
-    "seen": 1791284927.4277139,
-    "ast_hash": "c322bb616825af4b1dd56ef163b7abf4",
+    "mtime": 1791305181.340251,
+    "seen": 1791305206.9005647,
+    "ast_hash": "a0ed123cb65f21971f3a50781d19c017",
     "semantic_hash": ""
   },
   "tests/unit/test_exports_and_conversation_id.py": {
