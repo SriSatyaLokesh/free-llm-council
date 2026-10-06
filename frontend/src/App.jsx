@@ -183,6 +183,17 @@ function App() {
 
   const handleMoveConversation = async (conversationId, targetProjectId) => {
     try {
+      // Optimistic update so UI reflects immediately
+      setConversations((prev) =>
+        prev.map((c) =>
+          c.id === conversationId ? { ...c, project_id: targetProjectId } : c
+        )
+      );
+      if (currentConversationId === conversationId) {
+        setCurrentConversation((prev) =>
+          prev ? { ...prev, project_id: targetProjectId } : prev
+        );
+      }
       const updated = await api.updateConversation(conversationId, {
         project_id: targetProjectId,
         unlink_project: !targetProjectId,
@@ -195,11 +206,16 @@ function App() {
     } catch (error) {
       console.error('Failed to move conversation:', error);
       alert(`Failed to move conversation: ${error.message}`);
+      reloadConversations();
+      reloadProjects();
     }
   };
 
   const handleRenameConversation = async (conversationId, title) => {
     try {
+      setConversations((prev) =>
+        prev.map((c) => (c.id === conversationId ? { ...c, title } : c))
+      );
       await api.renameConversation(conversationId, title);
       setCurrentConversation((prev) =>
         prev && prev.id === conversationId ? { ...prev, title } : prev
@@ -208,23 +224,61 @@ function App() {
     } catch (error) {
       console.error('Failed to rename conversation:', error);
       alert(`Failed to rename conversation: ${error.message}`);
+      reloadConversations();
     }
   };
 
   const handleArchiveConversation = async (conversationId, archived = true) => {
     try {
-      await api.archiveConversation(conversationId, archived);
-      reloadConversations();
-      if (currentConversationId === conversationId && archived) {
-        // If archived active conversation, select another active one if available
-        const remaining = conversations.filter((c) => c.id !== conversationId && !c.archived);
-        if (remaining.length > 0) {
-          handleSelectConversation(remaining[0].id);
+      // Optimistic state update
+      setConversations((prev) =>
+        prev.map((c) => (c.id === conversationId ? { ...c, archived } : c))
+      );
+      if (currentConversationId === conversationId) {
+        setCurrentConversation((prev) =>
+          prev ? { ...prev, archived } : prev
+        );
+        if (archived) {
+          // If archiving active conversation, switch to next available active conversation
+          const remainingActive = conversations.filter(
+            (c) => c.id !== conversationId && !c.archived
+          );
+          if (remainingActive.length > 0) {
+            handleSelectConversation(remainingActive[0].id);
+          } else {
+            handleNewConversation();
+          }
         }
       }
+      await api.archiveConversation(conversationId, archived);
+      reloadConversations();
+      reloadProjects();
     } catch (error) {
       console.error('Failed to update archive status:', error);
       alert(`Failed to update archive status: ${error.message}`);
+      reloadConversations();
+    }
+  };
+
+  const handleDeleteConversation = async (conversationId) => {
+    try {
+      // Optimistic update
+      setConversations((prev) => prev.filter((c) => c.id !== conversationId));
+      if (currentConversationId === conversationId) {
+        const remaining = conversations.filter((c) => c.id !== conversationId && !c.archived);
+        if (remaining.length > 0) {
+          handleSelectConversation(remaining[0].id);
+        } else {
+          handleNewConversation();
+        }
+      }
+      await api.deleteConversation(conversationId);
+      reloadConversations();
+      reloadProjects();
+    } catch (error) {
+      console.error('Failed to delete conversation:', error);
+      alert(`Failed to delete conversation: ${error.message}`);
+      reloadConversations();
     }
   };
 
@@ -472,6 +526,7 @@ function App() {
         onMoveConversation={handleMoveConversation}
         onRenameConversation={handleRenameConversation}
         onArchiveConversation={handleArchiveConversation}
+        onDeleteConversation={handleDeleteConversation}
         onKeysUpdated={() => {
           api.getModels().catch(() => {});
         }}

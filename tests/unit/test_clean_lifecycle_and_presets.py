@@ -103,3 +103,34 @@ def test_preset_auto_reconciliation():
     assert reconciled["rounds"] == 3
     assert reconciled["debateMode"] == "full"
     assert reconciled["tokenCapPerModel"] == 10000
+
+
+@pytest.mark.asyncio
+async def test_delete_conversation_http_api():
+    """Verify DELETE /api/conversations/{id} deletes conversation and handles 404 for missing."""
+    from httpx import AsyncClient, ASGITransport
+    from backend.main import app
+
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        # Create conversation
+        res_create = await client.post("/api/conversations", json={})
+        assert res_create.status_code == 200
+        conv_id = res_create.json()["id"]
+
+        # Ensure it exists
+        res_get = await client.get(f"/api/conversations/{conv_id}")
+        assert res_get.status_code == 200
+
+        # Delete it
+        res_del = await client.delete(f"/api/conversations/{conv_id}")
+        assert res_del.status_code == 200
+        assert res_del.json() == {"status": "ok", "deleted": conv_id}
+
+        # Verify it's gone
+        res_get2 = await client.get(f"/api/conversations/{conv_id}")
+        assert res_get2.status_code == 404
+
+        # Deleting non-existent should 404
+        res_del_missing = await client.delete("/api/conversations/non-existent-conv-id-12345")
+        assert res_del_missing.status_code == 404
