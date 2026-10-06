@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use Free LLM Council in your research or project, please cite it as below."
+title: "Free LLM Council: OpenCode-Powered Multi-Model Deliberation Engine"
+abstract: "A local-first, zero-cost consensus and deliberative debate framework running multi-round LLM deliberations on OpenCode with optional BYOK hybrid cloud seating."
+authors:
+  - family-names: "K"
+    given-names: "Satya"
+repository-code: "https://github.com/SriSatyaLokesh/llm-council-pro-max"
+url: "https://github.com/SriSatyaLokesh/llm-council-pro-max"
+keywords:
+  - "opencode"
+  - "free-llm-council"
+  - "ai-council"
+  - "multi-agent-debate"
+  - "local-llm"
+  - "consensus-engine"
+license: "MIT"
+version: 0.2.0
+date-released: 2026-10-06

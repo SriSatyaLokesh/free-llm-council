@@ -1,0 +1,58 @@
+# Free LLM Council (OpenCode LLM Council)
+
+> 100% Free, Local-First Multi-Model Deliberation Engine powered by OpenCode with optional BYOK (Bring Your Own Key) hybrid cloud seating.
+
+Free LLM Council is an open-source consensus and decision-making platform inspired by Andrej Karpathy's experimental concept. It replaces costly per-token OpenRouter API calls by running multi-model debates natively on your local OpenCode service with zero token fees, unlimited runs, and complete privacy.
+
+## Key Information
+
+- **Primary Repository:** https://github.com/SriSatyaLokesh/llm-council-pro-max
+- **Local Engine:** OpenCode (https://opencode.ai)
+- **Supported Providers:** Local OpenCode (Free/Default), OpenRouter, OpenAI, Anthropic, Groq, DeepSeek (BYOK)
+- **Tech Stack:** Python 3.11+, FastAPI, SSE, React 19, Vite, Lucide-style SVG vector icons
+
+## Core Architecture & Workflow
+
+1. **Stage 1 — Independent Opening Positions:** Seated models research the prompt independently using read-only live web search and workspace tools.
+2. **Stage 2 — Multi-Round Named Debate:** Models engage in structured multi-round debate by name, specifically rebutting peers, conceding persuasive points, declaring updates, and surfacing tradeoffs. Supports Caveman compression (lite, full, ultra) for up to ~48% intermediate token savings.
+3. **Stage 3 — Blind Peer Review:** Opening positions are anonymized as Response A, B, C... Models score peer reasoning blindly to generate a bias-free aggregate ranking matrix.
+4. **Stage 4 — Chairman Synthesis & Verdict:** The highest-capacity reasoning model synthesizes the transcript into an executive decision: Decision, Reasoning, Tradeoffs, Dissent, and Confidence Score. Includes automatic failover if the primary chairman model stalls.
+
+## Key Capabilities
+
+- **100% Free & Unlimited:** Runs completely free on local OpenCode models without API bills or 429 rate limits.
+- **BYOK Hybrid Cloud Seating:** Seat Claude 3.5 Sonnet, GPT-4o, o1, or DeepSeek R1 alongside local free models via in-app API key modal.
+- **Human-in-the-Loop Steering:** Mid-debate injection of operator guidance and reference URLs taking effect in subsequent rounds and the verdict.
+- **Workspace Project Folders:** Organize deliberations into folders, move debates between folders, rename inline, or archive/restore completed sessions.
+- **One-Click Deliberation Exports:** Standalone Markdown report download and full ZIP packages (report.md, conversation.json, summary.txt).
+- **Modern Studio UI:** Single-window non-scrolling dashboard, real-time stage progress rail (RunRail), expandable tool traces, zero raw emojis.
+
+## Quickstart
+
+```bash
+# 1. Start OpenCode server
+opencode service start
+
+# 2. Clone repository
+git clone https://github.com/SriSatyaLokesh/llm-council-pro-max.git
+cd llm-council-pro-max
+
+# 3. Install dependencies
+uv sync # or pip install -e .
+cd frontend && npm install && cd ..
+
+# 4. Start backend (:8001) and frontend (:5173)
+./start.sh
+```
+
+## REST API Overview
+
+- `GET /api/models`: Discover active local OpenCode and configured cloud models.
+- `GET /api/conversations`: List deliberation metadata with project folder hierarchy and archived status.
+- `POST /api/conversations`: Create a new deliberation session.
+- `POST /api/conversations/{id}/message`: Stream a council run using Server-Sent Events (SSE).
+- `POST /api/conversations/{id}/steer`: Inject mid-flight human operator guidance directives.
+- `GET /api/conversations/{id}/report`: Download formatted executive Markdown report.
+- `GET /api/conversations/{id}/export-zip`: Download deliberation archive package (.zip).
+- `GET /api/providers/keys`: Retrieve safe redacted status for configured BYOK provider keys.
+- `POST /api/providers/keys`: Save dynamic provider API key in-memory.
