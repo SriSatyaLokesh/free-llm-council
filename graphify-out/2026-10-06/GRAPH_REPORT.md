@@ -1,28 +1,28 @@
 # Graph Report - llm-council  (2026-10-06)
 
 ## Corpus Check
-- 65 files · ~60,756 words
+- 65 files · ~61,272 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 20 file(s) not represented in the graph (top: .css 14, (none) 4, .cff 1)
 
 ## Summary
-- 844 nodes · 1626 edges · 63 communities (54 shown, 9 thin omitted)
+- 845 nodes · 1628 edges · 70 communities (61 shown, 9 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 57 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c78a54fb`
+- Built from commit: `27b4b558`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- get_conversation
+- Any
 - CouncilSession
 - icons.jsx
-- get_key_statuses
-- test_diagnose_connection_detects_port_conflict
+- test_unified_model_registry_merges_free_and_keyed_models
+- test_opencode_discovery.py
 - package.json
-- test_thinking_quality_and_deduplication.py
+- asyncio
 - test_model_eviction.py
 - caveman.py
 - test_chairman_selection.py
@@ -30,17 +30,17 @@
 - Appendix B - Canonical Sources (read these before reinventing)
 - council.py
 - test_token_budgeting.py
-- get
+- backend/main.py
 - CLAUDE.md - Technical Notes for LLM Council
 - ._check_budget_limits
 - BaseModel
-- opencode_client.py
+- verify_api.py
 - _sum_tokens
-- storage.py
 - test_hybrid_providers.py
+- storage.py
 - CouncilRun
 - 4. DESIGN ENGINEERING DIRECTIVES (Bias Correction)
-- verify_caveman.py
+- opencode_client.py
 - delete_conversation
 - HybridCouncilSession
 - Free LLM Council: OpenCode-Powered Multi-Model Deliberation Engine
@@ -55,7 +55,7 @@
 - 9. AI TELLS (Forbidden Patterns)
 - 11. REDESIGN PROTOCOL
 - 3. DEFAULT ARCHITECTURE & CONVENTIONS
-- settings.py
+- send_message
 - get_active_run
 - 6. PERFORMANCE & ACCESSIBILITY GUARDRAILS
 - ._collect_new_messages
@@ -65,26 +65,33 @@
 - 8. DARK MODE PROTOCOL
 - 7. DIAL DEFINITIONS (Technical Reference)
 - create_project
-- post_provider_key
+- get_key_statuses
 - .__init__
 - free-llm-council
+- create_conversation
+- get_conversation
 - test_human_steering.py
+- settings.py
+- test_thinking_quality_and_deduplication.py
+- test_ui_controls_telemetry.py
+- ensure_data_dir
+- export_conversation_zip
+- add_assistant_message
 - graphify.js
 - React + Vite
 - AGENTS.md
 - rules/graphify.md
 - workflows/graphify.md
-- backend/main.py
 - test_projects_and_folders.py
 - post_settings
 
 ## God Nodes (most connected - your core abstractions)
 1. `CouncilRun` - 57 edges
 2. `CouncilSession` - 28 edges
-3. `Sidebar()` - 19 edges
+3. `Sidebar()` - 20 edges
 4. `get_conversation()` - 19 edges
-5. `tasteskill: Anti-Slop Frontend Skill` - 16 edges
-6. `list_models()` - 16 edges
+5. `list_models()` - 16 edges
+6. `tasteskill: Anti-Slop Frontend Skill` - 16 edges
 7. `Appendix B - Canonical Sources (read these before reinventing)` - 15 edges
 8. `react` - 15 edges
 9. `HybridCouncilSession` - 14 edges
@@ -105,11 +112,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (63 total, 9 thin omitted)
+## Communities (70 total, 9 thin omitted)
 
-### Community 0 - "get_conversation"
-Cohesion: 0.05
-Nodes (70): prune_empty_conversations(), Update a project name or description., Update conversation metadata such as title or assigned project folder., Prune all empty abandoned conversations (0 messages)., update_conversation(), update_project(), add_assistant_message(), add_user_message() (+62 more)
+### Community 0 - "Any"
+Cohesion: 0.18
+Nodes (19): Update a project name or description., update_project(), create_project(), delete_project(), get_project(), get_projects_file(), list_projects(), load_all_projects() (+11 more)
 
 ### Community 1 - "CouncilSession"
 Cohesion: 0.20
@@ -117,31 +124,31 @@ Nodes (9): CouncilSession, One opencode session driven by one council member. Th
 
 ### Community 2 - "icons.jsx"
 Cohesion: 0.09
-Nodes (53): Frontend, B. Workspace Header & Breadcrumbs, api, App(), ChatInterface(), DebateMode(), LEVEL_LABELS, AlertTriangle() (+45 more)
+Nodes (54): Frontend, B. Workspace Header & Breadcrumbs, api, App(), ChatInterface(), DebateMode(), LEVEL_LABELS, AlertTriangle() (+46 more)
 
-### Community 3 - "get_key_statuses"
-Cohesion: 0.10
-Nodes (22): delete_key(), get_key(), get_key_statuses(), Any, Retrieve the raw secret key for a provider., Store or clear a key for a provider., Delete a key for a provider., Redact a secret key so it can be safely displayed in the UI. (+14 more)
+### Community 3 - "test_unified_model_registry_merges_free_and_keyed_models"
+Cohesion: 0.18
+Nodes (11): delete_key(), Delete a key for a provider., asyncio, If an external keyed model fails with 401 Unauthorized (invalid key/no…, HTTP integration test: GET /api/providers/keys POST /api/providers/keys, list_unified_models() must return OpenCode models when no keys exist, and merge…, HybridCouncilSession dispatches OpenCode models to CouncilSession, and keyed…, test_hybrid_council_session_routing() (+3 more)
 
-### Community 4 - "test_diagnose_connection_detects_port_conflict"
-Cohesion: 0.40
-Nodes (5): asyncio, If a port is open but occupied by another process (e.g. Kilo on 4096),…, FastAPI /api/health endpoint should report OpenCode connection and diagnostics., test_diagnose_connection_detects_port_conflict(), test_health_endpoint_returns_diagnostics()
+### Community 4 - "test_opencode_discovery.py"
+Cohesion: 0.33
+Nodes (6): asyncio, Unit tests for OpenCode discovery, port resilience, and health diagnostics., If a port is open but occupied by another process (e.g. Kilo on 4096),…, FastAPI /api/health endpoint should report OpenCode connection and diagnostics., test_diagnose_connection_detects_port_conflict(), test_health_endpoint_returns_diagnostics()
 
 ### Community 5 - "package.json"
 Cohesion: 0.06
 Nodes (35): allowScripts, esbuild@0.25.12, dependencies, react, react-dom, react-markdown, devDependencies, eslint (+27 more)
 
-### Community 6 - "test_thinking_quality_and_deduplication.py"
-Cohesion: 0.18
-Nodes (12): asyncio, Unit tests for Phase 8: Per-Model Thinking Quality & Model Deduplication., Verify distinct models like ling 3.1 and ling 3.0 fin are not collapsed to the…, Verify CouncilRun defaults the Chairman to max thinking and regular members to…, Verify user overrides for thinking quality are honored over defaults., Verify list_models includes variants list and deduplicates identical IDs., Verify CouncilSession includes variant in the model specification object., test_council_run_defaults_chairman_to_max_thinking() (+4 more)
+### Community 6 - "asyncio"
+Cohesion: 0.22
+Nodes (9): asyncio, Verify CouncilRun defaults the Chairman to max thinking and regular members to…, Verify user overrides for thinking quality are honored over defaults., Verify list_models includes variants list and deduplicates identical IDs., Verify CouncilSession includes variant in the model specification object., test_council_run_defaults_chairman_to_max_thinking(), test_council_run_honors_user_thinking_overrides(), test_council_session_transmits_variant_in_payload() (+1 more)
 
 ### Community 7 - "test_model_eviction.py"
 Cohesion: 0.18
 Nodes (13): make_mock_session(), asyncio, Unit tests for Phase 2: Dynamic Member Fault-Tolerance & Model Eviction., If a model succeeds in Stage 1 but crashes in Debate Round 1, it must be…, Create a mock CouncilSession that records ask() calls and session lifecycle., If the designated chairman fails during deliberation, the council must promote…, When run_stream is used, an eviction should emit a 'model_evicted' event., If a model fails in Stage 1, it must be evicted immediately and NEVER called… (+5 more)
 
 ### Community 8 - "caveman.py"
-Cohesion: 0.12
-Nodes (22): build_instruction(), intensity_for(), is_installed(), load_skill(), Path, Official Caveman compression, loaded at runtime from the installed skill.…, Return the text under '## <heading>', up to the next '## '., Pull one level's row out of Caveman's own Intensity table. Keeping this parsed… (+14 more)
+Cohesion: 0.18
+Nodes (16): build_instruction(), intensity_for(), is_installed(), load_skill(), Path, Official Caveman compression, loaded at runtime from the installed skill.…, Return the text under '## <heading>', up to the next '## '., Pull one level's row out of Caveman's own Intensity table. Keeping this parsed… (+8 more)
 
 ### Community 9 - "test_chairman_selection.py"
 Cohesion: 0.10
@@ -163,9 +170,9 @@ Nodes (16): _aggregate_block(), calculate_aggregate_rankings(), _clip(), _debate
 Cohesion: 0.15
 Nodes (15): asyncio, Real, non-mocked tests for Phase 3: Token & Time Budgeting Engine. Tests verify…, Functional test: When cumulative tokens across all models exceed…, Real wall-clock test: When real elapsed time crosses time_limit_seconds, debate…, Integration test: In a 4-round deliberation, when the token budget is capped…, Real HTTP integration test: Verify that FastAPI /api/settings accepts and…, Verify that CouncilRun properly initializes token and time tracking structures., Functional test: When a model exceeds its token_cap_per_model, it must be… (+7 more)
 
-### Community 14 - "get"
-Cohesion: 0.11
-Nodes (19): export_conversation_report(), export_conversation_zip_archive(), get_conversation(), get_project(), get_provider_keys(), health(), list_conversations(), list_projects() (+11 more)
+### Community 14 - "backend/main.py"
+Cohesion: 0.10
+Nodes (24): export_conversation_report(), export_conversation_zip_archive(), get_conversation(), get_project(), health(), list_conversations(), list_projects(), FastAPI backend for LLM Council. (+16 more)
 
 ### Community 15 - "CLAUDE.md - Technical Notes for LLM Council"
 Cohesion: 0.14
@@ -179,21 +186,21 @@ Nodes (5): emit(), Check if any active model has exceeded token_cap_per_model. I
 Cohesion: 0.18
 Nodes (11): Conversation, ConversationMetadata, Full conversation with all messages., Request to update a project., Request to update a conversation (project assignment, title, or archive status)., Request to send a message in a conversation., Conversation metadata for list view., SendMessageRequest (+3 more)
 
-### Community 18 - "opencode_client.py"
-Cohesion: 0.17
-Nodes (14): asyncio, Client for the local opencode server. This module replaces the old OpenRouter…, council_sessions(), main(), post(), End-to-end test of the HTTP API, including the SSE streaming path. Creates a…, Council sessions currently left in the user's opencode session list., Verification script for the opencode client and the council sandbox. Run with:… (+6 more)
+### Community 18 - "verify_api.py"
+Cohesion: 0.22
+Nodes (10): create_conversation(), CreateConversationRequest, Create a new conversation., Request to create a new conversation., council_sessions(), main(), post(), End-to-end test of the HTTP API, including the SSE streaming path. Creates a… (+2 more)
 
 ### Community 19 - "_sum_tokens"
 Cohesion: 0.33
 Nodes (5): Total the token counts opencode reported for a set of entries. opencode returns…, Token totals per stage, so the toggle's effect is visible rather than promised.…, _sum_tokens(), Verify token summation logic against realistic OpenCode token telemetry: input…, test_sum_tokens_real_telemetry()
 
-### Community 20 - "storage.py"
-Cohesion: 0.19
-Nodes (8): Configuration for the LLM Council. The council runs entirely on models that are…, Hybrid Council transport and unified model registry. Seamlessly combines local…, Secure in-memory and environment-backed provider API key management. Supports…, JSON-based storage for conversations., datetime, dotenv, os, typing
+### Community 20 - "test_hybrid_providers.py"
+Cohesion: 0.31
+Nodes (5): Hybrid Council transport and unified model registry. Seamlessly combines local…, Secure in-memory and environment-backed provider API key management. Supports…, httpx, Real, non-mocked tests for Phase 6: Hybrid Provider & Custom API Key Ingestion.…, typing
 
-### Community 21 - "test_hybrid_providers.py"
-Cohesion: 0.16
-Nodes (12): LLM Council backend package., Live test script executing an end-to-end deliberation across real OpenCode…, httpx, io, json, pytest, Unit tests for Phase 9: Clean Conversation Lifecycle & Persisted Council…, Tests for conversation ID exposure, markdown report export, and zip bundle… (+4 more)
+### Community 21 - "storage.py"
+Cohesion: 0.15
+Nodes (10): Configuration for the LLM Council. The council runs entirely on models that are…, JSON-based storage for conversations., Live test script executing an end-to-end deliberation across real OpenCode…, datetime, dotenv, io, json, os (+2 more)
 
 ### Community 22 - "CouncilRun"
 Cohesion: 0.17
@@ -203,9 +210,9 @@ Nodes (5): CouncilRun, One council deliberation, owning every session it creates
 Cohesion: 0.17
 Nodes (12): 4.10 Quotes & Testimonials, 4.11 Page Theme Lock (Light / Dark Mode Consistency), 4.1 Typography, 4.2 Color Calibration, 4.3 Layout Diversification, 4.4 Materiality, Shadows, Cards, 4.5 Interactive UI States, 4.6 Data & Form Patterns (+4 more)
 
-### Community 24 - "verify_caveman.py"
-Cohesion: 0.26
-Nodes (11): council_permissions(), Build the permission ruleset for council members. Allow the research and read…, council_sessions(), main(), _median(), one_shot(), part_one(), part_two() (+3 more)
+### Community 24 - "opencode_client.py"
+Cohesion: 0.13
+Nodes (19): asyncio, LLM Council backend package., council_permissions(), Client for the local opencode server. This module replaces the old OpenRouter…, Build the permission ruleset for council members. Allow the research and read…, council_sessions(), _median(), one_shot() (+11 more)
 
 ### Community 25 - "delete_conversation"
 Cohesion: 0.40
@@ -255,9 +262,9 @@ Nodes (7): 11.A Detect the Mode (first action), 11.B Audit Before Touching, 11.C
 Cohesion: 0.29
 Nodes (7): 3.A Stack, 3.B State, 3.C Icons, 3.D Emoji Policy, 3. DEFAULT ARCHITECTURE & CONVENTIONS, 3.E Responsiveness & Layout Mechanics, 3.F Dependency Verification (mandatory)
 
-### Community 41 - "settings.py"
-Cohesion: 0.07
-Nodes (36): get_settings(), Current council settings, plus whether the official Caveman skill is installed.…, Send a message and run the full four-stage council. Returns the complete…, send_message(), get_debate_mode(), get_settings(), get_time_limit_seconds(), get_token_budget_total() (+28 more)
+### Community 41 - "send_message"
+Cohesion: 0.12
+Nodes (21): get_settings(), Current council settings, plus whether the official Caveman skill is installed.…, Send a message and run the full four-stage council. Returns the complete…, send_message(), get_debate_mode(), get_settings(), get_time_limit_seconds(), get_token_budget_total() (+13 more)
 
 ### Community 42 - "get_active_run"
 Cohesion: 0.33
@@ -295,13 +302,45 @@ Nodes (4): 7. DIAL DEFINITIONS (Technical Reference), DESIGN_VARIANCE (Level 1-1
 Cohesion: 0.50
 Nodes (4): create_project(), CreateProjectRequest, Create a new project workspace folder., Request to create a new project workspace folder.
 
-### Community 51 - "post_provider_key"
-Cohesion: 0.50
-Nodes (4): post_provider_key(), ProviderKeyUpdate, Payload to configure or remove a provider API key., Update or remove a provider API key dynamically.
+### Community 51 - "get_key_statuses"
+Cohesion: 0.13
+Nodes (17): get_provider_keys(), post_provider_key(), ProviderKeyUpdate, Payload to configure or remove a provider API key., Get status and redacted preview of configured provider API keys., Update or remove a provider API key dynamically., get_key(), get_key_statuses() (+9 more)
+
+### Community 54 - "create_conversation"
+Cohesion: 0.17
+Nodes (16): add_user_message(), create_conversation(), delete_conversation(), get_conversation_path(), Get the file path for a conversation., Add a user message to a conversation. Args: conversation_id: Conversation…, Create a new conversation. Args: conversation_id: Unique identifier for the…, Permanently delete a conversation from storage. Returns: True if the file was… (+8 more)
+
+### Community 55 - "get_conversation"
+Cohesion: 0.22
+Nodes (14): Update conversation metadata such as title or assigned project folder., update_conversation(), assign_conversation_project(), get_conversation(), Update the title of a conversation. Args: conversation_id: Conversation…, Set the archived status of a conversation. Args: conversation_id: Conversation…, Assign or unassign a conversation to/from a project folder., Load a conversation from storage. Args: conversation_id: Unique identifier for… (+6 more)
 
 ### Community 56 - "test_human_steering.py"
 Cohesion: 0.06
 Nodes (35): Register an ongoing CouncilRun by conversation ID., Unregister an ongoing CouncilRun by conversation ID., register_active_run(), unregister_active_run(), Send a message and stream the council as it runs. Emits Server-Sent Events as…, send_message_stream(), emit(), event_generator() (+27 more)
+
+### Community 57 - "settings.py"
+Cohesion: 0.14
+Nodes (10): Live, mutable council settings. These are deliberately process-global rather…, Note which mode a stage ran in., record_stage_mode(), Real, non-mocked tests for Phase 5: Caveman Max Mode & Debate Compression.…, Ensure 'max' is recognized as a first-class debate compression level., Verify that build_instruction('max') emits the ultra-dense claim-and-evidence…, Verify that debate_prompt embeds the Caveman max instruction cleanly., test_build_instruction_max_structure_and_contract() (+2 more)
+
+### Community 58 - "test_thinking_quality_and_deduplication.py"
+Cohesion: 0.18
+Nodes (10): Reconciles a saved council preset against currently available OpenCode models.…, reconcile_council_preset(), pytest, Unit tests for Phase 9: Clean Conversation Lifecycle & Persisted Council…, Verify preset reconciliation logic: If a saved model is missing from OpenCode,…, test_preset_auto_reconciliation(), Unit tests for Phase 8: Per-Model Thinking Quality & Model Deduplication., Verify distinct models like ling 3.1 and ling 3.0 fin are not collapsed to the… (+2 more)
+
+### Community 59 - "test_ui_controls_telemetry.py"
+Cohesion: 0.27
+Nodes (8): asyncio, Unit and integration tests for Phase 7: UI Controls, Eviction Badges & Budget…, Verify CouncilRun captures evicted_models, retired_models, and emits early…, Verify /api/health provides all fields required by the frontend Sidebar health…, Verify /api/providers/keys endpoints support modal interactions: list, update,…, test_council_session_budget_and_eviction_telemetry(), test_health_api_contract_matches_frontend(), test_provider_keys_api_integration()
+
+### Community 60 - "ensure_data_dir"
+Cohesion: 0.25
+Nodes (8): prune_empty_conversations(), Prune all empty abandoned conversations (0 messages)., ensure_data_dir(), list_conversations(), prune_empty_conversations(), Prune all abandoned conversations that have 0 messages. Args: except_id:…, Ensure the data directory exists., List all conversations (metadata only). By default, empty conversations (0…
+
+### Community 61 - "export_conversation_zip"
+Cohesion: 0.25
+Nodes (8): export_conversation_zip(), format_conversation_markdown(), Format a complete council deliberation into a clean, comprehensive Markdown…, Build an in-memory zip archive containing: - report.md (human-readable…, Verify markdown generator produces structured sections., Verify in-memory zip archive packages report.md, conversation.json, and…, test_export_conversation_zip_archive(), test_format_conversation_markdown_structure()
+
+### Community 62 - "add_assistant_message"
+Cohesion: 0.40
+Nodes (5): add_assistant_message(), Add an assistant message holding a complete council run. The whole run is…, asyncio, Verify HTTP GET endpoints for report and zip downloads., test_export_endpoints_http()
 
 ### Community 66 - "graphify.js"
 Cohesion: 0.40
@@ -310,10 +349,6 @@ Nodes (3): IMPORTANT: keep the reminder string free of backticks and $(...) cons
 ### Community 69 - "React + Vite"
 Cohesion: 0.50
 Nodes (3): Expanding the ESLint configuration, React Compiler, React + Vite
-
-### Community 76 - "backend/main.py"
-Cohesion: 0.18
-Nodes (11): create_conversation(), CreateConversationRequest, FastAPI backend for LLM Council., Create a new conversation., Request to create a new conversation., fastapi, fastapi_middleware_cors, fastapi_responses (+3 more)
 
 ### Community 77 - "test_projects_and_folders.py"
 Cohesion: 0.28
@@ -324,7 +359,7 @@ Cohesion: 0.50
 Nodes (4): post_settings(), Change live council settings. Takes effect on the next debate round., Live settings the user can change while a run is in flight., SettingsUpdate
 
 ## Knowledge Gaps
-- **158 isolated node(s):** `0.A Read these signals first`, `0.B Output a one-line "Design Read" before generating`, `0.C If the brief is ambiguous, ask one question, do not guess`, `0.D Anti-Default Discipline`, `1.A Dial Inference (design read → dial values)` (+153 more)
+- **158 isolated node(s):** `base`, `Appendix A - Install Commands per Design System`, `Apple Liquid Glass (Apple platforms only)`, `Atlassian`, `Bootstrap` (+153 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 441 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -332,16 +367,16 @@ Nodes (4): post_settings(), Change live council settings. Takes effect on the ne
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `CLAUDE.md - Technical Notes for LLM Council` connect `CLAUDE.md - Technical Notes for LLM Council` to `test_human_steering.py`, `CouncilSession`, `icons.jsx`, `list_models`?**
-  _High betweenness centrality (0.211) - this node is a cross-community bridge._
-- **Why does `CouncilRun` connect `CouncilRun` to `CouncilSession`, `get_key_statuses`, `test_thinking_quality_and_deduplication.py`, `test_model_eviction.py`, `caveman.py`, `settings.py`, `.run_stream`, `test_chairman_selection.py`, `council.py`, `backend/main.py`, `test_token_budgeting.py`, `._check_budget_limits`, `_sum_tokens`, `test_hybrid_providers.py`, `test_human_steering.py`, `verify_caveman.py`, `HybridCouncilSession`, `list_models`?**
+  _High betweenness centrality (0.212) - this node is a cross-community bridge._
+- **Why does `CouncilRun` connect `CouncilRun` to `CouncilSession`, `test_unified_model_registry_merges_free_and_keyed_models`, `asyncio`, `test_model_eviction.py`, `test_chairman_selection.py`, `.run_stream`, `council.py`, `test_token_budgeting.py`, `backend/main.py`, `._check_budget_limits`, `_sum_tokens`, `test_hybrid_providers.py`, `opencode_client.py`, `HybridCouncilSession`, `list_models`, `send_message`, `test_human_steering.py`, `settings.py`, `test_thinking_quality_and_deduplication.py`, `test_ui_controls_telemetry.py`?**
   _High betweenness centrality (0.206) - this node is a cross-community bridge._
 - **Why does `Frontend` connect `icons.jsx` to `CLAUDE.md - Technical Notes for LLM Council`?**
-  _High betweenness centrality (0.197) - this node is a cross-community bridge._
+  _High betweenness centrality (0.198) - this node is a cross-community bridge._
 - **Are the 17 inferred relationships involving `CouncilRun` (e.g. with `HybridCouncilSession` and `CouncilSession`) actually correct?**
   _`CouncilRun` has 17 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 5 inferred relationships involving `CouncilSession` (e.g. with `CouncilRun` and `HybridCouncilSession`) actually correct?**
   _`CouncilSession` has 5 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `0.A Read these signals first`, `0.B Output a one-line "Design Read" before generating`, `0.C If the brief is ambiguous, ask one question, do not guess` to the rest of the system?**
+- **What connects `base`, `Appendix A - Install Commands per Design System`, `Apple Liquid Glass (Apple platforms only)` to the rest of the system?**
   _158 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `get_conversation` be split into smaller, more focused modules?**
-  _Cohesion score 0.0525879917184265 - nodes in this community are weakly interconnected._
+- **Should `icons.jsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.08900900900900902 - nodes in this community are weakly interconnected._

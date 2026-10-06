@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791284205.6479478,
-    "seen": 1791284927.4276671,
-    "ast_hash": "3743628224dbd8ccef1ca5989bfe29a0",
+    "mtime": 1791299472.5574434,
+    "seen": 1791299534.9868267,
+    "ast_hash": "ee9d37bfa01bfdc9b7bbe8820d6845b8",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791298434.4391904,
-    "seen": 1791298588.8293974,
-    "ast_hash": "8801cc730a705364f93c66bbcb08437a",
+    "mtime": 1791299425.4278123,
+    "seen": 1791299534.986847,
+    "ast_hash": "3e53b2bd9f48b9b5358f485abdf43d43",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/icons.jsx": {
-    "mtime": 1791284205.6601145,
-    "seen": 1791284927.427693,
-    "ast_hash": "e1151bb648b62b41fef584e584a5f1da",
+    "mtime": 1791299391.014519,
+    "seen": 1791299534.9868627,
+    "ast_hash": "c4d2e51eff0fe4ba22d9fcfc68963b44",
     "semantic_hash": ""
   },
   "frontend/src/format.js": {
@@ -378,15 +378,9 @@
     "semantic_hash": ""
   },
   "frontend/index.html": {
-    "mtime": 1791284205.6435225,
-    "seen": 1791284927.427737,
-    "ast_hash": "cfcfb813b67bd0ea713001073cbb5381",
-    "semantic_hash": ""
-  },
-  "frontend/public/vite.svg": {
-    "mtime": 1790659504.467107,
-    "seen": 1791278244.019736,
-    "ast_hash": "8e3a10e157f75ada21ab742c022d5430",
+    "mtime": 1791299359.11791,
+    "seen": 1791299534.9869494,
+    "ast_hash": "12f80e89f26c20a39bf6eeb7a40b9088",
     "semantic_hash": ""
   },
   "frontend/src/assets/react.svg": {
@@ -417,6 +411,12 @@
     "mtime": 1791284926.3570795,
     "seen": 1791298588.8295336,
     "ast_hash": "802d62980a724bf203a31fce1233d67d",
+    "semantic_hash": ""
+  },
+  "frontend/public/favicon.svg": {
+    "mtime": 1791299339.8563805,
+    "seen": 1791299534.9869564,
+    "ast_hash": "1c4f4150615fb408e965e88bb07d67aa",
     "semantic_hash": ""
   }
 }
