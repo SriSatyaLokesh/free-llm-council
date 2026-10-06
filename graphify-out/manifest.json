@@ -24,20 +24,20 @@
     "semantic_hash": ""
   },
   "backend/council.py": {
-    "mtime": 1791303796.3855982,
-    "seen": 1791303873.2332923,
+    "mtime": 1791303946.5398352,
+    "seen": 1791303946.672231,
     "ast_hash": "6fd17265971144904f16ef2ef334e83b",
     "semantic_hash": ""
   },
   "backend/hybrid_client.py": {
-    "mtime": 1791303769.178126,
-    "seen": 1791303873.2332935,
-    "ast_hash": "47c2b4e159b99e14041356dd543f3e12",
+    "mtime": 1791303946.5398352,
+    "seen": 1791303946.6722322,
+    "ast_hash": "7983021600b2d20f93be80bffc22c72f",
     "semantic_hash": ""
   },
   "backend/main.py": {
-    "mtime": 1791303817.5269327,
-    "seen": 1791303873.2332942,
+    "mtime": 1791303946.5405033,
+    "seen": 1791303946.672233,
     "ast_hash": "1d8c238a2f986f3d400b02428cbb5405",
     "semantic_hash": ""
   },
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791303634.9904106,
-    "seen": 1791303873.2333107,
-    "ast_hash": "e968023087b679168695c9b7c63d3e79",
+    "mtime": 1791304237.359267,
+    "seen": 1791304283.4688435,
+    "ast_hash": "fe60e5c1f845d984beb57b51a4de12e1",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -282,8 +282,8 @@
     "semantic_hash": ""
   },
   "tests/unit/test_hybrid_providers.py": {
-    "mtime": 1791303841.5536747,
-    "seen": 1791303873.233328,
+    "mtime": 1791303946.557499,
+    "seen": 1791303946.6722677,
     "ast_hash": "5b68ccdc7d7bc542cec698f70950a219",
     "semantic_hash": ""
   },
