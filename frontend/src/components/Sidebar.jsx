@@ -316,13 +316,10 @@ export default function Sidebar({
             type="button"
             className="new-debate-btn"
             onClick={() => onNewConversation(null)}
-            title="Start a new standalone debate (Ctrl/⌘ + K)"
+            title="Start a new debate (Ctrl/Cmd + K)"
           >
-            <span className="new-debate-label">
-              <Plus size={14} />
-              <span>New Debate</span>
-            </span>
-            <kbd className="sidebar-kbd-hint">⌘K</kbd>
+            <Plus size={15} />
+            <span>New Debate</span>
           </button>
           <button
             type="button"

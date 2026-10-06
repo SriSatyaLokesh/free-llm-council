@@ -13056,7 +13056,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/Sidebar.jsx",
-      "source_location": "L322",
+      "source_location": "L321",
       "weight": 1.0
     },
     {
@@ -13068,7 +13068,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/Sidebar.jsx",
-      "source_location": "L334",
+      "source_location": "L331",
       "weight": 1.0
     },
     {
@@ -13080,7 +13080,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/Sidebar.jsx",
-      "source_location": "L408",
+      "source_location": "L405",
       "weight": 1.0
     },
     {
@@ -13092,7 +13092,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/Sidebar.jsx",
-      "source_location": "L469",
+      "source_location": "L466",
       "weight": 1.0
     },
     {
@@ -13104,7 +13104,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/Sidebar.jsx",
-      "source_location": "L560",
+      "source_location": "L557",
       "weight": 1.0
     },
     {
@@ -13116,7 +13116,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/Sidebar.jsx",
-      "source_location": "L564",
+      "source_location": "L561",
       "weight": 1.0
     },
     {
@@ -29055,5 +29055,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "deaf02ea5d55a832b0d073ad3ebe915db0a7f64e"
+  "built_at_commit": "665ee51792d552bf3aa5c866267860f610f8da59"
 }
