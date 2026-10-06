@@ -128,6 +128,26 @@ export function Move({ size = 16, className = '' }) {
   );
 }
 
+export function MoreVertical({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className} stroke="none" fill="currentColor">
+      <circle cx="8" cy="3" r="1.3" />
+      <circle cx="8" cy="8" r="1.3" />
+      <circle cx="8" cy="13" r="1.3" />
+    </svg>
+  );
+}
+
+export function MoreHorizontal({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className} stroke="none" fill="currentColor">
+      <circle cx="3" cy="8" r="1.3" />
+      <circle cx="8" cy="8" r="1.3" />
+      <circle cx="13" cy="8" r="1.3" />
+    </svg>
+  );
+}
+
 export function Key({ size = 16, className = '' }) {
   return (
     <svg {...base} width={size} height={size} className={className}>

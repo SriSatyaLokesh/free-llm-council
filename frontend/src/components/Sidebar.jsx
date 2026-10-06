@@ -13,7 +13,7 @@ import {
   Trash,
   Copy,
   Package,
-  Move,
+  MoreHorizontal,
   Key,
   Plus,
   XMark,
@@ -33,6 +33,7 @@ export default function Sidebar({
   onMoveConversation,
   onRenameConversation,
   onArchiveConversation,
+  onDeleteConversation,
   onKeysUpdated,
 }) {
   const [health, setHealth] = useState(null);
@@ -47,12 +48,33 @@ export default function Sidebar({
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [editingProjectName, setEditingProjectName] = useState('');
 
-  // Conversation UI state (Rename, Move, Archive)
+  // Conversation UI state (Rename, Dropdown options, Drag-and-Drop, Archive)
   const [editingConvId, setEditingConvId] = useState(null);
   const [editingConvTitle, setEditingConvTitle] = useState('');
-  const [activeMoveMenuConvId, setActiveMoveMenuConvId] = useState(null);
+  const [activeOptionsDropdownConvId, setActiveOptionsDropdownConvId] = useState(null);
+  const [draggingConvId, setDraggingConvId] = useState(null);
+  const [dragOverTarget, setDragOverTarget] = useState(null);
   const [copiedConvId, setCopiedConvId] = useState(null);
   const [showArchived, setShowArchived] = useState(false);
+
+  // Dismiss dropdown on outside clicks or Escape key
+  useEffect(() => {
+    const handleGlobalClick = () => {
+      setActiveOptionsDropdownConvId(null);
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveOptionsDropdownConvId(null);
+        setEditingConvId(null);
+      }
+    };
+    document.addEventListener('click', handleGlobalClick);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('click', handleGlobalClick);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleCopyConvId = (id, e) => {
     e.stopPropagation();
@@ -130,15 +152,9 @@ export default function Sidebar({
     }
   };
 
-  const handleMoveChange = async (convId, targetProjectId) => {
-    setActiveMoveMenuConvId(null);
-    if (onMoveConversation) {
-      await onMoveConversation(convId, targetProjectId === 'independent' ? null : targetProjectId);
-    }
-  };
-
   const handleStartRenameConv = (conv, e) => {
     e.stopPropagation();
+    setActiveOptionsDropdownConvId(null);
     setEditingConvId(conv.id);
     setEditingConvTitle(conv.title || 'New Debate');
   };
@@ -160,8 +176,86 @@ export default function Sidebar({
 
   const handleToggleArchiveConv = async (convId, isCurrentlyArchived, e) => {
     e.stopPropagation();
+    setActiveOptionsDropdownConvId(null);
+    if (!isCurrentlyArchived) {
+      // Ensure user sees the debate transition to the archived folder
+      setShowArchived(true);
+    }
     if (onArchiveConversation) {
       await onArchiveConversation(convId, !isCurrentlyArchived);
+    }
+  };
+
+  const handleDeleteConv = async (conv, e) => {
+    e.stopPropagation();
+    setActiveOptionsDropdownConvId(null);
+    const confirmMsg = `Delete debate "${conv.title || 'New Debate'}"?\nThis deliberation will be permanently deleted.`;
+    if (window.confirm(confirmMsg) && onDeleteConversation) {
+      await onDeleteConversation(conv.id);
+    }
+  };
+
+  // Drag and drop handlers
+  const handleDragStart = (e, conv) => {
+    e.dataTransfer.setData('text/plain', conv.id);
+    e.dataTransfer.effectAllowed = 'move';
+    setDraggingConvId(conv.id);
+  };
+
+  const handleDragEnd = () => {
+    setDraggingConvId(null);
+    setDragOverTarget(null);
+  };
+
+  const handleFolderDragOver = (e, projectId) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverTarget !== projectId) {
+      setDragOverTarget(projectId);
+    }
+  };
+
+  const handleFolderDragLeave = (e, projectId) => {
+    if (e.currentTarget.contains(e.relatedTarget)) return;
+    if (dragOverTarget === projectId) {
+      setDragOverTarget(null);
+    }
+  };
+
+  const handleFolderDrop = async (e, projectId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const convId = e.dataTransfer.getData('text/plain') || draggingConvId;
+    setDragOverTarget(null);
+    setDraggingConvId(null);
+    if (convId && onMoveConversation) {
+      await onMoveConversation(convId, projectId);
+    }
+  };
+
+  const handleIndependentDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverTarget !== 'independent') {
+      setDragOverTarget('independent');
+    }
+  };
+
+  const handleIndependentDragLeave = (e) => {
+    if (e.currentTarget.contains(e.relatedTarget)) return;
+    if (dragOverTarget === 'independent') {
+      setDragOverTarget(null);
+    }
+  };
+
+  const handleIndependentDrop = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const convId = e.dataTransfer.getData('text/plain') || draggingConvId;
+    setDragOverTarget(null);
+    setDraggingConvId(null);
+    if (convId && onMoveConversation) {
+      await onMoveConversation(convId, null);
     }
   };
 
@@ -173,12 +267,16 @@ export default function Sidebar({
   // Render helper for single conversation row
   const renderConversationRow = (conv, currentFolderId = null) => {
     const isEditing = editingConvId === conv.id;
-    const isMoveOpen = activeMoveMenuConvId === conv.id;
+    const isDropdownOpen = activeOptionsDropdownConvId === conv.id;
+    const isDragging = draggingConvId === conv.id;
 
     return (
       <div
         key={conv.id}
-        className={`conversation-row ${conv.id === currentConversationId ? 'active' : ''} ${conv.archived ? 'archived-row' : ''}`}
+        draggable={!isEditing}
+        onDragStart={(e) => handleDragStart(e, conv)}
+        onDragEnd={handleDragEnd}
+        className={`conversation-row ${conv.id === currentConversationId ? 'active' : ''} ${conv.archived ? 'archived-row' : ''} ${isDragging ? 'is-dragging' : ''}`}
       >
         {isEditing ? (
           <form className="inline-rename-form" onSubmit={(e) => handleSaveRenameConv(conv.id, e)}>
@@ -212,6 +310,7 @@ export default function Sidebar({
             type="button"
             className="conversation-item-btn"
             onClick={() => onSelectConversation(conv.id)}
+            title={`${conv.title || 'New Debate'}\n(Drag into folders to organize)`}
           >
             <span className="conversation-title">{conv.title || 'New Debate'}</span>
             <span className="conversation-meta">
@@ -221,7 +320,8 @@ export default function Sidebar({
           </button>
         )}
 
-        <div className="conv-actions-group">
+        <div className="conv-actions-group" onClick={(e) => e.stopPropagation()}>
+          {/* Quick Action 1: Copy ID */}
           <button
             type="button"
             className="conv-icon-btn"
@@ -231,6 +331,7 @@ export default function Sidebar({
             {copiedConvId === conv.id ? <Check size={12} /> : <Copy size={12} />}
           </button>
 
+          {/* Quick Action 2: Export Deliberation ZIP */}
           <a
             href={api.getZipExportUrl(conv.id)}
             download
@@ -241,58 +342,54 @@ export default function Sidebar({
             <Package size={12} />
           </a>
 
-          <button
-            type="button"
-            className="conv-icon-btn"
-            title="Rename debate"
-            onClick={(e) => handleStartRenameConv(conv, e)}
-          >
-            <Pencil size={12} />
-          </button>
-
-          <button
-            type="button"
-            className="conv-icon-btn"
-            title={conv.archived ? 'Restore / Unarchive debate' : 'Archive debate'}
-            onClick={(e) => handleToggleArchiveConv(conv.id, conv.archived, e)}
-          >
-            {conv.archived ? <ArchiveRestore size={12} /> : <Archive size={12} />}
-          </button>
-
-          <div className="conv-move-container">
+          {/* Three Dots Options Menu Dropdown */}
+          <div className="conv-options-container">
             <button
               type="button"
-              className="conv-move-btn"
-              title="Move debate into a project folder or standalone"
+              className={`conv-icon-btn conv-options-btn ${isDropdownOpen ? 'active' : ''}`}
+              title="More debate options"
               onClick={(e) => {
                 e.stopPropagation();
-                setActiveMoveMenuConvId(isMoveOpen ? null : conv.id);
+                setActiveOptionsDropdownConvId(isDropdownOpen ? null : conv.id);
               }}
+              aria-expanded={isDropdownOpen}
             >
-              <Move size={12} />
+              <MoreHorizontal size={13} />
             </button>
-            {isMoveOpen && (
-              <div className="move-dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                <div className="move-dropdown-header">Move debate to:</div>
+
+            {isDropdownOpen && (
+              <div
+                className="conv-options-dropdown"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <button
                   type="button"
-                  className={`move-dropdown-item ${!conv.project_id ? 'current-dest' : ''}`}
-                  disabled={!conv.project_id}
-                  onClick={() => handleMoveChange(conv.id, 'independent')}
+                  className="conv-dropdown-item"
+                  onClick={(e) => handleStartRenameConv(conv, e)}
                 >
-                  <FileText size={12} /> Standalone Debate {!conv.project_id ? '(current)' : ''}
+                  <Pencil size={12} />
+                  <span>Rename Debate</span>
                 </button>
-                {projects.map((p) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    className={`move-dropdown-item ${p.id === conv.project_id ? 'current-dest' : ''}`}
-                    disabled={p.id === conv.project_id}
-                    onClick={() => handleMoveChange(conv.id, p.id)}
-                  >
-                    <Folder size={12} /> {p.name} {p.id === conv.project_id ? '(current)' : ''}
-                  </button>
-                ))}
+
+                <button
+                  type="button"
+                  className="conv-dropdown-item"
+                  onClick={(e) => handleToggleArchiveConv(conv.id, conv.archived, e)}
+                >
+                  {conv.archived ? <ArchiveRestore size={12} /> : <Archive size={12} />}
+                  <span>{conv.archived ? 'Restore Debate' : 'Archive Debate'}</span>
+                </button>
+
+                <div className="conv-dropdown-divider" />
+
+                <button
+                  type="button"
+                  className="conv-dropdown-item danger-item"
+                  onClick={(e) => handleDeleteConv(conv, e)}
+                >
+                  <Trash size={12} />
+                  <span>Delete Debate</span>
+                </button>
               </div>
             )}
           </div>
@@ -395,8 +492,11 @@ export default function Sidebar({
               return (
                 <div key={project.id} className="project-folder-group">
                   <div
-                    className="project-folder-header"
+                    className={`project-folder-header ${dragOverTarget === project.id ? 'drag-over' : ''}`}
                     onClick={() => toggleFolder(project.id)}
+                    onDragOver={(e) => handleFolderDragOver(e, project.id)}
+                    onDragLeave={(e) => handleFolderDragLeave(e, project.id)}
+                    onDrop={(e) => handleFolderDrop(e, project.id)}
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleFolder(project.id)}
@@ -492,15 +592,22 @@ export default function Sidebar({
           )}
         </div>
 
-        {/* Independent Debates Section */}
-        <div className="sidebar-section">
+        {/* Independent Debates Section (Droppable to detach debate from folders) */}
+        <div
+          className={`sidebar-section independent-section ${dragOverTarget === 'independent' ? 'drag-over' : ''}`}
+          onDragOver={handleIndependentDragOver}
+          onDragLeave={handleIndependentDragLeave}
+          onDrop={handleIndependentDrop}
+        >
           <div className="section-header">
             <span className="section-title">INDEPENDENT DEBATES</span>
             <span className="section-badge">{independentConversations.length}</span>
           </div>
 
           {independentConversations.length === 0 ? (
-            <div className="empty-section-notice">No standalone debates</div>
+            <div className="empty-section-notice">
+              {dragOverTarget === 'independent' ? 'Drop here to make standalone' : 'No standalone debates'}
+            </div>
           ) : (
             independentConversations.map((conv) => renderConversationRow(conv, null))
           )}
