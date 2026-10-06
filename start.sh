@@ -5,6 +5,18 @@
 echo "Starting LLM Council..."
 echo ""
 
+# The council runs on the models inside opencode, so its API server must be up.
+# There are no model provider API keys to configure.
+if ! opencode service status >/dev/null 2>&1; then
+  echo "Starting the opencode server (needed for model access)..."
+  opencode service start
+  sleep 2
+fi
+
+echo "Council will use these models:"
+opencode models 2>/dev/null | sed 's/^/  /'
+echo ""
+
 # Start backend
 echo "Starting backend on http://localhost:8001..."
 uv run python -m backend.main &

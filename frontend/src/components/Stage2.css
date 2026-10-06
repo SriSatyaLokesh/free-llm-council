@@ -1,153 +1,181 @@
-.stage2 {
-  background: #fafafa;
-}
-
-.stage2 h4 {
-  margin: 20px 0 8px 0;
-  color: #333;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.stage2 h4:first-of-type {
-  margin-top: 0;
-}
-
-.stage-description {
-  margin: 0 0 12px 0;
-  color: #666;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.aggregate-rankings {
-  background: #f0f7ff;
-  padding: 16px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  border: 2px solid #d0e7ff;
-}
-
-.aggregate-rankings h4 {
-  margin: 0 0 12px 0;
-  color: #2a7ae2;
-  font-size: 15px;
-}
-
-.aggregate-list {
+.stage2 .round-selector {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.aggregate-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px;
-  background: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #d0e7ff;
-}
-
-.rank-position {
-  color: #2a7ae2;
-  font-weight: 700;
-  font-size: 16px;
-  min-width: 35px;
-}
-
-.rank-model {
-  flex: 1;
-  color: #333;
-  font-family: monospace;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.rank-score {
-  color: #666;
-  font-size: 13px;
-  font-family: monospace;
-}
-
-.stage2 .tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-4) 0;
   flex-wrap: wrap;
 }
 
-.stage2 .tab {
-  padding: 8px 16px;
-  background: #ffffff;
-  border: 1px solid #d0d0d0;
-  border-radius: 6px 6px 0 0;
-  color: #666;
+.debate-early-banner {
+  background: rgba(255, 184, 108, 0.15);
+  border: 1px solid rgba(255, 184, 108, 0.4);
+  color: #ffb86c;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+}
+
+.stage2 .round-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--fg-subtle);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
   cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
-.stage2 .tab:hover {
-  background: #f0f0f0;
-  color: #333;
-  border-color: #4a90e2;
+.stage2 .round-tab:hover {
+  border-color: var(--border);
+  color: var(--fg-muted);
 }
 
-.stage2 .tab.active {
-  background: #ffffff;
-  color: #4a90e2;
-  border-color: #4a90e2;
-  border-bottom-color: #ffffff;
+.stage2 .round-tab.active {
+  background: var(--surface-raised);
+  border-color: var(--border);
+  color: var(--fg);
+}
+
+/* Density 8/10: a dense multi-column grid suits 8 models side by side. */
+.stage2 .debate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-3);
+}
+
+.debate-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.debate-card .stage-entry-header {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.debate-card .model-name {
+  color: var(--info);
+}
+
+.debate-text {
+  flex: 1;
+  padding: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--fg);
+  word-break: break-word;
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+.debate-text h1,
+.debate-text h2,
+.debate-text h3 {
+  font-size: var(--text-base);
+  margin: var(--space-3) 0 var(--space-1) 0;
+}
+
+.stage-tokens {
+  margin: 0 var(--space-3) var(--space-2) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.stage-tokens strong {
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+/* Compression level badge on the round tab. */
+.round-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px var(--space-1);
+  border: 1px solid var(--info);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--info);
+}
+
+@media (max-width: 767px) {
+  .stage2 .debate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .debate-text {
+    max-height: 360px;
+  }
+}
+
+.human-guidance-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--accent);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.human-guidance-badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.stage2 .tab-content {
-  background: #ffffff;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
-  margin-bottom: 20px;
+.human-guidance-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.ranking-model {
-  color: #888;
-  font-size: 12px;
-  font-family: monospace;
-  margin-bottom: 12px;
+.human-guidance-msg {
+  font-size: var(--text-sm);
+  color: var(--fg);
+  font-style: italic;
+  margin: 0;
 }
 
-.ranking-content {
-  color: #333;
-  line-height: 1.6;
-  font-size: 14px;
+.human-guidance-resources {
+  font-size: var(--text-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
 }
 
-.parsed-ranking {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 2px solid #e0e0e0;
+.resources-label {
+  color: var(--fg-muted);
 }
 
-.parsed-ranking strong {
-  color: #2a7ae2;
-  font-size: 13px;
+.guidance-link {
+  color: var(--accent);
+  text-decoration: underline;
+  word-break: break-all;
 }
 
-.parsed-ranking ol {
-  margin: 8px 0 0 0;
-  padding-left: 24px;
-  color: #333;
-}
-
-.parsed-ranking li {
-  margin: 4px 0;
-  font-family: monospace;
-  font-size: 13px;
-}
-
-.rank-count {
-  color: #999;
-  font-size: 12px;
+.guidance-link:hover {
+  color: var(--fg);
 }

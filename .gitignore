@@ -15,7 +15,21 @@ wheels/
 # Data files
 data/
 
+# Council sandbox canary (verify_opencode asserts this is never created)
+backend/.council_canary.txt
+
 # Frontend
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/
+
+# Locally installed agent skills (ui-ux-pro-max and friends). These are large
+# and installed per-machine, not vendored into the repo.
+.opencode/skills/
+
+# Graphify AST cache
+graphify-out/cache/
+graphify-out/.rebuild.lock
+
+# Spec-driven development documentation
+specs/
