@@ -1,7 +1,7 @@
 [project]
-name = "llm-council"
-version = "0.1.0"
-description = "Your LLM Council"
+name = "free-llm-council"
+version = "0.2.0"
+description = "Free LLM Council: 100% Free OpenCode-Based Multi-Model Deliberation Engine with BYOK Hybrid Cloud Seating"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
