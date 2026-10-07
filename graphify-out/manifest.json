@@ -36,15 +36,15 @@
     "semantic_hash": ""
   },
   "backend/main.py": {
-    "mtime": 1791372476.6641366,
-    "seen": 1791392203.9943771,
-    "ast_hash": "d596d356ea77bd987a388c105b235192",
+    "mtime": 1791396266.1196935,
+    "seen": 1791396657.182917,
+    "ast_hash": "978bee89f9eaa53b48bb3fd4e42d421c",
     "semantic_hash": ""
   },
   "backend/opencode_client.py": {
-    "mtime": 1791284205.639215,
-    "seen": 1791284927.4276447,
-    "ast_hash": "74fef3a21e0b6faf3f952de2a814b3e6",
+    "mtime": 1791396565.6809902,
+    "seen": 1791396657.182923,
+    "ast_hash": "b7a384c376f62c36195d07b628602cf9",
     "semantic_hash": ""
   },
   "backend/prompts.py": {
@@ -294,9 +294,9 @@
     "semantic_hash": ""
   },
   "tests/unit/test_opencode_discovery.py": {
-    "mtime": 1791284205.6919487,
-    "seen": 1791284927.4277208,
-    "ast_hash": "6388106bc42b0df80feb1274a0b04ae6",
+    "mtime": 1791396582.6575625,
+    "seen": 1791396657.183137,
+    "ast_hash": "17fcdc519da42a7b2cbf55271475b38b",
     "semantic_hash": ""
   },
   "tests/unit/test_projects_and_folders.py": {
@@ -447,6 +447,12 @@
     "mtime": 1791394547.1249285,
     "seen": 1791395123.6474502,
     "ast_hash": "ed1209cb9ceac67a0e19b15c58ffd366",
+    "semantic_hash": ""
+  },
+  "start.ps1": {
+    "mtime": 1791396288.070174,
+    "seen": 1791396657.1830733,
+    "ast_hash": "7094898d01bcb5287278b622fa5183ca",
     "semantic_hash": ""
   }
 }

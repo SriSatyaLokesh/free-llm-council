@@ -117,14 +117,14 @@ def get_server_url() -> str:
     """
     Resolve the opencode server base URL.
 
-    Order: OPENCODE_SERVER_URL env var, `opencode service status`, then the
-    default 4096 port.
+    Order: OPENCODE_SERVER_URL env var, `opencode service status`,
+    port from service.json, then the default 4096 port.
     """
     env_val = os.environ.get("OPENCODE_SERVER_URL") or OPENCODE_SERVER_URL
     if env_val:
         return env_val.rstrip("/")
 
-    executable = shutil.which("opencode")
+    executable = shutil.which("opencode") or shutil.which("opencode.cmd")
     if executable:
         try:
             proc = subprocess.run(
@@ -140,7 +140,89 @@ def get_server_url() -> str:
         except Exception:
             pass
 
+    for path in _service_config_candidates():
+        try:
+            if path.exists():
+                data = json.loads(path.read_text(encoding="utf-8"))
+                port = data.get("port")
+                if port:
+                    return f"http://127.0.0.1:{port}"
+        except Exception:
+            continue
+
     return "http://127.0.0.1:4096"
+
+
+def is_opencode_responding(url: Optional[str] = None) -> bool:
+    """Check if the OpenCode server is currently responding."""
+    target_url = (url or get_server_url()).rstrip("/")
+    try:
+        with httpx.Client(timeout=1.5) as client:
+            resp = client.get(f"{target_url}/api/model")
+            # 200 = healthy; 401 = up and demanding auth; both prove the server is listening
+            return resp.status_code in (200, 401)
+    except Exception:
+        return False
+
+
+def ensure_opencode_running(timeout: float = 12.0) -> bool:
+    """
+    Ensure the OpenCode service is running. If not running, automatically start it.
+
+    Returns True if OpenCode is confirmed running and responding, False otherwise.
+    """
+    target_url = get_server_url()
+    if is_opencode_responding(target_url):
+        return True
+
+    executable = shutil.which("opencode") or shutil.which("opencode.cmd")
+    if not executable:
+        return False
+
+    import time
+    try:
+        # Step 1: Attempt standard `opencode service start`
+        subprocess.run(
+            [executable, "service", "start"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except Exception:
+        pass
+
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        time.sleep(0.5)
+        new_url = get_server_url()
+        if is_opencode_responding(new_url):
+            return True
+
+    # Step 2: Fallback to running background server if service daemon didn't start
+    try:
+        kwargs: Dict[str, Any] = {}
+        if os.name == "nt":
+            kwargs["creationflags"] = 0x08000000 | 0x00000200  # CREATE_NO_WINDOW | DETACHED_PROCESS
+        else:
+            kwargs["start_new_session"] = True
+
+        subprocess.Popen(
+            [executable, "serve"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            **kwargs,
+        )
+
+        fallback_deadline = time.time() + 5.0
+        while time.time() < fallback_deadline:
+            time.sleep(0.5)
+            new_url = get_server_url()
+            if is_opencode_responding(new_url):
+                return True
+    except Exception:
+        pass
+
+    return is_opencode_responding()
 
 
 
@@ -276,24 +358,39 @@ async def list_models() -> List[Dict[str, Any]]:
     """
     url = f"{get_server_url()}/api/model"
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.get(
-            url,
-            params=_location_params(),
-            headers=_auth_headers(),
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.get(
+                url,
+                params=_location_params(),
+                headers=_auth_headers(),
+            )
+    except httpx.ConnectError:
+        # Auto-heal: start opencode service if not yet running and retry
+        if ensure_opencode_running(timeout=8.0):
+            url = f"{get_server_url()}/api/model"
+            async with httpx.AsyncClient(timeout=30.0) as client:
+                response = await client.get(
+                    url,
+                    params=_location_params(),
+                    headers=_auth_headers(),
+                )
+        else:
+            raise OpencodeUnavailable(
+                f"No opencode server found at {get_server_url()}. Check that opencode is installed."
+            )
+
+    if response.status_code == 401:
+        raise OpencodeUnavailable(
+            "opencode server rejected our credentials. Try `opencode service restart`."
         )
+    if response.status_code == 404:
+        raise OpencodeUnavailable(
+            f"No opencode server found at {get_server_url()}. Run `opencode service start`."
+        )
+    response.raise_for_status()
 
-        if response.status_code == 401:
-            raise OpencodeUnavailable(
-                "opencode server rejected our credentials. Try `opencode service restart`."
-            )
-        if response.status_code == 404:
-            raise OpencodeUnavailable(
-                f"No opencode server found at {get_server_url()}. Run `opencode service start`."
-            )
-        response.raise_for_status()
-
-        payload = response.json()
+    payload = response.json()
 
     models = []
     seen_ids = set()
