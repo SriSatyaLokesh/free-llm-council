@@ -137,7 +137,7 @@ def _positions_block(positions: List[Dict[str, Any]], limit: int = MAX_QUOTE_CHA
     return "\n\n".join(
         f"[{p['model']}]\n{_clip(p['response'], limit)}"
         for p in positions
-        if p.get("response")
+        if p.get("response") and not p.get("error")
     )
 
 
@@ -147,8 +147,9 @@ def _debate_block(rounds: List[Dict[str, Any]], limit: int = MAX_QUOTE_CHARS) ->
     out = []
     for round_data in rounds:
         out.append(f"--- ROUND {round_data['round']} ---")
-        for statement in round_data["statements"]:
-            if statement.get("response"):
+        statements = round_data.get("statements", round_data.get("responses", []))
+        for statement in statements:
+            if statement.get("response") and not statement.get("error"):
                 out.append(f"[{statement['model']}]\n{_clip(statement['response'], limit)}")
     return "\n\n".join(out)
 
@@ -692,6 +693,17 @@ class CouncilRun:
             async def emit(kind: str, payload: Any) -> None:
                 return
 
+        # Check for requested members that failed to open session / connect
+        for m in self.members:
+            if m not in live:
+                await self._evict(
+                    m,
+                    stage="session_init",
+                    round_num=None,
+                    reason="Did not report to council (session initialization failed or timed out)",
+                    emit=emit,
+                )
+
         # -- Stage 1: positions ------------------------------------------
         self.active_members = list(live)
         positions = self._as_entries(
@@ -712,16 +724,22 @@ class CouncilRun:
                     p["model"],
                     stage="positions",
                     round_num=None,
-                    reason=error or "Model returned empty position",
+                    reason=error or "Model returned empty position (did not participate in Phase 1)",
                     emit=emit,
                 )
 
         await self._check_budget_limits(round_num=None, emit=emit)
         await emit("positions", positions)
 
+        # Ensure Phase 1 dropouts quit immediately: they will not have the same amount of context as others.
+        evicted_ids = {e["model"] for e in self.evicted_members}
+        self.active_members = [
+            m for m in self.active_members
+            if m not in evicted_ids
+        ]
+
         # If nobody produced a position there is nothing to debate or review.
         # Bail out rather than running three more stages on empty text.
-        evicted_ids = {e["model"] for e in self.evicted_members}
         valid_positions = [
             p for p in positions
             if p.get("response") and p["model"] not in evicted_ids
@@ -819,10 +837,13 @@ class CouncilRun:
         # -- Stage 3: blind review ---------------------------------------
         reviews: List[Dict[str, Any]] = []
         aggregate: List[Dict[str, Any]] = []
+        valid_stage1_positions = [
+            p for p in positions
+            if p.get("response") and not p.get("error") and p["model"] not in evicted_ids
+        ]
         label_to_model = {
-            f"Response {_label(i)}": position["model"]
-            for i, position in enumerate(positions)
-            if position.get("response")
+            f"Response {_label(i)}": p["model"]
+            for i, p in enumerate(valid_stage1_positions)
         }
 
         if len(self.active_members) >= 2 and len(label_to_model) >= 2:
@@ -836,9 +857,8 @@ class CouncilRun:
                 MAX_QUOTE_CHARS_COMPRESSED if review_instruction else MAX_QUOTE_CHARS
             )
             anonymous_block = "\n\n".join(
-                f"{label}:\n{_clip(position['response'], review_limit)}"
-                for label, position in zip(label_to_model.keys(), positions)
-                if position.get("response")
+                f"{label}:\n{_clip(pos['response'], review_limit)}"
+                for label, pos in zip(label_to_model.keys(), valid_stage1_positions)
             )
 
             current_review_members = list(self.active_members)

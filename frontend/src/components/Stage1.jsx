@@ -14,7 +14,12 @@ export default function Stage1({ responses }) {
     return null;
   }
 
-  const active = responses[Math.min(activeTab, responses.length - 1)];
+  // Focus on active members who reported; non-reporting members are stated once on top of ProcessPanel
+  const activeResponses = responses.filter(
+    (r) => !r.error && (r.response || (r.toolCalls && r.toolCalls.length > 0))
+  );
+  const displayList = activeResponses.length > 0 ? activeResponses : responses;
+  const active = displayList[Math.min(activeTab, displayList.length - 1)];
 
   return (
     <div className="stage stage1">
@@ -24,7 +29,7 @@ export default function Stage1({ responses }) {
       </p>
 
       <div className="tabs">
-        {responses.map((resp, index) => (
+        {displayList.map((resp, index) => (
           <button
             key={resp.model}
             className={`tab ${activeTab === index ? 'active' : ''}`}
