@@ -326,4 +326,22 @@ export function ShareIcon({ size = 16, className = '' }) {
   );
 }
 
+export function UsersIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M11 13.5v-1a2.5 2.5 0 00-2.5-2.5h-5A2.5 2.5 0 001 12.5v1" />
+      <circle cx="6" cy="5" r="2.5" />
+      <path d="M15 13.5v-1a2.5 2.5 0 00-2-2.45M11.5 2.6a2.5 2.5 0 010 4.8" />
+    </svg>
+  );
+}
+
+export function SlidersIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M3 13.5v-4M3 6.5V2.5M1 6.5h4M8 13.5V9.5M8 6.5V2.5M6 9.5h4M13 13.5v-2M13 8.5V2.5M11 11.5h4" />
+    </svg>
+  );
+}
+
 

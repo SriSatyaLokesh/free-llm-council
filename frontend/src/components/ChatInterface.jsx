@@ -4,9 +4,20 @@ import RunRail from './RunRail';
 import VerdictHero from './VerdictHero';
 import ProcessPanel from './ProcessPanel';
 import ModelRoster from './ModelRoster';
-import ReportModal from './ReportModal';
 import { api } from '../api';
-import { Folder, FileText, Copy, Package, Check, GroupAILogo, LinkIcon } from './icons';
+import {
+  Folder,
+  FileText,
+  Copy,
+  Package,
+  Check,
+  GroupAILogo,
+  LinkIcon,
+  UsersIcon,
+  SlidersIcon,
+  XMark,
+} from './icons';
+import { shortModel } from '../format';
 import { getShareableUrl } from '../utils/url';
 import './ChatInterface.css';
 
@@ -18,15 +29,13 @@ export default function ChatInterface({
   councilConfig,
   onConfigChange,
   error,
-  reportModalState,
   onOpenReport,
-  onCloseReport,
-  onReportTypeChange,
 }) {
   const [input, setInput] = useState('');
   const [startedAt, setStartedAt] = useState(null);
   const [idCopied, setIdCopied] = useState(false);
   const [shareCopied, setShareCopied] = useState(false);
+  const [isCouncilSidebarOpen, setIsCouncilSidebarOpen] = useState(false);
 
   const messagesContainerRef = useRef(null);
   const lastUserMsgRef = useRef(null);
@@ -177,51 +186,61 @@ export default function ChatInterface({
 
   return (
     <div className="chat-interface">
-      <div className="workspace-header">
-        <div className="workspace-breadcrumb">
-          {activeProject ? (
-            <span className="breadcrumb-folder" title={`Workspace: ${activeProject.name}`}>
-              <Folder size={14} className="breadcrumb-icon" />
-              <span className="breadcrumb-folder-name">{activeProject.name}</span>
-            </span>
-          ) : (
-            <span className="breadcrumb-independent" title="Standalone deliberation workspace">
-              <FileText size={14} className="breadcrumb-icon" />
-              <span>Standalone Debate</span>
-            </span>
-          )}
-          <span className="breadcrumb-sep" aria-hidden="true">/</span>
-          <h2 className="breadcrumb-title" title={conversation.title || 'New Debate'}>
-            {conversation.title || 'New Debate'}
-          </h2>
-          <button
-            type="button"
-            className="conv-id-badge"
-            onClick={handleCopyId}
-            title={`Deliberation Link: ${getShareableUrl(conversation?.id)}\nClick to copy shareable URL`}
-          >
-            <span className="conv-id-prefix">ID:</span>
-            <span className="conv-id-value">{conversation.id ? conversation.id.slice(0, 8) : 'new'}…</span>
-            <span className="conv-id-icon">
-              {idCopied ? (
-                <>
-                  <Check size={12} />
-                  <span className="conv-copied-text">URL Copied</span>
-                </>
-              ) : (
-                <Copy size={12} />
-              )}
-            </span>
-          </button>
-        </div>
+      <div className="chat-workspace-main">
+        <div className="workspace-header">
+          <div className="workspace-breadcrumb">
+            {activeProject ? (
+              <span className="breadcrumb-folder" title={`Workspace: ${activeProject.name}`}>
+                <Folder size={14} className="breadcrumb-icon" />
+                <span className="breadcrumb-folder-name">{activeProject.name}</span>
+              </span>
+            ) : (
+              <span className="breadcrumb-independent" title="Standalone deliberation workspace">
+                <FileText size={14} className="breadcrumb-icon" />
+                <span>Standalone Debate</span>
+              </span>
+            )}
+            <span className="breadcrumb-sep" aria-hidden="true">/</span>
+            <h2 className="breadcrumb-title" title={conversation.title || 'New Debate'}>
+              {conversation.title || 'New Debate'}
+            </h2>
+            <button
+              type="button"
+              className="conv-id-badge"
+              onClick={handleCopyId}
+              title={`Deliberation Link: ${getShareableUrl(conversation?.id)}\nClick to copy shareable URL`}
+            >
+              <span className="conv-id-prefix">ID:</span>
+              <span className="conv-id-value">{conversation.id ? conversation.id.slice(0, 8) : 'new'}…</span>
+              <span className="conv-id-icon">
+                {idCopied ? (
+                  <>
+                    <Check size={12} />
+                    <span className="conv-copied-text">URL Copied</span>
+                  </>
+                ) : (
+                  <Copy size={12} />
+                )}
+              </span>
+            </button>
+          </div>
 
-        <div className="workspace-actions">
-          <button
-            type="button"
-            className="export-btn share-link-btn"
-            onClick={handleShareDebate}
-            title="Copy shareable URL for this deliberation"
-          >
+          <div className="workspace-actions">
+            <button
+              type="button"
+              className={`export-btn council-sidebar-toggle-btn ${isCouncilSidebarOpen ? 'active' : ''}`}
+              onClick={() => setIsCouncilSidebarOpen((v) => !v)}
+              title="Toggle Council Models & Configuration Sidebar"
+            >
+              <UsersIcon size={14} />
+              <span>Council ({councilConfig.members?.length || 0})</span>
+            </button>
+            <button
+              type="button"
+              className="export-btn share-link-btn"
+              onClick={handleShareDebate}
+              title="Copy shareable URL for this deliberation"
+            >
             {shareCopied ? (
               <>
                 <Check size={14} />
@@ -336,21 +355,26 @@ export default function ChatInterface({
       </div>
 
       <form className="input-form" onSubmit={handleSubmit}>
-        <ModelRoster
-          config={councilConfig}
-          onChange={onConfigChange}
-          disabled={isLoading}
-          evictedModels={
-            [...(conversation.messages || [])]
-              .reverse()
-              .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
-          }
-          retiredModels={
-            [...(conversation.messages || [])]
-              .reverse()
-              .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
-          }
-        />
+        <div className="council-composer-strip">
+          <div className="council-composer-info">
+            <span className="council-composer-dot" aria-hidden="true" />
+            <span className="council-composer-label">Council:</span>
+            <span className="council-composer-text">
+              {councilConfig.members?.length || 0} models seated
+              {councilConfig.chairman && ` · Chair: ${shortModel(councilConfig.chairman)}`}
+              {councilConfig.rounds != null && ` · ${councilConfig.rounds} rounds`}
+            </span>
+          </div>
+          <button
+            type="button"
+            className="council-composer-btn"
+            onClick={() => setIsCouncilSidebarOpen((v) => !v)}
+            title="Configure council members, reasoning depth, and debate parameters in the sidebar"
+          >
+            <SlidersIcon size={13} />
+            <span>{isCouncilSidebarOpen ? 'Close Sidebar' : 'Configure Council'}</span>
+          </button>
+        </div>
         <div className="input-row">
           <label className="sr-only" htmlFor="composer">
             Ask the council a question
@@ -374,14 +398,49 @@ export default function ChatInterface({
           </button>
         </div>
       </form>
-
-      <ReportModal
-        conversation={conversation}
-        isOpen={reportModalState ? reportModalState.isOpen : false}
-        reportType={reportModalState ? reportModalState.type : 'executive'}
-        onReportTypeChange={onReportTypeChange}
-        onClose={onCloseReport}
-      />
     </div>
-  );
+
+    {/* Council Models & Configuration Sidebar */}
+    {isCouncilSidebarOpen && (
+      <aside className="council-config-sidebar">
+        <div className="council-sidebar-header">
+          <div className="council-sidebar-title">
+            <UsersIcon size={16} />
+            <h3>Council Setup</h3>
+            <span className="council-sidebar-count-badge">
+              {councilConfig.members?.length || 0} Seated
+            </span>
+          </div>
+          <button
+            type="button"
+            className="council-sidebar-close"
+            onClick={() => setIsCouncilSidebarOpen(false)}
+            title="Close Council Setup Sidebar"
+            aria-label="Close Council Setup Sidebar"
+          >
+            <XMark size={16} />
+          </button>
+        </div>
+        <div className="council-sidebar-body">
+          <ModelRoster
+            config={councilConfig}
+            onChange={onConfigChange}
+            disabled={isLoading}
+            evictedModels={
+              [...(conversation.messages || [])]
+                .reverse()
+                .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
+            }
+            retiredModels={
+              [...(conversation.messages || [])]
+                .reverse()
+                .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
+            }
+            isSidebar={true}
+          />
+        </div>
+      </aside>
+    )}
+  </div>
+);
 }

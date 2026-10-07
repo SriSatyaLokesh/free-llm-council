@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import ChatInterface from './components/ChatInterface';
+import ReportPage from './components/ReportPage';
 import { api } from './api';
 import { getUrlDeliberationState, updateBrowserUrl } from './utils/url';
 import './App.css';
@@ -611,19 +612,26 @@ function App() {
           api.getModels().catch(() => {});
         }}
       />
-      <ChatInterface
-        conversation={currentConversation}
-        projects={projects}
-        onSendMessage={handleSendMessage}
-        isLoading={isLoading}
-        councilConfig={councilConfig}
-        onConfigChange={handleConfigChange}
-        error={streamError}
-        reportModalState={reportModalState}
-        onOpenReport={handleOpenReport}
-        onCloseReport={handleCloseReport}
-        onReportTypeChange={handleReportTypeChange}
-      />
+      {reportModalState.isOpen ? (
+        <ReportPage
+          conversation={currentConversation}
+          projects={projects}
+          reportType={reportModalState.type}
+          onReportTypeChange={handleReportTypeChange}
+          onBack={handleCloseReport}
+        />
+      ) : (
+        <ChatInterface
+          conversation={currentConversation}
+          projects={projects}
+          onSendMessage={handleSendMessage}
+          isLoading={isLoading}
+          councilConfig={councilConfig}
+          onConfigChange={handleConfigChange}
+          error={streamError}
+          onOpenReport={handleOpenReport}
+        />
+      )}
     </div>
   );
 }

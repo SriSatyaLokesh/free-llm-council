@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "frontend/src/App.jsx": {
-    "mtime": 1791393522.33814,
-    "seen": 1791393833.1956763,
-    "ast_hash": "a865f15b8577a8f5526cce89e716545e",
+    "mtime": 1791394814.0931447,
+    "seen": 1791395123.647414,
+    "ast_hash": "9ede6880fb1ebe699dae6927291ca746",
     "semantic_hash": ""
   },
   "frontend/src/api.js": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791393598.28882,
-    "seen": 1791393833.195682,
-    "ast_hash": "a691bc257823a1ba64f00ed4c87dbafe",
+    "mtime": 1791394899.5923197,
+    "seen": 1791395123.6474242,
+    "ast_hash": "f99fde9cc3e491dd4322c7e197ed38e3",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -132,9 +132,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ModelRoster.jsx": {
-    "mtime": 1791372544.652765,
-    "seen": 1791392203.9944377,
-    "ast_hash": "995be93f9640b414849e3a6daa79d059",
+    "mtime": 1791395005.581436,
+    "seen": 1791395123.6474328,
+    "ast_hash": "a8c452a055e5b08bdf0614760100bf52",
     "semantic_hash": ""
   },
   "frontend/src/components/ProcessPanel.jsx": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/icons.jsx": {
-    "mtime": 1791393193.307262,
-    "seen": 1791393833.195726,
-    "ast_hash": "ef911f060700b3574adba24e21b45016",
+    "mtime": 1791394503.4126165,
+    "seen": 1791395123.6474876,
+    "ast_hash": "4d932deb84e8d213501d2edbc883b9b3",
     "semantic_hash": ""
   },
   "frontend/src/format.js": {
@@ -441,6 +441,12 @@
     "mtime": 1791393206.570098,
     "seen": 1791393833.19574,
     "ast_hash": "5f87a3b7b177fcea50002f126f5f91e4",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ReportPage.jsx": {
+    "mtime": 1791394547.1249285,
+    "seen": 1791395123.6474502,
+    "ast_hash": "ed1209cb9ceac67a0e19b15c58ffd366",
     "semantic_hash": ""
   }
 }
