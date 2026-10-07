@@ -94,6 +94,18 @@ def test_format_conversation_markdown_structure():
     assert "Strategic Trade-Off & Risk Mitigation Matrix" in detailed_md
     assert "Presiding Chairman" in detailed_md
 
+    # HTML report rendering verification
+    exec_html = storage.render_report_html(sample_conv, mode="executive")
+    assert "<!DOCTYPE html>" in exec_html
+    assert "Free LLM Council Deliberation Report" in exec_html
+    assert "Database Architecture Debate" in exec_html
+    assert "Executive Summary Brief" in exec_html
+
+    detailed_html = storage.render_report_html(sample_conv, mode="detailed")
+    assert "<!DOCTYPE html>" in detailed_html
+    assert "Comprehensive Deep-Dive Technical Matrix" in detailed_html
+    assert "<table" in detailed_html
+
 
 def test_export_conversation_zip_archive():
     """Verify in-memory zip archive packages executive-report.md, detailed-report.md, report.md, conversation.json, and summary.txt."""
@@ -202,13 +214,30 @@ async def test_export_endpoints_http():
         assert resp_zip.status_code == 200
         assert "application/zip" in resp_zip.headers["content-type"]
         with zipfile.ZipFile(io.BytesIO(resp_zip.content), "r") as zf:
-            assert "report.md" in zf.namelist()
-            assert "executive-report.md" in zf.namelist()
-            assert "detailed-report.md" in zf.namelist()
-            assert "conversation.json" in zf.namelist()
-            assert "summary.txt" in zf.namelist()
+            names = zf.namelist()
+            assert "report.md" in names
+            assert "executive-report.md" in names
+            assert "detailed-report.md" in names
+            assert "conversation.json" in names
+            assert "summary.txt" in names
+            assert "executive-report.html" in names
+            assert "detailed-report.html" in names
 
-        # 5. Test 404 on non-existent conversation
+        # 5. Test HTML export
+        resp_html = await client.get("/api/conversations/test-export-http-conv/export/html?format=executive")
+        assert resp_html.status_code == 200
+        assert "text/html" in resp_html.headers["content-type"]
+        assert "<!DOCTYPE html>" in resp_html.text
+        assert "Free LLM Council Deliberation Report" in resp_html.text
+
+        # 6. Test PDF export endpoint
+        resp_pdf = await client.get("/api/conversations/test-export-http-conv/export/pdf?format=executive")
+        assert resp_pdf.status_code in (200, 501)
+        if resp_pdf.status_code == 200:
+            assert resp_pdf.headers["content-type"] == "application/pdf"
+            assert resp_pdf.content.startswith(b"%PDF")
+
+        # 7. Test 404 on non-existent conversation
         resp_404 = await client.get("/api/conversations/non-existent-id/export/zip")
         assert resp_404.status_code == 404
 

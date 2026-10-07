@@ -21,3 +21,13 @@
     flex-direction: column;
   }
 }
+
+@media print {
+  .app {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+}
+

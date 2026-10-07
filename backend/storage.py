@@ -2,6 +2,10 @@
 
 import json
 import os
+import shutil
+import subprocess
+import tempfile
+import platform
 from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 from pathlib import Path
@@ -918,7 +922,405 @@ def export_conversation_zip(conv: Dict[str, Any]) -> bytes:
 
         zf.writestr("summary.txt", "\n".join(summary_lines).encode("utf-8"))
 
+        # 5. Standalone publication-grade HTML reports
+        try:
+            exec_html = render_report_html(conv, mode="executive")
+            zf.writestr("executive-report.html", exec_html.encode("utf-8"))
+            detailed_html = render_report_html(conv, mode="detailed")
+            zf.writestr("detailed-report.html", detailed_html.encode("utf-8"))
+        except Exception:
+            pass
+
+        # 6. Standalone publication-grade PDF reports (if headless engine is present)
+        try:
+            exec_pdf = generate_report_pdf(conv, mode="executive")
+            if exec_pdf:
+                zf.writestr("executive-report.pdf", exec_pdf)
+            detailed_pdf = generate_report_pdf(conv, mode="detailed")
+            if detailed_pdf:
+                zf.writestr("detailed-report.pdf", detailed_pdf)
+        except Exception:
+            pass
+
     buffer.seek(0)
     return buffer.getvalue()
+
+
+def find_headless_browser() -> Optional[str]:
+    """
+    Detect an available headless browser executable (Edge, Chrome, Chromium)
+    on the host system.
+    """
+    # 1. Windows standard installation locations
+    if platform.system() == "Windows":
+        common_win_paths = [
+            r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+            os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Edge\Application\msedge.exe"),
+            os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
+        ]
+        for p in common_win_paths:
+            if os.path.isfile(p):
+                return p
+
+    # 2. PATH resolution
+    candidates = [
+        "msedge",
+        "chrome",
+        "google-chrome",
+        "google-chrome-stable",
+        "chromium",
+        "chromium-browser",
+    ]
+    for c in candidates:
+        found = shutil.which(c)
+        if found and os.path.isfile(found):
+            return found
+
+    # 3. macOS / Linux standard locations
+    unix_paths = [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "/usr/bin/google-chrome",
+        "/usr/bin/google-chrome-stable",
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
+    ]
+    for p in unix_paths:
+        if os.path.isfile(p):
+            return p
+
+    return None
+
+
+def render_report_html(conv: Dict[str, Any], mode: str = "executive") -> str:
+    """
+    Render a deliberation conversation as a publication-grade standalone HTML document
+    with comprehensive print/PDF styling and zero emojis.
+    """
+    import markdown_it
+
+    title = conv.get("title", "Council Deliberation")
+    conv_id = conv.get("id", "unknown")
+    created_at = conv.get("created_at", "")
+    mode_title = (
+        "Executive Summary Brief"
+        if mode in ("executive", "brief")
+        else "Comprehensive Deep-Dive Technical Matrix"
+    )
+
+    # Extract metadata metrics
+    chairman = "Unknown"
+    members_count = "N/A"
+    confidence = "N/A"
+    total_tokens = "N/A"
+
+    for msg in reversed(conv.get("messages", [])):
+        if msg.get("role") == "assistant" and msg.get("council"):
+            c = msg.get("council", {})
+            meta = c.get("metadata", {})
+            verdict = c.get("verdict", {})
+            chairman = verdict.get("model") or meta.get("chairman") or chairman
+            members = meta.get("members", []) or c.get("positions", [])
+            if members:
+                members_count = str(len(members))
+            if meta.get("total_tokens"):
+                total_tokens = f"{meta['total_tokens']:,}"
+            if verdict.get("sections", {}).get("confidence"):
+                confidence = verdict["sections"]["confidence"]
+            break
+
+    md_content = format_conversation_markdown(conv, mode=mode)
+    parser = markdown_it.MarkdownIt().enable("table")
+    body_html = parser.render(md_content)
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} - Council Report</title>
+  <style>
+    @page {{
+      size: A4 portrait;
+      margin: 16mm 16mm 18mm 16mm;
+      @bottom-right {{
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }}
+      @bottom-left {{
+        content: "Free LLM Council - Deliberation ID: {conv_id[:8]}";
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }}
+    }}
+    * {{
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }}
+    body {{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.55;
+      color: #0f172a;
+      background: #ffffff;
+      margin: 0;
+      padding: 24px 32px;
+    }}
+    @media print {{
+      body {{
+        padding: 0;
+      }}
+    }}
+    .report-banner {{
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }}
+    .report-badge {{
+      display: inline-block;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }}
+    .report-title {{
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #0f172a;
+      line-height: 1.25;
+    }}
+    .report-subtitle {{
+      font-size: 0.95rem;
+      color: #475569;
+      margin: 0;
+    }}
+    .report-kpi-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 24px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }}
+    .kpi-item {{
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }}
+    .kpi-label {{
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      font-weight: 600;
+    }}
+    .kpi-value {{
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0f172a;
+      word-break: break-word;
+    }}
+    h1, h2, h3, h4 {{
+      color: #0f172a;
+      page-break-after: avoid;
+      break-after: avoid;
+    }}
+    h1 {{
+      font-size: 1.45rem;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }}
+    h2 {{
+      font-size: 1.2rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }}
+    h3 {{
+      font-size: 1.05rem;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }}
+    p, ul, ol {{
+      margin: 0.45rem 0;
+    }}
+    table {{
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 9pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }}
+    th {{
+      background: #1e293b !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #1e293b;
+    }}
+    td {{
+      padding: 7px 10px;
+      border: 1px solid #cbd5e1;
+      vertical-align: top;
+      color: #334155;
+    }}
+    tr:nth-child(even) td {{
+      background: #f8fafc !important;
+    }}
+    pre {{
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-family: "Cascadia Code", Consolas, Monaco, "Courier New", monospace;
+      font-size: 8pt;
+      line-height: 1.35;
+      white-space: pre;
+      overflow-x: auto;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 12px 0;
+    }}
+    code {{
+      font-family: "Cascadia Code", Consolas, Monaco, "Courier New", monospace;
+      font-size: 0.9em;
+      background: #f1f5f9;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }}
+    pre code {{
+      background: transparent;
+      padding: 0;
+      border: none;
+    }}
+    blockquote {{
+      border-left: 4px solid #3b82f6;
+      background: #eff6ff;
+      margin: 10px 0;
+      padding: 8px 12px;
+      color: #1e3a8a;
+      border-radius: 0 4px 4px 0;
+    }}
+    hr {{
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 18px 0;
+    }}
+    .report-footer {{
+      margin-top: 36px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 8pt;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }}
+  </style>
+</head>
+<body>
+  <div class="report-banner">
+    <div class="report-badge">Free LLM Council Deliberation Report</div>
+    <h1 class="report-title">{title}</h1>
+    <p class="report-subtitle">{mode_title}</p>
+  </div>
+
+  <div class="report-kpi-grid">
+    <div class="kpi-item">
+      <span class="kpi-label">Deliberation ID</span>
+      <span class="kpi-value">{conv_id[:8]}...</span>
+    </div>
+    <div class="kpi-item">
+      <span class="kpi-label">Created Date</span>
+      <span class="kpi-value">{created_at[:10] if created_at else "N/A"}</span>
+    </div>
+    <div class="kpi-item">
+      <span class="kpi-label">Chairman Model</span>
+      <span class="kpi-value">{chairman}</span>
+    </div>
+    <div class="kpi-item">
+      <span class="kpi-label">Council Size</span>
+      <span class="kpi-value">{members_count} Models</span>
+    </div>
+    <div class="kpi-item">
+      <span class="kpi-label">Confidence Rating</span>
+      <span class="kpi-value">{confidence}</span>
+    </div>
+    <div class="kpi-item">
+      <span class="kpi-label">Tokens Consumed</span>
+      <span class="kpi-value">{total_tokens}</span>
+    </div>
+  </div>
+
+  <div class="report-content">
+    {body_html}
+  </div>
+
+  <div class="report-footer">
+    <span>Free LLM Council Multi-Model Deliberation Architecture</span>
+    <span>Autonomous Consensus Engine - All Rights Reserved</span>
+  </div>
+</body>
+</html>"""
+
+
+def generate_report_pdf(conv: Dict[str, Any], mode: str = "executive") -> Optional[bytes]:
+    """
+    Generate a publication-grade PDF document using an available headless browser.
+    Returns bytes on success, or None if no headless browser engine is found.
+    """
+    browser_bin = find_headless_browser()
+    if not browser_bin:
+        return None
+
+    html_str = render_report_html(conv, mode=mode)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        html_file = os.path.join(tmpdir, "report.html")
+        pdf_file = os.path.join(tmpdir, "report.pdf")
+        with open(html_file, "w", encoding="utf-8") as f:
+            f.write(html_str)
+
+        file_uri = "file:///" + os.path.abspath(html_file).replace("\\", "/")
+        cmd = [
+            browser_bin,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-pdf-header-footer",
+            f"--print-to-pdf={pdf_file}",
+            file_uri,
+        ]
+        try:
+            proc = subprocess.run(cmd, capture_output=True, timeout=35)
+            if proc.returncode == 0 and os.path.exists(pdf_file):
+                with open(pdf_file, "rb") as f:
+                    return f.read()
+        except Exception:
+            return None
+
+    return None
+
 
 

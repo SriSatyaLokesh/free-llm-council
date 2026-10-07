@@ -350,6 +350,57 @@ async def export_conversation_report(
     )
 
 
+@app.get("/api/conversations/{conversation_id}/export/html")
+async def export_conversation_html(
+    conversation_id: str,
+    format: str = Query("executive", description="Report format: 'executive' or 'detailed'"),
+):
+    """Export a council deliberation as a standalone publication-grade HTML report."""
+    conv = storage.get_conversation(conversation_id)
+    if conv is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    html_content = storage.render_report_html(conv, mode=format)
+    fmt_tag = "detailed" if format in ("detailed", "comprehensive") else "executive"
+    filename = f"council-{fmt_tag}-report-{conversation_id[:8]}.html"
+    return Response(
+        content=html_content,
+        media_type="text/html; charset=utf-8",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Cache-Control": "no-cache",
+        },
+    )
+
+
+@app.get("/api/conversations/{conversation_id}/export/pdf")
+async def export_conversation_pdf(
+    conversation_id: str,
+    format: str = Query("executive", description="Report format: 'executive' or 'detailed'"),
+):
+    """Export a council deliberation as a publication-grade PDF document."""
+    conv = storage.get_conversation(conversation_id)
+    if conv is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+    pdf_bytes = storage.generate_report_pdf(conv, mode=format)
+    if not pdf_bytes:
+        raise HTTPException(
+            status_code=501,
+            detail="Headless browser engine (Edge/Chrome/Chromium) is not available on host for PDF rendering. Please use the Print/PDF export in the web viewer or download the HTML report.",
+        )
+
+    fmt_tag = "detailed" if format in ("detailed", "comprehensive") else "executive"
+    filename = f"council-{fmt_tag}-report-{conversation_id[:8]}.pdf"
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Cache-Control": "no-cache",
+        },
+    )
+
+
 @app.get("/api/conversations/{conversation_id}/reports")
 async def get_conversation_reports(conversation_id: str):
     """
