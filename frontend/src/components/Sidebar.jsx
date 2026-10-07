@@ -17,6 +17,7 @@ import {
   Key,
   Plus,
   XMark,
+  TableIcon,
   GroupAILogo,
 } from './icons';
 import './Sidebar.css';
@@ -379,6 +380,36 @@ export default function Sidebar({
                   {conv.archived ? <ArchiveRestore size={12} /> : <Archive size={12} />}
                   <span>{conv.archived ? 'Restore Debate' : 'Archive Debate'}</span>
                 </button>
+
+                <div className="conv-dropdown-divider" />
+
+                <a
+                  href={api.getReportExportUrl(conv.id, 'executive')}
+                  download
+                  className="conv-dropdown-item"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveOptionsDropdownConvId(null);
+                  }}
+                  title="Download Executive Briefing Markdown report"
+                >
+                  <FileText size={12} />
+                  <span>Executive Report (.md)</span>
+                </a>
+
+                <a
+                  href={api.getReportExportUrl(conv.id, 'detailed')}
+                  download
+                  className="conv-dropdown-item"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveOptionsDropdownConvId(null);
+                  }}
+                  title="Download Deep-Dive Technical Matrix Markdown report"
+                >
+                  <TableIcon size={12} />
+                  <span>Deep-Dive Matrix (.md)</span>
+                </a>
 
                 <div className="conv-dropdown-divider" />
 

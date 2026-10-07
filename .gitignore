@@ -27,9 +27,10 @@ frontend/.vite/
 # and installed per-machine, not vendored into the repo.
 .opencode/skills/
 
-# Graphify AST cache
+# Graphify AST cache and backups
 graphify-out/cache/
 graphify-out/.rebuild.lock
+graphify-out/20*/
 
 # Spec-driven development documentation
 specs/

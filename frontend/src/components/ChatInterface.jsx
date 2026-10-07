@@ -4,6 +4,7 @@ import RunRail from './RunRail';
 import VerdictHero from './VerdictHero';
 import ProcessPanel from './ProcessPanel';
 import ModelRoster from './ModelRoster';
+import ReportModal from './ReportModal';
 import { api } from '../api';
 import { Folder, FileText, Copy, Package, Check, GroupAILogo } from './icons';
 import './ChatInterface.css';
@@ -20,6 +21,7 @@ export default function ChatInterface({
   const [input, setInput] = useState('');
   const [startedAt, setStartedAt] = useState(null);
   const [idCopied, setIdCopied] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
 
   const messagesContainerRef = useRef(null);
   const lastUserMsgRef = useRef(null);
@@ -193,11 +195,11 @@ export default function ChatInterface({
           <button
             type="button"
             className="export-btn export-report-btn"
-            onClick={handleExportReport}
-            title="Download deliberation as a Markdown report document"
+            onClick={() => setIsReportOpen(true)}
+            title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
           >
             <FileText size={14} />
-            <span>Export Report</span>
+            <span>Deliberation Report</span>
           </button>
           <button
             type="button"
@@ -266,6 +268,7 @@ export default function ChatInterface({
                       compression={msg.council.metadata?.caveman}
                       metadata={msg.council.metadata}
                       conversationId={conversation?.id}
+                      onOpenReport={() => setIsReportOpen(true)}
                     />
                   )}
 
@@ -329,6 +332,12 @@ export default function ChatInterface({
           </button>
         </div>
       </form>
+
+      <ReportModal
+        conversation={conversation}
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+      />
     </div>
   );
 }

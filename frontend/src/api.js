@@ -238,10 +238,21 @@ export const api = {
   },
 
   /**
-   * Download a conversation as a markdown report.
+   * Download a conversation as a markdown report (executive or detailed).
    */
-  getReportExportUrl(conversationId) {
-    return `${API_BASE}/api/conversations/${conversationId}/export/report`;
+  getReportExportUrl(conversationId, format = 'executive') {
+    return `${API_BASE}/api/conversations/${conversationId}/export/report?format=${encodeURIComponent(format)}`;
+  },
+
+  /**
+   * Fetch pre-rendered executive and detailed reports for in-app viewing.
+   */
+  async getReports(conversationId) {
+    const response = await fetch(`${API_BASE}/api/conversations/${conversationId}/reports`);
+    if (!response.ok) {
+      throw new Error('Failed to load deliberation reports');
+    }
+    return response.json();
   },
 
   /**

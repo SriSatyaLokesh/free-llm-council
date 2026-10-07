@@ -21,7 +21,13 @@ const SECTIONS = [
   { key: 'confidence', label: 'Confidence' },
 ];
 
-export default function VerdictHero({ verdict, compression, metadata, conversationId }) {
+export default function VerdictHero({
+  verdict,
+  compression,
+  metadata,
+  conversationId,
+  onOpenReport,
+}) {
   const [showRaw, setShowRaw] = useState(false);
 
   if (!verdict) return null;
@@ -106,12 +112,18 @@ export default function VerdictHero({ verdict, compression, metadata, conversati
             <>
               <button
                 type="button"
-                className="verdict-export-btn"
-                onClick={() => window.open(api.getReportExportUrl(conversationId), '_blank')}
-                title="Download this deliberation as a Markdown report"
+                className="verdict-export-btn verdict-report-btn"
+                onClick={() => {
+                  if (onOpenReport) {
+                    onOpenReport();
+                  } else {
+                    window.open(api.getReportExportUrl(conversationId), '_blank');
+                  }
+                }}
+                title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
               >
                 <FileText size={12} style={{ verticalAlign: 'middle', marginRight: 4 }} />
-                Export Report
+                Deliberation Report
               </button>
               <button
                 type="button"
