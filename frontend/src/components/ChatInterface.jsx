@@ -6,7 +6,8 @@ import ProcessPanel from './ProcessPanel';
 import ModelRoster from './ModelRoster';
 import ReportModal from './ReportModal';
 import { api } from '../api';
-import { Folder, FileText, Copy, Package, Check, GroupAILogo } from './icons';
+import { Folder, FileText, Copy, Package, Check, GroupAILogo, LinkIcon } from './icons';
+import { getShareableUrl } from '../utils/url';
 import './ChatInterface.css';
 
 export default function ChatInterface({
@@ -17,11 +18,15 @@ export default function ChatInterface({
   councilConfig,
   onConfigChange,
   error,
+  reportModalState,
+  onOpenReport,
+  onCloseReport,
+  onReportTypeChange,
 }) {
   const [input, setInput] = useState('');
   const [startedAt, setStartedAt] = useState(null);
   const [idCopied, setIdCopied] = useState(false);
-  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
 
   const messagesContainerRef = useRef(null);
   const lastUserMsgRef = useRef(null);
@@ -134,11 +139,30 @@ export default function ChatInterface({
   const isEmpty = !conversation.messages || conversation.messages.length === 0;
   const activeProject = projects.find((p) => p.id === conversation.project_id);
 
-  const handleCopyId = () => {
+  const handleCopyId = async () => {
     if (!conversation?.id) return;
-    navigator.clipboard.writeText(conversation.id);
-    setIdCopied(true);
-    setTimeout(() => setIdCopied(false), 2000);
+    const shareUrl = getShareableUrl(conversation.id);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setIdCopied(true);
+      setTimeout(() => setIdCopied(false), 2000);
+    } catch {
+      navigator.clipboard.writeText(conversation.id);
+      setIdCopied(true);
+      setTimeout(() => setIdCopied(false), 2000);
+    }
+  };
+
+  const handleShareDebate = async () => {
+    if (!conversation?.id) return;
+    const shareUrl = getShareableUrl(conversation.id);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy share link:', err);
+    }
   };
 
   const handleExportReport = () => {
@@ -174,7 +198,7 @@ export default function ChatInterface({
             type="button"
             className="conv-id-badge"
             onClick={handleCopyId}
-            title={`Conversation ID: ${conversation.id || 'unsaved'}\nClick to copy full ID`}
+            title={`Deliberation Link: ${getShareableUrl(conversation?.id)}\nClick to copy shareable URL`}
           >
             <span className="conv-id-prefix">ID:</span>
             <span className="conv-id-value">{conversation.id ? conversation.id.slice(0, 8) : 'new'}…</span>
@@ -182,7 +206,7 @@ export default function ChatInterface({
               {idCopied ? (
                 <>
                   <Check size={12} />
-                  <span className="conv-copied-text">Copied</span>
+                  <span className="conv-copied-text">URL Copied</span>
                 </>
               ) : (
                 <Copy size={12} />
@@ -194,8 +218,26 @@ export default function ChatInterface({
         <div className="workspace-actions">
           <button
             type="button"
+            className="export-btn share-link-btn"
+            onClick={handleShareDebate}
+            title="Copy shareable URL for this deliberation"
+          >
+            {shareCopied ? (
+              <>
+                <Check size={14} />
+                <span>Link Copied</span>
+              </>
+            ) : (
+              <>
+                <LinkIcon size={14} />
+                <span>Share Debate</span>
+              </>
+            )}
+          </button>
+          <button
+            type="button"
             className="export-btn export-report-btn"
-            onClick={() => setIsReportOpen(true)}
+            onClick={() => onOpenReport && onOpenReport('executive')}
             title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
           >
             <FileText size={14} />
@@ -268,7 +310,7 @@ export default function ChatInterface({
                       compression={msg.council.metadata?.caveman}
                       metadata={msg.council.metadata}
                       conversationId={conversation?.id}
-                      onOpenReport={() => setIsReportOpen(true)}
+                      onOpenReport={() => onOpenReport && onOpenReport('executive')}
                     />
                   )}
 
@@ -335,8 +377,10 @@ export default function ChatInterface({
 
       <ReportModal
         conversation={conversation}
-        isOpen={isReportOpen}
-        onClose={() => setIsReportOpen(false)}
+        isOpen={reportModalState ? reportModalState.isOpen : false}
+        reportType={reportModalState ? reportModalState.type : 'executive'}
+        onReportTypeChange={onReportTypeChange}
+        onClose={onCloseReport}
       />
     </div>
   );

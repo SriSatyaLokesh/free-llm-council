@@ -307,3 +307,23 @@ export function BarChart({ size = 16, className = '' }) {
   );
 }
 
+export function LinkIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M6.5 9.5a3.5 3.5 0 005 0l2-2a3.5 3.5 0 00-5-5l-1 1M9.5 6.5a3.5 3.5 0 00-5 0l-2 2a3.5 3.5 0 005 5l1-1M5.5 10.5l5-5" />
+    </svg>
+  );
+}
+
+export function ShareIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <circle cx="12" cy="3.5" r="2" />
+      <circle cx="4" cy="8" r="2" />
+      <circle cx="12" cy="12.5" r="2" />
+      <path d="M5.8 9l4.4 2.5M10.2 4.5L5.8 7" />
+    </svg>
+  );
+}
+
+

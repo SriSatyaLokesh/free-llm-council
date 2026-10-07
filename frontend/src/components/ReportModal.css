@@ -116,6 +116,12 @@
   color: #10b981;
 }
 
+.report-copied-tag {
+  color: #10b981;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
 .report-dialog-title {
   font-size: var(--text-sm);
   font-weight: 600;
@@ -237,6 +243,12 @@
 .report-tool-btn.report-primary-tool:hover {
   background: rgba(96, 165, 250, 0.16);
   border-color: rgba(96, 165, 250, 0.5);
+  color: #ffffff;
+}
+
+.report-tool-btn.report-share-tool:hover {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: #a855f7;
   color: #ffffff;
 }
 

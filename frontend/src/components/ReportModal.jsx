@@ -12,8 +12,10 @@ import {
   Code,
   XMark,
   Zap,
+  LinkIcon,
 } from './icons';
 import { api } from '../api';
+import { getShareableUrl } from '../utils/url';
 import './ReportModal.css';
 
 /**
@@ -23,16 +25,31 @@ import './ReportModal.css';
  * interactive rendered preview, raw markdown inspection, one-click copy,
  * direct .pdf, .md, and .zip downloads, and isolated print/PDF optimization.
  */
-export default function ReportModal({ conversation, isOpen, onClose }) {
-  const [reportType, setReportType] = useState('executive'); // 'executive' | 'detailed'
+export default function ReportModal({
+  conversation,
+  isOpen,
+  reportType: controlledReportType,
+  onReportTypeChange,
+  onClose,
+}) {
+  const [internalReportType, setInternalReportType] = useState('executive');
+  const reportType = controlledReportType || internalReportType;
   const [viewMode, setViewMode] = useState('preview'); // 'preview' | 'raw'
   const [reportsData, setReportsData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
   const [idCopied, setIdCopied] = useState(false);
+  const [reportLinkCopied, setReportLinkCopied] = useState(false);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
   const previewRef = useRef(null);
+
+  const handleSelectReportType = (type) => {
+    setInternalReportType(type);
+    if (onReportTypeChange) {
+      onReportTypeChange(type);
+    }
+  };
 
   useEffect(() => {
     if (!isOpen || !conversation?.id) return;
@@ -116,12 +133,25 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
 
   const handleCopyId = async () => {
     if (!conversation?.id) return;
+    const shareUrl = getShareableUrl(conversation.id, reportType);
     try {
-      await navigator.clipboard.writeText(conversation.id);
+      await navigator.clipboard.writeText(shareUrl);
       setIdCopied(true);
       setTimeout(() => setIdCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy ID:', err);
+    }
+  };
+
+  const handleCopyReportLink = async () => {
+    if (!conversation?.id) return;
+    const shareUrl = getShareableUrl(conversation.id, reportType);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setReportLinkCopied(true);
+      setTimeout(() => setReportLinkCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy report link:', err);
     }
   };
 
@@ -416,12 +446,19 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
                 type="button"
                 className="report-id-pill"
                 onClick={handleCopyId}
-                title={`Deliberation ID: ${conversation.id}\nClick to copy full ID`}
+                title={`Report Link: ${getShareableUrl(conversation?.id, reportType)}\nClick to copy shareable report URL`}
               >
                 <span className="report-id-text">
                   ID: {conversation?.id ? conversation.id.slice(0, 8) : 'unknown'}…
                 </span>
-                {idCopied ? <Check size={11} className="id-copied-icon" /> : <Copy size={11} />}
+                {idCopied ? (
+                  <>
+                    <Check size={11} className="id-copied-icon" />
+                    <span className="report-copied-tag">URL Copied</span>
+                  </>
+                ) : (
+                  <Copy size={11} />
+                )}
               </button>
             </div>
             <h2 className="report-dialog-title">
@@ -436,7 +473,7 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
               role="tab"
               aria-selected={reportType === 'executive'}
               className={`report-tab-btn ${reportType === 'executive' ? 'active' : ''}`}
-              onClick={() => setReportType('executive')}
+              onClick={() => handleSelectReportType('executive')}
             >
               <Zap size={14} />
               <span>Executive Brief</span>
@@ -446,7 +483,7 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
               role="tab"
               aria-selected={reportType === 'detailed'}
               className={`report-tab-btn ${reportType === 'detailed' ? 'active' : ''}`}
-              onClick={() => setReportType('detailed')}
+              onClick={() => handleSelectReportType('detailed')}
             >
               <TableIcon size={14} />
               <span>Deep-Dive Matrix</span>
@@ -476,6 +513,25 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
                 <span>Raw</span>
               </button>
             </div>
+
+            <button
+              type="button"
+              className="report-tool-btn report-share-tool"
+              onClick={handleCopyReportLink}
+              title={`Copy shareable URL for this ${reportType} report`}
+            >
+              {reportLinkCopied ? (
+                <>
+                  <Check size={14} />
+                  <span>Link Copied</span>
+                </>
+              ) : (
+                <>
+                  <LinkIcon size={14} />
+                  <span>Share Report</span>
+                </>
+              )}
+            </button>
 
             <button
               type="button"
