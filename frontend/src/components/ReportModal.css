@@ -458,16 +458,22 @@
 }
 
 /* Enhanced Table Styling for Model Matrix & Trade-offs */
-.report-preview-container table {
+.report-table-scroll {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+  overflow-x: auto;
   margin: var(--space-4) 0;
-  font-size: 0.8rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  overflow: hidden;
   background: var(--surface-sunken);
+}
+
+.report-preview-container table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.8rem;
+  background: transparent;
 }
 
 .report-preview-container th {

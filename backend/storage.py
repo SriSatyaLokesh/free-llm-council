@@ -401,17 +401,20 @@ def assign_conversation_project(conversation_id: str, project_id: Optional[str])
 def _clean_table_cell(text: str, max_chars: int = 150) -> str:
     """Clean and truncate text for safe rendering in Markdown table cells."""
     if not text:
-        return "—"
-    cleaned = text.replace("|", "\\|").replace("\n", " ").replace("\r", " ").strip()
+        return "--"
+    # Replace pipes with dashes to prevent breaking Markdown table column delimiters
+    cleaned = text.replace("|", " - ").replace("\n", " ").replace("\r", " ").strip()
     # Collapse multiple spaces
     cleaned = " ".join(cleaned.split())
     if len(cleaned) > max_chars:
-        return cleaned[: max_chars - 3].rstrip() + "..."
+        cleaned = cleaned[: max_chars - 3].rstrip() + "..."
+    while cleaned.endswith("\\"):
+        cleaned = cleaned[:-1].rstrip()
     return cleaned
 
 
 def _generate_ascii_deliberation_flow(members: List[str], chairman: str) -> str:
-    """Generate a high-contrast ASCII diagram visualizing the council's 4-stage pipeline."""
+    """Generate a clean ASCII diagram visualizing the council's 4-stage pipeline."""
     chair_name = chairman or "Designated Chairman"
     display_members = members[:4] if members else ["Model A", "Model B", "Model C"]
     member_chips = "   ".join(f"[{m[:18]}]" for m in display_members)
@@ -424,31 +427,31 @@ def _generate_ascii_deliberation_flow(members: List[str], chairman: str) -> str:
 +-----------------------------------------------------------------------------------------+
 |                                                                                         |
 |                                [ User Strategic Prompt ]                                |
-|                                            │                                            |
-|                                            ▼                                            |
-|  +───────────────────────────────────────────────────────────────────────────────────+  |
+|                                            |                                            |
+|                                            v                                            |
+|  +-----------------------------------------------------------------------------------+  |
 |  | STAGE 1: DIVERGENT OPENING POSITIONS (Independent Ideation)                       |  |
 |  | {member_chips.center(81)} |  |
-|  +─────────────────────────────────────────┬─────────────────────────────────────────+  |
-|                                            │                                            |
-|                                            ▼                                            |
-|  +───────────────────────────────────────────────────────────────────────────────────+  |
+|  +-----------------------------------------+-----------------------------------------+  |
+|                                            |                                            |
+|                                            v                                            |
+|  +-----------------------------------------------------------------------------------+  |
 |  | STAGE 2: CROSS-EXAMINATION & PEER DEBATE (Stress-Testing Assumptions)             |  |
-|  |   ◄─── Counter-Arguments, Defenses, Trade-off Challenges & Concessions ───►        |  |
-|  +─────────────────────────────────────────┬─────────────────────────────────────────+  |
-|                                            │                                            |
-|                                            ▼                                            |
-|  +───────────────────────────────────────────────────────────────────────────────────+  |
+|  |   <--- Counter-Arguments, Defenses, Trade-off Challenges & Concessions --->        |  |
+|  +-----------------------------------------+-----------------------------------------+  |
+|                                            |                                            |
+|                                            v                                            |
+|  +-----------------------------------------------------------------------------------+  |
 |  | STAGE 3: BLIND PEER REVIEW & EVALUATION (Objective Peer Scoring)                  |  |
 |  |   - Anonymized Critique & Scoring Matrix (Accuracy, Feasibility, Trade-offs)      |  |
-|  +─────────────────────────────────────────┬─────────────────────────────────────────+  |
-|                                            │                                            |
-|                                            ▼                                            |
-|  +───────────────────────────────────────────────────────────────────────────────────+  |
+|  +-----------------------------------------+-----------------------------------------+  |
+|                                            |                                            |
+|                                            v                                            |
+|  +-----------------------------------------------------------------------------------+  |
 |  | STAGE 4: EXECUTIVE CHAIRMAN SYNTHESIS & BINDING VERDICT                           |  |
 |  | Presiding Chairman: [{chair_name[:35]}]                                              |  |
-|  |   [✔] Final Decision     [✔] Strategic Tradeoffs     [✔] Dissent Resolution       |  |
-|  +───────────────────────────────────────────────────────────────────────────────────+  |
+|  |   [+] Final Decision     [+] Strategic Tradeoffs     [+] Dissent Resolution       |  |
+|  +-----------------------------------------------------------------------------------+  |
 |                                                                                         |
 +-----------------------------------------------------------------------------------------+
 ```"""
@@ -531,7 +534,7 @@ def format_conversation_executive(conv: Dict[str, Any]) -> str:
                     resp = pos.get("response", "")
                     lines.append(f"### Model: `{model}`")
                     if err:
-                        lines.append(f"> ⚠️ **Error:** {err}")
+                        lines.append(f"> **Error:** {err}")
                     if resp:
                         lines.append(resp.strip())
                     lines.append("")
@@ -554,7 +557,7 @@ def format_conversation_executive(conv: Dict[str, Any]) -> str:
                         resp = reply.get("response", "")
                         lines.append(f"#### Model: `{model}`")
                         if err:
-                            lines.append(f"> ⚠️ **Error:** {err}")
+                            lines.append(f"> **Error:** {err}")
                         if resp:
                             lines.append(resp.strip())
                         lines.append("")
@@ -618,7 +621,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
     messages = conv.get("messages", [])
 
     lines = [
-        f"# 🏛️ Council Deliberation Deep-Dive & Comparative Matrix: {title}",
+        f"# Council Deliberation Deep-Dive & Comparative Matrix: {title}",
         "",
         "> **Report Class:** Technical Deep-Dive Matrix & Decision Audit  ",
         f"> **Deliberation ID:** `{conv_id}` | **Session Date:** {created}",
@@ -635,7 +638,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
         role = msg.get("role", "unknown")
         if role == "user":
             lines.extend([
-                "## 📋 Strategic Query / Prompt",
+                "## Strategic Query / Prompt",
                 "",
                 msg.get("content", "").strip(),
                 "",
@@ -659,7 +662,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
 
             # 1. Telemetry Overview Table
             lines.extend([
-                "## 📊 Executive Overview & Deliberation Parameters",
+                "## Executive Overview & Deliberation Parameters",
                 "",
                 "| Parameter / Metric | Deliberation Detail |",
                 "| :--- | :--- |",
@@ -675,7 +678,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
 
             # 2. ASCII Deliberation Flow Diagram
             lines.extend([
-                "## 🗺️ Council Deliberation Architecture & Flow",
+                "## Council Deliberation Architecture & Flow",
                 "",
                 _generate_ascii_deliberation_flow(members, chairman),
                 "",
@@ -685,7 +688,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
 
             # 3. Comparative Model Deliberation Matrix Table
             lines.extend([
-                "## ⚖️ Comparative Model Deliberation Matrix",
+                "## Comparative Model Deliberation Matrix",
                 "",
                 "A cross-sectional breakdown comparing initial stances, debate friction, peer reviews, and final verdict alignment across all participating council models.",
                 "",
@@ -714,11 +717,11 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
 
                 # Stance alignment
                 if m_name == chairman:
-                    alignment = "👑 **Chairman (Synthesis Author)**"
+                    alignment = "**Chairman (Synthesis Author)**"
                 elif sections.get("dissent") and m_name.lower() in sections.get("dissent", "").lower():
-                    alignment = "⚠️ *Dissenting / Alternative*"
+                    alignment = "*Dissenting / Alternative*"
                 else:
-                    alignment = "✅ *Aligned / Core Contributor*"
+                    alignment = "*Aligned / Core Contributor*"
 
                 lines.append(
                     f"| `{m_name}` | {opening_snippet} | {debate_snippet} | {review_snippet} | {alignment} |"
@@ -734,9 +737,9 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
             confidence_text = sections.get("confidence", "High").strip()
 
             lines.extend([
-                "## 🎯 Strategic Decision & 'The Why' Analysis",
+                "## Strategic Decision & Justification",
                 "",
-                "### 🏆 Executive Verdict (Chairman Synthesis)",
+                "### Executive Verdict (Chairman Synthesis)",
                 f"**Presiding Chairman:** `{chairman}`  ",
                 f"**Confidence Assessment:** `{confidence_text}`",
                 "",
@@ -744,11 +747,11 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 "",
                 decision_text,
                 "",
-                "### Reasoning & The Decisive 'Why'",
+                "### Reasoning & The Decisive Justification",
                 "",
                 reasoning_text,
                 "",
-                "### ⚖️ Strategic Trade-Off & Risk Mitigation Matrix",
+                "### Strategic Trade-Off & Risk Mitigation Matrix",
                 "",
                 "| Evaluation Dimension | Strategic Selected Path | Inherent Trade-Off / Cost | Recommended Mitigation |",
                 "| :--- | :--- | :--- | :--- |",
@@ -757,7 +760,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 f"| **Failure Modes & Edge Cases** | Validated against peer cross-examination | Tail latency and boundary condition risks | Implement robust circuit breakers and fallbacks |",
                 f"| **Dissent & Minority Concerns** | Reconciled during blind peer review | {_clean_table_cell(dissent_text, 110)} | Re-evaluate triggers if system scale multiplies |",
                 "",
-                "### 🛡️ Dissenting Perspectives & Counter-Argument Resolution",
+                "### Dissenting Perspectives & Counter-Argument Resolution",
                 "",
                 dissent_text,
                 "",
@@ -767,7 +770,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
 
             # 5. Full Stage-by-Stage Deliberation Transcripts
             lines.extend([
-                "## 📜 Comprehensive Stage-by-Stage Deliberation Audit",
+                "## Comprehensive Stage-by-Stage Deliberation Audit",
                 "",
                 "### Stage 1: Opening Positions",
                 "",
@@ -779,7 +782,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                     resp = pos.get("response", "")
                     lines.append(f"#### Model: `{m}`")
                     if err:
-                        lines.append(f"> ⚠️ **Error:** {err}")
+                        lines.append(f"> **Error:** {err}")
                     if resp:
                         lines.append(resp.strip())
                     lines.append("")
@@ -802,7 +805,7 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                         resp = reply.get("response", "")
                         lines.append(f"##### Model: `{m}`")
                         if err:
-                            lines.append(f"> ⚠️ **Error:** {err}")
+                            lines.append(f"> **Error:** {err}")
                         if resp:
                             lines.append(resp.strip())
                         lines.append("")

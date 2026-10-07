@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import ToolTrace from './ToolTrace';
 import { shortModel, formatTokens } from '../format';
 import { api } from '../api';
@@ -85,7 +86,7 @@ export default function VerdictHero({
             <div key={key} className={`verdict-section verdict-section--${key}`}>
               <h3 className="verdict-section-label">{label}</h3>
               <div className="verdict-body markdown-content">
-                <ReactMarkdown>{sections[key]}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{sections[key]}</ReactMarkdown>
               </div>
             </div>
           ))}
@@ -96,7 +97,7 @@ export default function VerdictHero({
             The chairman did not use the expected headings, so this is shown unparsed.
           </p>
           <div className="verdict-body markdown-content">
-            <ReactMarkdown>{verdict.response}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{verdict.response}</ReactMarkdown>
           </div>
         </>
       )}

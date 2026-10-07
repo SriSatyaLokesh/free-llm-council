@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import {
   FileText,
   TableIcon,
@@ -319,7 +320,18 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
             </div>
           ) : (
             <div className="report-preview-container markdown-content">
-              <ReactMarkdown>{currentMarkdown}</ReactMarkdown>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  table: ({ node, ...props }) => (
+                    <div className="report-table-scroll">
+                      <table {...props} />
+                    </div>
+                  ),
+                }}
+              >
+                {currentMarkdown}
+              </ReactMarkdown>
             </div>
           )}
         </div>
