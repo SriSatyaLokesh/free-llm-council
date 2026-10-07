@@ -784,7 +784,7 @@
   gap: 6px;
   font-size: 0.68rem;
   font-family: var(--font-mono);
-  padding: 4px 8px;
+  padding: 5px 8px;
   border-radius: var(--radius-sm);
   background: var(--surface);
   border: 1px solid var(--border-subtle);
@@ -792,7 +792,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   user-select: none;
-  cursor: default;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.opencode-status-pill:hover {
+  border-color: var(--border);
 }
 
 .status-dot {

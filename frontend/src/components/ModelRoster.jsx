@@ -44,58 +44,73 @@ export default function ModelRoster({
 
   useEffect(() => {
     let cancelled = false;
-    api
-      .getModels()
-      .then((data) => {
-        if (cancelled) return;
-        const fetchedModels = data.models || [];
-        setModels(fetchedModels);
 
-        // Check if user has a persisted preset from a previous session
-        const savedPreset = loadCouncilPreset();
-        if (savedPreset) {
-          const reconciled = reconcilePreset(savedPreset, fetchedModels, data.defaultChairman);
-          if (reconciled && reconciled.members?.length > 0) {
-            onChange(reconciled);
-            return;
-          }
-        }
+    const fetchRoster = () => {
+      api
+        .getModels()
+        .then((data) => {
+          if (cancelled) return;
+          const fetchedModels = data.models || [];
+          setModels(fetchedModels);
 
-        const updates = {};
-        if (data.defaultRounds != null && config.rounds == null) {
-          updates.rounds = data.defaultRounds;
-        }
-        // Seat everyone by default, the first time we see the roster.
-        if (!config.members || config.members.length === 0) {
-          updates.members = fetchedModels.map((m) => m.id);
-        }
-        // Mirror the backend's chairman choice so the panel reflects it.
-        const effectiveChairman = config.chairman || data.defaultChairman || (fetchedModels[0] ? fetchedModels[0].id : null);
-        if (!config.chairman) {
-          updates.chairman = effectiveChairman;
-        }
-        // Initialize default thinking configurations
-        if (!config.modelThinking) {
-          const initThinking = {};
-          for (const m of fetchedModels) {
-            if (m.variants && m.variants.length > 0) {
-              initThinking[m.id] = getDefaultThinking(m, m.id === effectiveChairman);
+          if (fetchedModels.length > 0) {
+            // Check if user has a persisted preset from a previous session
+            const savedPreset = loadCouncilPreset();
+            if (savedPreset) {
+              const reconciled = reconcilePreset(savedPreset, fetchedModels, data.defaultChairman);
+              if (reconciled && reconciled.members?.length > 0) {
+                onChange(reconciled);
+                return;
+              }
+            }
+
+            const updates = {};
+            if (data.defaultRounds != null && config.rounds == null) {
+              updates.rounds = data.defaultRounds;
+            }
+            // Seat everyone by default, the first time we see the roster.
+            if (!config.members || config.members.length === 0) {
+              updates.members = fetchedModels.map((m) => m.id);
+            }
+            // Mirror the backend's chairman choice so the panel reflects it.
+            const effectiveChairman = config.chairman || data.defaultChairman || (fetchedModels[0] ? fetchedModels[0].id : null);
+            if (!config.chairman) {
+              updates.chairman = effectiveChairman;
+            }
+            // Initialize default thinking configurations
+            if (!config.modelThinking) {
+              const initThinking = {};
+              for (const m of fetchedModels) {
+                if (m.variants && m.variants.length > 0) {
+                  initThinking[m.id] = getDefaultThinking(m, m.id === effectiveChairman);
+                }
+              }
+              updates.modelThinking = initThinking;
+            }
+            if (Object.keys(updates).length > 0) {
+              onChange(updates);
             }
           }
-          updates.modelThinking = initThinking;
-        }
-        if (Object.keys(updates).length > 0) {
-          onChange(updates);
-        }
-      })
-      .catch((err) => !cancelled && setError(err.message))
-      .finally(() => !cancelled && setLoading(false));
+        })
+        .catch((err) => !cancelled && setError(err.message))
+        .finally(() => !cancelled && setLoading(false));
+    };
+
+    fetchRoster();
+
+    // Auto-retry polling every 4s if models list is still empty
+    const interval = setInterval(() => {
+      if (models.length === 0) {
+        fetchRoster();
+      }
+    }, 4000);
+
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
-    // Intentionally mount-only: the roster is stable for a session.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [models.length]);
 
   const members = config.members || [];
   const selected = models.filter((m) => members.includes(m.id));

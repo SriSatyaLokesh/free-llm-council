@@ -85,6 +85,7 @@ export default function Sidebar({
   };
 
   const fetchHealth = () => {
+    setHealthLoading(true);
     api
       .getHealth()
       .then((data) => setHealth(data))
@@ -94,7 +95,7 @@ export default function Sidebar({
 
   useEffect(() => {
     fetchHealth();
-    const interval = setInterval(fetchHealth, 30000);
+    const interval = setInterval(fetchHealth, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -673,9 +674,11 @@ export default function Sidebar({
       </div>
 
       <div className="sidebar-footer">
-        <div
+        <button
+          type="button"
           className={`opencode-status-pill ${isOk ? 'status-connected' : healthLoading ? 'status-connecting' : 'status-offline'}`}
-          title={health?.diagnostics?.detail || (health?.opencode?.status || 'OpenCode Status')}
+          onClick={fetchHealth}
+          title={isOk ? `OpenCode connected (${health?.opencode?.models_count || 0} models). Click to refresh.` : `OpenCode is offline. Click to re-check connection.`}
         >
           <span className="status-dot" />
           <span className="status-text">
@@ -683,9 +686,9 @@ export default function Sidebar({
               ? 'Connecting to OpenCode…'
               : isOk
               ? `OpenCode :${health?.opencode?.port || 4097} (${health?.opencode?.models_count || 0} models)`
-              : 'OpenCode Offline • BYOK Mode'}
+              : 'OpenCode Offline • Click to Reconnect'}
           </span>
-        </div>
+        </button>
 
         <button
           type="button"
