@@ -23,13 +23,13 @@ Originally inspired by Andrej Karpathy's experimental concept, **Free LLM Counci
 Running a true multi-model deliberative council across opening statements, multi-round rebuttals, blind scoring, and chairman synthesis generates **25 to 40+ model invocations per question**. On paid API providers or OpenRouter, a single council discussion can cost multiple dollars or immediately trigger `429 Too Many Requests` rate limits.
 
 **Free LLM Council solves this by anchoring directly to OpenCode:**
-- 💸 **100% Free & Unlimited:** Drive your locally hosted and free OpenCode models at zero API cost.
-- 🔑 **BYOK Hybrid Cloud Seating:** Seat Claude 3.5 Sonnet, GPT-4o, o1, or DeepSeek R1 directly alongside free local models via the in-app key modal.
-- 📁 **Studio Workspace:** Group deliberations into Project Folders, move debates between folders, rename inline, or archive completed sessions.
-- 🎯 **Human-in-the-Loop Mid-Debate Steering:** Inject operator guidance and reference URLs mid-flight that take effect in subsequent rounds and the final synthesis.
-- 📦 **Dual Deliberation Reports & Interactive Viewer:** Toggle between **Executive Summary** and **Deep-Dive Technical Matrix** reports with comparative model tables, ASCII deliberation flow diagrams, and "The Why" strategic trade-off matrices. One-click copy, direct `.md` / `.zip` downloads, and publication-grade Print/PDF export.
-- ⚡ **Caveman Token Compression:** Integrate official Caveman skill compression (`lite`, `full`, `ultra`) for up to ~48% fewer intermediate tokens while keeping full prose in the final report.
-- 🎨 **Modern Single-Window UI:** Zero-scroll window layout, live stage progress tracking (RunRail), tool execution traces, and clean Lucide-style vector SVG icons.
+- **100% Free & Unlimited:** Drive your locally hosted and free OpenCode models at zero API cost.
+- **BYOK Hybrid Cloud Seating:** Seat Claude 3.5 Sonnet, GPT-4o, o1, or DeepSeek R1 directly alongside free local models via the in-app key modal.
+- **Studio Workspace:** Group deliberations into Project Folders, move debates between folders, rename inline, or archive completed sessions.
+- **Human-in-the-Loop Mid-Debate Steering:** Inject operator guidance and reference URLs mid-flight that take effect in subsequent rounds and the final synthesis.
+- **Dual Deliberation Reports & Interactive Viewer:** Toggle between **Executive Summary** and **Deep-Dive Technical Matrix** reports with comparative model tables, ASCII deliberation flow diagrams, and "The Why" strategic trade-off matrices. One-click copy, direct `.md` / `.zip` downloads, and publication-grade Print/PDF export.
+- **Caveman Token Compression:** Integrate official Caveman skill compression (`lite`, `full`, `ultra`) for up to ~48% fewer intermediate tokens while keeping full prose in the final report.
+- **Modern Single-Window UI:** Zero-scroll window layout, live stage progress tracking (RunRail), tool execution traces, and clean vector SVG icons.
 
 ---
 

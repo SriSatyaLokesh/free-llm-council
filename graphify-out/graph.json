@@ -30,19 +30,6 @@
       "source_location": "L68"
     },
     {
-      "id": "backend_council_councilrun",
-      "label": "CouncilRun",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "code",
-      "norm_label": "councilrun",
-      "source_file": "backend/council.py",
-      "source_location": "L244"
-    },
-    {
       "id": "backend_main_providerkeyupdate",
       "label": "ProviderKeyUpdate",
       "_callable": true,
@@ -160,6 +147,19 @@
       "source_location": "L81"
     },
     {
+      "id": "backend_main_createprojectrequest",
+      "label": "CreateProjectRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "create_project",
+      "file_type": "code",
+      "norm_label": "createprojectrequest",
+      "source_file": "backend/main.py",
+      "source_location": "L49"
+    },
+    {
       "id": "backend_main_settingsupdate",
       "label": "SettingsUpdate",
       "_callable": true,
@@ -173,17 +173,17 @@
       "source_location": "L87"
     },
     {
-      "id": "backend_main_createprojectrequest",
-      "label": "CreateProjectRequest",
+      "id": "backend_council_councilrun",
+      "label": "CouncilRun",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 61,
-      "community_name": "create_project",
+      "community": 7,
+      "community_name": "CouncilRun",
       "file_type": "code",
-      "norm_label": "createprojectrequest",
-      "source_file": "backend/main.py",
-      "source_location": "L49"
+      "norm_label": "councilrun",
+      "source_file": "backend/council.py",
+      "source_location": "L244"
     },
     {
       "id": "backend_storage_create_project",
@@ -798,112 +798,52 @@
       "source_location": "L39"
     },
     {
-      "id": "backend_council_councilrun_as_entries",
-      "label": "._as_entries()",
+      "id": "backend_council_councilrun_close_all",
+      "label": "._close_all()",
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
+      "community_name": ".run_stream",
       "file_type": "code",
-      "norm_label": "._as_entries()",
+      "norm_label": "._close_all()",
       "source_file": "backend/council.py",
-      "source_location": "L985"
+      "source_location": "L573"
     },
     {
-      "id": "backend_council_councilrun_as_entry",
-      "label": "._as_entry()",
+      "id": "backend_council_councilrun_empty_result",
+      "label": "._empty_result()",
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
+      "community_name": ".run_stream",
       "file_type": "code",
-      "norm_label": "._as_entry()",
+      "norm_label": "._empty_result()",
       "source_file": "backend/council.py",
-      "source_location": "L610"
+      "source_location": "L1081"
     },
     {
-      "id": "backend_council_councilrun_ask_all",
-      "label": "._ask_all()",
+      "id": "backend_council_councilrun_run",
+      "label": ".run()",
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
+      "community_name": ".run_stream",
       "file_type": "code",
-      "norm_label": "._ask_all()",
+      "norm_label": ".run()",
       "source_file": "backend/council.py",
-      "source_location": "L585"
+      "source_location": "L624"
     },
     {
-      "id": "backend_council_councilrun_ask_all_run",
-      "label": "run()",
+      "id": "backend_council_councilrun_run_stream",
+      "label": ".run_stream()",
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
+      "community_name": ".run_stream",
       "file_type": "code",
-      "norm_label": "run()",
+      "norm_label": ".run_stream()",
       "source_file": "backend/council.py",
-      "source_location": "L592"
-    },
-    {
-      "id": "backend_council_councilrun_init",
-      "label": ".__init__()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "code",
-      "norm_label": ".__init__()",
-      "source_file": "backend/council.py",
-      "source_location": "L247"
-    },
-    {
-      "id": "backend_council_councilrun_inject_steering",
-      "label": ".inject_steering()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "code",
-      "norm_label": ".inject_steering()",
-      "source_file": "backend/council.py",
-      "source_location": "L303"
-    },
-    {
-      "id": "backend_council_councilrun_tighten",
-      "label": "._tighten()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "code",
-      "norm_label": "._tighten()",
-      "source_file": "backend/council.py",
-      "source_location": "L927"
-    },
-    {
-      "id": "backend_council_councilrun_tighten_apply",
-      "label": "apply()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "code",
-      "norm_label": "apply()",
-      "source_file": "backend/council.py",
-      "source_location": "L931"
-    },
-    {
-      "id": "backend_council_run_full_council",
-      "label": "run_full_council()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "code",
-      "norm_label": "run_full_council()",
-      "source_file": "backend/council.py",
-      "source_location": "L1103"
+      "source_location": "L634"
     },
     {
       "id": "tests_unit_test_opencode_discovery_test_diagnose_connection_detects_port_conflict",
@@ -2130,6 +2070,54 @@
       "source_location": "L516"
     },
     {
+      "id": "backend_council_councilrun_make_session",
+      "label": "._make_session()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "code",
+      "norm_label": "._make_session()",
+      "source_file": "backend/council.py",
+      "source_location": "L558"
+    },
+    {
+      "id": "backend_council_councilrun_open_sessions",
+      "label": "._open_sessions()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "code",
+      "norm_label": "._open_sessions()",
+      "source_file": "backend/council.py",
+      "source_location": "L520"
+    },
+    {
+      "id": "backend_council_councilrun_open_sessions_call_make",
+      "label": "_call_make()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "code",
+      "norm_label": "_call_make()",
+      "source_file": "backend/council.py",
+      "source_location": "L533"
+    },
+    {
+      "id": "backend_council_councilrun_resolve_thinking_config",
+      "label": ".resolve_thinking_config()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "code",
+      "norm_label": ".resolve_thinking_config()",
+      "source_file": "backend/council.py",
+      "source_location": "L321"
+    },
+    {
       "id": "backend_main_delete_conversation",
       "label": "delete_conversation()",
       "_callable": true,
@@ -2452,6 +2440,42 @@
       "norm_label": "_sum_tokens()",
       "source_file": "backend/council.py",
       "source_location": "L113"
+    },
+    {
+      "id": "backend_main_get_project",
+      "label": "get_project()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "code",
+      "norm_label": "get_project()",
+      "source_file": "backend/main.py",
+      "source_location": "L233"
+    },
+    {
+      "id": "backend_main_update_project",
+      "label": "update_project()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "code",
+      "norm_label": "update_project()",
+      "source_file": "backend/main.py",
+      "source_location": "L242"
+    },
+    {
+      "id": "backend_storage_get_project",
+      "label": "get_project()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "code",
+      "norm_label": "get_project()",
+      "source_file": "backend/storage.py",
+      "source_location": "L310"
     },
     {
       "id": "main_main",
@@ -2850,6 +2874,18 @@
       "source_location": "L438"
     },
     {
+      "id": "backend_main_create_project",
+      "label": "create_project()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "create_project",
+      "file_type": "code",
+      "norm_label": "create_project()",
+      "source_file": "backend/main.py",
+      "source_location": "L225"
+    },
+    {
       "id": "backend_test_live_debate_run",
       "label": "run()",
       "_callable": true,
@@ -3162,54 +3198,6 @@
       "source_location": "L649"
     },
     {
-      "id": "backend_council_councilrun_make_session",
-      "label": "._make_session()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "code",
-      "norm_label": "._make_session()",
-      "source_file": "backend/council.py",
-      "source_location": "L558"
-    },
-    {
-      "id": "backend_council_councilrun_open_sessions",
-      "label": "._open_sessions()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "code",
-      "norm_label": "._open_sessions()",
-      "source_file": "backend/council.py",
-      "source_location": "L520"
-    },
-    {
-      "id": "backend_council_councilrun_open_sessions_call_make",
-      "label": "_call_make()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "code",
-      "norm_label": "_call_make()",
-      "source_file": "backend/council.py",
-      "source_location": "L533"
-    },
-    {
-      "id": "backend_council_councilrun_resolve_thinking_config",
-      "label": ".resolve_thinking_config()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "code",
-      "norm_label": ".resolve_thinking_config()",
-      "source_file": "backend/council.py",
-      "source_location": "L321"
-    },
-    {
       "id": "backend_main_export_conversation_report",
       "label": "export_conversation_report()",
       "_callable": true,
@@ -3282,54 +3270,6 @@
       "source_location": "L133"
     },
     {
-      "id": "backend_main_create_project",
-      "label": "create_project()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 61,
-      "community_name": "create_project",
-      "file_type": "code",
-      "norm_label": "create_project()",
-      "source_file": "backend/main.py",
-      "source_location": "L225"
-    },
-    {
-      "id": "backend_main_get_project",
-      "label": "get_project()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "code",
-      "norm_label": "get_project()",
-      "source_file": "backend/main.py",
-      "source_location": "L233"
-    },
-    {
-      "id": "backend_main_update_project",
-      "label": "update_project()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "code",
-      "norm_label": "update_project()",
-      "source_file": "backend/main.py",
-      "source_location": "L242"
-    },
-    {
-      "id": "backend_storage_get_project",
-      "label": "get_project()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "code",
-      "norm_label": "get_project()",
-      "source_file": "backend/storage.py",
-      "source_location": "L310"
-    },
-    {
       "id": "opencode_plugins_graphify_graphifyplugin",
       "label": "GraphifyPlugin()",
       "_callable": true,
@@ -3342,52 +3282,112 @@
       "source_location": "L12"
     },
     {
-      "id": "backend_council_councilrun_close_all",
-      "label": "._close_all()",
+      "id": "backend_council_councilrun_as_entries",
+      "label": "._as_entries()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
+      "community_name": "CouncilRun",
       "file_type": "code",
-      "norm_label": "._close_all()",
+      "norm_label": "._as_entries()",
       "source_file": "backend/council.py",
-      "source_location": "L573"
+      "source_location": "L985"
     },
     {
-      "id": "backend_council_councilrun_empty_result",
-      "label": "._empty_result()",
+      "id": "backend_council_councilrun_as_entry",
+      "label": "._as_entry()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
+      "community_name": "CouncilRun",
       "file_type": "code",
-      "norm_label": "._empty_result()",
+      "norm_label": "._as_entry()",
       "source_file": "backend/council.py",
-      "source_location": "L1081"
+      "source_location": "L610"
     },
     {
-      "id": "backend_council_councilrun_run",
-      "label": ".run()",
+      "id": "backend_council_councilrun_ask_all",
+      "label": "._ask_all()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
+      "community_name": "CouncilRun",
       "file_type": "code",
-      "norm_label": ".run()",
+      "norm_label": "._ask_all()",
       "source_file": "backend/council.py",
-      "source_location": "L624"
+      "source_location": "L585"
     },
     {
-      "id": "backend_council_councilrun_run_stream",
-      "label": ".run_stream()",
+      "id": "backend_council_councilrun_ask_all_run",
+      "label": "run()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
+      "community_name": "CouncilRun",
       "file_type": "code",
-      "norm_label": ".run_stream()",
+      "norm_label": "run()",
       "source_file": "backend/council.py",
-      "source_location": "L634"
+      "source_location": "L592"
+    },
+    {
+      "id": "backend_council_councilrun_init",
+      "label": ".__init__()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "code",
+      "norm_label": ".__init__()",
+      "source_file": "backend/council.py",
+      "source_location": "L247"
+    },
+    {
+      "id": "backend_council_councilrun_inject_steering",
+      "label": ".inject_steering()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "code",
+      "norm_label": ".inject_steering()",
+      "source_file": "backend/council.py",
+      "source_location": "L303"
+    },
+    {
+      "id": "backend_council_councilrun_tighten",
+      "label": "._tighten()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "code",
+      "norm_label": "._tighten()",
+      "source_file": "backend/council.py",
+      "source_location": "L927"
+    },
+    {
+      "id": "backend_council_councilrun_tighten_apply",
+      "label": "apply()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "code",
+      "norm_label": "apply()",
+      "source_file": "backend/council.py",
+      "source_location": "L931"
+    },
+    {
+      "id": "backend_council_run_full_council",
+      "label": "run_full_council()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "code",
+      "norm_label": "run_full_council()",
+      "source_file": "backend/council.py",
+      "source_location": "L1103"
     },
     {
       "id": "backend_caveman_build_instruction",
@@ -4709,59 +4709,37 @@
       "source_location": "L1117"
     },
     {
-      "id": "backend_council_rationale_1113",
-      "label": "Resolve the roster, then run the full four-stage council.",
+      "id": "queue",
+      "label": "Queue",
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "rationale",
-      "norm_label": "resolve the roster, then run the full four-stage council.",
-      "source_file": "backend/council.py",
-      "source_location": "L1113"
+      "community_name": ".run_stream",
+      "file_type": "code",
+      "norm_label": "queue",
+      "source_file": "",
+      "source_location": ""
     },
     {
-      "id": "backend_council_rationale_245",
-      "label": "One council deliberation, owning every session it creates.",
+      "id": "backend_council_rationale_625",
+      "label": "Execute all four stages and return the full result. On any failure that is not\u2026",
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
+      "community_name": ".run_stream",
       "file_type": "rationale",
-      "norm_label": "one council deliberation, owning every session it creates.",
+      "norm_label": "execute all four stages and return the full result. on any failure that is not...",
       "source_file": "backend/council.py",
-      "source_location": "L245"
+      "source_location": "L625"
     },
     {
-      "id": "backend_council_rationale_306",
-      "label": "Inject human operator guidance and resources into the ongoing deliberation.",
+      "id": "backend_council_rationale_638",
+      "label": "Execute all four stages, optionally emitting progress as it goes. `queue`\u2026",
       "_origin": "ast",
       "community": 12,
-      "community_name": "CouncilRun",
+      "community_name": ".run_stream",
       "file_type": "rationale",
-      "norm_label": "inject human operator guidance and resources into the ongoing deliberation.",
+      "norm_label": "execute all four stages, optionally emitting progress as it goes. `queue`...",
       "source_file": "backend/council.py",
-      "source_location": "L306"
-    },
-    {
-      "id": "backend_council_rationale_590",
-      "label": "Run one prompt across the live sessions in parallel.",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "rationale",
-      "norm_label": "run one prompt across the live sessions in parallel.",
-      "source_file": "backend/council.py",
-      "source_location": "L590"
-    },
-    {
-      "id": "backend_council_rationale_928",
-      "label": "Re-scope every member's permissions, ignoring individual failures.",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "CouncilRun",
-      "file_type": "rationale",
-      "norm_label": "re-scope every member's permissions, ignoring individual failures.",
-      "source_file": "backend/council.py",
-      "source_location": "L928"
+      "source_location": "L638"
     },
     {
       "id": "tests_unit_test_opencode_discovery",
@@ -5944,6 +5922,39 @@
       "source_location": "L161"
     },
     {
+      "id": "backend_council_py_asyncclient",
+      "label": "AsyncClient",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "code",
+      "norm_label": "asyncclient",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_council_rationale_324",
+      "label": "Determine thinking quality / reasoning effort per model: - Honored if\u2026",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "rationale",
+      "norm_label": "determine thinking quality / reasoning effort per model: - honored if...",
+      "source_file": "backend/council.py",
+      "source_location": "L324"
+    },
+    {
+      "id": "backend_council_rationale_521",
+      "label": "Create one session per member with resolved thinking quality. Returns the\u2026",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "._open_sessions",
+      "file_type": "rationale",
+      "norm_label": "create one session per member with resolved thinking quality. returns the...",
+      "source_file": "backend/council.py",
+      "source_location": "L521"
+    },
+    {
       "id": "delete",
       "label": "delete",
       "_origin": "ast",
@@ -6591,6 +6602,50 @@
       "norm_label": "token totals per stage, so the toggle's effect is visible rather than promised....",
       "source_file": "backend/council.py",
       "source_location": "L949"
+    },
+    {
+      "id": "patch",
+      "label": "patch",
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "code",
+      "norm_label": "patch",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_main_rationale_234",
+      "label": "Get details for a specific project.",
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "rationale",
+      "norm_label": "get details for a specific project.",
+      "source_file": "backend/main.py",
+      "source_location": "L234"
+    },
+    {
+      "id": "backend_main_rationale_243",
+      "label": "Update a project name or description.",
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "rationale",
+      "norm_label": "update a project name or description.",
+      "source_file": "backend/main.py",
+      "source_location": "L243"
+    },
+    {
+      "id": "backend_storage_rationale_311",
+      "label": "Retrieve a project by ID.",
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "get_project",
+      "file_type": "rationale",
+      "norm_label": "retrieve a project by id.",
+      "source_file": "backend/storage.py",
+      "source_location": "L311"
     },
     {
       "id": "main",
@@ -7649,6 +7704,28 @@
       "norm_label": "6. performance & accessibility guardrails",
       "source_file": ".agents/skills/taste/SKILL.md",
       "source_location": "L519"
+    },
+    {
+      "id": "backend_main_rationale_226",
+      "label": "Create a new project workspace folder.",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "create_project",
+      "file_type": "rationale",
+      "norm_label": "create a new project workspace folder.",
+      "source_file": "backend/main.py",
+      "source_location": "L226"
+    },
+    {
+      "id": "backend_main_rationale_50",
+      "label": "Request to create a new project workspace folder.",
+      "_origin": "ast",
+      "community": 44,
+      "community_name": "create_project",
+      "file_type": "rationale",
+      "norm_label": "request to create a new project workspace folder.",
+      "source_file": "backend/main.py",
+      "source_location": "L50"
     },
     {
       "id": "agents_skills_taste_skill_0_a_read_these_signals_first",
@@ -9015,39 +9092,6 @@
       "source_location": "L506"
     },
     {
-      "id": "backend_council_py_asyncclient",
-      "label": "AsyncClient",
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "code",
-      "norm_label": "asyncclient",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_council_rationale_324",
-      "label": "Determine thinking quality / reasoning effort per model: - Honored if\u2026",
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "rationale",
-      "norm_label": "determine thinking quality / reasoning effort per model: - honored if...",
-      "source_file": "backend/council.py",
-      "source_location": "L324"
-    },
-    {
-      "id": "backend_council_rationale_521",
-      "label": "Create one session per member with resolved thinking quality. Returns the\u2026",
-      "_origin": "ast",
-      "community": 58,
-      "community_name": "._open_sessions",
-      "file_type": "rationale",
-      "norm_label": "create one session per member with resolved thinking quality. returns the...",
-      "source_file": "backend/council.py",
-      "source_location": "L521"
-    },
-    {
       "id": "get",
       "label": "get",
       "_origin": "ast",
@@ -9125,72 +9169,6 @@
       "source_location": "L134"
     },
     {
-      "id": "backend_main_rationale_226",
-      "label": "Create a new project workspace folder.",
-      "_origin": "ast",
-      "community": 61,
-      "community_name": "create_project",
-      "file_type": "rationale",
-      "norm_label": "create a new project workspace folder.",
-      "source_file": "backend/main.py",
-      "source_location": "L226"
-    },
-    {
-      "id": "backend_main_rationale_50",
-      "label": "Request to create a new project workspace folder.",
-      "_origin": "ast",
-      "community": 61,
-      "community_name": "create_project",
-      "file_type": "rationale",
-      "norm_label": "request to create a new project workspace folder.",
-      "source_file": "backend/main.py",
-      "source_location": "L50"
-    },
-    {
-      "id": "patch",
-      "label": "patch",
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "code",
-      "norm_label": "patch",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_main_rationale_234",
-      "label": "Get details for a specific project.",
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "rationale",
-      "norm_label": "get details for a specific project.",
-      "source_file": "backend/main.py",
-      "source_location": "L234"
-    },
-    {
-      "id": "backend_main_rationale_243",
-      "label": "Update a project name or description.",
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "rationale",
-      "norm_label": "update a project name or description.",
-      "source_file": "backend/main.py",
-      "source_location": "L243"
-    },
-    {
-      "id": "backend_storage_rationale_311",
-      "label": "Retrieve a project by ID.",
-      "_origin": "ast",
-      "community": 62,
-      "community_name": "get_project",
-      "file_type": "rationale",
-      "norm_label": "retrieve a project by id.",
-      "source_file": "backend/storage.py",
-      "source_location": "L311"
-    },
-    {
       "id": "opencode_plugins_graphify",
       "label": "graphify.js",
       "_origin": "ast",
@@ -9261,37 +9239,59 @@
       "source_location": "L1"
     },
     {
-      "id": "queue",
-      "label": "Queue",
+      "id": "backend_council_rationale_1113",
+      "label": "Resolve the roster, then run the full four-stage council.",
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
-      "file_type": "code",
-      "norm_label": "queue",
-      "source_file": "",
-      "source_location": ""
+      "community_name": "CouncilRun",
+      "file_type": "rationale",
+      "norm_label": "resolve the roster, then run the full four-stage council.",
+      "source_file": "backend/council.py",
+      "source_location": "L1113"
     },
     {
-      "id": "backend_council_rationale_625",
-      "label": "Execute all four stages and return the full result. On any failure that is not\u2026",
+      "id": "backend_council_rationale_245",
+      "label": "One council deliberation, owning every session it creates.",
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
+      "community_name": "CouncilRun",
       "file_type": "rationale",
-      "norm_label": "execute all four stages and return the full result. on any failure that is not...",
+      "norm_label": "one council deliberation, owning every session it creates.",
       "source_file": "backend/council.py",
-      "source_location": "L625"
+      "source_location": "L245"
     },
     {
-      "id": "backend_council_rationale_638",
-      "label": "Execute all four stages, optionally emitting progress as it goes. `queue`\u2026",
+      "id": "backend_council_rationale_306",
+      "label": "Inject human operator guidance and resources into the ongoing deliberation.",
       "_origin": "ast",
       "community": 7,
-      "community_name": ".run_stream",
+      "community_name": "CouncilRun",
       "file_type": "rationale",
-      "norm_label": "execute all four stages, optionally emitting progress as it goes. `queue`...",
+      "norm_label": "inject human operator guidance and resources into the ongoing deliberation.",
       "source_file": "backend/council.py",
-      "source_location": "L638"
+      "source_location": "L306"
+    },
+    {
+      "id": "backend_council_rationale_590",
+      "label": "Run one prompt across the live sessions in parallel.",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "rationale",
+      "norm_label": "run one prompt across the live sessions in parallel.",
+      "source_file": "backend/council.py",
+      "source_location": "L590"
+    },
+    {
+      "id": "backend_council_rationale_928",
+      "label": "Re-scope every member's permissions, ignoring individual failures.",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "CouncilRun",
+      "file_type": "rationale",
+      "norm_label": "re-scope every member's permissions, ignoring individual failures.",
+      "source_file": "backend/council.py",
+      "source_location": "L928"
     },
     {
       "id": "agents",
@@ -30163,5 +30163,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "37967104a44b32b8c737678470bc43295c15c23a"
+  "built_at_commit": "5e27695b96e6c2c187b8dddef00bbe9cce30da21"
 }
