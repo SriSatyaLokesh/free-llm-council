@@ -449,7 +449,7 @@ export default function ReportModal({
                 title={`Report Link: ${getShareableUrl(conversation?.id, reportType)}\nClick to copy shareable report URL`}
               >
                 <span className="report-id-text">
-                  ID: {conversation?.id ? conversation.id.slice(0, 8) : 'unknown'}…
+                  ID: {conversation?.id || 'unknown'}
                 </span>
                 {idCopied ? (
                   <>

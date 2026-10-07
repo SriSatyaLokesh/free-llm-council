@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791394899.5923197,
-    "seen": 1791395123.6474242,
-    "ast_hash": "f99fde9cc3e491dd4322c7e197ed38e3",
+    "mtime": 1791398749.0027952,
+    "seen": 1791398865.1653113,
+    "ast_hash": "2f7d710b4eed7040671f2566f67a1813",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/icons.jsx": {
-    "mtime": 1791394503.4126165,
-    "seen": 1791395123.6474876,
-    "ast_hash": "4d932deb84e8d213501d2edbc883b9b3",
+    "mtime": 1791398672.1513605,
+    "seen": 1791398865.165376,
+    "ast_hash": "175c58343631541e585209d72cdd2f6a",
     "semantic_hash": ""
   },
   "frontend/src/format.js": {
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ReportModal.jsx": {
-    "mtime": 1791393659.2560408,
-    "seen": 1791393833.1956997,
-    "ast_hash": "8b127795fb90773f1a26b8a50799a433",
+    "mtime": 1791398768.278473,
+    "seen": 1791398865.1653366,
+    "ast_hash": "14c96aea6f4c69452fa2536bf4b62e09",
     "semantic_hash": ""
   },
   "tests/unit/test_non_reporting_agents.py": {
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ReportPage.jsx": {
-    "mtime": 1791394547.1249285,
-    "seen": 1791395123.6474502,
-    "ast_hash": "ed1209cb9ceac67a0e19b15c58ffd366",
+    "mtime": 1791398758.424886,
+    "seen": 1791398865.1653414,
+    "ast_hash": "31594ad55a50aef7496309ccefb05d82",
     "semantic_hash": ""
   },
   "start.ps1": {

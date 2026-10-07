@@ -462,7 +462,7 @@ export default function ReportPage({
             title={`Report Link: ${getShareableUrl(conversation?.id, reportType)}\nClick to copy shareable URL`}
           >
             <span className="report-id-text">
-              ID: {conversation?.id ? conversation.id.slice(0, 8) : 'new'}…
+              ID: {conversation?.id || 'new'}
             </span>
             {idCopied ? (
               <>

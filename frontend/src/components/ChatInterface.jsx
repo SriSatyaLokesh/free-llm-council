@@ -13,6 +13,9 @@ import {
   Check,
   GroupAILogo,
   LinkIcon,
+  ShareIcon,
+  ChevronDown,
+  Printer,
   UsersIcon,
   SlidersIcon,
   XMark,
@@ -36,7 +39,9 @@ export default function ChatInterface({
   const [idCopied, setIdCopied] = useState(false);
   const [shareCopied, setShareCopied] = useState(false);
   const [isCouncilSidebarOpen, setIsCouncilSidebarOpen] = useState(false);
+  const [isShareDropdownOpen, setIsShareDropdownOpen] = useState(false);
 
+  const shareDropdownRef = useRef(null);
   const messagesContainerRef = useRef(null);
   const lastUserMsgRef = useRef(null);
   const lastAssistantMsgRef = useRef(null);
@@ -145,6 +150,27 @@ export default function ChatInterface({
     );
   }
 
+  // Close dropdown on outside click or Escape key
+  useEffect(() => {
+    if (!isShareDropdownOpen) return;
+    const handleClickOutside = (e) => {
+      if (shareDropdownRef.current && !shareDropdownRef.current.contains(e.target)) {
+        setIsShareDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsShareDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isShareDropdownOpen]);
+
   const isEmpty = !conversation.messages || conversation.messages.length === 0;
   const activeProject = projects.find((p) => p.id === conversation.project_id);
 
@@ -162,7 +188,7 @@ export default function ChatInterface({
     }
   };
 
-  const handleShareDebate = async () => {
+  const handleCopyLink = async () => {
     if (!conversation?.id) return;
     const shareUrl = getShareableUrl(conversation.id);
     try {
@@ -174,14 +200,22 @@ export default function ChatInterface({
     }
   };
 
-  const handleExportReport = () => {
+  const handleDownloadPdf = () => {
     if (!conversation?.id) return;
-    window.open(api.getReportExportUrl(conversation.id), '_blank');
+    window.open(api.getPdfExportUrl(conversation.id, 'executive'), '_blank');
+    setIsShareDropdownOpen(false);
   };
 
-  const handleExportZip = () => {
+  const handleDownloadMarkdown = () => {
+    if (!conversation?.id) return;
+    window.open(api.getReportExportUrl(conversation.id, 'executive'), '_blank');
+    setIsShareDropdownOpen(false);
+  };
+
+  const handleDownloadZip = () => {
     if (!conversation?.id) return;
     window.open(api.getZipExportUrl(conversation.id), '_blank');
+    setIsShareDropdownOpen(false);
   };
 
   return (
@@ -211,7 +245,7 @@ export default function ChatInterface({
               title={`Deliberation Link: ${getShareableUrl(conversation?.id)}\nClick to copy shareable URL`}
             >
               <span className="conv-id-prefix">ID:</span>
-              <span className="conv-id-value">{conversation.id ? conversation.id.slice(0, 8) : 'new'}…</span>
+              <span className="conv-id-value">{conversation.id || 'new'}</span>
               <span className="conv-id-icon">
                 {idCopied ? (
                   <>
@@ -235,44 +269,106 @@ export default function ChatInterface({
               <UsersIcon size={14} />
               <span>Council ({councilConfig.members?.length || 0})</span>
             </button>
+
             <button
               type="button"
-              className="export-btn share-link-btn"
-              onClick={handleShareDebate}
-              title="Copy shareable URL for this deliberation"
+              className="export-btn export-report-btn"
+              onClick={() => onOpenReport && onOpenReport('executive')}
+              title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
             >
-            {shareCopied ? (
-              <>
-                <Check size={14} />
-                <span>Link Copied</span>
-              </>
-            ) : (
-              <>
-                <LinkIcon size={14} />
+              <FileText size={14} />
+              <span>Deliberation Report</span>
+            </button>
+
+            {/* Share Debate Dropdown */}
+            <div className="share-dropdown-wrapper" ref={shareDropdownRef}>
+              <button
+                type="button"
+                className={`export-btn share-dropdown-btn ${isShareDropdownOpen ? 'active' : ''}`}
+                onClick={() => setIsShareDropdownOpen((v) => !v)}
+                title="Share debate URL or export as PDF, Markdown, or ZIP"
+                aria-haspopup="true"
+                aria-expanded={isShareDropdownOpen}
+              >
+                <ShareIcon size={14} />
                 <span>Share Debate</span>
-              </>
-            )}
-          </button>
-          <button
-            type="button"
-            className="export-btn export-report-btn"
-            onClick={() => onOpenReport && onOpenReport('executive')}
-            title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
-          >
-            <FileText size={14} />
-            <span>Deliberation Report</span>
-          </button>
-          <button
-            type="button"
-            className="export-btn export-zip-btn"
-            onClick={handleExportZip}
-            title="Download full council deliberation package as a .zip (report.md, conversation.json, summary.txt)"
-          >
-            <Package size={14} />
-            <span>Export ZIP</span>
-          </button>
+                <ChevronDown size={13} className={`share-dropdown-caret ${isShareDropdownOpen ? 'open' : ''}`} />
+              </button>
+
+              {isShareDropdownOpen && (
+                <div className="share-dropdown-menu" role="menu">
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleCopyLink}
+                    role="menuitem"
+                    title="Copy shareable deliberation link to clipboard"
+                  >
+                    <span className="share-item-icon">
+                      {shareCopied ? <Check size={14} className="share-copied-icon" /> : <LinkIcon size={14} />}
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">
+                        {shareCopied ? 'Link Copied to Clipboard!' : 'Copy Link'}
+                      </span>
+                      <span className="share-item-hint">Shareable deliberation link</span>
+                    </div>
+                  </button>
+
+                  <div className="share-dropdown-divider" />
+
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleDownloadPdf}
+                    role="menuitem"
+                    title="Download publication-grade deliberation PDF"
+                  >
+                    <span className="share-item-icon">
+                      <Printer size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download PDF</span>
+                      <span className="share-item-hint">Publication-grade styled report</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleDownloadMarkdown}
+                    role="menuitem"
+                    title="Download Markdown (.md) report transcript"
+                  >
+                    <span className="share-item-icon">
+                      <FileText size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download Markdown</span>
+                      <span className="share-item-hint">Full Markdown document (.md)</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleDownloadZip}
+                    role="menuitem"
+                    title="Download complete deliberation package as .zip"
+                  >
+                    <span className="share-item-icon">
+                      <Package size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download ZIP</span>
+                      <span className="share-item-hint">Full package: report, json & summary</span>
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
 
       <div className="messages-container" ref={messagesContainerRef}>
         {isEmpty ? (

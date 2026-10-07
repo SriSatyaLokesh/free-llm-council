@@ -26,6 +26,14 @@ export function Chevron({ open = false, size = 16, className = '' }) {
   );
 }
 
+export function ChevronDown({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M4 6l4 4 4-4" />
+    </svg>
+  );
+}
+
 export function Check({ size = 16, className = '' }) {
   return (
     <svg {...base} width={size} height={size} className={className}>
