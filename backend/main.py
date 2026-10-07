@@ -1,6 +1,6 @@
 """FastAPI backend for LLM Council."""
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse, Response
 from pydantic import BaseModel
@@ -329,13 +329,17 @@ async def prune_empty_conversations():
 
 
 @app.get("/api/conversations/{conversation_id}/export/report")
-async def export_conversation_report(conversation_id: str):
-    """Export a council deliberation as a formatted Markdown report document."""
+async def export_conversation_report(
+    conversation_id: str,
+    format: str = Query("executive", description="Report format: 'executive' or 'detailed'"),
+):
+    """Export a council deliberation as a formatted Markdown report document (executive or detailed)."""
     conv = storage.get_conversation(conversation_id)
     if conv is None:
         raise HTTPException(status_code=404, detail="Conversation not found")
-    md_content = storage.format_conversation_markdown(conv)
-    filename = f"council-report-{conversation_id[:8]}.md"
+    md_content = storage.format_conversation_markdown(conv, mode=format)
+    fmt_tag = "detailed" if format in ("detailed", "comprehensive") else "executive"
+    filename = f"council-{fmt_tag}-report-{conversation_id[:8]}.md"
     return Response(
         content=md_content,
         media_type="text/markdown",
@@ -344,6 +348,28 @@ async def export_conversation_report(conversation_id: str):
             "Cache-Control": "no-cache",
         },
     )
+
+
+@app.get("/api/conversations/{conversation_id}/reports")
+async def get_conversation_reports(conversation_id: str):
+    """
+    Return pre-rendered executive and detailed reports with deliberation metadata
+    for the interactive in-app Report Viewer.
+    """
+    conv = storage.get_conversation(conversation_id)
+    if conv is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+    executive_md = storage.format_conversation_executive(conv)
+    detailed_md = storage.format_conversation_detailed(conv)
+
+    return {
+        "id": conversation_id,
+        "title": conv.get("title", "Council Deliberation"),
+        "created_at": conv.get("created_at"),
+        "executive_report": executive_md,
+        "detailed_report": detailed_md,
+    }
 
 
 @app.get("/api/conversations/{conversation_id}/export/zip")

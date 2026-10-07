@@ -84,9 +84,19 @@ def test_format_conversation_markdown_structure():
     assert "## Session Telemetry & Metadata" in md
     assert "4,200" in md
 
+    # Detailed report verification
+    detailed_md = storage.format_conversation_detailed(sample_conv)
+    assert "Council Deliberation Deep-Dive & Comparative Matrix" in detailed_md
+    assert "COUNCIL MULTI-AGENT DELIBERATION FLOW" in detailed_md
+    assert "Comparative Model Deliberation Matrix" in detailed_md
+    assert "| `model-a` |" in detailed_md
+    assert "| `model-b` |" in detailed_md
+    assert "Strategic Trade-Off & Risk Mitigation Matrix" in detailed_md
+    assert "Presiding Chairman" in detailed_md
+
 
 def test_export_conversation_zip_archive():
-    """Verify in-memory zip archive packages report.md, conversation.json, and summary.txt."""
+    """Verify in-memory zip archive packages executive-report.md, detailed-report.md, report.md, conversation.json, and summary.txt."""
     sample_conv = {
         "id": "conv-test-5678",
         "created_at": "2026-10-06T12:00:00Z",
@@ -119,6 +129,8 @@ def test_export_conversation_zip_archive():
         names = zf.namelist()
         assert "conversation.json" in names
         assert "report.md" in names
+        assert "executive-report.md" in names
+        assert "detailed-report.md" in names
         assert "summary.txt" in names
 
         # Validate JSON content
@@ -130,6 +142,10 @@ def test_export_conversation_zip_archive():
         report_text = zf.read("report.md").decode("utf-8")
         assert "# Cache Eviction Evaluation" in report_text
         assert "Adopt W-TinyLFU" in report_text
+
+        detailed_text = zf.read("detailed-report.md").decode("utf-8")
+        assert "Council Deliberation Deep-Dive & Comparative Matrix" in detailed_text
+        assert "Adopt W-TinyLFU" in detailed_text
 
         # Validate summary text
         summary_text = zf.read("summary.txt").decode("utf-8")
@@ -157,23 +173,42 @@ async def test_export_endpoints_http():
 
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        # 1. Test markdown report export
+        # 1. Test markdown report export (default / executive)
         resp_md = await client.get("/api/conversations/test-export-http-conv/export/report")
         assert resp_md.status_code == 200
         assert "text/markdown" in resp_md.headers["content-type"]
         assert "Test Query" in resp_md.text
         assert "Final decision" in resp_md.text
 
-        # 2. Test ZIP export
+        # 2. Test detailed markdown report export
+        resp_detail = await client.get("/api/conversations/test-export-http-conv/export/report?format=detailed")
+        assert resp_detail.status_code == 200
+        assert "text/markdown" in resp_detail.headers["content-type"]
+        assert "Council Deliberation Deep-Dive" in resp_detail.text
+        assert "COUNCIL MULTI-AGENT DELIBERATION FLOW" in resp_detail.text
+        assert "Comparative Model Deliberation Matrix" in resp_detail.text
+
+        # 3. Test pre-rendered reports JSON endpoint
+        resp_reports = await client.get("/api/conversations/test-export-http-conv/reports")
+        assert resp_reports.status_code == 200
+        data = resp_reports.json()
+        assert "executive_report" in data
+        assert "detailed_report" in data
+        assert "Final decision" in data["executive_report"]
+        assert "Comparative Model Deliberation Matrix" in data["detailed_report"]
+
+        # 4. Test ZIP export
         resp_zip = await client.get("/api/conversations/test-export-http-conv/export/zip")
         assert resp_zip.status_code == 200
         assert "application/zip" in resp_zip.headers["content-type"]
         with zipfile.ZipFile(io.BytesIO(resp_zip.content), "r") as zf:
             assert "report.md" in zf.namelist()
+            assert "executive-report.md" in zf.namelist()
+            assert "detailed-report.md" in zf.namelist()
             assert "conversation.json" in zf.namelist()
             assert "summary.txt" in zf.namelist()
 
-        # 3. Test 404 on non-existent conversation
+        # 5. Test 404 on non-existent conversation
         resp_404 = await client.get("/api/conversations/non-existent-id/export/zip")
         assert resp_404.status_code == 404
 

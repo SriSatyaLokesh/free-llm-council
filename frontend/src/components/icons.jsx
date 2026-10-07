@@ -256,3 +256,54 @@ export function GroupAILogo({ size = 20, className = '' }) {
     </svg>
   );
 }
+
+export function Printer({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M4 5.5V2h8v3.5M4 11H2.5a1.5 1.5 0 01-1.5-1.5v-3A1.5 1.5 0 012.5 5h11A1.5 1.5 0 0115 6.5v3a1.5 1.5 0 01-1.5 1.5H12M4 9h8v5H4V9z" />
+    </svg>
+  );
+}
+
+export function Download({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M2.5 11.5v2a1 1 0 001 1h9a1 1 0 001-1v-2M8 2v7.5M5 6.5l3 3 3-3" />
+    </svg>
+  );
+}
+
+export function Eye({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M1.5 8s2.5-4.5 6.5-4.5 6.5 4.5 6.5 4.5-2.5 4.5-6.5 4.5-6.5-4.5-6.5-4.5z" />
+      <circle cx="8" cy="8" r="2" />
+    </svg>
+  );
+}
+
+export function Code({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M5.5 5L2.5 8l3 3M10.5 5l3 3-3 3" />
+    </svg>
+  );
+}
+
+export function TableIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <rect x="2" y="2.5" width="12" height="11" rx="1.5" />
+      <path d="M2 6.5h12M7 6.5v7" />
+    </svg>
+  );
+}
+
+export function BarChart({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M2.5 13.5h11M5 11v-4M8 11v-7M11 11v-5" />
+    </svg>
+  );
+}
+

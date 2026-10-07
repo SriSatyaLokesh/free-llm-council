@@ -36,9 +36,9 @@
     "semantic_hash": ""
   },
   "backend/main.py": {
-    "mtime": 1791303946.5405033,
-    "seen": 1791303946.672233,
-    "ast_hash": "1d8c238a2f986f3d400b02428cbb5405",
+    "mtime": 1791342839.7342424,
+    "seen": 1791343243.278058,
+    "ast_hash": "d77ca592b9c8d998b2537726c58489f3",
     "semantic_hash": ""
   },
   "backend/opencode_client.py": {
@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "backend/storage.py": {
-    "mtime": 1791284205.6414533,
-    "seen": 1791284927.4276526,
-    "ast_hash": "7fe27ab9978f7014753e2e7775cb5b53",
+    "mtime": 1791343301.3809133,
+    "seen": 1791343332.450238,
+    "ast_hash": "f0c95f19dcf22ce24cd2093eba81995d",
     "semantic_hash": ""
   },
   "backend/test_live_debate.py": {
@@ -108,21 +108,21 @@
     "semantic_hash": "413ebe8011b8bd0cf4d20f043b197e54"
   },
   "frontend/src/App.jsx": {
-    "mtime": 1791304976.8386095,
-    "seen": 1791305206.9005423,
+    "mtime": 1791305293.8649602,
+    "seen": 1791342307.0313594,
     "ast_hash": "b4da93a15648afe808971b8dd9be2eac",
     "semantic_hash": ""
   },
   "frontend/src/api.js": {
-    "mtime": 1791284205.645756,
-    "seen": 1791284927.427666,
-    "ast_hash": "97570affa5106b46caa44808424b741c",
+    "mtime": 1791342931.213751,
+    "seen": 1791343243.2780948,
+    "ast_hash": "09dbf76e9776991e5a1b51222a42240a",
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791302919.2220783,
-    "seen": 1791302922.7873995,
-    "ast_hash": "0c6b4c09269d9fa68a210f38783c56e2",
+    "mtime": 1791343110.3454185,
+    "seen": 1791343243.2780967,
+    "ast_hash": "b5830a11713364ad3677422b04dcebcb",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1791305130.3629243,
-    "seen": 1791305206.9005494,
-    "ast_hash": "7c0a45ee7c82e4188521f4e3247352c2",
+    "mtime": 1791343169.960392,
+    "seen": 1791343243.2781174,
+    "ast_hash": "1a76d7f4b7c22b1be8bf2f872935c2be",
     "semantic_hash": ""
   },
   "frontend/src/components/Stage1.jsx": {
@@ -186,15 +186,15 @@
     "semantic_hash": ""
   },
   "frontend/src/components/VerdictHero.jsx": {
-    "mtime": 1791284205.6595829,
-    "seen": 1791284927.4276912,
-    "ast_hash": "6c4c8e5edfe5ab28bcd032077fb775b5",
+    "mtime": 1791343060.933411,
+    "seen": 1791343243.278129,
+    "ast_hash": "8cddd6a5133c07f4d444365fda285f95",
     "semantic_hash": ""
   },
   "frontend/src/components/icons.jsx": {
-    "mtime": 1791304935.161694,
-    "seen": 1791305206.9005544,
-    "ast_hash": "2b17442cfab0e7477bcb45d2aea88034",
+    "mtime": 1791342921.226377,
+    "seen": 1791343243.2781312,
+    "ast_hash": "00de4a8e1ee1d63fa5b2baaad01cb187",
     "semantic_hash": ""
   },
   "frontend/src/format.js": {
@@ -264,15 +264,15 @@
     "semantic_hash": ""
   },
   "tests/unit/test_clean_lifecycle_and_presets.py": {
-    "mtime": 1791305181.340251,
-    "seen": 1791305206.9005647,
+    "mtime": 1791305293.8812115,
+    "seen": 1791342307.032711,
     "ast_hash": "a0ed123cb65f21971f3a50781d19c017",
     "semantic_hash": ""
   },
   "tests/unit/test_exports_and_conversation_id.py": {
-    "mtime": 1791284205.6902683,
-    "seen": 1791284927.427715,
-    "ast_hash": "f7d7447ec666f4741d5556a6ade3a6be",
+    "mtime": 1791342866.218531,
+    "seen": 1791343243.2781637,
+    "ast_hash": "118f8f630674958135e442036b3cd366",
     "semantic_hash": ""
   },
   "tests/unit/test_human_steering.py": {
@@ -423,6 +423,12 @@
     "mtime": 1791301020.5503564,
     "seen": 1791302853.6101472,
     "ast_hash": "f0f8b9375015d5e2316567f7da61436a",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ReportModal.jsx": {
+    "mtime": 1791342978.6296773,
+    "seen": 1791343243.278112,
+    "ast_hash": "7ab24c0fff9ae5aee2cc6eb78d9d62cb",
     "semantic_hash": ""
   }
 }
