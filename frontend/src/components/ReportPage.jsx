@@ -10,32 +10,32 @@ import {
   Package,
   Eye,
   Code,
-  XMark,
   Zap,
   LinkIcon,
+  Folder,
+  Chevron,
   ChevronDown,
   ShareIcon,
   Printer,
 } from './icons';
 import { api } from '../api';
 import { getShareableUrl } from '../utils/url';
-import './ReportModal.css';
+import './ReportPage.css';
 
 /**
- * Industry-Standard Deliberation Report Modal.
+ * Dedicated Full-Page Deliberation Report View.
  *
- * Provides dual-report switching (Executive Brief vs Deep-Dive Technical Matrix),
- * interactive rendered preview, raw markdown inspection, one-click copy,
- * direct .pdf, .md, and .zip downloads, and isolated print/PDF optimization.
+ * Replaces in-app popup dialogs with a true, deep-linkable report page.
+ * Accessible directly at ?c=<id>&report=executive or ?c=<id>&report=detailed.
  */
-export default function ReportModal({
+export default function ReportPage({
   conversation,
-  isOpen,
-  reportType: controlledReportType,
+  projects = [],
+  reportType: controlledReportType = 'executive',
   onReportTypeChange,
-  onClose,
+  onBack,
 }) {
-  const [internalReportType, setInternalReportType] = useState('executive');
+  const [internalReportType, setInternalReportType] = useState(controlledReportType);
   const reportType = controlledReportType || internalReportType;
   const [viewMode, setViewMode] = useState('preview'); // 'preview' | 'raw'
   const [reportsData, setReportsData] = useState(null);
@@ -70,6 +70,8 @@ export default function ReportModal({
     };
   }, [isShareDropdownOpen]);
 
+  const activeProject = projects.find((p) => p.id === conversation?.project_id);
+
   const handleSelectReportType = (type) => {
     setInternalReportType(type);
     if (onReportTypeChange) {
@@ -78,7 +80,7 @@ export default function ReportModal({
   };
 
   useEffect(() => {
-    if (!isOpen || !conversation?.id) return;
+    if (!conversation?.id) return;
 
     let isMounted = true;
     setLoading(true);
@@ -103,27 +105,25 @@ export default function ReportModal({
     return () => {
       isMounted = false;
     };
-  }, [isOpen, conversation?.id]);
+  }, [conversation?.id]);
 
-  // Handle ESC key to close
+  // Handle ESC key to return to chat
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
+      if (e.key === 'Escape' && onBack) {
+        onBack();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
+  }, [onBack]);
 
   const currentMarkdown =
     reportType === 'detailed'
       ? reportsData?.detailed_report || ''
       : reportsData?.executive_report || '';
 
-  // Extract metadata stats from conversation assistant verdict if available
+  // Extract metadata stats from conversation assistant verdict
   let chairman = 'Designated Chairman';
   let membersCount = 0;
   let totalTokens = 0;
@@ -273,17 +273,16 @@ export default function ReportModal({
     .print-meta-item {
       display: flex;
       flex-direction: column;
-      gap: 2px;
     }
     .print-meta-label {
       font-size: 7.5pt;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #64748b;
       font-weight: 600;
+      color: #64748b;
+      margin-bottom: 2px;
     }
     .print-meta-value {
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 600;
       color: #0f172a;
     }
@@ -292,16 +291,9 @@ export default function ReportModal({
       page-break-after: avoid;
       break-after: avoid;
     }
-    h1 {
-      font-size: 1.4rem;
-      border-bottom: 1.5px solid #cbd5e1;
-      padding-bottom: 4px;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
     h2 {
-      font-size: 1.18rem;
-      border-bottom: 1px solid #e2e8f0;
+      font-size: 1.25rem;
+      border-bottom: 1px solid #cbd5e1;
       padding-bottom: 4px;
       margin-top: 18px;
       margin-bottom: 8px;
@@ -372,11 +364,6 @@ export default function ReportModal({
       padding: 8px 12px;
       color: #1e3a8a;
       border-radius: 0 4px 4px 0;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #e2e8f0;
-      margin: 16px 0;
     }
   </style>
 </head>
@@ -457,266 +444,277 @@ export default function ReportModal({
   };
 
   return (
-    <div className="report-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="report-modal-dialog" onClick={(e) => e.stopPropagation()}>
-        {/* Navigation & Toolbar Header */}
-        <header className="report-modal-header">
-          <div className="report-header-left">
-            <div className="report-title-row">
-              <span className="report-header-badge">
-                <FileText size={14} />
-                Deliberation Report
+    <div className="report-page-view">
+      {/* Top Navigation & Controls Bar */}
+      <header className="report-page-header">
+        <div className="report-header-nav">
+          <button
+            type="button"
+            className="report-back-btn"
+            onClick={onBack}
+            title="Return to council deliberation debate (Esc)"
+          >
+            <span className="back-arrow" aria-hidden="true">←</span>
+            <span>Back to Debate</span>
+          </button>
+
+          <span className="breadcrumb-sep" aria-hidden="true">/</span>
+
+          {activeProject ? (
+            <span className="breadcrumb-folder" title={`Workspace: ${activeProject.name}`}>
+              <Folder size={14} className="breadcrumb-icon" />
+              <span>{activeProject.name}</span>
+            </span>
+          ) : (
+            <span className="breadcrumb-independent" title="Standalone deliberation workspace">
+              <FileText size={14} className="breadcrumb-icon" />
+              <span>Standalone</span>
+            </span>
+          )}
+
+          <span className="breadcrumb-sep" aria-hidden="true">/</span>
+
+          <h2 className="report-breadcrumb-title" title={conversation?.title || 'Deliberation Report'}>
+            {conversation?.title || 'Deliberation'}
+          </h2>
+
+          <button
+            type="button"
+            className="report-id-pill"
+            onClick={handleCopyId}
+            title={`Debate ID: ${conversation?.id || 'new'}\nClick to copy debate ID`}
+          >
+            {idCopied ? (
+              <>
+                <Check size={12} className="id-copied-icon" />
+                <span className="report-copied-tag">Debate ID Copied</span>
+              </>
+            ) : (
+              <>
+                <Copy size={12} />
+                <span>Copy Debate ID</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Central Dual-Mode Switcher */}
+        <div className="report-mode-switcher" role="tablist" aria-label="Report Format Selector">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={reportType === 'executive'}
+            className={`report-tab-btn ${reportType === 'executive' ? 'active' : ''}`}
+            onClick={() => handleSelectReportType('executive')}
+          >
+            <Zap size={14} />
+            <span>Executive Brief</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={reportType === 'detailed'}
+            className={`report-tab-btn ${reportType === 'detailed' ? 'active' : ''}`}
+            onClick={() => handleSelectReportType('detailed')}
+          >
+            <TableIcon size={14} />
+            <span>Deep-Dive Matrix</span>
+          </button>
+        </div>
+
+        {/* Right Action Tools */}
+        <div className="report-header-actions">
+          {/* View Mode Toggle */}
+          <div className="report-view-toggle">
+            <button
+              type="button"
+              className={`view-toggle-btn ${viewMode === 'preview' ? 'active' : ''}`}
+              onClick={() => setViewMode('preview')}
+              title="Publication rendered preview"
+            >
+              <Eye size={13} />
+              <span>Preview</span>
+            </button>
+            <button
+              type="button"
+              className={`view-toggle-btn ${viewMode === 'raw' ? 'active' : ''}`}
+              onClick={() => setViewMode('raw')}
+              title="View raw Markdown syntax"
+            >
+              <Code size={13} />
+              <span>Raw</span>
+            </button>
+          </div>
+
+          {/* Share Report Dropdown */}
+          <div className="report-share-dropdown-wrapper" ref={shareDropdownRef}>
+            <button
+              type="button"
+              className={`report-tool-btn report-share-dropdown-btn ${isShareDropdownOpen ? 'active' : ''}`}
+              onClick={() => setIsShareDropdownOpen((v) => !v)}
+              title="Share report URL or export as PDF, Markdown, or ZIP"
+              aria-haspopup="true"
+              aria-expanded={isShareDropdownOpen}
+            >
+              <ShareIcon size={14} />
+              <span>Share Report</span>
+              <ChevronDown size={13} className={`dropdown-caret ${isShareDropdownOpen ? 'open' : ''}`} />
+            </button>
+
+            {isShareDropdownOpen && (
+              <div className="report-share-dropdown-menu" role="menu">
+                <button
+                  type="button"
+                  className="report-share-dropdown-item"
+                  onClick={handleCopyReportLink}
+                  role="menuitem"
+                  title="Copy shareable report link to clipboard"
+                >
+                  <span className="share-item-icon">
+                    {reportLinkCopied ? <Check size={14} className="copied-icon" /> : <LinkIcon size={14} />}
+                  </span>
+                  <div className="share-item-text">
+                    <span className="share-item-label">
+                      {reportLinkCopied ? 'Link Copied to Clipboard!' : 'Copy Link'}
+                    </span>
+                    <span className="share-item-hint">Shareable direct report URL</span>
+                  </div>
+                </button>
+
+                <div className="report-share-dropdown-divider" />
+
+                <button
+                  type="button"
+                  className="report-share-dropdown-item"
+                  onClick={() => {
+                    handleDownloadPdf();
+                    setIsShareDropdownOpen(false);
+                  }}
+                  disabled={downloadingPdf}
+                  role="menuitem"
+                  title="Download publication-grade deliberation PDF"
+                >
+                  <span className="share-item-icon">
+                    <Printer size={14} />
+                  </span>
+                  <div className="share-item-text">
+                    <span className="share-item-label">
+                      {downloadingPdf ? 'Exporting PDF…' : 'Download PDF'}
+                    </span>
+                    <span className="share-item-hint">Publication-grade styled report</span>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  className="report-share-dropdown-item"
+                  onClick={() => {
+                    handleDownloadMd();
+                    setIsShareDropdownOpen(false);
+                  }}
+                  role="menuitem"
+                  title="Download Markdown (.md) report transcript"
+                >
+                  <span className="share-item-icon">
+                    <FileText size={14} />
+                  </span>
+                  <div className="share-item-text">
+                    <span className="share-item-label">Download Markdown</span>
+                    <span className="share-item-hint">Raw Markdown document (.md)</span>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  className="report-share-dropdown-item"
+                  onClick={() => {
+                    handleDownloadZip();
+                    setIsShareDropdownOpen(false);
+                  }}
+                  role="menuitem"
+                  title="Download full deliberation bundle ZIP"
+                >
+                  <span className="share-item-icon">
+                    <Package size={14} />
+                  </span>
+                  <div className="share-item-text">
+                    <span className="share-item-label">Download ZIP</span>
+                    <span className="share-item-hint">Full package: reports, json & summary</span>
+                  </div>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* Telemetry KPI Banner */}
+      <div className="report-kpi-strip">
+        <div className="report-kpi-item">
+          <span className="kpi-label">Chairman Synthesis</span>
+          <span className="kpi-value kpi-mono">{chairman}</span>
+        </div>
+        <div className="report-kpi-item">
+          <span className="kpi-label">Council Roster</span>
+          <span className="kpi-value">{membersCount > 0 ? `${membersCount} Models` : 'Synthesized'}</span>
+        </div>
+        <div className="report-kpi-item">
+          <span className="kpi-label">Confidence Assessment</span>
+          <span className="kpi-value kpi-confidence">{confidence}</span>
+        </div>
+        <div className="report-kpi-item">
+          <span className="kpi-label">Compute Footprint</span>
+          <span className="kpi-value">{totalTokens > 0 ? `${totalTokens.toLocaleString()} tokens` : 'Recorded'}</span>
+        </div>
+        <div className="report-kpi-item report-kpi-type">
+          <span className="kpi-label">Active Format</span>
+          <span className="kpi-value kpi-type-tag">
+            {reportType === 'detailed' ? 'Comparative Matrix & Audit' : 'Executive Briefing'}
+          </span>
+        </div>
+      </div>
+
+      {/* Main Full-Page Document Area */}
+      <main className="report-page-body">
+        {loading ? (
+          <div className="report-loading-state">
+            <div className="report-spinner" aria-hidden="true" />
+            <p>Synthesizing deliberation report & comparative matrix…</p>
+          </div>
+        ) : error ? (
+          <div className="report-error-state">
+            <p className="error-title">Unable to generate report</p>
+            <p className="error-detail">{error}</p>
+          </div>
+        ) : !currentMarkdown ? (
+          <div className="report-empty-state">
+            <p>No council deliberation records found for this debate.</p>
+          </div>
+        ) : viewMode === 'raw' ? (
+          <div className="report-raw-container">
+            <div className="report-raw-toolbar">
+              <span className="raw-toolbar-info">
+                Raw Markdown ({reportType === 'detailed' ? 'Deep-Dive Matrix' : 'Executive Brief'})
               </span>
               <button
                 type="button"
-                className="report-id-pill"
-                onClick={handleCopyId}
-                title={`Debate ID: ${conversation?.id || 'unknown'}\nClick to copy debate ID`}
+                className="report-tool-btn raw-copy-btn"
+                onClick={handleCopyMarkdown}
+                title="Copy raw Markdown syntax to clipboard"
               >
-                {idCopied ? (
-                  <>
-                    <Check size={12} className="id-copied-icon" />
-                    <span className="report-copied-tag">Debate ID Copied</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={12} />
-                    <span>Copy Debate ID</span>
-                  </>
-                )}
+                {copied ? <Check size={14} className="tool-success" /> : <Copy size={14} />}
+                <span>{copied ? 'Copied' : 'Copy Raw Markdown'}</span>
               </button>
             </div>
-            <h2 className="report-dialog-title">
-              {conversation?.title || 'Council Strategic Deliberation'}
-            </h2>
+            <textarea
+              readOnly
+              className="report-raw-textarea"
+              value={currentMarkdown}
+              aria-label="Raw Markdown source"
+            />
           </div>
-
-          {/* Central Dual-Mode Switcher */}
-          <div className="report-mode-switcher" role="tablist" aria-label="Report Format Selector">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={reportType === 'executive'}
-              className={`report-tab-btn ${reportType === 'executive' ? 'active' : ''}`}
-              onClick={() => handleSelectReportType('executive')}
-            >
-              <Zap size={14} />
-              <span>Executive Brief</span>
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={reportType === 'detailed'}
-              className={`report-tab-btn ${reportType === 'detailed' ? 'active' : ''}`}
-              onClick={() => handleSelectReportType('detailed')}
-            >
-              <TableIcon size={14} />
-              <span>Deep-Dive Matrix</span>
-            </button>
-          </div>
-
-          {/* Right Action Tools */}
-          <div className="report-header-actions">
-            {/* View Mode Toggle */}
-            <div className="report-view-toggle">
-              <button
-                type="button"
-                className={`view-toggle-btn ${viewMode === 'preview' ? 'active' : ''}`}
-                onClick={() => setViewMode('preview')}
-                title="Rendered publication preview"
-              >
-                <Eye size={13} />
-                <span>Preview</span>
-              </button>
-              <button
-                type="button"
-                className={`view-toggle-btn ${viewMode === 'raw' ? 'active' : ''}`}
-                onClick={() => setViewMode('raw')}
-                title="View raw Markdown syntax"
-              >
-                <Code size={13} />
-                <span>Raw</span>
-              </button>
-            </div>
-
-            {/* Share Report Dropdown */}
-            <div className="report-share-dropdown-wrapper" ref={shareDropdownRef}>
-              <button
-                type="button"
-                className={`report-tool-btn report-share-dropdown-btn ${isShareDropdownOpen ? 'active' : ''}`}
-                onClick={() => setIsShareDropdownOpen((v) => !v)}
-                title="Share report URL or export as PDF, Markdown, or ZIP"
-                aria-haspopup="true"
-                aria-expanded={isShareDropdownOpen}
-              >
-                <ShareIcon size={14} />
-                <span>Share Report</span>
-                <ChevronDown size={13} className={`dropdown-caret ${isShareDropdownOpen ? 'open' : ''}`} />
-              </button>
-
-              {isShareDropdownOpen && (
-                <div className="report-share-dropdown-menu" role="menu">
-                  <button
-                    type="button"
-                    className="report-share-dropdown-item"
-                    onClick={handleCopyReportLink}
-                    role="menuitem"
-                    title="Copy shareable report link to clipboard"
-                  >
-                    <span className="share-item-icon">
-                      {reportLinkCopied ? <Check size={14} className="copied-icon" /> : <LinkIcon size={14} />}
-                    </span>
-                    <div className="share-item-text">
-                      <span className="share-item-label">
-                        {reportLinkCopied ? 'Link Copied to Clipboard!' : 'Copy Link'}
-                      </span>
-                      <span className="share-item-hint">Shareable direct report URL</span>
-                    </div>
-                  </button>
-
-                  <div className="report-share-dropdown-divider" />
-
-                  <button
-                    type="button"
-                    className="report-share-dropdown-item"
-                    onClick={() => {
-                      handleDownloadPdf();
-                      setIsShareDropdownOpen(false);
-                    }}
-                    disabled={downloadingPdf}
-                    role="menuitem"
-                    title="Download publication-grade deliberation PDF"
-                  >
-                    <span className="share-item-icon">
-                      <Printer size={14} />
-                    </span>
-                    <div className="share-item-text">
-                      <span className="share-item-label">
-                        {downloadingPdf ? 'Exporting PDF…' : 'Download PDF'}
-                      </span>
-                      <span className="share-item-hint">Publication-grade styled report</span>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    className="report-share-dropdown-item"
-                    onClick={() => {
-                      handleDownloadMd();
-                      setIsShareDropdownOpen(false);
-                    }}
-                    role="menuitem"
-                    title="Download Markdown (.md) report transcript"
-                  >
-                    <span className="share-item-icon">
-                      <FileText size={14} />
-                    </span>
-                    <div className="share-item-text">
-                      <span className="share-item-label">Download Markdown</span>
-                      <span className="share-item-hint">Raw Markdown document (.md)</span>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    className="report-share-dropdown-item"
-                    onClick={() => {
-                      handleDownloadZip();
-                      setIsShareDropdownOpen(false);
-                    }}
-                    role="menuitem"
-                    title="Download full deliberation bundle ZIP"
-                  >
-                    <span className="share-item-icon">
-                      <Package size={14} />
-                    </span>
-                    <div className="share-item-text">
-                      <span className="share-item-label">Download ZIP</span>
-                      <span className="share-item-hint">Full package: reports, json & summary</span>
-                    </div>
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <button
-              type="button"
-              className="report-close-btn"
-              onClick={onClose}
-              title="Close report modal (Esc)"
-              aria-label="Close report modal"
-            >
-              <XMark size={16} />
-            </button>
-          </div>
-        </header>
-
-        {/* Telemetry KPI Strip */}
-        <div className="report-kpi-strip">
-          <div className="report-kpi-item">
-            <span className="kpi-label">Chairman Synthesis</span>
-            <span className="kpi-value kpi-mono">{chairman}</span>
-          </div>
-          <div className="report-kpi-item">
-            <span className="kpi-label">Council Roster</span>
-            <span className="kpi-value">{membersCount > 0 ? `${membersCount} Models` : 'Synthesized'}</span>
-          </div>
-          <div className="report-kpi-item">
-            <span className="kpi-label">Confidence Assessment</span>
-            <span className="kpi-value kpi-confidence">{confidence}</span>
-          </div>
-          <div className="report-kpi-item">
-            <span className="kpi-label">Compute Footprint</span>
-            <span className="kpi-value">{totalTokens > 0 ? `${totalTokens.toLocaleString()} tokens` : 'Recorded'}</span>
-          </div>
-          <div className="report-kpi-item report-kpi-type">
-            <span className="kpi-label">Active Format</span>
-            <span className="kpi-value kpi-type-tag">
-              {reportType === 'detailed' ? 'Comparative Matrix & Audit' : 'Executive Briefing'}
-            </span>
-          </div>
-        </div>
-
-        {/* Main Content Area */}
-        <div className="report-modal-body">
-          {loading ? (
-            <div className="report-loading-state">
-              <div className="report-spinner" aria-hidden="true" />
-              <p>Synthesizing deliberation report & comparative matrix…</p>
-            </div>
-          ) : error ? (
-            <div className="report-error-state">
-              <p className="error-title">Unable to generate report</p>
-              <p className="error-detail">{error}</p>
-            </div>
-          ) : !currentMarkdown ? (
-            <div className="report-empty-state">
-              <p>No council deliberation records found for this debate.</p>
-            </div>
-          ) : viewMode === 'raw' ? (
-            <div className="report-raw-container">
-              <div className="report-raw-toolbar">
-                <span className="raw-toolbar-info">
-                  Raw Markdown ({reportType === 'detailed' ? 'Deep-Dive Matrix' : 'Executive Brief'})
-                </span>
-                <button
-                  type="button"
-                  className="report-tool-btn raw-copy-btn"
-                  onClick={handleCopyMarkdown}
-                  title="Copy raw Markdown syntax to clipboard"
-                >
-                  {copied ? <Check size={14} className="tool-success" /> : <Copy size={14} />}
-                  <span>{copied ? 'Copied' : 'Copy Raw Markdown'}</span>
-                </button>
-              </div>
-              <textarea
-                readOnly
-                className="report-raw-textarea"
-                value={currentMarkdown}
-                aria-label="Raw Markdown source"
-              />
-            </div>
-          ) : (
+        ) : (
+          <div className="report-document-sheet">
             <div ref={previewRef} className="report-preview-container markdown-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -731,9 +729,9 @@ export default function ReportModal({
                 {currentMarkdown}
               </ReactMarkdown>
             </div>
-          )}
-        </div>
-      </div>
+          </div>
+        )}
+      </main>
     </div>
   );
 }

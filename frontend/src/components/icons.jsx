@@ -26,6 +26,14 @@ export function Chevron({ open = false, size = 16, className = '' }) {
   );
 }
 
+export function ChevronDown({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M4 6l4 4 4-4" />
+    </svg>
+  );
+}
+
 export function Check({ size = 16, className = '' }) {
   return (
     <svg {...base} width={size} height={size} className={className}>
@@ -306,4 +314,42 @@ export function BarChart({ size = 16, className = '' }) {
     </svg>
   );
 }
+
+export function LinkIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M6.5 9.5a3.5 3.5 0 005 0l2-2a3.5 3.5 0 00-5-5l-1 1M9.5 6.5a3.5 3.5 0 00-5 0l-2 2a3.5 3.5 0 005 5l1-1M5.5 10.5l5-5" />
+    </svg>
+  );
+}
+
+export function ShareIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <circle cx="12" cy="3.5" r="2" />
+      <circle cx="4" cy="8" r="2" />
+      <circle cx="12" cy="12.5" r="2" />
+      <path d="M5.8 9l4.4 2.5M10.2 4.5L5.8 7" />
+    </svg>
+  );
+}
+
+export function UsersIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M11 13.5v-1a2.5 2.5 0 00-2.5-2.5h-5A2.5 2.5 0 001 12.5v1" />
+      <circle cx="6" cy="5" r="2.5" />
+      <path d="M15 13.5v-1a2.5 2.5 0 00-2-2.45M11.5 2.6a2.5 2.5 0 010 4.8" />
+    </svg>
+  );
+}
+
+export function SlidersIcon({ size = 16, className = '' }) {
+  return (
+    <svg {...base} width={size} height={size} className={className}>
+      <path d="M3 13.5v-4M3 6.5V2.5M1 6.5h4M8 13.5V9.5M8 6.5V2.5M6 9.5h4M13 13.5v-2M13 8.5V2.5M11 11.5h4" />
+    </svg>
+  );
+}
+
 

@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import ChatInterface from './components/ChatInterface';
+import ReportPage from './components/ReportPage';
 import { api } from './api';
+import { getUrlDeliberationState, updateBrowserUrl } from './utils/url';
 import './App.css';
 
 function App() {
   const [conversations, setConversations] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [currentConversationId, setCurrentConversationId] = useState(null);
+  const initialUrlState = getUrlDeliberationState();
+  const [currentConversationId, setCurrentConversationId] = useState(initialUrlState.id);
   const [currentConversation, setCurrentConversation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [streamError, setStreamError] = useState(null);
+  const [reportModalState, setReportModalState] = useState({
+    isOpen: Boolean(initialUrlState.report),
+    type: initialUrlState.report || 'executive',
+  });
 
   // Council composition, chosen in the roster panel. debateMode is mirrored to
   // the server on change, so the backend can apply it mid-run.
@@ -55,8 +62,20 @@ function App() {
         if (!cancelled) {
           setConversations(convs);
           if (convs && convs.length > 0) {
-            setCurrentConversationId((prev) => prev || convs[0].id);
-          } else {
+            setCurrentConversationId((prev) => {
+              if (prev) {
+                // If an ID is already set (e.g. from deep link in URL), preserve it
+                return prev;
+              }
+              const defaultId = convs[0].id;
+              updateBrowserUrl(
+                defaultId,
+                reportModalState.isOpen ? reportModalState.type : null,
+                true
+              );
+              return defaultId;
+            });
+          } else if (!initialUrlState.id) {
             handleNewConversation();
           }
         }
@@ -76,11 +95,48 @@ function App() {
     let cancelled = false;
     api
       .getConversation(currentConversationId)
-      .then((conv) => !cancelled && setCurrentConversation(conv))
-      .catch((error) => console.error('Failed to load conversation:', error));
+      .then((conv) => {
+        if (!cancelled) {
+          setCurrentConversation(conv);
+          updateBrowserUrl(
+            conv.id,
+            reportModalState.isOpen ? reportModalState.type : null,
+            false
+          );
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load conversation:', error);
+        // Fall back gracefully if deep link points to deleted or invalid conversation
+        if (!cancelled) {
+          if (conversations && conversations.length > 0) {
+            const fallbackId = conversations[0].id;
+            setCurrentConversationId(fallbackId);
+            updateBrowserUrl(fallbackId, null, true);
+          } else {
+            handleNewConversation();
+          }
+        }
+      });
     return () => {
       cancelled = true;
     };
+  }, [currentConversationId]);
+
+  // Support native browser Back and Forward navigation (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const { id, report } = getUrlDeliberationState();
+      if (id && id !== currentConversationId) {
+        setCurrentConversationId(id);
+      }
+      setReportModalState({
+        isOpen: Boolean(report),
+        type: report || 'executive',
+      });
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, [currentConversationId]);
 
   // Antigravity ergonomics: Cmd/Ctrl + K to start a new deliberation instantly
@@ -141,6 +197,7 @@ function App() {
       const newConv = await api.createConversation(projectId);
       setCurrentConversation(newConv);
       setCurrentConversationId(newConv.id);
+      updateBrowserUrl(newConv.id, null, false);
       reloadProjects();
     } catch (error) {
       console.error('Failed to create conversation:', error);
@@ -286,6 +343,30 @@ function App() {
     if (id === currentConversationId) return;
     discardEmptyCurrent();
     setCurrentConversationId(id);
+    updateBrowserUrl(id, reportModalState.isOpen ? reportModalState.type : null, false);
+  };
+
+  const handleOpenReport = (type = 'executive') => {
+    const reportType = type === 'detailed' ? 'detailed' : 'executive';
+    setReportModalState({ isOpen: true, type: reportType });
+    if (currentConversationId) {
+      updateBrowserUrl(currentConversationId, reportType, false);
+    }
+  };
+
+  const handleCloseReport = () => {
+    setReportModalState((prev) => ({ ...prev, isOpen: false }));
+    if (currentConversationId) {
+      updateBrowserUrl(currentConversationId, null, false);
+    }
+  };
+
+  const handleReportTypeChange = (type) => {
+    const reportType = type === 'detailed' ? 'detailed' : 'executive';
+    setReportModalState({ isOpen: true, type: reportType });
+    if (currentConversationId) {
+      updateBrowserUrl(currentConversationId, reportType, false);
+    }
   };
 
   const handleConfigChange = (patch) => {
@@ -531,15 +612,26 @@ function App() {
           api.getModels().catch(() => {});
         }}
       />
-      <ChatInterface
-        conversation={currentConversation}
-        projects={projects}
-        onSendMessage={handleSendMessage}
-        isLoading={isLoading}
-        councilConfig={councilConfig}
-        onConfigChange={handleConfigChange}
-        error={streamError}
-      />
+      {reportModalState.isOpen ? (
+        <ReportPage
+          conversation={currentConversation}
+          projects={projects}
+          reportType={reportModalState.type}
+          onReportTypeChange={handleReportTypeChange}
+          onBack={handleCloseReport}
+        />
+      ) : (
+        <ChatInterface
+          conversation={currentConversation}
+          projects={projects}
+          onSendMessage={handleSendMessage}
+          isLoading={isLoading}
+          councilConfig={councilConfig}
+          onConfigChange={handleConfigChange}
+          error={streamError}
+          onOpenReport={handleOpenReport}
+        />
+      )}
     </div>
   );
 }

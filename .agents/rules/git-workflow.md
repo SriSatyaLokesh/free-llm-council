@@ -25,7 +25,7 @@ Strict workflow for all code changes and contributions:
    - Run `npm run build` in `frontend/` to verify zero build or packaging errors.
    - Run `python -m graphify update .` to sync the AST knowledge graph.
 
-5. **Pull Request (PR) Workflow:**
+5. **Pull Request (PR) & Human Approval Workflow:**
    - Push the feature branch to remote (`git push -u origin <branch-name>`).
    - Create a Pull Request via GitHub CLI (`gh pr create`) with a detailed description and link to close the issue (`Closes #<issue-number>`).
-   - Merge the PR via GitHub CLI (`gh pr merge --squash` or `--merge`) only after verification.
+   - **STOP AND WAIT FOR USER APPROVAL:** The agent must **NEVER** auto-merge a PR. Merging is strictly reserved for user review and approval. Provide the user with the PR link and wait for their explicit instructions or approval before merging.

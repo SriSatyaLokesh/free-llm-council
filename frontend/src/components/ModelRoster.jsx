@@ -9,7 +9,7 @@ import './ModelRoster.css';
 /**
  * Helper to determine default reasoning level: Chairman defaults to max, members to medium or high.
  */
-export function getDefaultThinking(model, isChairman) {
+function getDefaultThinking(model, isChairman) {
   if (!model || !model.variants || model.variants.length === 0) return '';
   const variantIds = model.variants.map((v) => (typeof v === 'string' ? v : v.id));
   if (isChairman) {
@@ -35,6 +35,7 @@ export default function ModelRoster({
   disabled,
   evictedModels = [],
   retiredModels = [],
+  isSidebar = false,
 }) {
   const [models, setModels] = useState([]);
   const [error, setError] = useState(null);
@@ -172,38 +173,72 @@ export default function ModelRoster({
     );
   }
 
-  return (
-    <div className={`roster ${open ? 'open' : ''}`}>
-      <button
-        type="button"
-        className="roster-summary"
-        onClick={() => setOpen((v) => !v)}
-        disabled={disabled}
-      >
-        <span className="roster-count">
-          {selected.length} / {models.length} members
-        </span>
-        <span className="roster-detail">
-          {selected.length > 0
-            ? selected
-                .map((m) => {
-                  const isChair = m.id === config.chairman;
-                  const th = config.modelThinking?.[m.id] || getDefaultThinking(m, isChair);
-                  return th ? `${shortModel(m.id)} (${th})` : shortModel(m.id);
-                })
-                .join(', ')
-            : 'select the council'}
-        </span>
-        <span className="roster-chevron" aria-hidden="true">
-          <Chevron open={open} size={14} />
-        </span>
-      </button>
+  const renderPanelContent = () => (
+    <>
+      <div className="roster-section roster-controls">
+        <label className="roster-field">
+          <span className="roster-field-label">Chairman</span>
+          <select
+            value={config.chairman || ''}
+            onChange={(e) => handleChairmanChange(e.target.value)}
+            disabled={disabled}
+          >
+            <option value="">Auto (highest intelligence)</option>
+            {models.map((model) => (
+              <option key={model.id} value={model.id}>
+                {shortModel(model.id)} {model.context ? `(${Math.round(model.context / 1000)}k ctx)` : ''}
+              </option>
+            ))}
+          </select>
+        </label>
 
-      {open && (
-        <div className="roster-panel">
-          <div className="roster-section">
-            <div className="roster-section-title">Members & Thinking Quality</div>
-            <div className="roster-models">
+        <label className="roster-field">
+          <span className="roster-field-label">Debate rounds</span>
+          <div className="rounds-control">
+            <button
+              type="button"
+              onClick={() => onChange({ rounds: Math.max(0, (config.rounds ?? 2) - 1) })}
+              disabled={disabled || (config.rounds ?? 2) <= 0}
+            >
+              −
+            </button>
+            <span className="rounds-value">{config.rounds ?? 2}</span>
+            <button
+              type="button"
+              onClick={() => onChange({ rounds: Math.min(5, (config.rounds ?? 2) + 1) })}
+              disabled={disabled || (config.rounds ?? 2) >= 5}
+            >
+              +
+            </button>
+          </div>
+        </label>
+      </div>
+
+      <div className="roster-section">
+        <div className="roster-section-header-row">
+          <div className="roster-section-title">Members & Thinking Quality</div>
+          <div className="roster-bulk-actions">
+            <button
+              type="button"
+              className="roster-bulk-btn"
+              onClick={() => onChange({ members: models.map((m) => m.id) })}
+              disabled={disabled}
+              title="Seat all available models"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              className="roster-bulk-btn"
+              onClick={() => onChange({ members: [] })}
+              disabled={disabled}
+              title="Clear all seated models"
+            >
+              None
+            </button>
+          </div>
+        </div>
+        <div className="roster-models">
               {models.map((model) => {
                 const isChair = model.id === config.chairman;
                 const currentThinking =
@@ -293,153 +328,151 @@ export default function ModelRoster({
             )}
           </div>
 
-          <div className="roster-section roster-controls">
-            <label className="roster-field">
-              <span className="roster-field-label">Chairman</span>
-              <select
-                value={config.chairman || ''}
-                onChange={(e) => handleChairmanChange(e.target.value)}
-                disabled={disabled}
-              >
-                <option value="">Auto (highest intelligence)</option>
-                {models.map((model) => (
-                  <option key={model.id} value={model.id}>
-                    {shortModel(model.id)} {model.context ? `(${Math.round(model.context / 1000)}k ctx)` : ''}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label className="roster-field">
-              <span className="roster-field-label">Debate rounds</span>
-              <div className="rounds-control">
-                <button
-                  type="button"
-                  onClick={() => onChange({ rounds: Math.max(0, (config.rounds ?? 2) - 1) })}
-                  disabled={disabled || (config.rounds ?? 2) <= 0}
-                >
-                  −
-                </button>
-                <span className="rounds-value">{config.rounds ?? 2}</span>
-                <button
-                  type="button"
-                  onClick={() => onChange({ rounds: Math.min(5, (config.rounds ?? 2) + 1) })}
-                  disabled={disabled || (config.rounds ?? 2) >= 5}
-                >
-                  +
-                </button>
-              </div>
-            </label>
-          </div>
-
-          <div className="roster-section roster-budgets">
-            <div className="roster-section-title">Token & Time Limits</div>
-            <div className="budget-grid">
-              <label className="roster-field">
-                <span className="roster-field-label">Per-Model Token Cap</span>
-                <select
-                  value={config.tokenCapPerModel ?? ''}
-                  onChange={(e) =>
-                    onChange({
-                      tokenCapPerModel: e.target.value ? Number(e.target.value) : null,
-                    })
-                  }
-                  disabled={disabled}
-                >
-                  <option value="">No limit</option>
-                  <option value="5000">5,000 tokens</option>
-                  <option value="10000">10,000 tokens</option>
-                  <option value="25000">25,000 tokens</option>
-                  <option value="50000">50,000 tokens</option>
-                </select>
-              </label>
-
-              <label className="roster-field">
-                <span className="roster-field-label">Global Token Budget</span>
-                <select
-                  value={config.tokenBudgetTotal ?? ''}
-                  onChange={(e) =>
-                    onChange({
-                      tokenBudgetTotal: e.target.value ? Number(e.target.value) : null,
-                    })
-                  }
-                  disabled={disabled}
-                >
-                  <option value="">No limit</option>
-                  <option value="20000">20,000 tokens</option>
-                  <option value="50000">50,000 tokens</option>
-                  <option value="100000">100,000 tokens</option>
-                  <option value="250000">250,000 tokens</option>
-                </select>
-              </label>
-
-              <label className="roster-field">
-                <span className="roster-field-label">Time Limit</span>
-                <select
-                  value={config.timeLimitSeconds ?? ''}
-                  onChange={(e) =>
-                    onChange({
-                      timeLimitSeconds: e.target.value ? Number(e.target.value) : null,
-                    })
-                  }
-                  disabled={disabled}
-                >
-                  <option value="">No limit</option>
-                  <option value="60">60 seconds</option>
-                  <option value="120">2 minutes</option>
-                  <option value="300">5 minutes</option>
-                  <option value="600">10 minutes</option>
-                </select>
-              </label>
-            </div>
-          </div>
-
-          <div className="roster-section roster-preset-section">
-            <button
-              type="button"
-              className={`btn-persist-settings ${savedToast ? 'saved' : ''}`}
-              onClick={handleSaveDefault}
+      <div className="roster-section roster-budgets">
+        <div className="roster-section-title">Token & Time Limits</div>
+        <div className="budget-grid">
+          <label className="roster-field">
+            <span className="roster-field-label">Per-Model Token Cap</span>
+            <select
+              value={config.tokenCapPerModel ?? ''}
+              onChange={(e) =>
+                onChange({
+                  tokenCapPerModel: e.target.value ? Number(e.target.value) : null,
+                })
+              }
               disabled={disabled}
-              title="Save current model roster, thinking qualities, rounds, debate compression, and budget caps as default for future debates"
             >
-              {savedToast ? (
-                <>
-                  <Check size={12} style={{ verticalAlign: 'middle', marginRight: 4 }} />
-                  Settings Persisted as Default
-                </>
-              ) : (
-                'Save as Default Preset'
-              )}
-            </button>
-            <span className="preset-note">
-              {savedToast
-                ? 'Persisted! This setup will load automatically for future debates.'
-                : 'Saves your current council roster, thinking levels, and limits.'}
-            </span>
-          </div>
+              <option value="">No limit</option>
+              <option value="5000">5,000 tokens</option>
+              <option value="10000">10,000 tokens</option>
+              <option value="25000">25,000 tokens</option>
+              <option value="50000">50,000 tokens</option>
+            </select>
+          </label>
 
-          <div className="roster-footnote">
-            {selected.length > 0 && config.rounds > 0 ? (
-              <>
-                This run will make roughly{' '}
-                <strong>
-                  {selected.length * (2 + (config.rounds ?? 2)) + 1}
-                </strong>{' '}
-                model calls, and can take several minutes because members research
-                with live web tools.
-              </>
-            ) : (
-              'Set the debate rounds to 0 to run a single pass with no debate.'
-            )}
-          </div>
+          <label className="roster-field">
+            <span className="roster-field-label">Global Token Budget</span>
+            <select
+              value={config.tokenBudgetTotal ?? ''}
+              onChange={(e) =>
+                onChange({
+                  tokenBudgetTotal: e.target.value ? Number(e.target.value) : null,
+                })
+              }
+              disabled={disabled}
+            >
+              <option value="">No limit</option>
+              <option value="20000">20,000 tokens</option>
+              <option value="50000">50,000 tokens</option>
+              <option value="100000">100,000 tokens</option>
+              <option value="250000">250,000 tokens</option>
+            </select>
+          </label>
 
-          <DebateMode
-            level={config.debateMode}
-            onChange={(debateMode) => onChange({ debateMode })}
-            disabled={disabled}
-          />
+          <label className="roster-field">
+            <span className="roster-field-label">Time Limit</span>
+            <select
+              value={config.timeLimitSeconds ?? ''}
+              onChange={(e) =>
+                onChange({
+                  timeLimitSeconds: e.target.value ? Number(e.target.value) : null,
+                })
+              }
+              disabled={disabled}
+            >
+              <option value="">No limit</option>
+              <option value="60">60 seconds</option>
+              <option value="120">2 minutes</option>
+              <option value="300">5 minutes</option>
+              <option value="600">10 minutes</option>
+            </select>
+          </label>
         </div>
-      )}
+      </div>
+
+      <div className="roster-section roster-preset-section">
+        <button
+          type="button"
+          className={`btn-persist-settings ${savedToast ? 'saved' : ''}`}
+          onClick={handleSaveDefault}
+          disabled={disabled}
+          title="Save current model roster, thinking qualities, rounds, debate compression, and budget caps as default for future debates"
+        >
+          {savedToast ? (
+            <>
+              <Check size={12} style={{ verticalAlign: 'middle', marginRight: 4 }} />
+              Settings Persisted as Default
+            </>
+          ) : (
+            'Save as Default Preset'
+          )}
+        </button>
+        <span className="preset-note">
+          {savedToast
+            ? 'Persisted! This setup will load automatically for future debates.'
+            : 'Saves your current council roster, thinking levels, and limits.'}
+        </span>
+      </div>
+
+      <div className="roster-footnote">
+        {selected.length > 0 && config.rounds > 0 ? (
+          <>
+            This run will make roughly{' '}
+            <strong>
+              {selected.length * (2 + (config.rounds ?? 2)) + 1}
+            </strong>{' '}
+            model calls, and can take several minutes because members research
+            with live web tools.
+          </>
+        ) : (
+          'Set the debate rounds to 0 to run a single pass with no debate.'
+        )}
+      </div>
+
+      <DebateMode
+        level={config.debateMode}
+        onChange={(debateMode) => onChange({ debateMode })}
+        disabled={disabled}
+      />
+    </>
+  );
+
+  if (isSidebar) {
+    return (
+      <div className="roster-panel roster-sidebar-panel">
+        {renderPanelContent()}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`roster ${open ? 'open' : ''}`}>
+      <button
+        type="button"
+        className="roster-summary"
+        onClick={() => setOpen((v) => !v)}
+        disabled={disabled}
+      >
+        <span className="roster-count">
+          {selected.length} / {models.length} members
+        </span>
+        <span className="roster-detail">
+          {selected.length > 0
+            ? selected
+                .map((m) => {
+                  const isChair = m.id === config.chairman;
+                  const th = config.modelThinking?.[m.id] || getDefaultThinking(m, isChair);
+                  return th ? `${shortModel(m.id)} (${th})` : shortModel(m.id);
+                })
+                .join(', ')
+            : 'select the council'}
+        </span>
+        <span className="roster-chevron" aria-hidden="true">
+          <Chevron open={open} size={14} />
+        </span>
+      </button>
+
+      {open && <div className="roster-panel">{renderPanelContent()}</div>}
     </div>
   );
 }

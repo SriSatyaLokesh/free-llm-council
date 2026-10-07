@@ -15,5 +15,6 @@ Rules:
 
 - **NEVER push directly to the base branch (`main` / `master`). Direct pushes to base branch are strictly prohibited.**
 - **Issue-First Development:** Before pushing code, always create a detailed GitHub Issue with a complete User Story (`As a... I want... So that...`), full background, technical specs, and acceptance criteria.
-- **Branch & PR Workflow:** Always work on a feature branch (`feat/...`, `fix/...`), verify tests (`pytest`) and frontend build (`npm run build`), update the graph (`graphify update .`), push the branch, and create a GitHub PR linking the issue (`Closes #X`). Merging to base occurs solely via PR.
+- **Branch & PR Workflow:** Always work on a feature branch (`feat/...`, `fix/...`), verify tests (`pytest`) and frontend build (`npm run build`), update the graph (`graphify update .`), push the branch, and create a GitHub PR linking the issue (`Closes #X`).
+- **NO Auto-Merging Without Explicit User Approval:** The agent must **NEVER** merge a Pull Request on its own. Merging is strictly reserved for human review and approval. Always present the created PR link and wait for the user to review and explicitly instruct whether to merge or make changes.
 

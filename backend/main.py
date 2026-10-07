@@ -9,6 +9,7 @@ import uuid
 import json
 import asyncio
 
+from contextlib import asynccontextmanager
 from . import storage
 from . import caveman
 from . import provider_keys
@@ -20,10 +21,20 @@ from .opencode_client import (
     OpencodeUnavailable,
     default_chairman,
     diagnose_connection,
+    ensure_opencode_running,
     list_models,
 )
 
-app = FastAPI(title="LLM Council API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifecycle hook: automatically starts and verifies OpenCode service on server boot."""
+    try:
+        ensure_opencode_running()
+    except Exception as exc:
+        print(f"[!] Notice: OpenCode auto-start check returned: {exc}")
+    yield
+
+app = FastAPI(title="LLM Council API", lifespan=lifespan)
 
 # Enable CORS for local development
 app.add_middleware(
@@ -636,4 +647,5 @@ async def send_message_stream(conversation_id: str, request: SendMessageRequest)
 
 if __name__ == "__main__":
     import uvicorn
+    ensure_opencode_running()
     uvicorn.run(app, host="0.0.0.0", port=8001)

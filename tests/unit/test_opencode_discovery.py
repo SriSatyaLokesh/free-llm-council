@@ -92,3 +92,22 @@ async def test_health_endpoint_returns_diagnostics():
         data = response.json()
         assert "status" in data
         assert "opencode" in data
+
+
+def test_ensure_opencode_running_when_already_responding():
+    """If opencode is already responding, ensure_opencode_running returns True immediately."""
+    with patch.object(oc, "is_opencode_responding", return_value=True):
+        assert oc.ensure_opencode_running(timeout=1.0) is True
+
+
+def test_ensure_opencode_running_triggers_service_start():
+    """If opencode is not responding, ensure_opencode_running runs opencode service start."""
+    with patch.object(oc, "is_opencode_responding", side_effect=[False, True]), \
+         patch("shutil.which", return_value="opencode"), \
+         patch("subprocess.run") as mock_run:
+        result = oc.ensure_opencode_running(timeout=2.0)
+        assert result is True
+        mock_run.assert_called_once()
+        args = mock_run.call_args[0][0]
+        assert "service" in args and "start" in args
+

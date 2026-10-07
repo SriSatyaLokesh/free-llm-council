@@ -85,6 +85,51 @@
   margin-bottom: var(--space-2);
 }
 
+.roster-sidebar-panel {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+.roster-section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.roster-section-header-row .roster-section-title {
+  margin-bottom: 0;
+}
+
+.roster-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.roster-bulk-btn {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.roster-bulk-btn:hover:not(:disabled) {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.roster-sidebar-panel .roster-models {
+  grid-template-columns: 1fr;
+}
+
 .roster-models {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));

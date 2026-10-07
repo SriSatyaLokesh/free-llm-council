@@ -4,9 +4,24 @@ import RunRail from './RunRail';
 import VerdictHero from './VerdictHero';
 import ProcessPanel from './ProcessPanel';
 import ModelRoster from './ModelRoster';
-import ReportModal from './ReportModal';
 import { api } from '../api';
-import { Folder, FileText, Copy, Package, Check, GroupAILogo } from './icons';
+import {
+  Folder,
+  FileText,
+  Copy,
+  Package,
+  Check,
+  GroupAILogo,
+  LinkIcon,
+  ShareIcon,
+  ChevronDown,
+  Printer,
+  UsersIcon,
+  SlidersIcon,
+  XMark,
+} from './icons';
+import { shortModel } from '../format';
+import { getShareableUrl } from '../utils/url';
 import './ChatInterface.css';
 
 export default function ChatInterface({
@@ -17,12 +32,16 @@ export default function ChatInterface({
   councilConfig,
   onConfigChange,
   error,
+  onOpenReport,
 }) {
   const [input, setInput] = useState('');
   const [startedAt, setStartedAt] = useState(null);
   const [idCopied, setIdCopied] = useState(false);
-  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
+  const [isCouncilSidebarOpen, setIsCouncilSidebarOpen] = useState(false);
+  const [isShareDropdownOpen, setIsShareDropdownOpen] = useState(false);
 
+  const shareDropdownRef = useRef(null);
   const messagesContainerRef = useRef(null);
   const lastUserMsgRef = useRef(null);
   const lastAssistantMsgRef = useRef(null);
@@ -131,87 +150,225 @@ export default function ChatInterface({
     );
   }
 
+  // Close dropdown on outside click or Escape key
+  useEffect(() => {
+    if (!isShareDropdownOpen) return;
+    const handleClickOutside = (e) => {
+      if (shareDropdownRef.current && !shareDropdownRef.current.contains(e.target)) {
+        setIsShareDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsShareDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isShareDropdownOpen]);
+
   const isEmpty = !conversation.messages || conversation.messages.length === 0;
   const activeProject = projects.find((p) => p.id === conversation.project_id);
 
-  const handleCopyId = () => {
+  const handleCopyId = async () => {
     if (!conversation?.id) return;
-    navigator.clipboard.writeText(conversation.id);
-    setIdCopied(true);
-    setTimeout(() => setIdCopied(false), 2000);
+    const shareUrl = getShareableUrl(conversation.id);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setIdCopied(true);
+      setTimeout(() => setIdCopied(false), 2000);
+    } catch {
+      navigator.clipboard.writeText(conversation.id);
+      setIdCopied(true);
+      setTimeout(() => setIdCopied(false), 2000);
+    }
   };
 
-  const handleExportReport = () => {
+  const handleCopyLink = async () => {
     if (!conversation?.id) return;
-    window.open(api.getReportExportUrl(conversation.id), '_blank');
+    const shareUrl = getShareableUrl(conversation.id);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy share link:', err);
+    }
   };
 
-  const handleExportZip = () => {
+  const handleDownloadPdf = () => {
+    if (!conversation?.id) return;
+    window.open(api.getPdfExportUrl(conversation.id, 'executive'), '_blank');
+    setIsShareDropdownOpen(false);
+  };
+
+  const handleDownloadMarkdown = () => {
+    if (!conversation?.id) return;
+    window.open(api.getReportExportUrl(conversation.id, 'executive'), '_blank');
+    setIsShareDropdownOpen(false);
+  };
+
+  const handleDownloadZip = () => {
     if (!conversation?.id) return;
     window.open(api.getZipExportUrl(conversation.id), '_blank');
+    setIsShareDropdownOpen(false);
   };
 
   return (
     <div className="chat-interface">
-      <div className="workspace-header">
-        <div className="workspace-breadcrumb">
-          {activeProject ? (
-            <span className="breadcrumb-folder" title={`Workspace: ${activeProject.name}`}>
-              <Folder size={14} className="breadcrumb-icon" />
-              <span className="breadcrumb-folder-name">{activeProject.name}</span>
-            </span>
-          ) : (
-            <span className="breadcrumb-independent" title="Standalone deliberation workspace">
-              <FileText size={14} className="breadcrumb-icon" />
-              <span>Standalone Debate</span>
-            </span>
-          )}
-          <span className="breadcrumb-sep" aria-hidden="true">/</span>
-          <h2 className="breadcrumb-title" title={conversation.title || 'New Debate'}>
-            {conversation.title || 'New Debate'}
-          </h2>
-          <button
-            type="button"
-            className="conv-id-badge"
-            onClick={handleCopyId}
-            title={`Conversation ID: ${conversation.id || 'unsaved'}\nClick to copy full ID`}
-          >
-            <span className="conv-id-prefix">ID:</span>
-            <span className="conv-id-value">{conversation.id ? conversation.id.slice(0, 8) : 'new'}…</span>
-            <span className="conv-id-icon">
-              {idCopied ? (
-                <>
-                  <Check size={12} />
-                  <span className="conv-copied-text">Copied</span>
-                </>
-              ) : (
-                <Copy size={12} />
-              )}
-            </span>
-          </button>
-        </div>
+      <div className="chat-workspace-main">
+        <div className="workspace-header">
+          <div className="workspace-breadcrumb">
+            {activeProject ? (
+              <span className="breadcrumb-folder" title={`Workspace: ${activeProject.name}`}>
+                <Folder size={14} className="breadcrumb-icon" />
+                <span className="breadcrumb-folder-name">{activeProject.name}</span>
+              </span>
+            ) : (
+              <span className="breadcrumb-independent" title="Standalone deliberation workspace">
+                <FileText size={14} className="breadcrumb-icon" />
+                <span>Standalone Debate</span>
+              </span>
+            )}
+            <span className="breadcrumb-sep" aria-hidden="true">/</span>
+            <h2 className="breadcrumb-title" title={conversation.title || 'New Debate'}>
+              {conversation.title || 'New Debate'}
+            </h2>
+            <button
+              type="button"
+              className="conv-id-badge"
+              onClick={handleCopyId}
+              title={`Deliberation Link: ${getShareableUrl(conversation?.id)}\nClick to copy shareable URL`}
+            >
+              <span className="conv-id-prefix">ID:</span>
+              <span className="conv-id-value">{conversation.id || 'new'}</span>
+              <span className="conv-id-icon">
+                {idCopied ? (
+                  <>
+                    <Check size={12} />
+                    <span className="conv-copied-text">URL Copied</span>
+                  </>
+                ) : (
+                  <Copy size={12} />
+                )}
+              </span>
+            </button>
+          </div>
 
-        <div className="workspace-actions">
-          <button
-            type="button"
-            className="export-btn export-report-btn"
-            onClick={() => setIsReportOpen(true)}
-            title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
-          >
-            <FileText size={14} />
-            <span>Deliberation Report</span>
-          </button>
-          <button
-            type="button"
-            className="export-btn export-zip-btn"
-            onClick={handleExportZip}
-            title="Download full council deliberation package as a .zip (report.md, conversation.json, summary.txt)"
-          >
-            <Package size={14} />
-            <span>Export ZIP</span>
-          </button>
+          <div className="workspace-actions">
+            <button
+              type="button"
+              className={`export-btn council-sidebar-toggle-btn ${isCouncilSidebarOpen ? 'active' : ''}`}
+              onClick={() => setIsCouncilSidebarOpen((v) => !v)}
+              title="Toggle Council Models & Configuration Sidebar"
+            >
+              <UsersIcon size={14} />
+              <span>Council ({councilConfig.members?.length || 0})</span>
+            </button>
+
+            <button
+              type="button"
+              className="export-btn export-report-btn"
+              onClick={() => onOpenReport && onOpenReport('executive')}
+              title="Open interactive deliberation report (Executive Brief & Deep-Dive Matrix)"
+            >
+              <FileText size={14} />
+              <span>Deliberation Report</span>
+            </button>
+
+            {/* Share Debate Dropdown */}
+            <div className="share-dropdown-wrapper" ref={shareDropdownRef}>
+              <button
+                type="button"
+                className={`export-btn share-dropdown-btn ${isShareDropdownOpen ? 'active' : ''}`}
+                onClick={() => setIsShareDropdownOpen((v) => !v)}
+                title="Share debate URL or export as PDF, Markdown, or ZIP"
+                aria-haspopup="true"
+                aria-expanded={isShareDropdownOpen}
+              >
+                <ShareIcon size={14} />
+                <span>Share Debate</span>
+                <ChevronDown size={13} className={`share-dropdown-caret ${isShareDropdownOpen ? 'open' : ''}`} />
+              </button>
+
+              {isShareDropdownOpen && (
+                <div className="share-dropdown-menu" role="menu">
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleCopyLink}
+                    role="menuitem"
+                    title="Copy shareable deliberation link to clipboard"
+                  >
+                    <span className="share-item-icon">
+                      {shareCopied ? <Check size={14} className="share-copied-icon" /> : <LinkIcon size={14} />}
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">
+                        {shareCopied ? 'Link Copied to Clipboard!' : 'Copy Link'}
+                      </span>
+                      <span className="share-item-hint">Shareable deliberation link</span>
+                    </div>
+                  </button>
+
+                  <div className="share-dropdown-divider" />
+
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleDownloadPdf}
+                    role="menuitem"
+                    title="Download publication-grade deliberation PDF"
+                  >
+                    <span className="share-item-icon">
+                      <Printer size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download PDF</span>
+                      <span className="share-item-hint">Publication-grade styled report</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleDownloadMarkdown}
+                    role="menuitem"
+                    title="Download Markdown (.md) report transcript"
+                  >
+                    <span className="share-item-icon">
+                      <FileText size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download Markdown</span>
+                      <span className="share-item-hint">Full Markdown document (.md)</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="share-dropdown-item"
+                    onClick={handleDownloadZip}
+                    role="menuitem"
+                    title="Download complete deliberation package as .zip"
+                  >
+                    <span className="share-item-icon">
+                      <Package size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download ZIP</span>
+                      <span className="share-item-hint">Full package: report, json & summary</span>
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
 
       <div className="messages-container" ref={messagesContainerRef}>
         {isEmpty ? (
@@ -268,7 +425,7 @@ export default function ChatInterface({
                       compression={msg.council.metadata?.caveman}
                       metadata={msg.council.metadata}
                       conversationId={conversation?.id}
-                      onOpenReport={() => setIsReportOpen(true)}
+                      onOpenReport={() => onOpenReport && onOpenReport('executive')}
                     />
                   )}
 
@@ -294,21 +451,26 @@ export default function ChatInterface({
       </div>
 
       <form className="input-form" onSubmit={handleSubmit}>
-        <ModelRoster
-          config={councilConfig}
-          onChange={onConfigChange}
-          disabled={isLoading}
-          evictedModels={
-            [...(conversation.messages || [])]
-              .reverse()
-              .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
-          }
-          retiredModels={
-            [...(conversation.messages || [])]
-              .reverse()
-              .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
-          }
-        />
+        <div className="council-composer-strip">
+          <div className="council-composer-info">
+            <span className="council-composer-dot" aria-hidden="true" />
+            <span className="council-composer-label">Council:</span>
+            <span className="council-composer-text">
+              {councilConfig.members?.length || 0} models seated
+              {councilConfig.chairman && ` · Chair: ${shortModel(councilConfig.chairman)}`}
+              {councilConfig.rounds != null && ` · ${councilConfig.rounds} rounds`}
+            </span>
+          </div>
+          <button
+            type="button"
+            className="council-composer-btn"
+            onClick={() => setIsCouncilSidebarOpen((v) => !v)}
+            title="Configure council members, reasoning depth, and debate parameters in the sidebar"
+          >
+            <SlidersIcon size={13} />
+            <span>{isCouncilSidebarOpen ? 'Close Sidebar' : 'Configure Council'}</span>
+          </button>
+        </div>
         <div className="input-row">
           <label className="sr-only" htmlFor="composer">
             Ask the council a question
@@ -332,12 +494,49 @@ export default function ChatInterface({
           </button>
         </div>
       </form>
-
-      <ReportModal
-        conversation={conversation}
-        isOpen={isReportOpen}
-        onClose={() => setIsReportOpen(false)}
-      />
     </div>
-  );
+
+    {/* Council Models & Configuration Sidebar */}
+    {isCouncilSidebarOpen && (
+      <aside className="council-config-sidebar">
+        <div className="council-sidebar-header">
+          <div className="council-sidebar-title">
+            <UsersIcon size={16} />
+            <h3>Council Setup</h3>
+            <span className="council-sidebar-count-badge">
+              {councilConfig.members?.length || 0} Seated
+            </span>
+          </div>
+          <button
+            type="button"
+            className="council-sidebar-close"
+            onClick={() => setIsCouncilSidebarOpen(false)}
+            title="Close Council Setup Sidebar"
+            aria-label="Close Council Setup Sidebar"
+          >
+            <XMark size={16} />
+          </button>
+        </div>
+        <div className="council-sidebar-body">
+          <ModelRoster
+            config={councilConfig}
+            onChange={onConfigChange}
+            disabled={isLoading}
+            evictedModels={
+              [...(conversation.messages || [])]
+                .reverse()
+                .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
+            }
+            retiredModels={
+              [...(conversation.messages || [])]
+                .reverse()
+                .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
+            }
+            isSidebar={true}
+          />
+        </div>
+      </aside>
+    )}
+  </div>
+);
 }
