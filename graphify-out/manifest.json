@@ -366,9 +366,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791284926.3395095,
-    "seen": 1791284927.4277337,
-    "ast_hash": "5c21bdfcf85a65788a4e78646053bc06",
+    "mtime": 1791343572.025962,
+    "seen": 1791343618.1126688,
+    "ast_hash": "1bf45fbba352575f2fbddee5925b719f",
     "semantic_hash": ""
   },
   "frontend/README.md": {
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "llms.txt": {
-    "mtime": 1791284926.3570795,
-    "seen": 1791298588.8295336,
-    "ast_hash": "802d62980a724bf203a31fce1233d67d",
+    "mtime": 1791343584.4127555,
+    "seen": 1791343618.1126745,
+    "ast_hash": "19e1188f89085cfb15482b626862c454",
     "semantic_hash": ""
   },
   "frontend/public/favicon.svg": {

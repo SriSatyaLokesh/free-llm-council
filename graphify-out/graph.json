@@ -2118,16 +2118,52 @@
       "source_location": "L338"
     },
     {
-      "id": "backend_opencode_client_service_config_candidates",
-      "label": "_service_config_candidates()",
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict",
+      "label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
       "_callable": true,
       "_origin": "ast",
       "community": 29,
-      "community_name": "_service_config_candidates",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
-      "norm_label": "_service_config_candidates()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L76"
+      "norm_label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L133"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock",
+      "label": "make_mock()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "make_mock()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L139"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock_ask_fake",
+      "label": "ask_fake()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "ask_fake()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L147"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_steer_http_api_endpoints",
+      "label": "test_steer_http_api_endpoints()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_steer_http_api_endpoints()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L81"
     },
     {
       "id": "backend_council_aggregate_block",
@@ -2934,52 +2970,16 @@
       "source_location": "L438"
     },
     {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict",
-      "label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
+      "id": "backend_opencode_client_service_config_candidates",
+      "label": "_service_config_candidates()",
       "_callable": true,
       "_origin": "ast",
       "community": 44,
-      "community_name": "test_human_steering.py",
+      "community_name": "_service_config_candidates",
       "file_type": "code",
-      "norm_label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L133"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock",
-      "label": "make_mock()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "make_mock()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L139"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock_ask_fake",
-      "label": "ask_fake()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "ask_fake()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L147"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_steer_http_api_endpoints",
-      "label": "test_steer_http_api_endpoints()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_steer_http_api_endpoints()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L81"
+      "norm_label": "_service_config_candidates()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L76"
     },
     {
       "id": "tests_unit_test_exports_and_conversation_id_test_export_conversation_zip_archive",
@@ -6440,26 +6440,59 @@
       "source_location": "L86"
     },
     {
-      "id": "backend_opencode_client_py_path",
-      "label": "Path",
+      "id": "tests_unit_test_human_steering",
+      "label": "test_human_steering.py",
       "_origin": "ast",
       "community": 29,
-      "community_name": "_service_config_candidates",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
-      "norm_label": "path",
+      "norm_label": "test_human_steering.py",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_human_steering_py_asyncio",
+      "label": "asyncio",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "asyncio",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "backend_opencode_client_rationale_77",
-      "label": "Possible locations of opencode's service.json.",
+      "id": "tests_unit_test_human_steering_rationale_1",
+      "label": "Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering\u2026",
       "_origin": "ast",
       "community": 29,
-      "community_name": "_service_config_candidates",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
-      "norm_label": "possible locations of opencode's service.json.",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L77"
+      "norm_label": "unit and integration tests for phase 11: human-in-the-loop mid-debate steering...",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_134",
+      "label": "Verify that steering injected into a CouncilRun appears in debate prompt, queue\u2026",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify that steering injected into a councilrun appears in debate prompt, queue...",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L134"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_82",
+      "label": "Verify HTTP POST /api/conversations/{id}/steer behavior.",
+      "_origin": "ast",
+      "community": 29,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify http post /api/conversations/{id}/steer behavior.",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L82"
     },
     {
       "id": "backend_council",
@@ -7829,59 +7862,26 @@
       "source_location": "L519"
     },
     {
-      "id": "tests_unit_test_human_steering",
-      "label": "test_human_steering.py",
+      "id": "backend_opencode_client_py_path",
+      "label": "Path",
       "_origin": "ast",
       "community": 44,
-      "community_name": "test_human_steering.py",
+      "community_name": "_service_config_candidates",
       "file_type": "code",
-      "norm_label": "test_human_steering.py",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_human_steering_py_asyncio",
-      "label": "asyncio",
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "asyncio",
+      "norm_label": "path",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "tests_unit_test_human_steering_rationale_1",
-      "label": "Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering\u2026",
+      "id": "backend_opencode_client_rationale_77",
+      "label": "Possible locations of opencode's service.json.",
       "_origin": "ast",
       "community": 44,
-      "community_name": "test_human_steering.py",
+      "community_name": "_service_config_candidates",
       "file_type": "rationale",
-      "norm_label": "unit and integration tests for phase 11: human-in-the-loop mid-debate steering...",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_134",
-      "label": "Verify that steering injected into a CouncilRun appears in debate prompt, queue\u2026",
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify that steering injected into a councilrun appears in debate prompt, queue...",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L134"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_82",
-      "label": "Verify HTTP POST /api/conversations/{id}/steer behavior.",
-      "_origin": "ast",
-      "community": 44,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify http post /api/conversations/{id}/steer behavior.",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L82"
+      "norm_label": "possible locations of opencode's service.json.",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L77"
     },
     {
       "id": "agents_skills_taste_skill_0_a_read_these_signals_first",
@@ -10074,18 +10074,6 @@
       "type": "external"
     },
     {
-      "id": "asyncio",
-      "label": "asyncio",
-      "_origin": "semantic",
-      "community": 8,
-      "community_name": "opencode_client.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "asyncio",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "base64",
       "label": "base64",
       "_origin": "semantic",
@@ -10214,6 +10202,17 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "urllib_request",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "asyncio",
+      "label": "asyncio",
+      "community": 8,
+      "community_name": "opencode_client.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "asyncio",
       "source_file": "",
       "type": "external"
     }
@@ -30094,5 +30093,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "dd37313fb0c3324968d684112592fe0348468868"
+  "built_at_commit": "71eaa78f5f0df5c28f4c4152a2e96ec828d02663"
 }

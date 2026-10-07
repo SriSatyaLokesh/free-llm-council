@@ -1,7 +1,7 @@
 # Graph Report - free-llm-council  (2026-10-07)
 
 ## Corpus Check
-- 67 files · ~66,264 words
+- 67 files · ~66,320 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 21 file(s) not represented in the graph (top: .css 15, (none) 4, .cff 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dd37313f`
+- Built from commit: `71eaa78f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -45,7 +45,7 @@
 - HybridCouncilSession
 - Free LLM Council: OpenCode-Powered Multi-Model Deliberation Engine
 - 4. Component Standards
-- _service_config_candidates
+- test_human_steering.py
 - get_server_url
 - start.sh
 - tests/__init__.py
@@ -58,7 +58,7 @@
 - settings.py
 - get_active_run
 - 6. PERFORMANCE & ACCESSIBILITY GUARDRAILS
-- test_human_steering.py
+- _service_config_candidates
 - 0. BRIEF INFERENCE (Read the Room Before Anything Else)
 - 12. THE BLOCK LIBRARY (Contract - Implementations Land Here Iteratively)
 - 5. CONTEXT-AWARE PROACTIVITY
@@ -223,9 +223,9 @@ Nodes (20): 1. Prerequisites, 2. Start OpenCode Service, 3. Clone & Install, 4. 
 Cohesion: 0.17
 Nodes (11): 1. Dials & Atmosphere, 2. Color Palette & Surface Elevation, 3. Typography & Micro-Hierarchy, 4. Component Standards, 5. Performance, Ergonomics & Fast Handling, A. Left-Hand Sidebar (Workspace Tree), Accents & Signal Colors, C. Live RunRail (Real-Time Progress) (+3 more)
 
-### Community 29 - "_service_config_candidates"
-Cohesion: 0.67
-Nodes (3): Path, Possible locations of opencode's service.json., _service_config_candidates()
+### Community 29 - "test_human_steering.py"
+Cohesion: 0.28
+Nodes (7): asyncio, Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering…, Verify that steering injected into a CouncilRun appears in debate prompt, queue…, Verify HTTP POST /api/conversations/{id}/steer behavior., test_council_run_incorporates_steering_in_debate_and_verdict(), make_mock(), test_steer_http_api_endpoints()
 
 ### Community 30 - "get_server_url"
 Cohesion: 0.10
@@ -267,9 +267,9 @@ Nodes (6): get_active_run(), Retrieve the active CouncilRun for a conversation I
 Cohesion: 0.29
 Nodes (7): 6.A Hardware Acceleration, 6.B Reduced Motion (mandatory), 6.C Dark Mode (mandatory for any consumer-facing page), 6.D Core Web Vitals Targets, 6.E DOM Cost, 6.F Z-Index Restraint, 6. PERFORMANCE & ACCESSIBILITY GUARDRAILS
 
-### Community 44 - "test_human_steering.py"
-Cohesion: 0.28
-Nodes (7): asyncio, Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering…, Verify that steering injected into a CouncilRun appears in debate prompt, queue…, Verify HTTP POST /api/conversations/{id}/steer behavior., test_council_run_incorporates_steering_in_debate_and_verdict(), make_mock(), test_steer_http_api_endpoints()
+### Community 44 - "_service_config_candidates"
+Cohesion: 0.67
+Nodes (3): Path, Possible locations of opencode's service.json., _service_config_candidates()
 
 ### Community 45 - "0. BRIEF INFERENCE (Read the Room Before Anything Else)"
 Cohesion: 0.40
@@ -327,7 +327,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.220) - this node is a cross-community bridge._
 - **Why does `Frontend` connect `icons.jsx` to `CLAUDE.md - Technical Notes for LLM Council`?**
   _High betweenness centrality (0.207) - this node is a cross-community bridge._
-- **Why does `CouncilRun` connect `CouncilRun` to `council.py`, `list_models`, `test_model_eviction.py`, `opencode_client.py`, `settings.py`, `test_chairman_selection.py`, `test_human_steering.py`, `backend/main.py`, `test_hybrid_providers.py`, `test_token_budgeting.py`, `send_message_stream`, `CouncilSession`, `HybridCouncilSession`, `get_server_url`?**
+- **Why does `CouncilRun` connect `CouncilRun` to `council.py`, `list_models`, `test_model_eviction.py`, `opencode_client.py`, `settings.py`, `test_chairman_selection.py`, `backend/main.py`, `test_hybrid_providers.py`, `test_token_budgeting.py`, `send_message_stream`, `CouncilSession`, `HybridCouncilSession`, `test_human_steering.py`, `get_server_url`?**
   _High betweenness centrality (0.204) - this node is a cross-community bridge._
 - **Are the 17 inferred relationships involving `CouncilRun` (e.g. with `HybridCouncilSession` and `CouncilSession`) actually correct?**
   _`CouncilRun` has 17 INFERRED edges - model-reasoned connections that need verification._

@@ -24,7 +24,7 @@ Free LLM Council is an open-source consensus and decision-making platform inspir
 - **BYOK Hybrid Cloud Seating:** Seat Claude 3.5 Sonnet, GPT-4o, o1, or DeepSeek R1 alongside local free models via in-app API key modal.
 - **Human-in-the-Loop Steering:** Mid-debate injection of operator guidance and reference URLs taking effect in subsequent rounds and the verdict.
 - **Workspace Project Folders:** Organize deliberations into folders, move debates between folders, rename inline, or archive/restore completed sessions.
-- **One-Click Deliberation Exports:** Standalone Markdown report download and full ZIP packages (report.md, conversation.json, summary.txt).
+- **Dual Deliberation Reports & Interactive Viewer:** Toggle between Executive Brief and Deep-Dive Technical Matrix reports (ASCII deliberation flows, model comparative matrix, and strategic trade-off analysis).
 - **Modern Studio UI:** Single-window non-scrolling dashboard, real-time stage progress rail (RunRail), expandable tool traces, zero raw emojis.
 
 ## Quickstart
@@ -52,7 +52,8 @@ cd frontend && npm install && cd ..
 - `POST /api/conversations`: Create a new deliberation session.
 - `POST /api/conversations/{id}/message`: Stream a council run using Server-Sent Events (SSE).
 - `POST /api/conversations/{id}/steer`: Inject mid-flight human operator guidance directives.
-- `GET /api/conversations/{id}/report`: Download formatted executive Markdown report.
-- `GET /api/conversations/{id}/export-zip`: Download deliberation archive package (.zip).
+- `GET /api/conversations/{id}/reports`: Retrieve pre-rendered Executive and Detailed reports for in-app viewing.
+- `GET /api/conversations/{id}/export/report?format=executive|detailed`: Download formatted Markdown report.
+- `GET /api/conversations/{id}/export/zip`: Download deliberation archive package (.zip) containing both reports.
 - `GET /api/providers/keys`: Retrieve safe redacted status for configured BYOK provider keys.
 - `POST /api/providers/keys`: Save dynamic provider API key in-memory.

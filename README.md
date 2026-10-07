@@ -27,7 +27,7 @@ Running a true multi-model deliberative council across opening statements, multi
 - 🔑 **BYOK Hybrid Cloud Seating:** Seat Claude 3.5 Sonnet, GPT-4o, o1, or DeepSeek R1 directly alongside free local models via the in-app key modal.
 - 📁 **Studio Workspace:** Group deliberations into Project Folders, move debates between folders, rename inline, or archive completed sessions.
 - 🎯 **Human-in-the-Loop Mid-Debate Steering:** Inject operator guidance and reference URLs mid-flight that take effect in subsequent rounds and the final synthesis.
-- 📦 **One-Click Deliberation Exports:** Download publication-ready Markdown reports or complete ZIP packages (`report.md`, `conversation.json`, `summary.txt`).
+- 📦 **Dual Deliberation Reports & Interactive Viewer:** Toggle between **Executive Summary** and **Deep-Dive Technical Matrix** reports with comparative model tables, ASCII deliberation flow diagrams, and "The Why" strategic trade-off matrices. One-click copy, direct `.md` / `.zip` downloads, and publication-grade Print/PDF export.
 - ⚡ **Caveman Token Compression:** Integrate official Caveman skill compression (`lite`, `full`, `ultra`) for up to ~48% fewer intermediate tokens while keeping full prose in the final report.
 - 🎨 **Modern Single-Window UI:** Zero-scroll window layout, live stage progress tracking (RunRail), tool execution traces, and clean Lucide-style vector SVG icons.
 
@@ -40,7 +40,7 @@ Running a true multi-model deliberative council across opening statements, multi
 | **API Cost & Limits** | Paid per-token via OpenRouter (Rate limits & fees) | **100% Free & Unlimited** via local OpenCode |
 | **Frontier Cloud Models** | Locked to OpenRouter | **BYOK Hybrid**: Seat Claude, GPT-4o, DeepSeek R1, Groq via in-app key modal |
 | **Workspace Organization** | Flat unstructured conversation list | **Project Folders**: Structured hierarchy, folder migration, inline rename & archive/restore |
-| **Deliberation Exports** | None | **1-Click Export**: Standalone Markdown reports + complete ZIP deliberation packages |
+| **Deliberation Reports** | None | **Dual Reports & In-App Viewer**: Executive Brief + Deep-Dive Matrix with ASCII diagrams, comparative tables, and Print/PDF export |
 | **Human-in-the-Loop** | Autonomous / non-interactive | **Live Mid-Debate Steering**: Inject guidance directives and URLs mid-flight |
 | **Chairman Selection** | Hardcoded or first model | **Intelligent Capability Matrix**: Context-window & reasoning ranking with auto-failover |
 | **Thinking Depth** | Static / uniform | **Granular Controls**: Configurable per-model reasoning depth (`low` to `xhigh`) + presets |
