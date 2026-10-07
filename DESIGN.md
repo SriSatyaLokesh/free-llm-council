@@ -57,7 +57,7 @@ Deep Canvas (#0B0D14) ──► Surface Base (#121520) ──► Surface Raised 
 ## 4. Component Standards
 
 ### A. Left-Hand Sidebar (Workspace Tree)
-- **Top CTA:** High-contrast `+ New Debate` button with instant keyboard shortcut hint (`Ctrl/⌘ + K`).
+- **Top CTA:** High-contrast `+ New Debate` button with instant keyboard shortcut hint (`Ctrl/Cmd + K`).
 - **Section Headers:** Uppercase tracking (`0.05em`), muted slate (`#6B7280`), clean collapse toggles.
 - **Folder Nodes:** Folder icon + project name + counter badge + hover actions (Add debate, Rename, Delete).
 - **Debate Rows:**
@@ -79,7 +79,7 @@ Deep Canvas (#0B0D14) ──► Surface Base (#121520) ──► Surface Raised 
 
 ### D. The Verdict Hero (The Star Component)
 - Styled as an executive report document:
-  - Header: "The verdict", Chaired by model badge, tokens metric, failover badge (`⚡ Failover`), human-steered badge (`🎯 Human Steered`).
+  - Header: "The verdict", Chaired by model badge, tokens metric, failover badge (`Failover`), human-steered badge (`Human Steered`).
   - Section Cards: Decision, Reasoning, Tradeoffs, Dissent, Confidence.
   - Export bar at footer: Download report, download ZIP, toggle raw output.
 
