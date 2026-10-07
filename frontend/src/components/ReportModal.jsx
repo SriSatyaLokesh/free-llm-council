@@ -6,7 +6,6 @@ import {
   TableIcon,
   Copy,
   Check,
-  Printer,
   Download,
   Package,
   Eye,
@@ -480,16 +479,6 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
 
             <button
               type="button"
-              className="report-tool-btn"
-              onClick={handleCopyMarkdown}
-              title="Copy formatted markdown to clipboard"
-            >
-              {copied ? <Check size={14} className="tool-success" /> : <Copy size={14} />}
-              <span>{copied ? 'Copied' : 'Copy'}</span>
-            </button>
-
-            <button
-              type="button"
               className="report-tool-btn report-primary-tool"
               onClick={handleDownloadPdf}
               disabled={downloadingPdf}
@@ -497,16 +486,6 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
             >
               <Download size={14} />
               <span>{downloadingPdf ? 'Exporting...' : 'Download PDF'}</span>
-            </button>
-
-            <button
-              type="button"
-              className="report-tool-btn"
-              onClick={handlePrintIsolated}
-              title="Open publication-grade print & PDF preview"
-            >
-              <Printer size={14} />
-              <span>Print / Preview</span>
             </button>
 
             <button
@@ -585,6 +564,20 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
             </div>
           ) : viewMode === 'raw' ? (
             <div className="report-raw-container">
+              <div className="report-raw-toolbar">
+                <span className="raw-toolbar-info">
+                  Raw Markdown ({reportType === 'detailed' ? 'Deep-Dive Matrix' : 'Executive Brief'})
+                </span>
+                <button
+                  type="button"
+                  className="report-tool-btn raw-copy-btn"
+                  onClick={handleCopyMarkdown}
+                  title="Copy raw Markdown syntax to clipboard"
+                >
+                  {copied ? <Check size={14} className="tool-success" /> : <Copy size={14} />}
+                  <span>{copied ? 'Copied' : 'Copy Raw Markdown'}</span>
+                </button>
+              </div>
               <textarea
                 readOnly
                 className="report-raw-textarea"
