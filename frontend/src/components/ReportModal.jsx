@@ -13,6 +13,9 @@ import {
   XMark,
   Zap,
   LinkIcon,
+  ChevronDown,
+  ShareIcon,
+  Printer,
 } from './icons';
 import { api } from '../api';
 import { getShareableUrl } from '../utils/url';
@@ -42,7 +45,30 @@ export default function ReportModal({
   const [idCopied, setIdCopied] = useState(false);
   const [reportLinkCopied, setReportLinkCopied] = useState(false);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
+  const [isShareDropdownOpen, setIsShareDropdownOpen] = useState(false);
+  const shareDropdownRef = useRef(null);
   const previewRef = useRef(null);
+
+  // Close dropdown on outside click or Escape key
+  useEffect(() => {
+    if (!isShareDropdownOpen) return;
+    const handleClickOutside = (e) => {
+      if (shareDropdownRef.current && !shareDropdownRef.current.contains(e.target)) {
+        setIsShareDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsShareDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isShareDropdownOpen]);
 
   const handleSelectReportType = (type) => {
     setInternalReportType(type);
@@ -133,13 +159,12 @@ export default function ReportModal({
 
   const handleCopyId = async () => {
     if (!conversation?.id) return;
-    const shareUrl = getShareableUrl(conversation.id, reportType);
     try {
-      await navigator.clipboard.writeText(shareUrl);
+      await navigator.clipboard.writeText(conversation.id);
       setIdCopied(true);
       setTimeout(() => setIdCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy ID:', err);
+      console.error('Failed to copy debate ID:', err);
     }
   };
 
@@ -446,18 +471,18 @@ export default function ReportModal({
                 type="button"
                 className="report-id-pill"
                 onClick={handleCopyId}
-                title={`Report Link: ${getShareableUrl(conversation?.id, reportType)}\nClick to copy shareable report URL`}
+                title={`Debate ID: ${conversation?.id || 'unknown'}\nClick to copy debate ID`}
               >
-                <span className="report-id-text">
-                  ID: {conversation?.id || 'unknown'}
-                </span>
                 {idCopied ? (
                   <>
-                    <Check size={11} className="id-copied-icon" />
-                    <span className="report-copied-tag">URL Copied</span>
+                    <Check size={12} className="id-copied-icon" />
+                    <span className="report-copied-tag">Debate ID Copied</span>
                   </>
                 ) : (
-                  <Copy size={11} />
+                  <>
+                    <Copy size={12} />
+                    <span>Copy Debate ID</span>
+                  </>
                 )}
               </button>
             </div>
@@ -514,55 +539,105 @@ export default function ReportModal({
               </button>
             </div>
 
-            <button
-              type="button"
-              className="report-tool-btn report-share-tool"
-              onClick={handleCopyReportLink}
-              title={`Copy shareable URL for this ${reportType} report`}
-            >
-              {reportLinkCopied ? (
-                <>
-                  <Check size={14} />
-                  <span>Link Copied</span>
-                </>
-              ) : (
-                <>
-                  <LinkIcon size={14} />
-                  <span>Share Report</span>
-                </>
+            {/* Share Report Dropdown */}
+            <div className="report-share-dropdown-wrapper" ref={shareDropdownRef}>
+              <button
+                type="button"
+                className={`report-tool-btn report-share-dropdown-btn ${isShareDropdownOpen ? 'active' : ''}`}
+                onClick={() => setIsShareDropdownOpen((v) => !v)}
+                title="Share report URL or export as PDF, Markdown, or ZIP"
+                aria-haspopup="true"
+                aria-expanded={isShareDropdownOpen}
+              >
+                <ShareIcon size={14} />
+                <span>Share Report</span>
+                <ChevronDown size={13} className={`dropdown-caret ${isShareDropdownOpen ? 'open' : ''}`} />
+              </button>
+
+              {isShareDropdownOpen && (
+                <div className="report-share-dropdown-menu" role="menu">
+                  <button
+                    type="button"
+                    className="report-share-dropdown-item"
+                    onClick={handleCopyReportLink}
+                    role="menuitem"
+                    title="Copy shareable report link to clipboard"
+                  >
+                    <span className="share-item-icon">
+                      {reportLinkCopied ? <Check size={14} className="copied-icon" /> : <LinkIcon size={14} />}
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">
+                        {reportLinkCopied ? 'Link Copied to Clipboard!' : 'Copy Link'}
+                      </span>
+                      <span className="share-item-hint">Shareable direct report URL</span>
+                    </div>
+                  </button>
+
+                  <div className="report-share-dropdown-divider" />
+
+                  <button
+                    type="button"
+                    className="report-share-dropdown-item"
+                    onClick={() => {
+                      handleDownloadPdf();
+                      setIsShareDropdownOpen(false);
+                    }}
+                    disabled={downloadingPdf}
+                    role="menuitem"
+                    title="Download publication-grade deliberation PDF"
+                  >
+                    <span className="share-item-icon">
+                      <Printer size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">
+                        {downloadingPdf ? 'Exporting PDF…' : 'Download PDF'}
+                      </span>
+                      <span className="share-item-hint">Publication-grade styled report</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="report-share-dropdown-item"
+                    onClick={() => {
+                      handleDownloadMd();
+                      setIsShareDropdownOpen(false);
+                    }}
+                    role="menuitem"
+                    title="Download Markdown (.md) report transcript"
+                  >
+                    <span className="share-item-icon">
+                      <FileText size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download Markdown</span>
+                      <span className="share-item-hint">Raw Markdown document (.md)</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="report-share-dropdown-item"
+                    onClick={() => {
+                      handleDownloadZip();
+                      setIsShareDropdownOpen(false);
+                    }}
+                    role="menuitem"
+                    title="Download full deliberation bundle ZIP"
+                  >
+                    <span className="share-item-icon">
+                      <Package size={14} />
+                    </span>
+                    <div className="share-item-text">
+                      <span className="share-item-label">Download ZIP</span>
+                      <span className="share-item-hint">Full package: reports, json & summary</span>
+                    </div>
+                  </button>
+                </div>
               )}
-            </button>
-
-            <button
-              type="button"
-              className="report-tool-btn report-primary-tool"
-              onClick={handleDownloadPdf}
-              disabled={downloadingPdf}
-              title={`Download active ${reportType} report as publication-grade PDF file`}
-            >
-              <Download size={14} />
-              <span>{downloadingPdf ? 'Exporting...' : 'Download PDF'}</span>
-            </button>
-
-            <button
-              type="button"
-              className="report-tool-btn"
-              onClick={handleDownloadMd}
-              title={`Download active ${reportType} report as Markdown`}
-            >
-              <FileText size={14} />
-              <span>Markdown</span>
-            </button>
-
-            <button
-              type="button"
-              className="report-tool-btn"
-              onClick={handleDownloadZip}
-              title="Download full deliberation bundle ZIP (reports + PDF + HTML + JSON)"
-            >
-              <Package size={14} />
-              <span>ZIP</span>
-            </button>
+            </div>
 
             <button
               type="button"

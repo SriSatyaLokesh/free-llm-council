@@ -132,9 +132,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ModelRoster.jsx": {
-    "mtime": 1791395005.581436,
-    "seen": 1791395123.6474328,
-    "ast_hash": "a8c452a055e5b08bdf0614760100bf52",
+    "mtime": 1791403546.316628,
+    "seen": 1791403936.5703235,
+    "ast_hash": "2edb23b8f638f3f3e97a63ac0149c769",
     "semantic_hash": ""
   },
   "frontend/src/components/ProcessPanel.jsx": {
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ReportModal.jsx": {
-    "mtime": 1791398768.278473,
-    "seen": 1791398865.1653366,
-    "ast_hash": "14c96aea6f4c69452fa2536bf4b62e09",
+    "mtime": 1791403864.999658,
+    "seen": 1791403936.5703294,
+    "ast_hash": "bb8d7bd96d98fec3cd8dc123dcfd4ccc",
     "semantic_hash": ""
   },
   "tests/unit/test_non_reporting_agents.py": {
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ReportPage.jsx": {
-    "mtime": 1791398758.424886,
-    "seen": 1791398865.1653414,
-    "ast_hash": "31594ad55a50aef7496309ccefb05d82",
+    "mtime": 1791403771.4642088,
+    "seen": 1791403936.570331,
+    "ast_hash": "3b6e63cd6c7c954c7ae6c8764f893d71",
     "semantic_hash": ""
   },
   "start.ps1": {

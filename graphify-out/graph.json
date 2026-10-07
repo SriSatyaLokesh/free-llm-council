@@ -17,149 +17,6 @@
       "source_location": "L523"
     },
     {
-      "id": "backend_opencode_client_opencodeunavailable",
-      "label": "OpencodeUnavailable",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "opencodeunavailable",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L68"
-    },
-    {
-      "id": "backend_main_conversation",
-      "label": "Conversation",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "conversation",
-      "source_file": "backend/main.py",
-      "source_location": "L117"
-    },
-    {
-      "id": "backend_main_conversationmetadata",
-      "label": "ConversationMetadata",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "conversationmetadata",
-      "source_file": "backend/main.py",
-      "source_location": "L107"
-    },
-    {
-      "id": "backend_main_createconversationrequest",
-      "label": "CreateConversationRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "createconversationrequest",
-      "source_file": "backend/main.py",
-      "source_location": "L55"
-    },
-    {
-      "id": "backend_main_createprojectrequest",
-      "label": "CreateProjectRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "createprojectrequest",
-      "source_file": "backend/main.py",
-      "source_location": "L60"
-    },
-    {
-      "id": "backend_main_providerkeyupdate",
-      "label": "ProviderKeyUpdate",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "providerkeyupdate",
-      "source_file": "backend/main.py",
-      "source_location": "L154"
-    },
-    {
-      "id": "backend_main_sendmessagerequest",
-      "label": "SendMessageRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "sendmessagerequest",
-      "source_file": "backend/main.py",
-      "source_location": "L80"
-    },
-    {
-      "id": "backend_main_settingsupdate",
-      "label": "SettingsUpdate",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "settingsupdate",
-      "source_file": "backend/main.py",
-      "source_location": "L98"
-    },
-    {
-      "id": "backend_main_steerrequest",
-      "label": "SteerRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "steerrequest",
-      "source_file": "backend/main.py",
-      "source_location": "L92"
-    },
-    {
-      "id": "backend_main_updateconversationrequest",
-      "label": "UpdateConversationRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "updateconversationrequest",
-      "source_file": "backend/main.py",
-      "source_location": "L72"
-    },
-    {
-      "id": "backend_main_updateprojectrequest",
-      "label": "UpdateProjectRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "updateprojectrequest",
-      "source_file": "backend/main.py",
-      "source_location": "L66"
-    },
-    {
       "id": "backend_hybrid_client_hybridcouncilsession",
       "label": "HybridCouncilSession",
       "_callable": true,
@@ -173,6 +30,32 @@
       "source_location": "L290"
     },
     {
+      "id": "backend_main_createconversationrequest",
+      "label": "CreateConversationRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "post",
+      "file_type": "code",
+      "norm_label": "createconversationrequest",
+      "source_file": "backend/main.py",
+      "source_location": "L55"
+    },
+    {
+      "id": "backend_main_createprojectrequest",
+      "label": "CreateProjectRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "post",
+      "file_type": "code",
+      "norm_label": "createprojectrequest",
+      "source_file": "backend/main.py",
+      "source_location": "L60"
+    },
+    {
       "id": "backend_council_councilrun",
       "label": "CouncilRun",
       "_callable": true,
@@ -184,6 +67,123 @@
       "norm_label": "councilrun",
       "source_file": "backend/council.py",
       "source_location": "L245"
+    },
+    {
+      "id": "backend_opencode_client_opencodeunavailable",
+      "label": "OpencodeUnavailable",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "code",
+      "norm_label": "opencodeunavailable",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L68"
+    },
+    {
+      "id": "backend_main_sendmessagerequest",
+      "label": "SendMessageRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "code",
+      "norm_label": "sendmessagerequest",
+      "source_file": "backend/main.py",
+      "source_location": "L80"
+    },
+    {
+      "id": "backend_main_conversation",
+      "label": "Conversation",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "code",
+      "norm_label": "conversation",
+      "source_file": "backend/main.py",
+      "source_location": "L117"
+    },
+    {
+      "id": "backend_main_conversationmetadata",
+      "label": "ConversationMetadata",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "code",
+      "norm_label": "conversationmetadata",
+      "source_file": "backend/main.py",
+      "source_location": "L107"
+    },
+    {
+      "id": "backend_main_updateconversationrequest",
+      "label": "UpdateConversationRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "code",
+      "norm_label": "updateconversationrequest",
+      "source_file": "backend/main.py",
+      "source_location": "L72"
+    },
+    {
+      "id": "backend_main_updateprojectrequest",
+      "label": "UpdateProjectRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "code",
+      "norm_label": "updateprojectrequest",
+      "source_file": "backend/main.py",
+      "source_location": "L66"
+    },
+    {
+      "id": "backend_main_steerrequest",
+      "label": "SteerRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "get_active_run",
+      "file_type": "code",
+      "norm_label": "steerrequest",
+      "source_file": "backend/main.py",
+      "source_location": "L92"
+    },
+    {
+      "id": "backend_main_providerkeyupdate",
+      "label": "ProviderKeyUpdate",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 67,
+      "community_name": "post_provider_key",
+      "file_type": "code",
+      "norm_label": "providerkeyupdate",
+      "source_file": "backend/main.py",
+      "source_location": "L154"
+    },
+    {
+      "id": "backend_main_settingsupdate",
+      "label": "SettingsUpdate",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 68,
+      "community_name": "post_settings",
+      "file_type": "code",
+      "norm_label": "settingsupdate",
+      "source_file": "backend/main.py",
+      "source_location": "L98"
     },
     {
       "id": "backend_main_update_project",
@@ -486,16 +486,16 @@
       "source_location": "L481"
     },
     {
-      "id": "backend_storage_add_user_message",
-      "label": "add_user_message()",
+      "id": "backend_main_list_conversations",
+      "label": "list_conversations()",
       "_callable": true,
       "_origin": "ast",
       "community": 10,
       "community_name": "create_conversation",
       "file_type": "code",
-      "norm_label": "add_user_message()",
-      "source_file": "backend/storage.py",
-      "source_location": "L174"
+      "norm_label": "list_conversations()",
+      "source_file": "backend/main.py",
+      "source_location": "L279"
     },
     {
       "id": "backend_storage_create_conversation",
@@ -532,6 +532,30 @@
       "norm_label": "get_conversation_path()",
       "source_file": "backend/storage.py",
       "source_location": "L20"
+    },
+    {
+      "id": "backend_storage_list_conversations",
+      "label": "list_conversations()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "create_conversation",
+      "file_type": "code",
+      "norm_label": "list_conversations()",
+      "source_file": "backend/storage.py",
+      "source_location": "L137"
+    },
+    {
+      "id": "backend_storage_prune_empty_conversations",
+      "label": "prune_empty_conversations()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "create_conversation",
+      "file_type": "code",
+      "norm_label": "prune_empty_conversations()",
+      "source_file": "backend/storage.py",
+      "source_location": "L107"
     },
     {
       "id": "tests_unit_test_clean_lifecycle_and_presets_test_delete_conversation",
@@ -580,18 +604,6 @@
       "norm_label": "test_prune_empty_conversations()",
       "source_file": "tests/unit/test_clean_lifecycle_and_presets.py",
       "source_location": "L22"
-    },
-    {
-      "id": "tests_unit_test_exports_and_conversation_id_test_export_endpoints_http",
-      "label": "test_export_endpoints_http()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "create_conversation",
-      "file_type": "code",
-      "norm_label": "test_export_endpoints_http()",
-      "source_file": "tests/unit/test_exports_and_conversation_id.py",
-      "source_location": "L170"
     },
     {
       "id": "backend_opencode_client_list_models",
@@ -678,84 +690,12 @@
       "source_location": "L14"
     },
     {
-      "id": "backend_council_register_active_run",
-      "label": "register_active_run()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "register_active_run()",
-      "source_file": "backend/council.py",
-      "source_location": "L226"
-    },
-    {
-      "id": "backend_council_unregister_active_run",
-      "label": "unregister_active_run()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "unregister_active_run()",
-      "source_file": "backend/council.py",
-      "source_location": "L231"
-    },
-    {
-      "id": "backend_main_send_message_stream",
-      "label": "send_message_stream()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "send_message_stream()",
-      "source_file": "backend/main.py",
-      "source_location": "L516"
-    },
-    {
-      "id": "backend_main_send_message_stream_emit",
-      "label": "emit()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "emit()",
-      "source_file": "backend/main.py",
-      "source_location": "L529"
-    },
-    {
-      "id": "backend_main_send_message_stream_event_generator",
-      "label": "event_generator()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "event_generator()",
-      "source_file": "backend/main.py",
-      "source_location": "L532"
-    },
-    {
-      "id": "backend_main_send_message_stream_event_generator_drive",
-      "label": "drive()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "drive()",
-      "source_file": "backend/main.py",
-      "source_location": "L578"
-    },
-    {
       "id": "backend_prompts_debate_prompt",
       "label": "debate_prompt()",
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "debate_prompt()",
       "source_file": "backend/prompts.py",
@@ -767,7 +707,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "parse_verdict()",
       "source_file": "backend/prompts.py",
@@ -779,7 +719,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "position_prompt()",
       "source_file": "backend/prompts.py",
@@ -791,7 +731,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "review_prompt()",
       "source_file": "backend/prompts.py",
@@ -803,7 +743,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "title_prompt()",
       "source_file": "backend/prompts.py",
@@ -815,7 +755,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "verdict_prompt()",
       "source_file": "backend/prompts.py",
@@ -827,7 +767,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "test_chairman_prompt_contains_expansion_directive_for_max()",
       "source_file": "tests/unit/test_caveman_max.py",
@@ -839,59 +779,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "test_prompts_integrate_max_contract()",
       "source_file": "tests/unit/test_caveman_max.py",
       "source_location": "L78"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_active_run_registry_and_steering_injection",
-      "label": "test_active_run_registry_and_steering_injection()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_active_run_registry_and_steering_injection()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L10"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict",
-      "label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L133"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock",
-      "label": "make_mock()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "make_mock()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L139"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock_ask_fake",
-      "label": "ask_fake()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "ask_fake()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L147"
     },
     {
       "id": "tests_unit_test_human_steering_test_prompts_integrate_human_guidance",
@@ -899,71 +791,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "test_prompts_integrate_human_guidance()",
       "source_file": "tests/unit/test_human_steering.py",
       "source_location": "L41"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_steer_http_api_endpoints",
-      "label": "test_steer_http_api_endpoints()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_steer_http_api_endpoints()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L81"
-    },
-    {
-      "id": "backend_council_get_active_run",
-      "label": "get_active_run()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "get_active_run()",
-      "source_file": "backend/council.py",
-      "source_location": "L236"
-    },
-    {
-      "id": "backend_main_create_conversation",
-      "label": "create_conversation()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "create_conversation()",
-      "source_file": "backend/main.py",
-      "source_location": "L285"
-    },
-    {
-      "id": "backend_main_create_project",
-      "label": "create_project()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "create_project()",
-      "source_file": "backend/main.py",
-      "source_location": "L236"
-    },
-    {
-      "id": "backend_main_get_models",
-      "label": "get_models()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "get_models()",
-      "source_file": "backend/main.py",
-      "source_location": "L174"
     },
     {
       "id": "backend_main_get_provider_keys",
@@ -978,18 +810,6 @@
       "source_location": "L161"
     },
     {
-      "id": "backend_main_health",
-      "label": "health()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "health()",
-      "source_file": "backend/main.py",
-      "source_location": "L134"
-    },
-    {
       "id": "backend_main_lifespan",
       "label": "lifespan()",
       "_callable": true,
@@ -1002,18 +822,6 @@
       "source_location": "L29"
     },
     {
-      "id": "backend_main_post_settings",
-      "label": "post_settings()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "post_settings()",
-      "source_file": "backend/main.py",
-      "source_location": "L207"
-    },
-    {
       "id": "backend_main_root",
       "label": "root()",
       "_callable": true,
@@ -1024,18 +832,6 @@
       "norm_label": "root()",
       "source_file": "backend/main.py",
       "source_location": "L128"
-    },
-    {
-      "id": "backend_main_steer_conversation",
-      "label": "steer_conversation()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "steer_conversation()",
-      "source_file": "backend/main.py",
-      "source_location": "L500"
     },
     {
       "id": "backend_main_update_conversation",
@@ -1060,6 +856,18 @@
       "norm_label": "add_assistant_message()",
       "source_file": "backend/storage.py",
       "source_location": "L194"
+    },
+    {
+      "id": "backend_storage_add_user_message",
+      "label": "add_user_message()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "get_conversation",
+      "file_type": "code",
+      "norm_label": "add_user_message()",
+      "source_file": "backend/storage.py",
+      "source_location": "L174"
     },
     {
       "id": "backend_storage_assign_conversation_project",
@@ -1122,6 +930,18 @@
       "source_location": "L233"
     },
     {
+      "id": "tests_unit_test_exports_and_conversation_id_test_export_endpoints_http",
+      "label": "test_export_endpoints_http()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "get_conversation",
+      "file_type": "code",
+      "norm_label": "test_export_endpoints_http()",
+      "source_file": "tests/unit/test_exports_and_conversation_id.py",
+      "source_location": "L170"
+    },
+    {
       "id": "tests_unit_test_projects_and_folders_test_conversation_archive_and_rename_storage",
       "label": "test_conversation_archive_and_rename_storage()",
       "_callable": true,
@@ -1134,18 +954,6 @@
       "source_location": "L154"
     },
     {
-      "id": "backend_opencode_client_diagnose_connection",
-      "label": "diagnose_connection()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "get_server_password",
-      "file_type": "code",
-      "norm_label": "diagnose_connection()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L240"
-    },
-    {
       "id": "backend_opencode_client_get_server_password",
       "label": "get_server_password()",
       "_callable": true,
@@ -1156,18 +964,6 @@
       "norm_label": "get_server_password()",
       "source_file": "backend/opencode_client.py",
       "source_location": "L90"
-    },
-    {
-      "id": "backend_opencode_client_location_params",
-      "label": "_location_params()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "get_server_password",
-      "file_type": "code",
-      "norm_label": "_location_params()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L235"
     },
     {
       "id": "backend_opencode_client_service_config_candidates",
@@ -1206,18 +1002,6 @@
       "source_location": "L36"
     },
     {
-      "id": "backend_main_prune_empty_conversations",
-      "label": "prune_empty_conversations()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "verify_api.py",
-      "file_type": "code",
-      "norm_label": "prune_empty_conversations()",
-      "source_file": "backend/main.py",
-      "source_location": "L336"
-    },
-    {
       "id": "backend_test_live_debate_run",
       "label": "run()",
       "_callable": true,
@@ -1252,30 +1036,6 @@
       "norm_label": "main()",
       "source_file": "backend/verify_api.py",
       "source_location": "L55"
-    },
-    {
-      "id": "backend_verify_api_post",
-      "label": "post()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "verify_api.py",
-      "file_type": "code",
-      "norm_label": "post()",
-      "source_file": "backend/verify_api.py",
-      "source_location": "L29"
-    },
-    {
-      "id": "backend_council_generate_conversation_title",
-      "label": "generate_conversation_title()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "HybridCouncilSession",
-      "file_type": "code",
-      "norm_label": "generate_conversation_title()",
-      "source_file": "backend/council.py",
-      "source_location": "L1148"
     },
     {
       "id": "backend_hybrid_client_hybridcouncilsession_ask",
@@ -1326,16 +1086,16 @@
       "source_location": "L338"
     },
     {
-      "id": "backend_main_export_conversation_report",
-      "label": "export_conversation_report()",
+      "id": "backend_main_export_conversation_html",
+      "label": "export_conversation_html()",
       "_callable": true,
       "_origin": "ast",
       "community": 19,
       "community_name": "storage.py",
       "file_type": "code",
-      "norm_label": "export_conversation_report()",
+      "norm_label": "export_conversation_html()",
       "source_file": "backend/main.py",
-      "source_location": "L343"
+      "source_location": "L365"
     },
     {
       "id": "backend_main_get_conversation_reports",
@@ -1420,18 +1180,6 @@
       "norm_label": "_generate_ascii_deliberation_flow()",
       "source_file": "backend/storage.py",
       "source_location": "L420"
-    },
-    {
-      "id": "backend_storage_prune_empty_conversations",
-      "label": "prune_empty_conversations()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "storage.py",
-      "file_type": "code",
-      "norm_label": "prune_empty_conversations()",
-      "source_file": "backend/storage.py",
-      "source_location": "L107"
     },
     {
       "id": "backend_storage_render_report_html",
@@ -1983,7 +1731,7 @@
       "file_type": "code",
       "norm_label": "reportmodal()",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L28"
+      "source_location": "L31"
     },
     {
       "id": "frontend_src_components_reportpage_reportpage",
@@ -1995,7 +1743,7 @@
       "file_type": "code",
       "norm_label": "reportpage()",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L28"
+      "source_location": "L31"
     },
     {
       "id": "frontend_src_components_runrail_formatelapsed",
@@ -2226,18 +1974,6 @@
       "source_location": "L56"
     },
     {
-      "id": "backend_main_post_provider_key",
-      "label": "post_provider_key()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 20,
-      "community_name": "provider_keys.py",
-      "file_type": "code",
-      "norm_label": "post_provider_key()",
-      "source_file": "backend/main.py",
-      "source_location": "L167"
-    },
-    {
       "id": "backend_provider_keys_delete_key",
       "label": "delete_key()",
       "_callable": true,
@@ -2344,18 +2080,6 @@
       "norm_label": "test_provider_key_sanitization_and_redaction()",
       "source_file": "tests/unit/test_hybrid_providers.py",
       "source_location": "L17"
-    },
-    {
-      "id": "tests_unit_test_hybrid_providers_test_standalone_byok_operation_without_opencode",
-      "label": "test_standalone_byok_operation_without_opencode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 20,
-      "community_name": "provider_keys.py",
-      "file_type": "code",
-      "norm_label": "test_standalone_byok_operation_without_opencode()",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L198"
     },
     {
       "id": "tests_unit_test_token_budgeting_test_council_run_retires_model_exceeding_token_cap",
@@ -2670,52 +2394,88 @@
       "source_location": "L97"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_test_hybrid_council_session_routing",
-      "label": "test_hybrid_council_session_routing()",
+      "id": "backend_council_register_active_run",
+      "label": "register_active_run()",
       "_callable": true,
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
-      "norm_label": "test_hybrid_council_session_routing()",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L120"
+      "norm_label": "register_active_run()",
+      "source_file": "backend/council.py",
+      "source_location": "L226"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_test_keyed_model_401_triggers_immediate_eviction",
-      "label": "test_keyed_model_401_triggers_immediate_eviction()",
+      "id": "backend_council_unregister_active_run",
+      "label": "unregister_active_run()",
       "_callable": true,
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
-      "norm_label": "test_keyed_model_401_triggers_immediate_eviction()",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L138"
+      "norm_label": "unregister_active_run()",
+      "source_file": "backend/council.py",
+      "source_location": "L231"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_test_keyed_model_401_triggers_immediate_eviction_mock_ask_all",
-      "label": "mock_ask_all()",
+      "id": "tests_unit_test_human_steering_test_active_run_registry_and_steering_injection",
+      "label": "test_active_run_registry_and_steering_injection()",
       "_callable": true,
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
-      "norm_label": "mock_ask_all()",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L151"
+      "norm_label": "test_active_run_registry_and_steering_injection()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L10"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_test_provider_keys_http_api",
-      "label": "test_provider_keys_http_api()",
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict",
+      "label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
       "_callable": true,
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
-      "norm_label": "test_provider_keys_http_api()",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L62"
+      "norm_label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L133"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock",
+      "label": "make_mock()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "make_mock()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L139"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock_ask_fake",
+      "label": "ask_fake()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "ask_fake()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L147"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_steer_http_api_endpoints",
+      "label": "test_steer_http_api_endpoints()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_steer_http_api_endpoints()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L81"
     },
     {
       "id": "backend_council_councilrun_ask_all",
@@ -2886,76 +2646,52 @@
       "source_location": "L1123"
     },
     {
-      "id": "backend_main_export_conversation_html",
-      "label": "export_conversation_html()",
+      "id": "backend_main_create_conversation",
+      "label": "create_conversation()",
       "_callable": true,
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "code",
-      "norm_label": "export_conversation_html()",
+      "norm_label": "create_conversation()",
       "source_file": "backend/main.py",
-      "source_location": "L365"
+      "source_location": "L285"
     },
     {
-      "id": "backend_main_get_conversation",
-      "label": "get_conversation()",
+      "id": "backend_main_create_project",
+      "label": "create_project()",
       "_callable": true,
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "code",
-      "norm_label": "get_conversation()",
+      "norm_label": "create_project()",
       "source_file": "backend/main.py",
-      "source_location": "L293"
+      "source_location": "L236"
     },
     {
-      "id": "backend_main_get_project",
-      "label": "get_project()",
+      "id": "backend_main_prune_empty_conversations",
+      "label": "prune_empty_conversations()",
       "_callable": true,
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "code",
-      "norm_label": "get_project()",
+      "norm_label": "prune_empty_conversations()",
       "source_file": "backend/main.py",
-      "source_location": "L244"
+      "source_location": "L336"
     },
     {
-      "id": "backend_main_list_conversations",
-      "label": "list_conversations()",
+      "id": "backend_verify_api_post",
+      "label": "post()",
       "_callable": true,
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "code",
-      "norm_label": "list_conversations()",
-      "source_file": "backend/main.py",
-      "source_location": "L279"
-    },
-    {
-      "id": "backend_main_list_projects",
-      "label": "list_projects()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "get",
-      "file_type": "code",
-      "norm_label": "list_projects()",
-      "source_file": "backend/main.py",
-      "source_location": "L230"
-    },
-    {
-      "id": "backend_storage_list_conversations",
-      "label": "list_conversations()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "get",
-      "file_type": "code",
-      "norm_label": "list_conversations()",
-      "source_file": "backend/storage.py",
-      "source_location": "L137"
+      "norm_label": "post()",
+      "source_file": "backend/verify_api.py",
+      "source_location": "L29"
     },
     {
       "id": "main_main",
@@ -2975,7 +2711,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "code",
       "norm_label": "test_conversation_archive_and_rename_api()",
       "source_file": "tests/unit/test_projects_and_folders.py",
@@ -2987,7 +2723,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "code",
       "norm_label": "test_create_conversation_with_project_and_move_lifecycle()",
       "source_file": "tests/unit/test_projects_and_folders.py",
@@ -2999,7 +2735,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "code",
       "norm_label": "test_projects_http_api()",
       "source_file": "tests/unit/test_projects_and_folders.py",
@@ -3126,28 +2862,64 @@
       "source_location": "L267"
     },
     {
-      "id": "tests_unit_test_caveman_max_test_caveman_levels_includes_max",
-      "label": "test_caveman_levels_includes_max()",
+      "id": "tests_unit_test_hybrid_providers_test_hybrid_council_session_routing",
+      "label": "test_hybrid_council_session_routing()",
       "_callable": true,
       "_origin": "ast",
       "community": 42,
       "community_name": "test_hybrid_providers.py",
       "file_type": "code",
-      "norm_label": "test_caveman_levels_includes_max()",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L14"
+      "norm_label": "test_hybrid_council_session_routing()",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L120"
     },
     {
-      "id": "tests_unit_test_exports_and_conversation_id_test_export_conversation_zip_archive",
-      "label": "test_export_conversation_zip_archive()",
+      "id": "tests_unit_test_hybrid_providers_test_keyed_model_401_triggers_immediate_eviction",
+      "label": "test_keyed_model_401_triggers_immediate_eviction()",
       "_callable": true,
       "_origin": "ast",
       "community": 42,
       "community_name": "test_hybrid_providers.py",
       "file_type": "code",
-      "norm_label": "test_export_conversation_zip_archive()",
-      "source_file": "tests/unit/test_exports_and_conversation_id.py",
-      "source_location": "L110"
+      "norm_label": "test_keyed_model_401_triggers_immediate_eviction()",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L138"
+    },
+    {
+      "id": "tests_unit_test_hybrid_providers_test_keyed_model_401_triggers_immediate_eviction_mock_ask_all",
+      "label": "mock_ask_all()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "code",
+      "norm_label": "mock_ask_all()",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L151"
+    },
+    {
+      "id": "tests_unit_test_hybrid_providers_test_provider_keys_http_api",
+      "label": "test_provider_keys_http_api()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "code",
+      "norm_label": "test_provider_keys_http_api()",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L62"
+    },
+    {
+      "id": "tests_unit_test_hybrid_providers_test_standalone_byok_operation_without_opencode",
+      "label": "test_standalone_byok_operation_without_opencode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "code",
+      "norm_label": "test_standalone_byok_operation_without_opencode()",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L198"
     },
     {
       "id": "tests_unit_test_hybrid_providers_test_unified_model_registry_merges_free_and_keyed_models",
@@ -3196,6 +2968,54 @@
       "norm_label": "test_sum_tokens_real_telemetry()",
       "source_file": "tests/unit/test_token_budgeting.py",
       "source_location": "L46"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_test_caveman_levels_includes_max",
+      "label": "test_caveman_levels_includes_max()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "code",
+      "norm_label": "test_caveman_levels_includes_max()",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_test_council_run_records_max_caveman_mode",
+      "label": "test_council_run_records_max_caveman_mode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "code",
+      "norm_label": "test_council_run_records_max_caveman_mode()",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L122"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_test_council_run_records_max_caveman_mode_fake_make",
+      "label": "fake_make()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "code",
+      "norm_label": "fake_make()",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L161"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_test_settings_api_accepts_max_mode",
+      "label": "test_settings_api_accepts_max_mode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "code",
+      "norm_label": "test_settings_api_accepts_max_mode()",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L58"
     },
     {
       "id": "backend_main_get_settings",
@@ -3342,42 +3162,6 @@
       "source_location": "L62"
     },
     {
-      "id": "tests_unit_test_caveman_max_test_council_run_records_max_caveman_mode",
-      "label": "test_council_run_records_max_caveman_mode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 54,
-      "community_name": "settings.py",
-      "file_type": "code",
-      "norm_label": "test_council_run_records_max_caveman_mode()",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L122"
-    },
-    {
-      "id": "tests_unit_test_caveman_max_test_council_run_records_max_caveman_mode_fake_make",
-      "label": "fake_make()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 54,
-      "community_name": "settings.py",
-      "file_type": "code",
-      "norm_label": "fake_make()",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L161"
-    },
-    {
-      "id": "tests_unit_test_caveman_max_test_settings_api_accepts_max_mode",
-      "label": "test_settings_api_accepts_max_mode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 54,
-      "community_name": "settings.py",
-      "file_type": "code",
-      "norm_label": "test_settings_api_accepts_max_mode()",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L58"
-    },
-    {
       "id": "tests_unit_test_caveman_max_test_settings_module_accepts_max_mode",
       "label": "test_settings_module_accepts_max_mode()",
       "_callable": true,
@@ -3460,6 +3244,66 @@
       "norm_label": "test_settings_api_supports_budget_controls()",
       "source_file": "tests/unit/test_ui_controls_telemetry.py",
       "source_location": "L29"
+    },
+    {
+      "id": "backend_council_generate_conversation_title",
+      "label": "generate_conversation_title()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "code",
+      "norm_label": "generate_conversation_title()",
+      "source_file": "backend/council.py",
+      "source_location": "L1148"
+    },
+    {
+      "id": "backend_main_send_message_stream",
+      "label": "send_message_stream()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "code",
+      "norm_label": "send_message_stream()",
+      "source_file": "backend/main.py",
+      "source_location": "L516"
+    },
+    {
+      "id": "backend_main_send_message_stream_emit",
+      "label": "emit()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "code",
+      "norm_label": "emit()",
+      "source_file": "backend/main.py",
+      "source_location": "L529"
+    },
+    {
+      "id": "backend_main_send_message_stream_event_generator",
+      "label": "event_generator()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "code",
+      "norm_label": "event_generator()",
+      "source_file": "backend/main.py",
+      "source_location": "L532"
+    },
+    {
+      "id": "backend_main_send_message_stream_event_generator_drive",
+      "label": "drive()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "code",
+      "norm_label": "drive()",
+      "source_file": "backend/main.py",
+      "source_location": "L578"
     },
     {
       "id": "backend_main_delete_conversation",
@@ -3551,11 +3395,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "code",
       "norm_label": "export_conversation_pdf()",
       "source_file": "backend/main.py",
       "source_location": "L387"
+    },
+    {
+      "id": "backend_main_export_conversation_report",
+      "label": "export_conversation_report()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "code",
+      "norm_label": "export_conversation_report()",
+      "source_file": "backend/main.py",
+      "source_location": "L343"
     },
     {
       "id": "backend_main_export_conversation_zip_archive",
@@ -3563,11 +3419,47 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "code",
       "norm_label": "export_conversation_zip_archive()",
       "source_file": "backend/main.py",
       "source_location": "L438"
+    },
+    {
+      "id": "backend_main_get_conversation",
+      "label": "get_conversation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "code",
+      "norm_label": "get_conversation()",
+      "source_file": "backend/main.py",
+      "source_location": "L293"
+    },
+    {
+      "id": "backend_main_get_project",
+      "label": "get_project()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "code",
+      "norm_label": "get_project()",
+      "source_file": "backend/main.py",
+      "source_location": "L244"
+    },
+    {
+      "id": "backend_main_list_projects",
+      "label": "list_projects()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "code",
+      "norm_label": "list_projects()",
+      "source_file": "backend/main.py",
+      "source_location": "L230"
     },
     {
       "id": "backend_storage_export_conversation_zip",
@@ -3575,7 +3467,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "code",
       "norm_label": "export_conversation_zip()",
       "source_file": "backend/storage.py",
@@ -3587,7 +3479,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "code",
       "norm_label": "find_headless_browser()",
       "source_file": "backend/storage.py",
@@ -3599,11 +3491,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "code",
       "norm_label": "generate_report_pdf()",
       "source_file": "backend/storage.py",
       "source_location": "L1404"
+    },
+    {
+      "id": "tests_unit_test_exports_and_conversation_id_test_export_conversation_zip_archive",
+      "label": "test_export_conversation_zip_archive()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "file_type": "code",
+      "norm_label": "test_export_conversation_zip_archive()",
+      "source_file": "tests/unit/test_exports_and_conversation_id.py",
+      "source_location": "L110"
     },
     {
       "id": "backend_council_councilrun_make_session",
@@ -3659,7 +3563,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 62,
-      "community_name": "test_diagnose_connection_detects_port_conflict",
+      "community_name": "test_opencode_discovery.py",
       "file_type": "code",
       "norm_label": "test_diagnose_connection_detects_port_conflict()",
       "source_file": "tests/unit/test_opencode_discovery.py",
@@ -3671,7 +3575,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 62,
-      "community_name": "test_diagnose_connection_detects_port_conflict",
+      "community_name": "test_opencode_discovery.py",
       "file_type": "code",
       "norm_label": "test_health_endpoint_returns_diagnostics()",
       "source_file": "tests/unit/test_opencode_discovery.py",
@@ -3702,6 +3606,66 @@
       "source_location": "L951"
     },
     {
+      "id": "backend_council_get_active_run",
+      "label": "get_active_run()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "get_active_run",
+      "file_type": "code",
+      "norm_label": "get_active_run()",
+      "source_file": "backend/council.py",
+      "source_location": "L236"
+    },
+    {
+      "id": "backend_main_steer_conversation",
+      "label": "steer_conversation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "get_active_run",
+      "file_type": "code",
+      "norm_label": "steer_conversation()",
+      "source_file": "backend/main.py",
+      "source_location": "L500"
+    },
+    {
+      "id": "backend_main_health",
+      "label": "health()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "diagnose_connection",
+      "file_type": "code",
+      "norm_label": "health()",
+      "source_file": "backend/main.py",
+      "source_location": "L134"
+    },
+    {
+      "id": "backend_opencode_client_diagnose_connection",
+      "label": "diagnose_connection()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "diagnose_connection",
+      "file_type": "code",
+      "norm_label": "diagnose_connection()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L240"
+    },
+    {
+      "id": "backend_opencode_client_location_params",
+      "label": "_location_params()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "diagnose_connection",
+      "file_type": "code",
+      "norm_label": "_location_params()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L235"
+    },
+    {
       "id": "opencode_plugins_graphify_graphifyplugin",
       "label": "GraphifyPlugin()",
       "_callable": true,
@@ -3712,6 +3676,30 @@
       "norm_label": "graphifyplugin()",
       "source_file": ".opencode/plugins/graphify.js",
       "source_location": "L12"
+    },
+    {
+      "id": "backend_main_post_provider_key",
+      "label": "post_provider_key()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 67,
+      "community_name": "post_provider_key",
+      "file_type": "code",
+      "norm_label": "post_provider_key()",
+      "source_file": "backend/main.py",
+      "source_location": "L167"
+    },
+    {
+      "id": "backend_main_post_settings",
+      "label": "post_settings()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 68,
+      "community_name": "post_settings",
+      "file_type": "code",
+      "norm_label": "post_settings()",
+      "source_file": "backend/main.py",
+      "source_location": "L207"
     },
     {
       "id": "tests_unit_test_model_eviction_make_mock_session",
@@ -4048,6 +4036,18 @@
       "norm_label": "resolve_roster()",
       "source_file": "backend/council.py",
       "source_location": "L54"
+    },
+    {
+      "id": "backend_main_get_models",
+      "label": "get_models()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "test_chairman_selection.py",
+      "file_type": "code",
+      "norm_label": "get_models()",
+      "source_file": "backend/main.py",
+      "source_location": "L174"
     },
     {
       "id": "backend_opencode_client_default_chairman",
@@ -4422,26 +4422,37 @@
       "source_location": ""
     },
     {
-      "id": "tests_unit_test_exports_and_conversation_id_py_asyncio",
-      "label": "asyncio",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "create_conversation",
-      "file_type": "code",
-      "norm_label": "asyncio",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_storage_rationale_175",
-      "label": "Add a user message to a conversation. Args: conversation_id: Conversation\u2026",
+      "id": "backend_main_rationale_280",
+      "label": "List all conversations (metadata only).",
       "_origin": "ast",
       "community": 10,
       "community_name": "create_conversation",
       "file_type": "rationale",
-      "norm_label": "add a user message to a conversation. args: conversation_id: conversation...",
+      "norm_label": "list all conversations (metadata only).",
+      "source_file": "backend/main.py",
+      "source_location": "L280"
+    },
+    {
+      "id": "backend_storage_rationale_108",
+      "label": "Prune all abandoned conversations that have 0 messages. Args: except_id:\u2026",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "create_conversation",
+      "file_type": "rationale",
+      "norm_label": "prune all abandoned conversations that have 0 messages. args: except_id:...",
       "source_file": "backend/storage.py",
-      "source_location": "L175"
+      "source_location": "L108"
+    },
+    {
+      "id": "backend_storage_rationale_138",
+      "label": "List all conversations (metadata only). By default, empty conversations (0\u2026",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "create_conversation",
+      "file_type": "rationale",
+      "norm_label": "list all conversations (metadata only). by default, empty conversations (0...",
+      "source_file": "backend/storage.py",
+      "source_location": "L138"
     },
     {
       "id": "backend_storage_rationale_21",
@@ -4530,17 +4541,6 @@
       "norm_label": "verify that a conversation can be permanently deleted from storage.",
       "source_file": "tests/unit/test_clean_lifecycle_and_presets.py",
       "source_location": "L9"
-    },
-    {
-      "id": "tests_unit_test_exports_and_conversation_id_rationale_171",
-      "label": "Verify HTTP GET endpoints for report and zip downloads.",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "create_conversation",
-      "file_type": "rationale",
-      "norm_label": "verify http get endpoints for report and zip downloads.",
-      "source_file": "tests/unit/test_exports_and_conversation_id.py",
-      "source_location": "L171"
     },
     {
       "id": "agents_skills_taste_skill",
@@ -4811,17 +4811,6 @@
       "source_location": "L1117"
     },
     {
-      "id": "runtimeerror",
-      "label": "RuntimeError",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "runtimeerror",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "tests_unit_test_thinking_quality_and_deduplication",
       "label": "test_thinking_quality_and_deduplication.py",
       "_origin": "ast",
@@ -4853,17 +4842,6 @@
       "norm_label": "fetch the models available inside opencode. this is the council roster -...",
       "source_file": "backend/opencode_client.py",
       "source_location": "L353"
-    },
-    {
-      "id": "backend_opencode_client_rationale_69",
-      "label": "Raised when the local opencode server cannot be reached.",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "list_models",
-      "file_type": "rationale",
-      "norm_label": "raised when the local opencode server cannot be reached.",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L69"
     },
     {
       "id": "tests_unit_test_thinking_quality_and_deduplication_rationale_1",
@@ -4936,40 +4914,18 @@
       "label": "prompts.py",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "code",
       "norm_label": "prompts.py",
       "source_file": "backend/prompts.py",
       "source_location": "L1"
     },
     {
-      "id": "tests_unit_test_human_steering",
-      "label": "test_human_steering.py",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_human_steering.py",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_human_steering_py_asyncio",
-      "label": "asyncio",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "asyncio",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "claude_prompt_design",
       "label": "Prompt design",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "prompt design",
@@ -4977,44 +4933,11 @@
       "source_location": "L118"
     },
     {
-      "id": "backend_council_rationale_227",
-      "label": "Register an ongoing CouncilRun by conversation ID.",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "register an ongoing councilrun by conversation id.",
-      "source_file": "backend/council.py",
-      "source_location": "L227"
-    },
-    {
-      "id": "backend_council_rationale_232",
-      "label": "Unregister an ongoing CouncilRun by conversation ID.",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "unregister an ongoing councilrun by conversation id.",
-      "source_file": "backend/council.py",
-      "source_location": "L232"
-    },
-    {
-      "id": "backend_main_rationale_517",
-      "label": "Send a message and stream the council as it runs. Emits Server-Sent Events as\u2026",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "send a message and stream the council as it runs. emits server-sent events as...",
-      "source_file": "backend/main.py",
-      "source_location": "L517"
-    },
-    {
       "id": "backend_prompts_rationale_1",
       "label": "Prompts for the four council stages. Kept in one place so the wording of each\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "prompts for the four council stages. kept in one place so the wording of each...",
       "source_file": "backend/prompts.py",
@@ -5025,7 +4948,7 @@
       "label": "Stage 3: blind, anonymized scoring of the positions.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "stage 3: blind, anonymized scoring of the positions.",
       "source_file": "backend/prompts.py",
@@ -5036,7 +4959,7 @@
       "label": "Stage 4: the chairman's decision. Never compressed - a human reads this.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "stage 4: the chairman's decision. never compressed - a human reads this.",
       "source_file": "backend/prompts.py",
@@ -5047,7 +4970,7 @@
       "label": "Stage 1: independent first opinion. Never compressed - a human reads this.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "stage 1: independent first opinion. never compressed - a human reads this.",
       "source_file": "backend/prompts.py",
@@ -5058,7 +4981,7 @@
       "label": "Split a chairman response into its sections. Falls back to putting everything\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "split a chairman response into its sections. falls back to putting everything...",
       "source_file": "backend/prompts.py",
@@ -5069,7 +4992,7 @@
       "label": "Short conversation title.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "short conversation title.",
       "source_file": "backend/prompts.py",
@@ -5080,7 +5003,7 @@
       "label": "Stage 2: named cross-examination, one round at a time. `caveman_instruction` is\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "stage 2: named cross-examination, one round at a time. `caveman_instruction` is...",
       "source_file": "backend/prompts.py",
@@ -5091,7 +5014,7 @@
       "label": "Verify that verdict_prompt alerts the chairman to expand compressed debate\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "verify that verdict_prompt alerts the chairman to expand compressed debate...",
       "source_file": "tests/unit/test_caveman_max.py",
@@ -5102,66 +5025,22 @@
       "label": "Verify that debate_prompt embeds the Caveman max instruction cleanly.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "verify that debate_prompt embeds the caveman max instruction cleanly.",
       "source_file": "tests/unit/test_caveman_max.py",
       "source_location": "L79"
     },
     {
-      "id": "tests_unit_test_human_steering_rationale_1",
-      "label": "Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering\u2026",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "unit and integration tests for phase 11: human-in-the-loop mid-debate steering...",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_11",
-      "label": "Verify active run registration and steering injection on CouncilRun.",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify active run registration and steering injection on councilrun.",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L11"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_134",
-      "label": "Verify that steering injected into a CouncilRun appears in debate prompt, queue\u2026",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify that steering injected into a councilrun appears in debate prompt, queue...",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L134"
-    },
-    {
       "id": "tests_unit_test_human_steering_rationale_42",
       "label": "Verify debate and verdict prompts include human guidance and directives.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "test_human_steering.py",
+      "community_name": "prompts.py",
       "file_type": "rationale",
       "norm_label": "verify debate and verdict prompts include human guidance and directives.",
       "source_file": "tests/unit/test_human_steering.py",
       "source_location": "L42"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_82",
-      "label": "Verify HTTP POST /api/conversations/{id}/steer behavior.",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify http post /api/conversations/{id}/steer behavior.",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L82"
     },
     {
       "id": "backend_main",
@@ -5175,17 +5054,6 @@
       "source_location": "L1"
     },
     {
-      "id": "basemodel",
-      "label": "BaseModel",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "code",
-      "norm_label": "basemodel",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "fastapi",
       "label": "FastAPI",
       "_origin": "ast",
@@ -5195,17 +5063,6 @@
       "norm_label": "fastapi",
       "source_file": "",
       "source_location": ""
-    },
-    {
-      "id": "backend_council_rationale_237",
-      "label": "Retrieve the active CouncilRun for a conversation ID, if any.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "retrieve the active councilrun for a conversation id, if any.",
-      "source_file": "backend/council.py",
-      "source_location": "L237"
     },
     {
       "id": "backend_main_rationale_1",
@@ -5219,28 +5076,6 @@
       "source_location": "L1"
     },
     {
-      "id": "backend_main_rationale_108",
-      "label": "Conversation metadata for list view.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "conversation metadata for list view.",
-      "source_file": "backend/main.py",
-      "source_location": "L108"
-    },
-    {
-      "id": "backend_main_rationale_118",
-      "label": "Full conversation with all messages.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "full conversation with all messages.",
-      "source_file": "backend/main.py",
-      "source_location": "L118"
-    },
-    {
       "id": "backend_main_rationale_129",
       "label": "Health check endpoint.",
       "_origin": "ast",
@@ -5250,28 +5085,6 @@
       "norm_label": "health check endpoint.",
       "source_file": "backend/main.py",
       "source_location": "L129"
-    },
-    {
-      "id": "backend_main_rationale_135",
-      "label": "Detailed health check validating connection to OpenCode and BYOK readiness.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "detailed health check validating connection to opencode and byok readiness.",
-      "source_file": "backend/main.py",
-      "source_location": "L135"
-    },
-    {
-      "id": "backend_main_rationale_155",
-      "label": "Payload to configure or remove a provider API key.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "payload to configure or remove a provider api key.",
-      "source_file": "backend/main.py",
-      "source_location": "L155"
     },
     {
       "id": "backend_main_rationale_162",
@@ -5285,50 +5098,6 @@
       "source_location": "L162"
     },
     {
-      "id": "backend_main_rationale_175",
-      "label": "The council roster, read live from OpenCode and configured custom providers.\u2026",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "the council roster, read live from opencode and configured custom providers....",
-      "source_file": "backend/main.py",
-      "source_location": "L175"
-    },
-    {
-      "id": "backend_main_rationale_208",
-      "label": "Change live council settings. Takes effect on the next debate round.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "change live council settings. takes effect on the next debate round.",
-      "source_file": "backend/main.py",
-      "source_location": "L208"
-    },
-    {
-      "id": "backend_main_rationale_237",
-      "label": "Create a new project workspace folder.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "create a new project workspace folder.",
-      "source_file": "backend/main.py",
-      "source_location": "L237"
-    },
-    {
-      "id": "backend_main_rationale_286",
-      "label": "Create a new conversation.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "create a new conversation.",
-      "source_file": "backend/main.py",
-      "source_location": "L286"
-    },
-    {
       "id": "backend_main_rationale_30",
       "label": "Lifecycle hook: automatically starts and verifies OpenCode service on server\u2026",
       "_origin": "ast",
@@ -5340,92 +5109,15 @@
       "source_location": "L30"
     },
     {
-      "id": "backend_main_rationale_501",
-      "label": "Inject human operator guidance and resources into an ongoing deliberation.",
+      "id": "tests_unit_test_exports_and_conversation_id_py_asyncio",
+      "label": "asyncio",
       "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "inject human operator guidance and resources into an ongoing deliberation.",
-      "source_file": "backend/main.py",
-      "source_location": "L501"
-    },
-    {
-      "id": "backend_main_rationale_56",
-      "label": "Request to create a new conversation.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "request to create a new conversation.",
-      "source_file": "backend/main.py",
-      "source_location": "L56"
-    },
-    {
-      "id": "backend_main_rationale_61",
-      "label": "Request to create a new project workspace folder.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "request to create a new project workspace folder.",
-      "source_file": "backend/main.py",
-      "source_location": "L61"
-    },
-    {
-      "id": "backend_main_rationale_67",
-      "label": "Request to update a project.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "request to update a project.",
-      "source_file": "backend/main.py",
-      "source_location": "L67"
-    },
-    {
-      "id": "backend_main_rationale_73",
-      "label": "Request to update a conversation (project assignment, title, or archive status).",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "request to update a conversation (project assignment, title, or archive status).",
-      "source_file": "backend/main.py",
-      "source_location": "L73"
-    },
-    {
-      "id": "backend_main_rationale_81",
-      "label": "Request to send a message in a conversation.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "request to send a message in a conversation.",
-      "source_file": "backend/main.py",
-      "source_location": "L81"
-    },
-    {
-      "id": "backend_main_rationale_93",
-      "label": "Request to inject human operator guidance into an ongoing debate.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "request to inject human operator guidance into an ongoing debate.",
-      "source_file": "backend/main.py",
-      "source_location": "L93"
-    },
-    {
-      "id": "backend_main_rationale_99",
-      "label": "Live settings the user can change while a run is in flight.",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "backend/main.py",
-      "file_type": "rationale",
-      "norm_label": "live settings the user can change while a run is in flight.",
-      "source_file": "backend/main.py",
-      "source_location": "L99"
+      "community": 15,
+      "community_name": "get_conversation",
+      "file_type": "code",
+      "norm_label": "asyncio",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "backend_main_rationale_303",
@@ -5437,6 +5129,17 @@
       "norm_label": "update conversation metadata such as title or assigned project folder.",
       "source_file": "backend/main.py",
       "source_location": "L303"
+    },
+    {
+      "id": "backend_storage_rationale_175",
+      "label": "Add a user message to a conversation. Args: conversation_id: Conversation\u2026",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "get_conversation",
+      "file_type": "rationale",
+      "norm_label": "add a user message to a conversation. args: conversation_id: conversation...",
+      "source_file": "backend/storage.py",
+      "source_location": "L175"
     },
     {
       "id": "backend_storage_rationale_195",
@@ -5505,6 +5208,17 @@
       "source_location": "L77"
     },
     {
+      "id": "tests_unit_test_exports_and_conversation_id_rationale_171",
+      "label": "Verify HTTP GET endpoints for report and zip downloads.",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "get_conversation",
+      "file_type": "rationale",
+      "norm_label": "verify http get endpoints for report and zip downloads.",
+      "source_file": "tests/unit/test_exports_and_conversation_id.py",
+      "source_location": "L171"
+    },
+    {
       "id": "tests_unit_test_projects_and_folders_rationale_155",
       "label": "Verify backend storage archiving and renaming functionality.",
       "_origin": "ast",
@@ -5525,28 +5239,6 @@
       "norm_label": "path",
       "source_file": "",
       "source_location": ""
-    },
-    {
-      "id": "backend_opencode_client_rationale_236",
-      "label": "Every opencode call is scoped to the council's workspace directory.",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "get_server_password",
-      "file_type": "rationale",
-      "norm_label": "every opencode call is scoped to the council's workspace directory.",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L236"
-    },
-    {
-      "id": "backend_opencode_client_rationale_241",
-      "label": "Actively inspect the connection to the OpenCode server and return a detailed\u2026",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "get_server_password",
-      "file_type": "rationale",
-      "norm_label": "actively inspect the connection to the opencode server and return a detailed...",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L241"
     },
     {
       "id": "backend_opencode_client_rationale_77",
@@ -5615,17 +5307,6 @@
       "source_location": "L1"
     },
     {
-      "id": "backend_main_rationale_337",
-      "label": "Prune all empty abandoned conversations (0 messages).",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "verify_api.py",
-      "file_type": "rationale",
-      "norm_label": "prune all empty abandoned conversations (0 messages).",
-      "source_file": "backend/main.py",
-      "source_location": "L337"
-    },
-    {
       "id": "backend_test_live_debate_rationale_1",
       "label": "Live test script executing an end-to-end deliberation across real OpenCode\u2026",
       "_origin": "ast",
@@ -5670,17 +5351,6 @@
       "source_location": ""
     },
     {
-      "id": "backend_council_rationale_1149",
-      "label": "Short title for a conversation, using the fastest available model.",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "HybridCouncilSession",
-      "file_type": "rationale",
-      "norm_label": "short title for a conversation, using the fastest available model.",
-      "source_file": "backend/council.py",
-      "source_location": "L1149"
-    },
-    {
       "id": "backend_hybrid_client_rationale_291",
       "label": "Unified session wrapper routing to either local OpenCode daemon or direct\u2026",
       "_origin": "ast",
@@ -5703,15 +5373,15 @@
       "source_location": "L1"
     },
     {
-      "id": "backend_main_rationale_347",
-      "label": "Export a council deliberation as a formatted Markdown report document\u2026",
+      "id": "backend_main_rationale_369",
+      "label": "Export a council deliberation as a standalone publication-grade HTML report.",
       "_origin": "ast",
       "community": 19,
       "community_name": "storage.py",
       "file_type": "rationale",
-      "norm_label": "export a council deliberation as a formatted markdown report document...",
+      "norm_label": "export a council deliberation as a standalone publication-grade html report.",
       "source_file": "backend/main.py",
-      "source_location": "L347"
+      "source_location": "L369"
     },
     {
       "id": "backend_main_rationale_417",
@@ -5734,17 +5404,6 @@
       "norm_label": "json-based storage for conversations.",
       "source_file": "backend/storage.py",
       "source_location": "L1"
-    },
-    {
-      "id": "backend_storage_rationale_108",
-      "label": "Prune all abandoned conversations that have 0 messages. Args: except_id:\u2026",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "storage.py",
-      "file_type": "rationale",
-      "norm_label": "prune all abandoned conversations that have 0 messages. args: except_id:...",
-      "source_file": "backend/storage.py",
-      "source_location": "L108"
     },
     {
       "id": "backend_storage_rationale_1105",
@@ -6244,17 +5903,6 @@
       "source_location": ""
     },
     {
-      "id": "backend_main_rationale_168",
-      "label": "Update or remove a provider API key dynamically.",
-      "_origin": "ast",
-      "community": 20,
-      "community_name": "provider_keys.py",
-      "file_type": "rationale",
-      "norm_label": "update or remove a provider api key dynamically.",
-      "source_file": "backend/main.py",
-      "source_location": "L168"
-    },
-    {
       "id": "backend_provider_keys_rationale_1",
       "label": "Secure in-memory and environment-backed provider API key management. Supports\u2026",
       "_origin": "ast",
@@ -6341,17 +5989,6 @@
       "norm_label": "test setting, retrieving, and redacting provider api keys. full secret keys...",
       "source_file": "tests/unit/test_hybrid_providers.py",
       "source_location": "L18"
-    },
-    {
-      "id": "tests_unit_test_hybrid_providers_rationale_199",
-      "label": "Verify full standalone BYOK operation when OpenCode daemon is completely\u2026",
-      "_origin": "ast",
-      "community": 20,
-      "community_name": "provider_keys.py",
-      "file_type": "rationale",
-      "norm_label": "verify full standalone byok operation when opencode daemon is completely...",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L199"
     },
     {
       "id": "tests_unit_test_hybrid_providers_rationale_40",
@@ -6785,48 +6422,92 @@
       "source_location": "L98"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_py_asyncio",
+      "id": "tests_unit_test_human_steering",
+      "label": "test_human_steering.py",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_human_steering.py",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_human_steering_py_asyncio",
       "label": "asyncio",
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "asyncio",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "tests_unit_test_hybrid_providers_rationale_121",
-      "label": "HybridCouncilSession dispatches OpenCode models to CouncilSession, and keyed\u2026",
+      "id": "backend_council_rationale_227",
+      "label": "Register an ongoing CouncilRun by conversation ID.",
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
-      "norm_label": "hybridcouncilsession dispatches opencode models to councilsession, and keyed...",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L121"
+      "norm_label": "register an ongoing councilrun by conversation id.",
+      "source_file": "backend/council.py",
+      "source_location": "L227"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_rationale_139",
-      "label": "If an external keyed model fails with 401 Unauthorized (invalid key/no\u2026",
+      "id": "backend_council_rationale_232",
+      "label": "Unregister an ongoing CouncilRun by conversation ID.",
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
-      "norm_label": "if an external keyed model fails with 401 unauthorized (invalid key/no...",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L139"
+      "norm_label": "unregister an ongoing councilrun by conversation id.",
+      "source_file": "backend/council.py",
+      "source_location": "L232"
     },
     {
-      "id": "tests_unit_test_hybrid_providers_rationale_63",
-      "label": "HTTP integration test: GET /api/providers/keys POST /api/providers/keys",
+      "id": "tests_unit_test_human_steering_rationale_1",
+      "label": "Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering\u2026",
       "_origin": "ast",
       "community": 26,
-      "community_name": "asyncio",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
-      "norm_label": "http integration test: get /api/providers/keys post /api/providers/keys",
-      "source_file": "tests/unit/test_hybrid_providers.py",
-      "source_location": "L63"
+      "norm_label": "unit and integration tests for phase 11: human-in-the-loop mid-debate steering...",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_11",
+      "label": "Verify active run registration and steering injection on CouncilRun.",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify active run registration and steering injection on councilrun.",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_134",
+      "label": "Verify that steering injected into a CouncilRun appears in debate prompt, queue\u2026",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify that steering injected into a councilrun appears in debate prompt, queue...",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L134"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_82",
+      "label": "Verify HTTP POST /api/conversations/{id}/steer behavior.",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify http post /api/conversations/{id}/steer behavior.",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L82"
     },
     {
       "id": "readme",
@@ -7324,81 +7005,59 @@
       "source_location": "L374"
     },
     {
-      "id": "get",
-      "label": "get",
+      "id": "backend_main_rationale_237",
+      "label": "Create a new project workspace folder.",
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
-      "file_type": "code",
-      "norm_label": "get",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_main_rationale_231",
-      "label": "List all project folders with metadata and debate counts.",
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "rationale",
-      "norm_label": "list all project folders with metadata and debate counts.",
+      "norm_label": "create a new project workspace folder.",
       "source_file": "backend/main.py",
-      "source_location": "L231"
+      "source_location": "L237"
     },
     {
-      "id": "backend_main_rationale_245",
-      "label": "Get details for a specific project.",
+      "id": "backend_main_rationale_286",
+      "label": "Create a new conversation.",
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "rationale",
-      "norm_label": "get details for a specific project.",
+      "norm_label": "create a new conversation.",
       "source_file": "backend/main.py",
-      "source_location": "L245"
+      "source_location": "L286"
     },
     {
-      "id": "backend_main_rationale_280",
-      "label": "List all conversations (metadata only).",
+      "id": "backend_main_rationale_337",
+      "label": "Prune all empty abandoned conversations (0 messages).",
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "rationale",
-      "norm_label": "list all conversations (metadata only).",
+      "norm_label": "prune all empty abandoned conversations (0 messages).",
       "source_file": "backend/main.py",
-      "source_location": "L280"
+      "source_location": "L337"
     },
     {
-      "id": "backend_main_rationale_294",
-      "label": "Get a specific conversation with all its messages.",
+      "id": "backend_main_rationale_56",
+      "label": "Request to create a new conversation.",
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "rationale",
-      "norm_label": "get a specific conversation with all its messages.",
+      "norm_label": "request to create a new conversation.",
       "source_file": "backend/main.py",
-      "source_location": "L294"
+      "source_location": "L56"
     },
     {
-      "id": "backend_main_rationale_369",
-      "label": "Export a council deliberation as a standalone publication-grade HTML report.",
+      "id": "backend_main_rationale_61",
+      "label": "Request to create a new project workspace folder.",
       "_origin": "ast",
       "community": 30,
-      "community_name": "get",
+      "community_name": "post",
       "file_type": "rationale",
-      "norm_label": "export a council deliberation as a standalone publication-grade html report.",
+      "norm_label": "request to create a new project workspace folder.",
       "source_file": "backend/main.py",
-      "source_location": "L369"
-    },
-    {
-      "id": "backend_storage_rationale_138",
-      "label": "List all conversations (metadata only). By default, empty conversations (0\u2026",
-      "_origin": "ast",
-      "community": 30,
-      "community_name": "get",
-      "file_type": "rationale",
-      "norm_label": "list all conversations (metadata only). by default, empty conversations (0...",
-      "source_file": "backend/storage.py",
-      "source_location": "L138"
+      "source_location": "L61"
     },
     {
       "id": "main",
@@ -7595,22 +7254,44 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_unit_test_projects_and_folders",
+      "label": "test_projects_and_folders.py",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "test_projects_and_folders.py",
+      "file_type": "code",
+      "norm_label": "test_projects_and_folders.py",
+      "source_file": "tests/unit/test_projects_and_folders.py",
+      "source_location": "L1"
+    },
+    {
       "id": "tests_unit_test_projects_and_folders_py_asyncio",
       "label": "asyncio",
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "code",
       "norm_label": "asyncio",
       "source_file": "",
       "source_location": ""
     },
     {
+      "id": "tests_unit_test_projects_and_folders_rationale_1",
+      "label": "Unit and integration tests for Phase 10: Projects & Workspace Folder Hierarchy.",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "test_projects_and_folders.py",
+      "file_type": "rationale",
+      "norm_label": "unit and integration tests for phase 10: projects & workspace folder hierarchy.",
+      "source_file": "tests/unit/test_projects_and_folders.py",
+      "source_location": "L1"
+    },
+    {
       "id": "tests_unit_test_projects_and_folders_rationale_118",
       "label": "Verify creating debate directly in project, moving between projects, and\u2026",
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "rationale",
       "norm_label": "verify creating debate directly in project, moving between projects, and...",
       "source_file": "tests/unit/test_projects_and_folders.py",
@@ -7621,7 +7302,7 @@
       "label": "Verify HTTP API PATCH endpoint for renaming and archiving conversations.",
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "rationale",
       "norm_label": "verify http api patch endpoint for renaming and archiving conversations.",
       "source_file": "tests/unit/test_projects_and_folders.py",
@@ -7632,7 +7313,7 @@
       "label": "HTTP API integration tests for /api/projects and /api/conversations/{id}.",
       "_origin": "ast",
       "community": 36,
-      "community_name": "test_conversation_archive_and_rename_api",
+      "community_name": "test_projects_and_folders.py",
       "file_type": "rationale",
       "norm_label": "http api integration tests for /api/projects and /api/conversations/{id}.",
       "source_file": "tests/unit/test_projects_and_folders.py",
@@ -8100,37 +7781,15 @@
       "source_location": "L1"
     },
     {
-      "id": "backend_init",
-      "label": "backend/__init__.py",
+      "id": "runtimeerror",
+      "label": "RuntimeError",
       "_origin": "ast",
       "community": 42,
       "community_name": "test_hybrid_providers.py",
       "file_type": "code",
-      "norm_label": "backend/__init__.py",
-      "source_file": "backend/__init__.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_caveman_max",
-      "label": "test_caveman_max.py",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "code",
-      "norm_label": "test_caveman_max.py",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_exports_and_conversation_id",
-      "label": "test_exports_and_conversation_id.py",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "code",
-      "norm_label": "test_exports_and_conversation_id.py",
-      "source_file": "tests/unit/test_exports_and_conversation_id.py",
-      "source_location": "L1"
+      "norm_label": "runtimeerror",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "tests_unit_test_hybrid_providers",
@@ -8144,26 +7803,15 @@
       "source_location": "L1"
     },
     {
-      "id": "tests_unit_test_opencode_discovery",
-      "label": "test_opencode_discovery.py",
+      "id": "tests_unit_test_hybrid_providers_py_asyncio",
+      "label": "asyncio",
       "_origin": "ast",
       "community": 42,
       "community_name": "test_hybrid_providers.py",
       "file_type": "code",
-      "norm_label": "test_opencode_discovery.py",
-      "source_file": "tests/unit/test_opencode_discovery.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_projects_and_folders",
-      "label": "test_projects_and_folders.py",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "code",
-      "norm_label": "test_projects_and_folders.py",
-      "source_file": "tests/unit/test_projects_and_folders.py",
-      "source_location": "L1"
+      "norm_label": "asyncio",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "backend_hybrid_client_rationale_1",
@@ -8188,59 +7836,15 @@
       "source_location": "L268"
     },
     {
-      "id": "backend_init_rationale_1",
-      "label": "LLM Council backend package.",
+      "id": "backend_opencode_client_rationale_69",
+      "label": "Raised when the local opencode server cannot be reached.",
       "_origin": "ast",
       "community": 42,
       "community_name": "test_hybrid_providers.py",
       "file_type": "rationale",
-      "norm_label": "llm council backend package.",
-      "source_file": "backend/__init__.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_caveman_max_rationale_1",
-      "label": "Real, non-mocked tests for Phase 5: Caveman Max Mode & Debate Compression.\u2026",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "rationale",
-      "norm_label": "real, non-mocked tests for phase 5: caveman max mode & debate compression....",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_caveman_max_rationale_15",
-      "label": "Ensure 'max' is recognized as a first-class debate compression level.",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "rationale",
-      "norm_label": "ensure 'max' is recognized as a first-class debate compression level.",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L15"
-    },
-    {
-      "id": "tests_unit_test_exports_and_conversation_id_rationale_1",
-      "label": "Tests for conversation ID exposure, markdown report export, and zip bundle\u2026",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "rationale",
-      "norm_label": "tests for conversation id exposure, markdown report export, and zip bundle...",
-      "source_file": "tests/unit/test_exports_and_conversation_id.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_exports_and_conversation_id_rationale_111",
-      "label": "Verify in-memory zip archive packages executive-report.md, detailed-report.md,\u2026",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "rationale",
-      "norm_label": "verify in-memory zip archive packages executive-report.md, detailed-report.md,...",
-      "source_file": "tests/unit/test_exports_and_conversation_id.py",
-      "source_location": "L111"
+      "norm_label": "raised when the local opencode server cannot be reached.",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L69"
     },
     {
       "id": "tests_unit_test_hybrid_providers_rationale_1",
@@ -8254,6 +7858,50 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_unit_test_hybrid_providers_rationale_121",
+      "label": "HybridCouncilSession dispatches OpenCode models to CouncilSession, and keyed\u2026",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "rationale",
+      "norm_label": "hybridcouncilsession dispatches opencode models to councilsession, and keyed...",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L121"
+    },
+    {
+      "id": "tests_unit_test_hybrid_providers_rationale_139",
+      "label": "If an external keyed model fails with 401 Unauthorized (invalid key/no\u2026",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "rationale",
+      "norm_label": "if an external keyed model fails with 401 unauthorized (invalid key/no...",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L139"
+    },
+    {
+      "id": "tests_unit_test_hybrid_providers_rationale_199",
+      "label": "Verify full standalone BYOK operation when OpenCode daemon is completely\u2026",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "rationale",
+      "norm_label": "verify full standalone byok operation when opencode daemon is completely...",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L199"
+    },
+    {
+      "id": "tests_unit_test_hybrid_providers_rationale_63",
+      "label": "HTTP integration test: GET /api/providers/keys POST /api/providers/keys",
+      "_origin": "ast",
+      "community": 42,
+      "community_name": "test_hybrid_providers.py",
+      "file_type": "rationale",
+      "norm_label": "http integration test: get /api/providers/keys post /api/providers/keys",
+      "source_file": "tests/unit/test_hybrid_providers.py",
+      "source_location": "L63"
+    },
+    {
       "id": "tests_unit_test_hybrid_providers_rationale_92",
       "label": "list_unified_models() must return OpenCode models when no keys exist, and merge\u2026",
       "_origin": "ast",
@@ -8263,28 +7911,6 @@
       "norm_label": "list_unified_models() must return opencode models when no keys exist, and merge...",
       "source_file": "tests/unit/test_hybrid_providers.py",
       "source_location": "L92"
-    },
-    {
-      "id": "tests_unit_test_opencode_discovery_rationale_1",
-      "label": "Unit tests for OpenCode discovery, port resilience, and health diagnostics.",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "rationale",
-      "norm_label": "unit tests for opencode discovery, port resilience, and health diagnostics.",
-      "source_file": "tests/unit/test_opencode_discovery.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_projects_and_folders_rationale_1",
-      "label": "Unit and integration tests for Phase 10: Projects & Workspace Folder Hierarchy.",
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "file_type": "rationale",
-      "norm_label": "unit and integration tests for phase 10: projects & workspace folder hierarchy.",
-      "source_file": "tests/unit/test_projects_and_folders.py",
-      "source_location": "L1"
     },
     {
       "id": "agents_skills_taste_skill_6_a_hardware_acceleration",
@@ -9132,6 +8758,72 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_unit_test_caveman_max",
+      "label": "test_caveman_max.py",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "code",
+      "norm_label": "test_caveman_max.py",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_py_asyncio",
+      "label": "asyncio",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "code",
+      "norm_label": "asyncio",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "tests_unit_test_caveman_max_rationale_1",
+      "label": "Real, non-mocked tests for Phase 5: Caveman Max Mode & Debate Compression.\u2026",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "rationale",
+      "norm_label": "real, non-mocked tests for phase 5: caveman max mode & debate compression....",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_rationale_123",
+      "label": "Functional test: When debateMode is 'max', CouncilRun marks\u2026",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "rationale",
+      "norm_label": "functional test: when debatemode is 'max', councilrun marks...",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L123"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_rationale_15",
+      "label": "Ensure 'max' is recognized as a first-class debate compression level.",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "rationale",
+      "norm_label": "ensure 'max' is recognized as a first-class debate compression level.",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "tests_unit_test_caveman_max_rationale_59",
+      "label": "HTTP integration test: FastAPI POST /api/settings accepts debateMode='max'.",
+      "_origin": "ast",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
+      "file_type": "rationale",
+      "norm_label": "http integration test: fastapi post /api/settings accepts debatemode='max'.",
+      "source_file": "tests/unit/test_caveman_max.py",
+      "source_location": "L59"
+    },
+    {
       "id": "agents_rules_git_workflow",
       "label": "git-workflow.md",
       "_origin": "ast",
@@ -9188,17 +8880,6 @@
       "community_name": "settings.py",
       "file_type": "code",
       "norm_label": "any",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "tests_unit_test_caveman_max_py_asyncio",
-      "label": "asyncio",
-      "_origin": "ast",
-      "community": 54,
-      "community_name": "settings.py",
-      "file_type": "code",
-      "norm_label": "asyncio",
       "source_file": "",
       "source_location": ""
     },
@@ -9291,17 +8972,6 @@
       "source_location": "L98"
     },
     {
-      "id": "tests_unit_test_caveman_max_rationale_123",
-      "label": "Functional test: When debateMode is 'max', CouncilRun marks\u2026",
-      "_origin": "ast",
-      "community": 54,
-      "community_name": "settings.py",
-      "file_type": "rationale",
-      "norm_label": "functional test: when debatemode is 'max', councilrun marks...",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L123"
-    },
-    {
       "id": "tests_unit_test_caveman_max_rationale_48",
       "label": "Verify backend.settings accepts and returns 'max' debate mode.",
       "_origin": "ast",
@@ -9311,17 +8981,6 @@
       "norm_label": "verify backend.settings accepts and returns 'max' debate mode.",
       "source_file": "tests/unit/test_caveman_max.py",
       "source_location": "L48"
-    },
-    {
-      "id": "tests_unit_test_caveman_max_rationale_59",
-      "label": "HTTP integration test: FastAPI POST /api/settings accepts debateMode='max'.",
-      "_origin": "ast",
-      "community": 54,
-      "community_name": "settings.py",
-      "file_type": "rationale",
-      "norm_label": "http integration test: fastapi post /api/settings accepts debatemode='max'.",
-      "source_file": "tests/unit/test_caveman_max.py",
-      "source_location": "L59"
     },
     {
       "id": "tests_unit_test_clean_lifecycle_and_presets_rationale_65",
@@ -9456,6 +9115,39 @@
       "source_location": "L1"
     },
     {
+      "id": "backend_council_rationale_1149",
+      "label": "Short title for a conversation, using the fastest available model.",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "rationale",
+      "norm_label": "short title for a conversation, using the fastest available model.",
+      "source_file": "backend/council.py",
+      "source_location": "L1149"
+    },
+    {
+      "id": "backend_main_rationale_517",
+      "label": "Send a message and stream the council as it runs. Emits Server-Sent Events as\u2026",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "rationale",
+      "norm_label": "send a message and stream the council as it runs. emits server-sent events as...",
+      "source_file": "backend/main.py",
+      "source_location": "L517"
+    },
+    {
+      "id": "backend_main_rationale_81",
+      "label": "Request to send a message in a conversation.",
+      "_origin": "ast",
+      "community": 56,
+      "community_name": "generate_conversation_title",
+      "file_type": "rationale",
+      "norm_label": "request to send a message in a conversation.",
+      "source_file": "backend/main.py",
+      "source_location": "L81"
+    },
+    {
       "id": "delete",
       "label": "delete",
       "_origin": "ast",
@@ -9487,6 +9179,61 @@
       "norm_label": "delete a conversation by id.",
       "source_file": "backend/main.py",
       "source_location": "L328"
+    },
+    {
+      "id": "basemodel",
+      "label": "BaseModel",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "code",
+      "norm_label": "basemodel",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_main_rationale_108",
+      "label": "Conversation metadata for list view.",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "rationale",
+      "norm_label": "conversation metadata for list view.",
+      "source_file": "backend/main.py",
+      "source_location": "L108"
+    },
+    {
+      "id": "backend_main_rationale_118",
+      "label": "Full conversation with all messages.",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "rationale",
+      "norm_label": "full conversation with all messages.",
+      "source_file": "backend/main.py",
+      "source_location": "L118"
+    },
+    {
+      "id": "backend_main_rationale_67",
+      "label": "Request to update a project.",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "rationale",
+      "norm_label": "request to update a project.",
+      "source_file": "backend/main.py",
+      "source_location": "L67"
+    },
+    {
+      "id": "backend_main_rationale_73",
+      "label": "Request to update a conversation (project assignment, title, or archive status).",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "BaseModel",
+      "file_type": "rationale",
+      "norm_label": "request to update a conversation (project assignment, title, or archive status).",
+      "source_file": "backend/main.py",
+      "source_location": "L73"
     },
     {
       "id": "tests_unit_test_non_reporting_agents",
@@ -9544,11 +9291,66 @@
       "source_location": "L72"
     },
     {
+      "id": "get",
+      "label": "get",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "code",
+      "norm_label": "get",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_main_rationale_231",
+      "label": "List all project folders with metadata and debate counts.",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "rationale",
+      "norm_label": "list all project folders with metadata and debate counts.",
+      "source_file": "backend/main.py",
+      "source_location": "L231"
+    },
+    {
+      "id": "backend_main_rationale_245",
+      "label": "Get details for a specific project.",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "rationale",
+      "norm_label": "get details for a specific project.",
+      "source_file": "backend/main.py",
+      "source_location": "L245"
+    },
+    {
+      "id": "backend_main_rationale_294",
+      "label": "Get a specific conversation with all its messages.",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "rationale",
+      "norm_label": "get a specific conversation with all its messages.",
+      "source_file": "backend/main.py",
+      "source_location": "L294"
+    },
+    {
+      "id": "backend_main_rationale_347",
+      "label": "Export a council deliberation as a formatted Markdown report document\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "get",
+      "file_type": "rationale",
+      "norm_label": "export a council deliberation as a formatted markdown report document...",
+      "source_file": "backend/main.py",
+      "source_location": "L347"
+    },
+    {
       "id": "backend_main_rationale_391",
       "label": "Export a council deliberation as a publication-grade PDF document.",
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "rationale",
       "norm_label": "export a council deliberation as a publication-grade pdf document.",
       "source_file": "backend/main.py",
@@ -9559,7 +9361,7 @@
       "label": "Export the entire council discussion as a downloadable ZIP package containing\u2026",
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "rationale",
       "norm_label": "export the entire council discussion as a downloadable zip package containing...",
       "source_file": "backend/main.py",
@@ -9570,7 +9372,7 @@
       "label": "Detect an available headless browser executable (Edge, Chrome, Chromium) on the\u2026",
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "rationale",
       "norm_label": "detect an available headless browser executable (edge, chrome, chromium) on the...",
       "source_file": "backend/storage.py",
@@ -9581,7 +9383,7 @@
       "label": "Generate a publication-grade PDF document using an available headless browser.\u2026",
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "rationale",
       "norm_label": "generate a publication-grade pdf document using an available headless browser....",
       "source_file": "backend/storage.py",
@@ -9592,11 +9394,66 @@
       "label": "Build an in-memory zip archive containing: - executive-report.md (high-level\u2026",
       "_origin": "ast",
       "community": 6,
-      "community_name": "export_conversation_zip",
+      "community_name": "get",
       "file_type": "rationale",
       "norm_label": "build an in-memory zip archive containing: - executive-report.md (high-level...",
       "source_file": "backend/storage.py",
       "source_location": "L974"
+    },
+    {
+      "id": "backend_init",
+      "label": "backend/__init__.py",
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "file_type": "code",
+      "norm_label": "backend/__init__.py",
+      "source_file": "backend/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_exports_and_conversation_id",
+      "label": "test_exports_and_conversation_id.py",
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "file_type": "code",
+      "norm_label": "test_exports_and_conversation_id.py",
+      "source_file": "tests/unit/test_exports_and_conversation_id.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_init_rationale_1",
+      "label": "LLM Council backend package.",
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "file_type": "rationale",
+      "norm_label": "llm council backend package.",
+      "source_file": "backend/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_exports_and_conversation_id_rationale_1",
+      "label": "Tests for conversation ID exposure, markdown report export, and zip bundle\u2026",
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "file_type": "rationale",
+      "norm_label": "tests for conversation id exposure, markdown report export, and zip bundle...",
+      "source_file": "tests/unit/test_exports_and_conversation_id.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_exports_and_conversation_id_rationale_111",
+      "label": "Verify in-memory zip archive packages executive-report.md, detailed-report.md,\u2026",
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "file_type": "rationale",
+      "norm_label": "verify in-memory zip archive packages executive-report.md, detailed-report.md,...",
+      "source_file": "tests/unit/test_exports_and_conversation_id.py",
+      "source_location": "L111"
     },
     {
       "id": "backend_council_py_asyncclient",
@@ -9632,22 +9489,44 @@
       "source_location": "L522"
     },
     {
+      "id": "tests_unit_test_opencode_discovery",
+      "label": "test_opencode_discovery.py",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "test_opencode_discovery.py",
+      "file_type": "code",
+      "norm_label": "test_opencode_discovery.py",
+      "source_file": "tests/unit/test_opencode_discovery.py",
+      "source_location": "L1"
+    },
+    {
       "id": "tests_unit_test_opencode_discovery_py_asyncio",
       "label": "asyncio",
       "_origin": "ast",
       "community": 62,
-      "community_name": "test_diagnose_connection_detects_port_conflict",
+      "community_name": "test_opencode_discovery.py",
       "file_type": "code",
       "norm_label": "asyncio",
       "source_file": "",
       "source_location": ""
     },
     {
+      "id": "tests_unit_test_opencode_discovery_rationale_1",
+      "label": "Unit tests for OpenCode discovery, port resilience, and health diagnostics.",
+      "_origin": "ast",
+      "community": 62,
+      "community_name": "test_opencode_discovery.py",
+      "file_type": "rationale",
+      "norm_label": "unit tests for opencode discovery, port resilience, and health diagnostics.",
+      "source_file": "tests/unit/test_opencode_discovery.py",
+      "source_location": "L1"
+    },
+    {
       "id": "tests_unit_test_opencode_discovery_rationale_62",
       "label": "If a port is open but occupied by another process (e.g. Kilo on 4096),\u2026",
       "_origin": "ast",
       "community": 62,
-      "community_name": "test_diagnose_connection_detects_port_conflict",
+      "community_name": "test_opencode_discovery.py",
       "file_type": "rationale",
       "norm_label": "if a port is open but occupied by another process (e.g. kilo on 4096),...",
       "source_file": "tests/unit/test_opencode_discovery.py",
@@ -9658,7 +9537,7 @@
       "label": "FastAPI /api/health endpoint should report OpenCode connection and diagnostics.",
       "_origin": "ast",
       "community": 62,
-      "community_name": "test_diagnose_connection_detects_port_conflict",
+      "community_name": "test_opencode_discovery.py",
       "file_type": "rationale",
       "norm_label": "fastapi /api/health endpoint should report opencode connection and diagnostics.",
       "source_file": "tests/unit/test_opencode_discovery.py",
@@ -9674,6 +9553,72 @@
       "norm_label": "re-scope every member's permissions, ignoring individual failures.",
       "source_file": "backend/council.py",
       "source_location": "L948"
+    },
+    {
+      "id": "backend_council_rationale_237",
+      "label": "Retrieve the active CouncilRun for a conversation ID, if any.",
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "get_active_run",
+      "file_type": "rationale",
+      "norm_label": "retrieve the active councilrun for a conversation id, if any.",
+      "source_file": "backend/council.py",
+      "source_location": "L237"
+    },
+    {
+      "id": "backend_main_rationale_501",
+      "label": "Inject human operator guidance and resources into an ongoing deliberation.",
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "get_active_run",
+      "file_type": "rationale",
+      "norm_label": "inject human operator guidance and resources into an ongoing deliberation.",
+      "source_file": "backend/main.py",
+      "source_location": "L501"
+    },
+    {
+      "id": "backend_main_rationale_93",
+      "label": "Request to inject human operator guidance into an ongoing debate.",
+      "_origin": "ast",
+      "community": 64,
+      "community_name": "get_active_run",
+      "file_type": "rationale",
+      "norm_label": "request to inject human operator guidance into an ongoing debate.",
+      "source_file": "backend/main.py",
+      "source_location": "L93"
+    },
+    {
+      "id": "backend_main_rationale_135",
+      "label": "Detailed health check validating connection to OpenCode and BYOK readiness.",
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "diagnose_connection",
+      "file_type": "rationale",
+      "norm_label": "detailed health check validating connection to opencode and byok readiness.",
+      "source_file": "backend/main.py",
+      "source_location": "L135"
+    },
+    {
+      "id": "backend_opencode_client_rationale_236",
+      "label": "Every opencode call is scoped to the council's workspace directory.",
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "diagnose_connection",
+      "file_type": "rationale",
+      "norm_label": "every opencode call is scoped to the council's workspace directory.",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L236"
+    },
+    {
+      "id": "backend_opencode_client_rationale_241",
+      "label": "Actively inspect the connection to the OpenCode server and return a detailed\u2026",
+      "_origin": "ast",
+      "community": 65,
+      "community_name": "diagnose_connection",
+      "file_type": "rationale",
+      "norm_label": "actively inspect the connection to the opencode server and return a detailed...",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L241"
     },
     {
       "id": "opencode_plugins_graphify",
@@ -9696,6 +9641,50 @@
       "norm_label": "important: keep the reminder string free of backticks and $(...) constructs.",
       "source_file": ".opencode/plugins/graphify.js",
       "source_location": "L4"
+    },
+    {
+      "id": "backend_main_rationale_155",
+      "label": "Payload to configure or remove a provider API key.",
+      "_origin": "ast",
+      "community": 67,
+      "community_name": "post_provider_key",
+      "file_type": "rationale",
+      "norm_label": "payload to configure or remove a provider api key.",
+      "source_file": "backend/main.py",
+      "source_location": "L155"
+    },
+    {
+      "id": "backend_main_rationale_168",
+      "label": "Update or remove a provider API key dynamically.",
+      "_origin": "ast",
+      "community": 67,
+      "community_name": "post_provider_key",
+      "file_type": "rationale",
+      "norm_label": "update or remove a provider api key dynamically.",
+      "source_file": "backend/main.py",
+      "source_location": "L168"
+    },
+    {
+      "id": "backend_main_rationale_208",
+      "label": "Change live council settings. Takes effect on the next debate round.",
+      "_origin": "ast",
+      "community": 68,
+      "community_name": "post_settings",
+      "file_type": "rationale",
+      "norm_label": "change live council settings. takes effect on the next debate round.",
+      "source_file": "backend/main.py",
+      "source_location": "L208"
+    },
+    {
+      "id": "backend_main_rationale_99",
+      "label": "Live settings the user can change while a run is in flight.",
+      "_origin": "ast",
+      "community": 68,
+      "community_name": "post_settings",
+      "file_type": "rationale",
+      "norm_label": "live settings the user can change while a run is in flight.",
+      "source_file": "backend/main.py",
+      "source_location": "L99"
     },
     {
       "id": "frontend_readme",
@@ -10336,6 +10325,17 @@
       "source_location": "L58"
     },
     {
+      "id": "backend_main_rationale_175",
+      "label": "The council roster, read live from OpenCode and configured custom providers.\u2026",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "test_chairman_selection.py",
+      "file_type": "rationale",
+      "norm_label": "the council roster, read live from opencode and configured custom providers....",
+      "source_file": "backend/main.py",
+      "source_location": "L175"
+    },
+    {
       "id": "backend_opencode_client_rationale_434",
       "label": "Pick the chairman automatically using the intelligent capability matrix.",
       "_origin": "ast",
@@ -10627,23 +10627,11 @@
       "type": "external"
     },
     {
-      "id": "io",
-      "label": "io",
-      "_origin": "semantic",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "io",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "pytest",
       "label": "pytest",
       "_origin": "semantic",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
+      "community": 51,
+      "community_name": "test_caveman_max.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "pytest",
@@ -10651,26 +10639,14 @@
       "type": "external"
     },
     {
-      "id": "unittest_mock",
-      "label": "unittest_mock",
+      "id": "asyncio",
+      "label": "asyncio",
       "_origin": "semantic",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
+      "community": 55,
+      "community_name": "opencode_client.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "unittest_mock",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "zipfile",
-      "label": "zipfile",
-      "_origin": "semantic",
-      "community": 42,
-      "community_name": "test_hybrid_providers.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "zipfile",
+      "norm_label": "asyncio",
       "source_file": "",
       "type": "external"
     },
@@ -10747,6 +10723,42 @@
       "type": "external"
     },
     {
+      "id": "io",
+      "label": "io",
+      "_origin": "semantic",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "io",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "zipfile",
+      "label": "zipfile",
+      "_origin": "semantic",
+      "community": 60,
+      "community_name": "backend/__init__.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "zipfile",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "unittest_mock",
+      "label": "unittest_mock",
+      "_origin": "semantic",
+      "community": 62,
+      "community_name": "test_opencode_discovery.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "unittest_mock",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "ref_fs",
       "label": "ref_fs",
       "_origin": "semantic",
@@ -10791,17 +10803,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "typing",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "asyncio",
-      "label": "asyncio",
-      "community": 55,
-      "community_name": "opencode_client.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "asyncio",
       "source_file": "",
       "type": "external"
     }
@@ -14176,7 +14177,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L136",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -14188,36 +14189,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L442",
+      "source_location": "L467",
       "weight": 1.0
     },
     {
       "source": "frontend_src_components_reportmodal_reportmodal",
       "target": "frontend_src_components_icons_check",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L456",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_reportmodal_reportmodal",
-      "target": "frontend_src_components_icons_copy",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L460",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_reportmodal_reportmodal",
-      "target": "frontend_src_components_icons_zap",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -14229,19 +14206,19 @@
     },
     {
       "source": "frontend_src_components_reportmodal_reportmodal",
-      "target": "frontend_src_components_icons_tableicon",
+      "target": "frontend_src_components_icons_copy",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L488",
+      "source_location": "L483",
       "weight": 1.0
     },
     {
       "source": "frontend_src_components_reportmodal_reportmodal",
-      "target": "frontend_src_components_icons_eye",
+      "target": "frontend_src_components_icons_zap",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -14253,6 +14230,30 @@
     },
     {
       "source": "frontend_src_components_reportmodal_reportmodal",
+      "target": "frontend_src_components_icons_tableicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L513",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal_reportmodal",
+      "target": "frontend_src_components_icons_eye",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L528",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal_reportmodal",
       "target": "frontend_src_components_icons_code",
       "relation": "calls",
       "_origin": "ast",
@@ -14260,7 +14261,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L512",
+      "source_location": "L537",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal_reportmodal",
+      "target": "frontend_src_components_icons_shareicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L552",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal_reportmodal",
+      "target": "frontend_src_components_icons_chevrondown",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L554",
       "weight": 1.0
     },
     {
@@ -14272,19 +14297,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L530",
+      "source_location": "L567",
       "weight": 1.0
     },
     {
       "source": "frontend_src_components_reportmodal_reportmodal",
-      "target": "frontend_src_components_icons_download",
+      "target": "frontend_src_components_icons_printer",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L543",
+      "source_location": "L591",
       "weight": 1.0
     },
     {
@@ -14296,7 +14321,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L563",
+      "source_location": "L631",
       "weight": 1.0
     },
     {
@@ -14308,7 +14333,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L574",
+      "source_location": "L649",
       "weight": 1.0
     },
     {
@@ -14320,7 +14345,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L136",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -14332,7 +14357,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L442",
+      "source_location": "L465",
       "weight": 1.0
     },
     {
@@ -14344,7 +14369,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L447",
+      "source_location": "L470",
       "weight": 1.0
     },
     {
@@ -14356,7 +14381,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L469",
+      "source_location": "L489",
       "weight": 1.0
     },
     {
@@ -14368,7 +14393,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L473",
+      "source_location": "L494",
       "weight": 1.0
     },
     {
@@ -14380,7 +14405,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L487",
+      "source_location": "L510",
       "weight": 1.0
     },
     {
@@ -14392,7 +14417,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L497",
+      "source_location": "L520",
       "weight": 1.0
     },
     {
@@ -14404,7 +14429,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L512",
+      "source_location": "L535",
       "weight": 1.0
     },
     {
@@ -14416,7 +14441,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L521",
+      "source_location": "L544",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportpage_reportpage",
+      "target": "frontend_src_components_icons_shareicon",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frontend/src/components/ReportPage.jsx",
+      "source_location": "L559",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportpage_reportpage",
+      "target": "frontend_src_components_icons_chevrondown",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "frontend/src/components/ReportPage.jsx",
+      "source_location": "L561",
       "weight": 1.0
     },
     {
@@ -14428,19 +14477,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L539",
+      "source_location": "L574",
       "weight": 1.0
     },
     {
       "source": "frontend_src_components_reportpage_reportpage",
-      "target": "frontend_src_components_icons_download",
+      "target": "frontend_src_components_icons_printer",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L552",
+      "source_location": "L598",
       "weight": 1.0
     },
     {
@@ -14452,7 +14501,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L572",
+      "source_location": "L638",
       "weight": 1.0
     },
     {
@@ -19240,7 +19289,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -19252,12 +19301,24 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
       "source": "frontend_src_components_reportmodal",
       "target": "frontend_src_components_icons_check",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal",
+      "target": "frontend_src_components_icons_chevrondown",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -19353,6 +19414,30 @@
     },
     {
       "source": "frontend_src_components_reportmodal",
+      "target": "frontend_src_components_icons_printer",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal",
+      "target": "frontend_src_components_icons_shareicon",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal",
       "target": "frontend_src_components_icons_tableicon",
       "relation": "imports",
       "_origin": "ast",
@@ -19396,7 +19481,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -19408,7 +19493,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -19426,6 +19511,18 @@
     {
       "source": "frontend_src_components_reportpage",
       "target": "frontend_src_components_icons_chevron",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportpage",
+      "target": "frontend_src_components_icons_chevrondown",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -19522,6 +19619,30 @@
     {
       "source": "frontend_src_components_reportpage",
       "target": "frontend_src_components_icons_package",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportpage",
+      "target": "frontend_src_components_icons_printer",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportpage",
+      "target": "frontend_src_components_icons_shareicon",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -21525,6 +21646,18 @@
     },
     {
       "source": "frontend_src_components_reportmodal",
+      "target": "ref_react_markdown",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportModal.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportmodal",
       "target": "frontend_src_api",
       "relation": "imports_from",
       "_origin": "ast",
@@ -21532,7 +21665,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -21544,19 +21677,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L18",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_reportmodal",
-      "target": "ref_react_markdown",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L2",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -21597,6 +21718,18 @@
     },
     {
       "source": "frontend_src_components_reportpage",
+      "target": "ref_react_markdown",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "frontend/src/components/ReportPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_reportpage",
       "target": "frontend_src_api",
       "relation": "imports_from",
       "_origin": "ast",
@@ -21604,7 +21737,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -21616,19 +21749,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L19",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_reportpage",
-      "target": "ref_react_markdown",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L2",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -27242,7 +27363,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/ReportModal.jsx",
-      "source_location": "L28",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -27253,7 +27374,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/ReportPage.jsx",
-      "source_location": "L28",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -32499,5 +32620,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5ee923ffc7462c9c24699e3f8d24062f06b80d54"
+  "built_at_commit": "f09543dcdd652fc92fd83df78aec2a750f47f818"
 }

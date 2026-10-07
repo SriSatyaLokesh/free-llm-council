@@ -9,7 +9,7 @@ import './ModelRoster.css';
 /**
  * Helper to determine default reasoning level: Chairman defaults to max, members to medium or high.
  */
-export function getDefaultThinking(model, isChairman) {
+function getDefaultThinking(model, isChairman) {
   if (!model || !model.variants || model.variants.length === 0) return '';
   const variantIds = model.variants.map((v) => (typeof v === 'string' ? v : v.id));
   if (isChairman) {
