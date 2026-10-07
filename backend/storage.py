@@ -461,6 +461,43 @@ def _generate_ascii_deliberation_flow(members: List[str], chairman: str) -> str:
 ```"""
 
 
+def _extract_non_reporting_models(council: Dict[str, Any], metadata: Dict[str, Any]) -> Dict[str, str]:
+    """
+    Extract models that failed to report, timed out, or were evicted from deliberation.
+    Returns mapping of model_name -> failure reason string.
+    """
+    non_reporting: Dict[str, str] = {}
+
+    evicted_list = metadata.get("evicted_members") or metadata.get("evicted_models") or []
+    for ev in evicted_list:
+        m = ev.get("model")
+        if m:
+            non_reporting[m] = ev.get("reason") or "Failed to report / evicted from deliberation"
+
+    positions = council.get("positions", [])
+    for pos in positions:
+        m = pos.get("model")
+        err = pos.get("error")
+        resp = (pos.get("response") or "").strip()
+        tool_calls = pos.get("toolCalls") or []
+        if err or (not resp and not tool_calls):
+            if m and m not in non_reporting:
+                non_reporting[m] = err or "Timed out / returned empty position"
+
+    requested = metadata.get("requested_members", [])
+    members = metadata.get("members", [])
+    for req in requested:
+        if req not in non_reporting:
+            has_reported = any(
+                p.get("model") == req and (p.get("response") or p.get("toolCalls")) and not p.get("error")
+                for p in positions
+            )
+            if not has_reported and req not in members:
+                non_reporting[req] = "Did not report to council (initialization failed / unreachable)"
+
+    return non_reporting
+
+
 def format_conversation_executive(conv: Dict[str, Any]) -> str:
     """
     Format an executive summary report tailored for rapid stakeholder and leadership review.
@@ -500,6 +537,21 @@ def format_conversation_executive(conv: Dict[str, Any]) -> str:
             council = msg.get("council", {})
             metadata = council.get("metadata", {}) or msg.get("metadata", {})
             verdict = council.get("verdict", {})
+            non_reporting = _extract_non_reporting_models(council, metadata)
+
+            # State missing/timed-out agents prominently on top once
+            if non_reporting:
+                lines.extend([
+                    "> **Council Attendance Notice:** The following agent(s) did not report to the council or timed out and were excluded from deliberation:",
+                ])
+                for m, reason in non_reporting.items():
+                    lines.append(f"> - `{m}`: {reason}")
+                lines.extend([
+                    "> Deliberation proceeded with active council members.",
+                    "",
+                    "---",
+                    "",
+                ])
 
             # 1. Chairman Verdict
             lines.append("## Executive Verdict (Chairman Synthesis)")
@@ -527,18 +579,19 @@ def format_conversation_executive(conv: Dict[str, Any]) -> str:
                 lines.append("*No verdict reached.*")
             lines.extend(["", "---", ""])
 
-            # 2. Stage 1: Opening Positions
+            # 2. Stage 1: Opening Positions (only reporting members)
             positions = council.get("positions", [])
+            valid_positions = [
+                p for p in positions
+                if p.get("model") not in non_reporting and not p.get("error") and (p.get("response") or p.get("toolCalls"))
+            ]
             lines.append("## Stage 1: Opening Positions")
             lines.append("")
-            if positions:
-                for pos in positions:
+            if valid_positions:
+                for pos in valid_positions:
                     model = pos.get("model", "Unknown")
-                    err = pos.get("error")
                     resp = pos.get("response", "")
                     lines.append(f"### Model: `{model}`")
-                    if err:
-                        lines.append(f"> **Error:** {err}")
                     if resp:
                         lines.append(resp.strip())
                     lines.append("")
@@ -546,37 +599,44 @@ def format_conversation_executive(conv: Dict[str, Any]) -> str:
                 lines.append("*No opening positions.*")
                 lines.append("")
 
-            # 3. Stage 2: Peer Debate
+            # 3. Stage 2: Peer Debate (only reporting members)
             debates = council.get("debate", [])
             lines.append("## Stage 2: Peer Debate & Cross-Examination")
             lines.append("")
             if debates:
                 for round_item in debates:
                     round_num = round_item.get("round", 1)
-                    lines.append(f"### Round {round_num}")
-                    lines.append("")
-                    for reply in round_item.get("responses", []):
-                        model = reply.get("model", "Unknown")
-                        err = reply.get("error")
-                        resp = reply.get("response", "")
-                        lines.append(f"#### Model: `{model}`")
-                        if err:
-                            lines.append(f"> **Error:** {err}")
-                        if resp:
-                            lines.append(resp.strip())
+                    raw_replies = round_item.get("statements", round_item.get("responses", []))
+                    valid_replies = [
+                        reply for reply in raw_replies
+                        if reply.get("model") not in non_reporting and not reply.get("error") and reply.get("response")
+                    ]
+                    if valid_replies:
+                        lines.append(f"### Round {round_num}")
                         lines.append("")
+                        for reply in valid_replies:
+                            model = reply.get("model", "Unknown")
+                            resp = reply.get("response", "")
+                            lines.append(f"#### Model: `{model}`")
+                            if resp:
+                                lines.append(resp.strip())
+                            lines.append("")
             else:
                 lines.append("*No peer debate rounds.*")
                 lines.append("")
 
-            # 4. Stage 3: Blind Peer Review
+            # 4. Stage 3: Blind Peer Review (only reporting members)
             reviews = council.get("review", [])
+            valid_reviews = [
+                rev for rev in reviews
+                if rev.get("model") not in non_reporting and not rev.get("error") and (rev.get("ranking") or rev.get("response"))
+            ]
             lines.append("## Stage 3: Blind Peer Review")
             lines.append("")
-            if reviews:
-                for rev in reviews:
+            if valid_reviews:
+                for rev in valid_reviews:
                     model = rev.get("model", "Unknown")
-                    resp = rev.get("response", "")
+                    resp = rev.get("ranking") or rev.get("response", "")
                     lines.append(f"### Reviewer: `{model}`")
                     if resp:
                         lines.append(resp.strip())
@@ -589,9 +649,12 @@ def format_conversation_executive(conv: Dict[str, Any]) -> str:
             lines.append("## Session Telemetry & Metadata")
             lines.append("")
             if metadata:
-                members = metadata.get("members", [])
-                if members:
-                    lines.append(f"- **Participating Members:** {', '.join(f'`{m}`' for m in members)}")
+                raw_members = metadata.get("members", []) or [p.get("model") for p in valid_positions]
+                active_members = [m for m in raw_members if m not in non_reporting]
+                if active_members:
+                    lines.append(f"- **Participating Quorum:** {', '.join(f'`{m}`' for m in active_members)}")
+                if non_reporting:
+                    lines.append(f"- **Non-Reporting Members:** {', '.join(f'`{m}`' for m in non_reporting)}")
                 if metadata.get("chairman"):
                     lines.append(f"- **Designated Chairman:** `{metadata.get('chairman')}`")
                 if metadata.get("caveman"):
@@ -656,22 +719,50 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
             positions = council.get("positions", [])
             debates = council.get("debate", [])
             reviews = council.get("review", [])
+            non_reporting = _extract_non_reporting_models(council, metadata)
 
-            members = metadata.get("members", [])
-            if not members and positions:
-                members = [p.get("model", "Unknown") for p in positions]
+            valid_positions = [
+                p for p in positions
+                if p.get("model") not in non_reporting and not p.get("error") and (p.get("response") or p.get("toolCalls"))
+            ]
+
+            raw_members = metadata.get("members", []) or [p.get("model") for p in valid_positions]
+            active_members = [m for m in raw_members if m not in non_reporting]
+            if not active_members and valid_positions:
+                active_members = [p.get("model", "Unknown") for p in valid_positions]
+
             chairman = verdict.get("model") or metadata.get("chairman", "Chairman")
             sections = verdict.get("sections", {})
             total_tokens = metadata.get("total_tokens", 0)
 
+            # State missing/timed-out agents prominently on top once
+            if non_reporting:
+                lines.extend([
+                    "> **Council Attendance Notice:** The following agent(s) did not report to the council or timed out and were excluded from deliberation:",
+                ])
+                for m, reason in non_reporting.items():
+                    lines.append(f"> - `{m}`: {reason}")
+                lines.extend([
+                    "> Deliberation proceeded with active council members.",
+                    "",
+                    "---",
+                    "",
+                ])
+
             # 1. Telemetry Overview Table
-            lines.extend([
+            telemetry_rows = [
                 "## Executive Overview & Deliberation Parameters",
                 "",
                 "| Parameter / Metric | Deliberation Detail |",
                 "| :--- | :--- |",
                 f"| **Presiding Chairman** | `{chairman}` |",
-                f"| **Participating Council Members** | {len(members)} models ({', '.join(f'`{m}`' for m in members)}) |",
+                f"| **Active Council Quorum** | {len(active_members)} models ({', '.join(f'`{m}`' for m in active_members)}) |",
+            ]
+            if non_reporting:
+                telemetry_rows.append(
+                    f"| **Non-Reporting Members** | {len(non_reporting)} model(s) ({', '.join(f'`{m}`' for m in non_reporting)}) |"
+                )
+            telemetry_rows.extend([
                 f"| **Deliberation Token Footprint** | {total_tokens:,} tokens |",
                 f"| **Confidence Level** | `{sections.get('confidence', 'Evaluated')}` |",
                 f"| **Caveman Compression Mode** | `{metadata.get('caveman', 'disabled')}` |",
@@ -679,12 +770,13 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 "---",
                 "",
             ])
+            lines.extend(telemetry_rows)
 
             # 2. ASCII Deliberation Flow Diagram
             lines.extend([
                 "## Council Deliberation Architecture & Flow",
                 "",
-                _generate_ascii_deliberation_flow(members, chairman),
+                _generate_ascii_deliberation_flow(active_members, chairman),
                 "",
                 "---",
                 "",
@@ -700,23 +792,26 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 "| :--- | :--- | :--- | :--- | :--- |",
             ])
 
-            for pos in positions:
+            for pos in valid_positions:
                 m_name = pos.get("model", "Unknown")
                 opening_snippet = _clean_table_cell(pos.get("response", ""), 140)
 
                 # Find debate presence
                 debate_points = []
                 for d_round in debates:
-                    for resp in d_round.get("responses", []):
-                        if resp.get("model") == m_name:
+                    round_replies = d_round.get("statements", d_round.get("responses", []))
+                    for resp in round_replies:
+                        if resp.get("model") == m_name and not resp.get("error") and resp.get("response"):
                             debate_points.append(resp.get("response", ""))
                 debate_snippet = _clean_table_cell(" ".join(debate_points), 130) if debate_points else "Standard position defended"
 
                 # Find peer review comments
                 review_comments = []
                 for rev in reviews:
-                    if rev.get("model") == m_name:
-                        review_comments.append(rev.get("response", ""))
+                    if rev.get("model") == m_name and not rev.get("error"):
+                        txt = rev.get("ranking") or rev.get("response", "")
+                        if txt:
+                            review_comments.append(txt)
                 review_snippet = _clean_table_cell(" ".join(review_comments), 130) if review_comments else "Peer reviewed"
 
                 # Stance alignment
@@ -772,21 +867,18 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 "",
             ])
 
-            # 5. Full Stage-by-Stage Deliberation Transcripts
+            # 5. Full Stage-by-Stage Deliberation Transcripts (only reporting members)
             lines.extend([
                 "## Comprehensive Stage-by-Stage Deliberation Audit",
                 "",
                 "### Stage 1: Opening Positions",
                 "",
             ])
-            if positions:
-                for pos in positions:
+            if valid_positions:
+                for pos in valid_positions:
                     m = pos.get("model", "Unknown")
-                    err = pos.get("error")
                     resp = pos.get("response", "")
                     lines.append(f"#### Model: `{m}`")
-                    if err:
-                        lines.append(f"> **Error:** {err}")
                     if resp:
                         lines.append(resp.strip())
                     lines.append("")
@@ -801,18 +893,21 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
             if debates:
                 for round_item in debates:
                     round_num = round_item.get("round", 1)
-                    lines.append(f"#### Round {round_num}")
-                    lines.append("")
-                    for reply in round_item.get("responses", []):
-                        m = reply.get("model", "Unknown")
-                        err = reply.get("error")
-                        resp = reply.get("response", "")
-                        lines.append(f"##### Model: `{m}`")
-                        if err:
-                            lines.append(f"> **Error:** {err}")
-                        if resp:
-                            lines.append(resp.strip())
+                    raw_replies = round_item.get("statements", round_item.get("responses", []))
+                    valid_replies = [
+                        reply for reply in raw_replies
+                        if reply.get("model") not in non_reporting and not reply.get("error") and reply.get("response")
+                    ]
+                    if valid_replies:
+                        lines.append(f"#### Round {round_num}")
                         lines.append("")
+                        for reply in valid_replies:
+                            m = reply.get("model", "Unknown")
+                            resp = reply.get("response", "")
+                            lines.append(f"##### Model: `{m}`")
+                            if resp:
+                                lines.append(resp.strip())
+                            lines.append("")
             else:
                 lines.append("*No peer debate rounds.*")
                 lines.append("")
@@ -821,10 +916,14 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 "### Stage 3: Blind Peer Review",
                 "",
             ])
-            if reviews:
-                for rev in reviews:
+            valid_reviews = [
+                rev for rev in reviews
+                if rev.get("model") not in non_reporting and not rev.get("error") and (rev.get("ranking") or rev.get("response"))
+            ]
+            if valid_reviews:
+                for rev in valid_reviews:
                     m = rev.get("model", "Unknown")
-                    resp = rev.get("response", "")
+                    resp = rev.get("ranking") or rev.get("response", "")
                     lines.append(f"#### Reviewer: `{m}`")
                     if resp:
                         lines.append(resp.strip())
@@ -834,22 +933,29 @@ def format_conversation_detailed(conv: Dict[str, Any]) -> str:
                 lines.append("")
 
             # 6. Governance & Telemetry Audit
-            lines.extend([
+            audit_rows = [
                 "## Session Telemetry & Governance Metadata",
                 "",
                 "| Telemetry Field | Recorded Value |",
                 "| :--- | :--- |",
                 f"| **Deliberation ID** | `{conv_id}` |",
                 f"| **Designated Chairman** | `{metadata.get('chairman', chairman)}` |",
-                f"| **Participating Models** | {', '.join(f'`{m}`' for m in members)} |",
+                f"| **Active Quorum Models** | {', '.join(f'`{m}`' for m in active_members)} |",
+            ]
+            if non_reporting:
+                audit_rows.append(
+                    f"| **Non-Reporting Models** | {', '.join(f'`{m}`' for m in non_reporting)} |"
+                )
+            audit_rows.extend([
                 f"| **Caveman Mode** | `{metadata.get('caveman', 'disabled')}` |",
                 f"| **Total Tokens Consumed** | {total_tokens:,} |",
-                f"| **Evicted Models Count** | {len(metadata.get('evicted_models', []))} |",
+                f"| **Non-Reporting Count** | {len(non_reporting)} |",
                 f"| **Steering Directives** | {len(metadata.get('injected_guidance', []))} directive(s) |",
                 "",
                 "---",
                 "",
             ])
+            lines.extend(audit_rows)
 
     return "\n".join(lines)
 
@@ -1023,9 +1129,17 @@ def render_report_html(conv: Dict[str, Any], mode: str = "executive") -> str:
             meta = c.get("metadata", {})
             verdict = c.get("verdict", {})
             chairman = verdict.get("model") or meta.get("chairman") or chairman
-            members = meta.get("members", []) or c.get("positions", [])
-            if members:
-                members_count = str(len(members))
+            non_reporting = _extract_non_reporting_models(c, meta)
+            raw_members = meta.get("members", []) or [p.get("model") for p in c.get("positions", [])]
+            active_members = [
+                (m if isinstance(m, str) else m.get("model"))
+                for m in raw_members
+                if (m if isinstance(m, str) else m.get("model")) not in non_reporting
+            ]
+            if active_members:
+                members_count = str(len(active_members))
+            elif raw_members:
+                members_count = str(len(raw_members))
             if meta.get("total_tokens"):
                 total_tokens = f"{meta['total_tokens']:,}"
             if verdict.get("sections", {}).get("confidence"):

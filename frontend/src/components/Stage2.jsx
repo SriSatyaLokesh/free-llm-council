@@ -22,7 +22,9 @@ export default function Stage2({ debate, earlyConclusion, injectedGuidance = [] 
 
   const safeIndex = Math.min(roundIndex, debate.length - 1);
   const current = debate[safeIndex];
-  const statements = current?.statements || [];
+  const rawStatements = current?.statements || [];
+  const activeStatements = rawStatements.filter((s) => !s.error && s.response);
+  const statements = activeStatements.length > 0 ? activeStatements : rawStatements;
 
   if (statements.length === 0) {
     return (
