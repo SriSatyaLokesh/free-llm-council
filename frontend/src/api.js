@@ -245,6 +245,20 @@ export const api = {
   },
 
   /**
+   * Download a conversation as a publication-grade PDF report (executive or detailed).
+   */
+  getPdfExportUrl(conversationId, format = 'executive') {
+    return `${API_BASE}/api/conversations/${conversationId}/export/pdf?format=${encodeURIComponent(format)}`;
+  },
+
+  /**
+   * Download a conversation as a standalone publication-grade HTML report.
+   */
+  getHtmlExportUrl(conversationId, format = 'executive') {
+    return `${API_BASE}/api/conversations/${conversationId}/export/html?format=${encodeURIComponent(format)}`;
+  },
+
+  /**
    * Fetch pre-rendered executive and detailed reports for in-app viewing.
    */
   async getReports(conversationId) {

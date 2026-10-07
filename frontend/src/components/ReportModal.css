@@ -550,33 +550,54 @@
    Print & PDF Optimization (@media print)
    -------------------------------------------------------------------------- */
 @media print {
-  body * {
-    visibility: hidden;
+  html, body {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  #root, .app-layout {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    position: static !important;
+    background: #ffffff !important;
+  }
+
+  .sidebar-container,
+  .chat-interface-wrapper,
+  .tool-trace-floating,
+  .provider-key-modal-backdrop {
+    display: none !important;
   }
 
   .report-modal-backdrop {
-    position: static;
-    background: #ffffff;
-    backdrop-filter: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: auto;
-    overflow: visible;
+    position: static !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .report-modal-dialog {
-    position: static;
-    visibility: visible;
-    background: #ffffff;
-    color: #111827;
-    border: none;
-    box-shadow: none;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: none;
-    overflow: visible;
+    position: static !important;
+    visibility: visible !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
   }
 
   .report-modal-header,
@@ -588,22 +609,31 @@
   }
 
   .report-kpi-strip {
-    visibility: visible;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    color: #111827;
-    margin-bottom: 20px;
+    visibility: visible !important;
+    display: flex !important;
+    background: #f9fafb !important;
+    border: 1px solid #e5e7eb !important;
+    color: #111827 !important;
+    margin-bottom: 20px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .report-kpi-strip * {
-    visibility: visible;
+    visibility: visible !important;
     color: #111827 !important;
   }
 
-  .report-modal-body,
+  .report-modal-body {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+  }
+
   .report-preview-container,
   .report-preview-container * {
-    visibility: visible;
+    visibility: visible !important;
     color: #111827 !important;
     background: transparent !important;
   }
@@ -612,19 +642,27 @@
     border: 1px solid #d1d5db !important;
     color: #1f2937 !important;
     background: #f3f4f6 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .report-preview-container table {
-    border: 1px solid #9ca3af;
+    border: 1px solid #9ca3af !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .report-table-scroll {
+    overflow: visible !important;
   }
 
   .report-preview-container th {
     background: #e5e7eb !important;
     color: #111827 !important;
-    border-bottom: 1px solid #9ca3af;
+    border-bottom: 1px solid #9ca3af !important;
   }
 
   .report-preview-container td {
-    border-bottom: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db !important;
   }
 }

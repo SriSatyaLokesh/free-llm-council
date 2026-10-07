@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
@@ -22,7 +22,7 @@ import './ReportModal.css';
  *
  * Provides dual-report switching (Executive Brief vs Deep-Dive Technical Matrix),
  * interactive rendered preview, raw markdown inspection, one-click copy,
- * direct .md and .zip downloads, and print/PDF optimization.
+ * direct .pdf, .md, and .zip downloads, and isolated print/PDF optimization.
  */
 export default function ReportModal({ conversation, isOpen, onClose }) {
   const [reportType, setReportType] = useState('executive'); // 'executive' | 'detailed'
@@ -32,6 +32,8 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
   const [idCopied, setIdCopied] = useState(false);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
+  const previewRef = useRef(null);
 
   useEffect(() => {
     if (!isOpen || !conversation?.id) return;
@@ -135,8 +137,269 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
     window.open(api.getZipExportUrl(conversation.id), '_blank');
   };
 
-  const handlePrint = () => {
-    window.print();
+  const handlePrintIsolated = () => {
+    const cleanFileName = `council-${reportType}-report-${conversation?.id ? conversation.id.slice(0, 8) : 'export'}`;
+    const contentHtml = previewRef.current ? previewRef.current.innerHTML : '';
+
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>${cleanFileName}</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 16mm 16mm 18mm 16mm;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.55;
+      color: #0f172a;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    .print-header-banner {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    .print-badge {
+      display: inline-block;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .print-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      color: #0f172a;
+    }
+    .print-subtitle {
+      font-size: 0.9rem;
+      color: #475569;
+      margin: 0;
+    }
+    .print-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .print-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .print-meta-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .print-meta-value {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    h1 {
+      font-size: 1.4rem;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.18rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    p, ul, ol {
+      margin: 0.45rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 9pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    th {
+      background: #1e293b !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #1e293b;
+    }
+    td {
+      padding: 7px 10px;
+      border: 1px solid #cbd5e1;
+      vertical-align: top;
+      color: #334155;
+    }
+    tr:nth-child(even) td {
+      background: #f8fafc !important;
+    }
+    pre {
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-family: "Cascadia Code", Consolas, Monaco, "Courier New", monospace;
+      font-size: 8pt;
+      line-height: 1.35;
+      white-space: pre;
+      overflow-x: auto;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 12px 0;
+    }
+    code {
+      font-family: "Cascadia Code", Consolas, Monaco, "Courier New", monospace;
+      font-size: 0.9em;
+      background: #f1f5f9;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+    blockquote {
+      border-left: 4px solid #3b82f6;
+      background: #eff6ff;
+      margin: 10px 0;
+      padding: 8px 12px;
+      color: #1e3a8a;
+      border-radius: 0 4px 4px 0;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="print-header-banner">
+    <div class="print-badge">Free LLM Council Deliberation Report</div>
+    <h1 class="print-title">${conversation?.title || 'Council Deliberation'}</h1>
+    <p class="print-subtitle">${reportType === 'detailed' ? 'Comprehensive Deep-Dive Technical Matrix' : 'Executive Summary Brief'}</p>
+  </div>
+  <div class="print-meta-grid">
+    <div class="print-meta-item">
+      <span class="print-meta-label">Deliberation ID</span>
+      <span class="print-meta-value">${conversation?.id ? conversation.id.slice(0, 8) + '...' : 'N/A'}</span>
+    </div>
+    <div class="print-meta-item">
+      <span class="print-meta-label">Chairman</span>
+      <span class="print-meta-value">${chairman}</span>
+    </div>
+    <div class="print-meta-item">
+      <span class="print-meta-label">Council Size</span>
+      <span class="print-meta-value">${membersCount} Models</span>
+    </div>
+    <div class="print-meta-item">
+      <span class="print-meta-label">Confidence</span>
+      <span class="print-meta-value">${confidence}</span>
+    </div>
+    <div class="print-meta-item">
+      <span class="print-meta-label">Tokens</span>
+      <span class="print-meta-value">${totalTokens ? totalTokens.toLocaleString() : 'N/A'}</span>
+    </div>
+    <div class="print-meta-item">
+      <span class="print-meta-label">Format</span>
+      <span class="print-meta-value">${reportType === 'detailed' ? 'Technical Matrix' : 'Executive Brief'}</span>
+    </div>
+  </div>
+  ${contentHtml}
+</body>
+</html>`);
+    doc.close();
+
+    iframe.contentWindow.focus();
+    setTimeout(() => {
+      iframe.contentWindow.print();
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+      }, 2500);
+    }, 250);
+  };
+
+  const handleDownloadPdf = async () => {
+    if (!conversation?.id) return;
+    const formatParam = reportType === 'detailed' ? 'detailed' : 'executive';
+    const pdfUrl = api.getPdfExportUrl(conversation.id, formatParam);
+
+    setDownloadingPdf(true);
+    try {
+      const res = await fetch(pdfUrl);
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const fmtTag = formatParam === 'detailed' ? 'detailed' : 'executive';
+        a.download = `council-${fmtTag}-report-${conversation.id.slice(0, 8)}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        handlePrintIsolated();
+      }
+    } catch (err) {
+      console.warn('Backend PDF download error, falling back to print-to-PDF:', err);
+      handlePrintIsolated();
+    } finally {
+      setDownloadingPdf(false);
+    }
   };
 
   return (
@@ -227,29 +490,40 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
 
             <button
               type="button"
-              className="report-tool-btn"
-              onClick={handlePrint}
-              title="Print or export as publication-grade PDF"
+              className="report-tool-btn report-primary-tool"
+              onClick={handleDownloadPdf}
+              disabled={downloadingPdf}
+              title={`Download active ${reportType} report as publication-grade PDF file`}
             >
-              <Printer size={14} />
-              <span>Print / PDF</span>
+              <Download size={14} />
+              <span>{downloadingPdf ? 'Exporting...' : 'Download PDF'}</span>
             </button>
 
             <button
               type="button"
-              className="report-tool-btn report-primary-tool"
+              className="report-tool-btn"
+              onClick={handlePrintIsolated}
+              title="Open publication-grade print & PDF preview"
+            >
+              <Printer size={14} />
+              <span>Print / Preview</span>
+            </button>
+
+            <button
+              type="button"
+              className="report-tool-btn"
               onClick={handleDownloadMd}
               title={`Download active ${reportType} report as Markdown`}
             >
-              <Download size={14} />
-              <span>Download .MD</span>
+              <FileText size={14} />
+              <span>Markdown</span>
             </button>
 
             <button
               type="button"
               className="report-tool-btn"
               onClick={handleDownloadZip}
-              title="Download full deliberation bundle ZIP (both reports + raw data)"
+              title="Download full deliberation bundle ZIP (reports + PDF + HTML + JSON)"
             >
               <Package size={14} />
               <span>ZIP</span>
@@ -319,7 +593,7 @@ export default function ReportModal({ conversation, isOpen, onClose }) {
               />
             </div>
           ) : (
-            <div className="report-preview-container markdown-content">
+            <div ref={previewRef} className="report-preview-container markdown-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
