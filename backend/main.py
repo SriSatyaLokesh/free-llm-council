@@ -8,6 +8,7 @@ from typing import List, Dict, Any, Optional
 import uuid
 import json
 import asyncio
+import os
 
 from contextlib import asynccontextmanager
 from . import storage
@@ -35,6 +36,11 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(title="LLM Council API", lifespan=lifespan)
+
+@app.exception_handler(ValueError)
+async def value_error_handler(request, exc: ValueError):
+    """Convert validation and path traversal ValueErrors to clean HTTP 400 responses."""
+    return JSONResponse(status_code=400, content={"detail": str(exc)})
 
 # Enable CORS for local development
 app.add_middleware(
@@ -648,4 +654,6 @@ async def send_message_stream(conversation_id: str, request: SendMessageRequest)
 if __name__ == "__main__":
     import uvicorn
     ensure_opencode_running()
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    host = os.getenv("HOST", "127.0.0.1")
+    port = int(os.getenv("PORT", "8001"))
+    uvicorn.run(app, host=host, port=port)

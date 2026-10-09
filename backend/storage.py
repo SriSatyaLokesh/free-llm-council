@@ -2,6 +2,8 @@
 
 import json
 import os
+import re
+import html
 import shutil
 import subprocess
 import tempfile
@@ -11,6 +13,17 @@ from typing import List, Dict, Any, Optional
 from pathlib import Path
 from .config import DATA_DIR
 
+SAFE_ID_PATTERN = re.compile(r"^[a-zA-Z0-9_-]{1,128}$")
+
+
+def validate_safe_id(identifier: str, field_name: str = "id") -> str:
+    """Validate that an identifier contains only safe alphanumeric/hyphen/underscore characters."""
+    if not identifier or not isinstance(identifier, str) or not SAFE_ID_PATTERN.match(identifier):
+        raise ValueError(
+            f"Invalid {field_name}: '{identifier}'. Must be alphanumeric, hyphen, or underscore (1-128 chars)."
+        )
+    return identifier
+
 
 def ensure_data_dir():
     """Ensure the data directory exists."""
@@ -18,8 +31,13 @@ def ensure_data_dir():
 
 
 def get_conversation_path(conversation_id: str) -> str:
-    """Get the file path for a conversation."""
-    return os.path.join(DATA_DIR, f"{conversation_id}.json")
+    """Get the file path for a conversation with path traversal confinement."""
+    validate_safe_id(conversation_id, "conversation_id")
+    base = os.path.abspath(DATA_DIR)
+    target = os.path.abspath(os.path.join(base, f"{conversation_id}.json"))
+    if os.path.commonpath([base, target]) != base:
+        raise ValueError("Path traversal detected")
+    return target
 
 
 def create_conversation(
@@ -35,6 +53,9 @@ def create_conversation(
     Returns:
         New conversation dict
     """
+    validate_safe_id(conversation_id, "conversation_id")
+    if project_id:
+        validate_safe_id(project_id, "project_id")
     ensure_data_dir()
 
     conversation = {
@@ -64,12 +85,15 @@ def get_conversation(conversation_id: str) -> Optional[Dict[str, Any]]:
     Returns:
         Conversation dict or None if not found
     """
-    path = get_conversation_path(conversation_id)
+    try:
+        path = get_conversation_path(conversation_id)
+    except ValueError:
+        return None
 
     if not os.path.exists(path):
         return None
 
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 
@@ -83,7 +107,7 @@ def save_conversation(conversation: Dict[str, Any]):
     ensure_data_dir()
 
     path = get_conversation_path(conversation['id'])
-    with open(path, 'w') as f:
+    with open(path, 'w', encoding='utf-8') as f:
         json.dump(conversation, f, indent=2)
 
 
@@ -94,7 +118,10 @@ def delete_conversation(conversation_id: str) -> bool:
     Returns:
         True if the file was found and deleted, False otherwise.
     """
-    path = get_conversation_path(conversation_id)
+    try:
+        path = get_conversation_path(conversation_id)
+    except ValueError:
+        return False
     if os.path.exists(path):
         try:
             os.remove(path)
@@ -296,6 +323,8 @@ def create_project(
 ) -> Dict[str, Any]:
     """Create a new project folder."""
     import uuid
+    if project_id:
+        validate_safe_id(project_id, "project_id")
     pid = project_id or str(uuid.uuid4())
     now = datetime.now(timezone.utc).isoformat()
     project = {
@@ -313,12 +342,20 @@ def create_project(
 
 def get_project(project_id: str) -> Optional[Dict[str, Any]]:
     """Retrieve a project by ID."""
+    try:
+        validate_safe_id(project_id, "project_id")
+    except ValueError:
+        return None
     projects = load_all_projects()
     return projects.get(project_id)
 
 
 def update_project(project_id: str, patch: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """Update project name or description."""
+    try:
+        validate_safe_id(project_id, "project_id")
+    except ValueError:
+        return None
     projects = load_all_projects()
     if project_id not in projects:
         return None
@@ -338,6 +375,10 @@ def delete_project(project_id: str) -> bool:
     Delete a project folder and unlink any associated conversations
     back to independent / standalone mode (project_id = None).
     """
+    try:
+        validate_safe_id(project_id, "project_id")
+    except ValueError:
+        return False
     projects = load_all_projects()
     if project_id not in projects:
         return False
@@ -1147,15 +1188,24 @@ def render_report_html(conv: Dict[str, Any], mode: str = "executive") -> str:
             break
 
     md_content = format_conversation_markdown(conv, mode=mode)
-    parser = markdown_it.MarkdownIt().enable("table")
+    parser = markdown_it.MarkdownIt(options_update={"html": False}).enable("table")
     body_html = parser.render(md_content)
+
+    safe_title = html.escape(str(title or "Council Deliberation"))
+    safe_conv_id = html.escape(str(conv_id or "unknown"))
+    safe_created_at = html.escape(str(created_at or ""))
+    safe_mode_title = html.escape(str(mode_title or ""))
+    safe_chairman = html.escape(str(chairman or "Autonomous Council"))
+    safe_members_count = html.escape(str(members_count or "N/A"))
+    safe_confidence = html.escape(str(confidence or "N/A"))
+    safe_total_tokens = html.escape(str(total_tokens or "N/A"))
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} - Council Report</title>
+  <title>{safe_title} - Council Report</title>
   <style>
     @page {{
       size: A4 portrait;
@@ -1167,7 +1217,7 @@ def render_report_html(conv: Dict[str, Any], mode: str = "executive") -> str:
         color: #64748b;
       }}
       @bottom-left {{
-        content: "Free LLM Council - Deliberation ID: {conv_id[:8]}";
+        content: "Free LLM Council - Deliberation ID: {safe_conv_id[:8]}";
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         font-size: 8pt;
         color: #64748b;
@@ -1358,34 +1408,34 @@ def render_report_html(conv: Dict[str, Any], mode: str = "executive") -> str:
 <body>
   <div class="report-banner">
     <div class="report-badge">Free LLM Council Deliberation Report</div>
-    <h1 class="report-title">{title}</h1>
-    <p class="report-subtitle">{mode_title}</p>
+    <h1 class="report-title">{safe_title}</h1>
+    <p class="report-subtitle">{safe_mode_title}</p>
   </div>
 
   <div class="report-kpi-grid">
     <div class="kpi-item">
       <span class="kpi-label">Deliberation ID</span>
-      <span class="kpi-value">{conv_id[:8]}...</span>
+      <span class="kpi-value">{safe_conv_id[:8]}...</span>
     </div>
     <div class="kpi-item">
       <span class="kpi-label">Created Date</span>
-      <span class="kpi-value">{created_at[:10] if created_at else "N/A"}</span>
+      <span class="kpi-value">{safe_created_at[:10] if safe_created_at else "N/A"}</span>
     </div>
     <div class="kpi-item">
       <span class="kpi-label">Chairman Model</span>
-      <span class="kpi-value">{chairman}</span>
+      <span class="kpi-value">{safe_chairman}</span>
     </div>
     <div class="kpi-item">
       <span class="kpi-label">Council Size</span>
-      <span class="kpi-value">{members_count} Models</span>
+      <span class="kpi-value">{safe_members_count} Models</span>
     </div>
     <div class="kpi-item">
       <span class="kpi-label">Confidence Rating</span>
-      <span class="kpi-value">{confidence}</span>
+      <span class="kpi-value">{safe_confidence}</span>
     </div>
     <div class="kpi-item">
       <span class="kpi-label">Tokens Consumed</span>
-      <span class="kpi-value">{total_tokens}</span>
+      <span class="kpi-value">{safe_total_tokens}</span>
     </div>
   </div>
 
@@ -1422,6 +1472,8 @@ def generate_report_pdf(conv: Dict[str, Any], mode: str = "executive") -> Option
             browser_bin,
             "--headless=new",
             "--disable-gpu",
+            "--disable-javascript",
+            "--disable-local-file-access",
             "--no-pdf-header-footer",
             f"--print-to-pdf={pdf_file}",
             file_uri,
