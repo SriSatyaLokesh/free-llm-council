@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791404109.112223,
-    "seen": 1791404112.5159545,
-    "ast_hash": "2f7d710b4eed7040671f2566f67a1813",
+    "mtime": 1791725244.01168,
+    "seen": 1791725275.319952,
+    "ast_hash": "421903260a9fdd937d71fee422b4fdee",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
