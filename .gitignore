@@ -18,10 +18,13 @@ data/
 # Council sandbox canary (verify_opencode asserts this is never created)
 backend/.council_canary.txt
 
-# Frontend
+# Frontend & Landing
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/
+landing/node_modules/
+landing/dist/
+landing/.vite/
 
 # Locally installed agent skills (ui-ux-pro-max and friends). These are large
 # and installed per-machine, not vendored into the repo.

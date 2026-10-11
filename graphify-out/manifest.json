@@ -36,8 +36,8 @@
     "semantic_hash": ""
   },
   "backend/main.py": {
-    "mtime": 1791512863.4395235,
-    "seen": 1791512991.7297676,
+    "mtime": 1791722403.3764412,
+    "seen": 1791722407.6374886,
     "ast_hash": "8f9cc2fcca7f25770adf61b0955c2e0d",
     "semantic_hash": ""
   },
@@ -66,8 +66,8 @@
     "semantic_hash": ""
   },
   "backend/storage.py": {
-    "mtime": 1791512833.88833,
-    "seen": 1791512991.7297764,
+    "mtime": 1791722403.3788679,
+    "seen": 1791722407.6374972,
     "ast_hash": "1bb336f0e92c28d2805cc55b028dcc7c",
     "semantic_hash": ""
   },
@@ -366,9 +366,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791372476.6635768,
-    "seen": 1791392203.994573,
-    "ast_hash": "5808096310fe22730f59cf5c30c81d61",
+    "mtime": 1791723073.9208965,
+    "seen": 1791723085.853305,
+    "ast_hash": "9fa5b159716dcbe6ec1fd1996c291eeb",
     "semantic_hash": ""
   },
   "frontend/README.md": {
@@ -455,10 +455,34 @@
     "ast_hash": "a5db9f168672519bc70bcd9e516cfabf",
     "semantic_hash": ""
   },
+  "landing/package.json": {
+    "mtime": 1791722569.3487153,
+    "seen": 1791722706.521447,
+    "ast_hash": "92290eb9cd00f34c587b2cb4a6746c2a",
+    "semantic_hash": ""
+  },
+  "landing/vite.config.js": {
+    "mtime": 1791722614.4293783,
+    "seen": 1791722706.5214489,
+    "ast_hash": "2be309a117bd27a88d1898f4c2ac9823",
+    "semantic_hash": ""
+  },
   "tests/unit/test_security_hardening.py": {
-    "mtime": 1791512926.1505113,
-    "seen": 1791512991.7298307,
-    "ast_hash": "d76b22dbab3ee8a7ee81662a68c9c4c6",
+    "mtime": 1791722403.3936634,
+    "seen": 1791722706.521475,
+    "ast_hash": "6f1dcb285eca4a96c989a300917ee503",
+    "semantic_hash": ""
+  },
+  ".github/workflows/deploy-landing.yml": {
+    "mtime": 1791722654.4439654,
+    "seen": 1791722706.5214868,
+    "ast_hash": "88b1b0a7820a4fd1f94f8b31f01c6ddd",
+    "semantic_hash": ""
+  },
+  "landing/index.html": {
+    "mtime": 1791723034.1456113,
+    "seen": 1791723085.8533096,
+    "ast_hash": "d2cab6cebe360bafe20be0a85c5e3de4",
     "semantic_hash": ""
   }
 }
