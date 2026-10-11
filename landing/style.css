@@ -1,72 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --black: #000000;
-  --white: #FFFFFF;
-  --blue: #0000FF;
-  --surface-base: #FFFFFF;
-  --surface-inverted: #000000;
-  --surface-sunken: #F0F0F0;
-  --surface-hover: #E8E8E8;
-  --disabled-border: #CCCCCC;
-  --disabled-bg: #F5F5F5;
-  --success: #008000;
-  --warning: #FFA500;
-  --error: #FF0000;
+  --primary: #EA580C;       /* Red-Orange */
+  --primary-hover: #C2410C;
+  --secondary: #0D9488;     /* Teal */
+  --secondary-hover: #0F766E;
+  --secondary-light: #F0FDFA;
+  --tertiary: #EAB308;      /* Yellow */
+  --tertiary-light: #FEF9C3;
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-muted: #F8FAFC;
+  --border: #E2E8F0;
+  --border-strong: #CBD5E1;
+  
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
 
-  --font-headline: 'Archivo Black', sans-serif;
-  --font-body: 'Work Sans', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --success: #16A34A;
+  --warning: #EAB308;
+  --error: #DC2626;
+  --info: #0D9488;
 
-  --sp-1: 4px;
-  --sp-2: 8px;
-  --sp-3: 16px;
-  --sp-4: 24px;
-  --sp-5: 40px;
-  --sp-6: 64px;
-  --sp-7: 80px;
-  --sp-8: 120px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --border-thin: 1px solid var(--black);
-  --border-thick: 3px solid var(--black);
-  --border-heavy: 5px solid var(--black);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border-radius: 0 !important;
-  box-shadow: none !important;
 }
 
 body {
-  background: var(--surface-base);
-  color: var(--black);
-  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
-  font-family: var(--font-headline);
-  text-transform: uppercase;
-  font-weight: 400;
+h1, h2, h3, h4 {
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.0; }
-h2 { font-size: clamp(28px, 4.5vw, 48px); line-height: 1.05; }
-h3 { font-size: clamp(22px, 3vw, 32px); line-height: 1.1; }
-h4 { font-family: var(--font-body); font-size: 22px; font-weight: 600; line-height: 1.2; }
+h1 { font-size: clamp(32px, 5vw, 56px); letter-spacing: -0.03em; }
+h2 { font-size: clamp(24px, 3.5vw, 40px); letter-spacing: -0.02em; }
+h3 { font-size: clamp(18px, 2.5vw, 24px); }
 
-p { font-size: 16px; line-height: 1.6; }
-small { font-size: 14px; line-height: 1.5; }
-code, pre, .mono { font-family: var(--font-mono); font-size: 15px; line-height: 1.5; }
+p { color: var(--text-muted); }
+code, pre, .mono { font-family: var(--font-mono); }
 
 a {
-  color: var(--blue);
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover {
   text-decoration: underline;
+  color: var(--secondary-hover);
 }
 
 /* BUTTONS */
@@ -74,134 +74,105 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-headline);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-family: var(--font-sans);
+  font-weight: 600;
   cursor: pointer;
-  text-decoration: none;
-  border: var(--border-thick);
-  transition: none;
+  text-decoration: none !important;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
 }
 
 .btn-primary {
-  background: var(--black);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--text-inverse);
 }
 .btn-primary:hover {
-  background: var(--white);
-  color: var(--black);
-}
-.btn-primary:active {
-  background: var(--black);
-  color: var(--white);
-  border: var(--border-heavy);
+  background: var(--primary-hover);
 }
 
 .btn-secondary {
-  background: var(--white);
-  color: var(--black);
+  background: var(--secondary-light);
+  color: var(--secondary);
+  border-color: var(--secondary);
 }
 .btn-secondary:hover {
-  background: var(--black);
-  color: var(--white);
+  background: var(--secondary);
+  color: var(--text-inverse);
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--black);
-  border: none;
-  text-decoration: underline;
-  font-family: var(--font-body);
-  letter-spacing: normal;
+  color: var(--text-main);
 }
 .btn-ghost:hover {
-  color: var(--blue);
+  background: var(--surface-muted);
 }
 
-.btn-destructive {
-  background: var(--error);
-  color: var(--white);
-}
-.btn-destructive:hover {
-  background: var(--black);
-  color: var(--error);
-}
-
-.btn:disabled {
-  background: var(--disabled-bg);
-  color: #888888;
-  border-color: var(--disabled-border);
-  cursor: not-allowed;
-}
-
-.btn-sm { padding: 6px 16px; font-size: 12px; }
-.btn-md { padding: 10px 24px; font-size: 14px; }
-.btn-lg { padding: 16px 40px; font-size: 18px; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn-md { padding: 10px 20px; font-size: 15px; }
+.btn-lg { padding: 14px 28px; font-size: 17px; }
 
 /* CARDS */
 .card {
-  background: var(--white);
-  border: var(--border-thick);
-  padding: var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
 }
 
-.card-elevated {
-  background: var(--white);
-  border: var(--border-heavy);
-  padding: var(--sp-4);
-}
-
-.card-inverted {
-  background: var(--black);
-  color: var(--white);
-  border: var(--border-heavy);
-  padding: var(--sp-4);
+.card-highlight {
+  border-left: 4px solid var(--primary);
 }
 
 /* CHIPS */
 .chip {
-  display: inline-block;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.chip-filter {
-  background: var(--white);
-  color: var(--black);
-  border: 2px solid var(--black);
-  padding: 4px 12px;
-  font-size: 10px;
-  cursor: pointer;
-}
-.chip-filter.active, .chip-filter:hover {
-  background: var(--black);
-  color: var(--white);
-}
-
-.chip-status {
-  background: var(--white);
-  padding: 2px 10px;
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
   font-weight: 600;
-  border: 2px solid var(--black);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
 }
-.chip-status.success { color: var(--success); border-color: var(--success); }
-.chip-status.warning { color: var(--warning); border-color: var(--warning); }
-.chip-status.error   { color: var(--error);   border-color: var(--error); }
-.chip-status.default { color: var(--black);   border-color: var(--black); }
 
-/* INPUTS */
-.input {
-  width: 100%;
-  background: var(--surface-sunken);
-  color: var(--black);
-  border: var(--border-thick);
-  font-family: var(--font-mono);
-  font-size: 15px;
-  padding: 10px 12px;
-  outline: none;
+.chip-primary {
+  background: #FFF7ED;
+  color: var(--primary);
+  border-color: #FFEDD5;
 }
-.input:hover { background: var(--surface-hover); }
-.input:focus { border: var(--border-heavy); }
-.input:disabled { background: var(--disabled-bg); border-color: var(--disabled-border); cursor: not-allowed; }
+
+.chip-teal {
+  background: var(--secondary-light);
+  color: var(--secondary);
+  border-color: #CCFBF1;
+}
+
+.chip-yellow {
+  background: var(--tertiary-light);
+  color: #854D0E;
+  border-color: #FEF08A;
+}
+
+.chip-success {
+  background: #F0FDF4;
+  color: var(--success);
+  border-color: #DCFCE7;
+}
+
+/* TERMINAL / CODE BOX */
+.terminal-box {
+  background: #0F172A;
+  color: #F8FAFC;
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  position: relative;
+}

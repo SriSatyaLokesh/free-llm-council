@@ -186,7 +186,7 @@ python -m backend.verify_caveman    # Controlled Caveman compression A/B benchma
 
 - **Backend:** FastAPI, Python 3.13, Async HTTPX, SSE Streaming.
 - **Frontend:** React 19, Vite, React Markdown, Custom Lucide-style SVG Vector Icon Pack.
-- **Landing Site:** Isolated static showcase in `landing/` powered by the RawBlock brutalist design system for GitHub Pages.
+- **Landing Site:** Isolated static showcase in `landing/` styled with the LocalGuide warm design system for GitHub Pages.
 - **Local Engine:** [OpenCode](https://opencode.ai) HTTP API with live web search & read-only workspace sandboxing.
 - **Storage:** Atomically written JSON in `data/conversations/` and `data/projects.json` (zero user debates tracked in git).
 - **Standards:** Compliant with `llms.txt` specification for AI crawlers, agentic indexers, and LLM search engines.
