@@ -8,7 +8,8 @@
 [![Tests: 62 Passing](https://img.shields.io/badge/Tests-62_Passing-success.svg)](#testing--verification)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/SriSatyaLokesh/llm-council-pro-max/pulls)
 
-![Free LLM Council](header.jpg)
+<img width="1909" height="1012" alt="free-llm-council" src="https://github.com/user-attachments/assets/81707483-4d17-485e-983d-b42b7224cce6" />
+
 
 **Free LLM Council** (also known as *OpenCode LLM Council*) is a 100% free, local-first multi-model consensus and AI debate platform powered natively by [OpenCode](https://opencode.ai). 
 
