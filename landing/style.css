@@ -74,6 +74,11 @@ a:hover {
 }
 
 /* BUTTONS */
+a.btn:hover, a.btn:active, a.btn:focus,
+.btn:hover, .btn:active, .btn:focus {
+  text-decoration: none !important;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -89,28 +94,40 @@ a:hover {
 
 .btn-primary {
   background: var(--primary);
-  color: var(--text-inverse);
+  color: #FFFFFF !important;
 }
 .btn-primary:hover {
-  background: var(--primary-hover);
+  background: #C2410C;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
   background: var(--secondary-light);
-  color: var(--secondary);
+  color: var(--secondary) !important;
   border-color: var(--secondary);
 }
 .btn-secondary:hover {
   background: var(--secondary);
-  color: var(--text-inverse);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+  transform: translateY(-1px);
+}
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--text-main);
+  color: var(--text-main) !important;
 }
 .btn-ghost:hover {
   background: var(--surface-muted);
+  color: var(--text-main) !important;
 }
 
 .btn-sm { padding: 6px 14px; font-size: 13px; }
