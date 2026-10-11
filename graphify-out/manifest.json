@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "frontend/src/App.jsx": {
-    "mtime": 1791404109.110106,
-    "seen": 1791404112.5159514,
-    "ast_hash": "9ede6880fb1ebe699dae6927291ca746",
+    "mtime": 1791724952.3236527,
+    "seen": 1791725087.3015184,
+    "ast_hash": "b7c80923576373c8a6f55c5ae685742e",
     "semantic_hash": ""
   },
   "frontend/src/api.js": {
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791404109.112223,
-    "seen": 1791404112.5159545,
-    "ast_hash": "2f7d710b4eed7040671f2566f67a1813",
+    "mtime": 1791725244.01168,
+    "seen": 1791725275.319952,
+    "ast_hash": "421903260a9fdd937d71fee422b4fdee",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -480,15 +480,15 @@
     "semantic_hash": ""
   },
   "landing/index.html": {
-    "mtime": 1791724454.1993544,
-    "seen": 1791724480.672299,
-    "ast_hash": "5348c523edf72424082ea5f3cb71abe5",
+    "mtime": 1791725441.7593427,
+    "seen": 1791725474.8462048,
+    "ast_hash": "0f6b8d238bbf98b65c6ef0005d2b7635",
     "semantic_hash": ""
   },
-  "landing/public/header.jpg": {
-    "mtime": 1790659504.4777288,
-    "seen": 1791724480.6723084,
-    "ast_hash": "909633e731e29fc3e94cdb592515279b",
+  "landing/public/free-llm-council.webp": {
+    "mtime": 1791725419.526263,
+    "seen": 1791725474.8462133,
+    "ast_hash": "aeb809a83f9fe31851a4492d2c68b523",
     "semantic_hash": ""
   }
 }

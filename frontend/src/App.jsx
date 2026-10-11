@@ -61,21 +61,11 @@ function App() {
       .then((convs) => {
         if (!cancelled) {
           setConversations(convs);
-          if (convs && convs.length > 0) {
-            setCurrentConversationId((prev) => {
-              if (prev) {
-                // If an ID is already set (e.g. from deep link in URL), preserve it
-                return prev;
-              }
-              const defaultId = convs[0].id;
-              updateBrowserUrl(
-                defaultId,
-                reportModalState.isOpen ? reportModalState.type : null,
-                true
-              );
-              return defaultId;
-            });
-          } else if (!initialUrlState.id) {
+          if (initialUrlState.id) {
+            // User specifically opened a deep link with ?c=<id>
+            setCurrentConversationId(initialUrlState.id);
+          } else {
+            // User opened root / -> stay on root / and initialize a clean conversation draft
             handleNewConversation();
           }
         }
@@ -98,24 +88,21 @@ function App() {
       .then((conv) => {
         if (!cancelled) {
           setCurrentConversation(conv);
-          updateBrowserUrl(
-            conv.id,
-            reportModalState.isOpen ? reportModalState.type : null,
-            false
-          );
+          // Only update browser URL if an ID was explicitly requested in URL or has messages
+          const { id: urlId } = getUrlDeliberationState();
+          if (urlId || (conv.messages && conv.messages.length > 0)) {
+            updateBrowserUrl(
+              conv.id,
+              reportModalState.isOpen ? reportModalState.type : null,
+              false
+            );
+          }
         }
       })
       .catch((error) => {
         console.error('Failed to load conversation:', error);
-        // Fall back gracefully if deep link points to deleted or invalid conversation
         if (!cancelled) {
-          if (conversations && conversations.length > 0) {
-            const fallbackId = conversations[0].id;
-            setCurrentConversationId(fallbackId);
-            updateBrowserUrl(fallbackId, null, true);
-          } else {
-            handleNewConversation();
-          }
+          handleNewConversation();
         }
       });
     return () => {
@@ -127,8 +114,13 @@ function App() {
   useEffect(() => {
     const handlePopState = () => {
       const { id, report } = getUrlDeliberationState();
-      if (id && id !== currentConversationId) {
-        setCurrentConversationId(id);
+      if (id !== currentConversationId) {
+        if (id) {
+          setCurrentConversationId(id);
+        } else {
+          // Navigated back to root /
+          handleNewConversation();
+        }
       }
       setReportModalState({
         isOpen: Boolean(report),
@@ -177,13 +169,17 @@ function App() {
   const handleNewConversation = async (projectId = null) => {
     // If current conversation is already an empty draft
     if (currentConversation && (!currentConversation.messages || currentConversation.messages.length === 0)) {
-      if (currentConversation.project_id === projectId) return;
+      if (currentConversation.project_id === projectId) {
+        updateBrowserUrl(null, null, false);
+        return;
+      }
       try {
         const updated = await api.updateConversation(currentConversation.id, {
           project_id: projectId,
           unlink_project: !projectId,
         });
         setCurrentConversation(updated);
+        updateBrowserUrl(null, null, false);
         reloadConversations();
         reloadProjects();
         return;
@@ -197,7 +193,7 @@ function App() {
       const newConv = await api.createConversation(projectId);
       setCurrentConversation(newConv);
       setCurrentConversationId(newConv.id);
-      updateBrowserUrl(newConv.id, null, false);
+      updateBrowserUrl(null, null, false);
       reloadProjects();
     } catch (error) {
       console.error('Failed to create conversation:', error);
@@ -420,6 +416,7 @@ function App() {
 
     setIsLoading(true);
     setStreamError(null);
+    updateBrowserUrl(currentConversationId, null, false);
 
     const userMessage = { role: 'user', content };
     const assistantMessage = {

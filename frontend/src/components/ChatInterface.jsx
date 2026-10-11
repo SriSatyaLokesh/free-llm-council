@@ -131,25 +131,6 @@ export default function ChatInterface({
     }
   };
 
-  const handleKeyDown = (e) => {
-    // Submit on Enter (without Shift)
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit(e);
-    }
-  };
-
-  if (!conversation) {
-    return (
-      <div className="chat-interface">
-        <div className="empty-state">
-          <h2>LLM Council</h2>
-          <p>Create a new conversation to get started.</p>
-        </div>
-      </div>
-    );
-  }
-
   // Close dropdown on outside click or Escape key
   useEffect(() => {
     if (!isShareDropdownOpen) return;
@@ -171,8 +152,16 @@ export default function ChatInterface({
     };
   }, [isShareDropdownOpen]);
 
-  const isEmpty = !conversation.messages || conversation.messages.length === 0;
-  const activeProject = projects.find((p) => p.id === conversation.project_id);
+  const handleKeyDown = (e) => {
+    // Submit on Enter (without Shift)
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
+  const isEmpty = !conversation?.messages || conversation.messages.length === 0;
+  const activeProject = conversation?.project_id ? projects.find((p) => p.id === conversation.project_id) : null;
 
   const handleCopyId = async () => {
     if (!conversation?.id) return;
@@ -235,8 +224,8 @@ export default function ChatInterface({
               </span>
             )}
             <span className="breadcrumb-sep" aria-hidden="true">/</span>
-            <h2 className="breadcrumb-title" title={conversation.title || 'New Debate'}>
-              {conversation.title || 'New Debate'}
+            <h2 className="breadcrumb-title" title={conversation?.title || 'New Debate'}>
+              {conversation?.title || 'New Debate'}
             </h2>
             <button
               type="button"
@@ -245,7 +234,7 @@ export default function ChatInterface({
               title={`Deliberation Link: ${getShareableUrl(conversation?.id)}\nClick to copy shareable URL`}
             >
               <span className="conv-id-prefix">ID:</span>
-              <span className="conv-id-value">{conversation.id || 'new'}</span>
+              <span className="conv-id-value">{conversation?.id || 'new'}</span>
               <span className="conv-id-icon">
                 {idCopied ? (
                   <>
