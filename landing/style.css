@@ -74,6 +74,11 @@ a:hover {
 }
 
 /* BUTTONS */
+a.btn:hover, a.btn:active, a.btn:focus,
+.btn:hover, .btn:active, .btn:focus {
+  text-decoration: none !important;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -89,28 +94,40 @@ a:hover {
 
 .btn-primary {
   background: var(--primary);
-  color: var(--text-inverse);
+  color: #FFFFFF !important;
 }
 .btn-primary:hover {
-  background: var(--primary-hover);
+  background: #C2410C;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
   background: var(--secondary-light);
-  color: var(--secondary);
+  color: var(--secondary) !important;
   border-color: var(--secondary);
 }
 .btn-secondary:hover {
   background: var(--secondary);
-  color: var(--text-inverse);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+  transform: translateY(-1px);
+}
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--text-main);
+  color: var(--text-main) !important;
 }
 .btn-ghost:hover {
   background: var(--surface-muted);
+  color: var(--text-main) !important;
 }
 
 .btn-sm { padding: 6px 14px; font-size: 13px; }
@@ -182,6 +199,60 @@ a:hover {
 }
 .section-header p {
   font-size: 18px;
+}
+
+/* STEPPER & PIPELINE */
+.stepper-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.stepper-btn {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease-in-out;
+}
+
+.stepper-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.stepper-btn.active {
+  background: #FFF7ED;
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.stage-content {
+  display: none;
+}
+.stage-content.active {
+  display: block;
+}
+
+.transcript-card {
+  background: #0F172A;
+  color: #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  border: 1px solid #1E293B;
+  overflow-x: auto;
 }
 
 /* COMPARISON TABLE */
