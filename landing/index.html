@@ -52,6 +52,16 @@
         },
         "license": "https://opensource.org/licenses/MIT",
         "codeRepository": "https://github.com/SriSatyaLokesh/free-llm-council",
+        "author": {
+          "@type": "Person",
+          "name": "Sri Satya Lokesh (Satya K)",
+          "url": "https://srisatyalokesh.is-a.dev",
+          "sameAs": [
+            "https://github.com/SriSatyaLokesh",
+            "https://twitter.com/TechWithSatya",
+            "https://www.linkedin.com/in/srisatyalokesh/"
+          ]
+        },
         "featureList": [
           "4-Stage Deliberation Pipeline",
           "Blind Peer Review & Rubric Scoring",
@@ -112,20 +122,19 @@
 
   <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
+<body id="top">
   <!-- Header / Navigation (Single line desktop <= 70px) -->
   <header class="site-header">
-    <div style="display: flex; align-items: center; gap: 10px;">
+    <a href="#top" class="brand-link" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" aria-label="Scroll to top of Free LLM Council">
       <span style="background: var(--primary); color: #fff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); font-weight: 800; font-size: 16px;">C</span>
       <span style="font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: var(--text-main);">Free LLM Council</span>
-    </div>
+    </a>
     <nav class="site-nav">
-      <a href="#showcase" class="nav-link">Interface</a>
-      <a href="#pipeline" class="nav-link">Pipeline</a>
+      <a href="#pipeline" class="nav-link">Architecture</a>
       <a href="#models" class="nav-link">OpenCode &amp; BYOK</a>
       <a href="#examples" class="nav-link">Deliberation Reports</a>
-      <a href="#benchmarks" class="nav-link">Benchmarks</a>
       <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contribute" class="nav-link">Contribute</a>
       <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Star on GitHub</a>
     </nav>
   </header>
@@ -139,11 +148,9 @@
         <span class="chip chip-yellow">BYOK Hybrid Cloud</span>
         <span class="chip chip-success">Caveman Mode Ready</span>
       </div>
-      <h1 style="margin-bottom: 20px; max-width: 960px; margin-left: auto; margin-right: auto;">
-        Free LLM Council<br />
-        <span style="font-size: clamp(22px, 3.2vw, 36px); font-weight: 600; color: var(--text-muted); display: block; margin-top: 10px; letter-spacing: -0.02em;">
-          Sovereign AI Deliberation. Driven by OpenCode &amp; BYOK.
-        </span>
+      <h1 class="hero-headline">
+        <span class="hero-brand-title">Free LLM Council</span>
+        <span class="hero-statement">Sovereign AI Deliberation with OpenCode &amp; BYOK</span>
       </h1>
       <p style="font-size: 19px; max-width: 700px; margin: 0 auto 32px auto; line-height: 1.6; color: var(--text-muted);">
         Run multi-round peer debates, blind scoring, and chairman synthesis across local and free cloud LLMs at zero cost.
@@ -666,15 +673,123 @@ CAVEMAN SAVINGS: ~48% reduction in intermediate token overhead.
         </div>
       </div>
     </section>
+
+    <!-- Open Source Contribution Section -->
+    <section id="contribute" style="margin-bottom: 72px;">
+      <div class="section-header">
+        <span class="chip chip-teal">Open Source Community</span>
+        <h2>Contribute to Free LLM Council</h2>
+        <p>Free LLM Council is 100% open source under the MIT License. Join us to expand local model providers, refine deliberation prompts, and shape sovereign AI.</p>
+      </div>
+
+      <div class="contribute-grid">
+        <div class="contribute-card">
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+              <span class="chip chip-primary">Bug Reports &amp; Features</span>
+            </div>
+            <h3 style="font-size: 19px; margin-bottom: 10px;">Report Issues &amp; Propose Ideas</h3>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+              Encountered a bug with a local model engine, a token parsing edge case, or have an idea for a new scoring rubric? Open an issue on our GitHub tracker.
+            </p>
+          </div>
+          <a href="https://github.com/SriSatyaLokesh/free-llm-council/issues/new/choose" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%;">
+            Create GitHub Issue
+          </a>
+        </div>
+
+        <div class="contribute-card">
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+              <span class="chip chip-teal">Code &amp; Architecture</span>
+            </div>
+            <h3 style="font-size: 19px; margin-bottom: 10px;">Submit Pull Requests</h3>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+              Help integrate new hybrid model providers, optimize Caveman token compression, polish UI components, or add automated evaluation benchmarks.
+            </p>
+          </div>
+          <a href="https://github.com/SriSatyaLokesh/free-llm-council/pulls" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%;">
+            Explore &amp; Open PRs
+          </a>
+        </div>
+
+        <div class="contribute-card">
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+              <span class="chip chip-yellow">Community Discussions</span>
+            </div>
+            <h3 style="font-size: 19px; margin-bottom: 10px;">Connect &amp; Discuss</h3>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+              Have questions about local AI architecture, prompt synthesis, or air-gapped setups? Start a discussion or reach out directly on GitHub.
+            </p>
+          </div>
+          <a href="https://github.com/SriSatyaLokesh/free-llm-council/discussions" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="width: 100%;">
+            Join GitHub Discussions
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Developer Section -->
+    <section id="developer" style="margin-bottom: 72px;">
+      <div class="section-header">
+        <span class="chip chip-primary">Creator &amp; Architect</span>
+        <h2>Meet the Developer</h2>
+        <p>Architecting sovereign agentic workflows and local-first AI systems.</p>
+      </div>
+
+      <div class="developer-card">
+        <img 
+          src="https://srisatyalokesh.github.io/assets/img/profile.png" 
+          alt="Sri Satya Lokesh (Satya K)" 
+          class="developer-avatar"
+          onerror="this.src='https://avatars.githubusercontent.com/u/43106076?v=4'" 
+        />
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px;">
+            <h3 style="font-size: 22px; margin: 0; color: var(--text-main);">Sri Satya Lokesh (Satya K)</h3>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--primary); font-weight: 600;">@SriSatyaLokesh</span>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); font-weight: 500; margin-bottom: 12px;">
+            Lead AI Engineer &amp; Technical Architect &bull; Hyderabad, India
+          </p>
+          <p style="font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+            With 8+ years of engineering experience across Agentic AI, distributed systems, and Python architectures, Satya built <strong>Free LLM Council</strong> to liberate multi-agent deliberative reasoning from expensive cloud API lock-in. His focus is on sovereign, private, and high-efficiency intelligence accessible to every developer.
+          </p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+            <span class="chip chip-teal">Agentic AI &amp; Multi-Agent Systems</span>
+            <span class="chip chip-yellow">Distributed Architectures</span>
+            <span class="chip chip-primary">Sovereign &amp; Local LLMs</span>
+            <span class="chip chip-success">Python &amp; Async Systems</span>
+          </div>
+          <div class="developer-socials" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+            <a href="https://srisatyalokesh.is-a.dev" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              Portfolio &bull; srisatyalokesh.is-a.dev
+            </a>
+            <a href="https://github.com/SriSatyaLokesh" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              GitHub @SriSatyaLokesh
+            </a>
+            <a href="https://twitter.com/TechWithSatya" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              X / Twitter @TechWithSatya
+            </a>
+            <a href="https://www.linkedin.com/in/srisatyalokesh/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer style="border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; color: var(--text-muted); font-size: 14px; background: #FAFAFA;">
     <div style="display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; flex-wrap: wrap;">
       <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted);">GitHub</a>
       <a href="https://github.com/SriSatyaLokesh/free-llm-council/issues" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted);">Issue Tracker</a>
+      <a href="https://github.com/SriSatyaLokesh/free-llm-council/pulls" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted);">Pull Requests</a>
+      <a href="https://srisatyalokesh.is-a.dev" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted);">Developer Portfolio</a>
       <a href="https://github.com/SriSatyaLokesh/free-llm-council/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted);">MIT License</a>
     </div>
-    <p>Free LLM Council &bull; OpenCode Native Multi-Model Deliberation Engine &bull; Sovereign &amp; Free Forever</p>
+    <p>Free LLM Council &bull; Created by <a href="https://srisatyalokesh.is-a.dev" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 600;">Satya K</a> &bull; Sovereign &amp; Free Forever</p>
   </footer>
 
   <script>
