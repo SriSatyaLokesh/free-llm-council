@@ -7,97 +7,186 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <!-- Header / Navigation -->
   <header style="border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; position: sticky; top: 0; z-index: 50;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="background: var(--primary); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); font-weight: 800; font-size: 14px;">C</span>
+      <span style="background: var(--primary); color: #fff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); font-weight: 800; font-size: 16px;">C</span>
       <span style="font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: var(--text-main);">Free LLM Council</span>
     </div>
-    <nav style="display: flex; gap: 16px; align-items: center;">
-      <a href="#pipeline" style="color: var(--text-muted); font-size: 14px;">Pipeline</a>
+    <nav style="display: flex; gap: 20px; align-items: center;">
+      <a href="#manifesto" style="color: var(--text-muted); font-size: 14px;">Manifesto</a>
       <a href="#comparison" style="color: var(--text-muted); font-size: 14px;">Comparison</a>
+      <a href="#quickstart" style="color: var(--text-muted); font-size: 14px;">Quickstart</a>
       <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Star on GitHub</a>
     </nav>
   </header>
 
   <main style="max-width: 1140px; margin: 0 auto; padding: 64px 24px;">
     <!-- Hero Section -->
-    <section style="text-align: center; margin-bottom: 64px;">
+    <section style="text-align: center; margin-bottom: 80px;">
       <div style="display: inline-flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
         <span class="chip chip-primary">OpenCode Native</span>
         <span class="chip chip-teal">Zero API Fees</span>
         <span class="chip chip-yellow">4-Stage Deliberation</span>
+        <span class="chip chip-success">Caveman Mode Ready</span>
       </div>
-      <h1 style="margin-bottom: 20px; max-width: 860px; margin-left: auto; margin-right: auto;">
-        Unbiased AI Consensus with Zero Vendor Lock-In.
+      <h1 style="margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto;">
+        Unbiased AI Consensus.<br />Zero API Fees.
       </h1>
-      <p style="font-size: 19px; max-width: 720px; margin: 0 auto 32px auto; line-height: 1.6;">
-        Stop trusting a single model's blind spot. Free LLM Council pits leading open-source and free-tier LLMs against each other in multi-round blind peer review, synthesized by an impartial chairman.
+      <p style="font-size: 20px; max-width: 760px; margin: 0 auto 36px auto; line-height: 1.6;">
+        Stop relying on a single model's hallucination. Free LLM Council pits leading open-source and free-tier LLMs against each other in multi-round peer debate, blind peer review, and chairman synthesis.
       </p>
-      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <a href="#quickstart" class="btn btn-primary btn-lg">Launch in 60s</a>
-        <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">View Source</a>
+        <a href="#comparison" class="btn btn-secondary btn-lg">View Deliberation Matrix</a>
       </div>
     </section>
 
-    <!-- Design Palette Showcase -->
-    <section id="comparison" style="margin-bottom: 64px;">
-      <div style="text-align: center; margin-bottom: 32px;">
-        <span class="chip chip-teal" style="margin-bottom: 12px;">Architecture Pillars</span>
-        <h2>Why Multi-Agent Council Outperforms Single Models</h2>
+    <!-- Brand Manifesto Section -->
+    <section id="manifesto" style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="chip chip-teal">The OpenCode Manifesto</span>
+        <h2>Architected for Sovereignty, Accuracy, and Speed</h2>
+        <p>Why a multi-agent council consistently outperforms solitary trillion-parameter models.</p>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
         <div class="card card-highlight">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-            <h3 style="color: var(--primary);">100% Free & Unlimited</h3>
-            <span class="chip chip-primary">$0 / month</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h3 style="color: var(--primary);">Collective Intelligence</h3>
+            <span class="chip chip-primary">Anti-Hallucination</span>
           </div>
-          <p>
-            Anchor directly to local OpenCode and free API tiers (Groq, Gemini). Zero per-token cloud costs, zero 429 rate limit walls.
+          <p style="margin-bottom: 12px;">
+            Single models suffer from domain blind spots and confidently stated falsehoods. In a council, multiple independent LLMs examine the query in parallel.
+          </p>
+          <p style="font-size: 14px;">
+            Cross-examination during Stage 2 forces each model to defend its premises, acknowledge convincing counter-arguments, and surface hidden technical tradeoffs.
           </p>
         </div>
 
         <div class="card" style="border-left: 4px solid var(--secondary);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-            <h3 style="color: var(--secondary);">Blind Peer Review</h3>
-            <span class="chip chip-teal">Impartial</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h3 style="color: var(--secondary);">Economic Sovereignty</h3>
+            <span class="chip chip-teal">$0 / Unlimited</span>
           </div>
-          <p>
-            Models critique anonymized peer arguments without brand bias, scoring factual soundness and exposing hidden tradeoffs.
+          <p style="margin-bottom: 12px;">
+            A true multi-agent deliberation requires 25 to 40+ LLM turns per question. On paid cloud APIs, a single debate costs dollars and hits rate limits.
+          </p>
+          <p style="font-size: 14px;">
+            Free LLM Council runs locally through OpenCode (Ollama) and connects to generous free-tier cloud endpoints (Groq, Gemini). Zero subscription fees forever.
           </p>
         </div>
 
         <div class="card" style="border-left: 4px solid var(--tertiary);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-            <h3 style="color: #B45309;">Caveman Token Savings</h3>
-            <span class="chip chip-yellow">~48% Savings</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h3 style="color: #B45309;">Radical Transparency</h3>
+            <span class="chip chip-yellow">Blind Scoring</span>
           </div>
-          <p>
-            Intermediate debate rounds strip conversational fluff while keeping 100% semantic substance, boosting reasoning speed.
+          <p style="margin-bottom: 12px;">
+            Brand prestige should never dictate truth. During Stage 3, models receive anonymized candidate responses labeled as Response A, B, and C.
+          </p>
+          <p style="font-size: 14px;">
+            Models evaluate arguments strictly on factual rigor, analytical depth, and clarity before a capable Chairman synthesizes the definitive verdict.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Terminal Quickstart -->
+    <!-- Comparison Matrix Section -->
+    <section id="comparison" style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="chip chip-primary">Deliberation Matrix</span>
+        <h2>How Free LLM Council Compares</h2>
+        <p>A side-by-side architectural and economic breakdown.</p>
+      </div>
+
+      <div class="table-container">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th class="col-featured">Free LLM Council (OpenCode)</th>
+              <th>Original Karpathy Concept</th>
+              <th>Commercial Team Chatbots</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>API Cost & Limits</strong></td>
+              <td class="col-featured"><span class="chip chip-primary" style="margin-bottom: 4px;">100% Free & Unlimited</span><br /><small style="color: var(--text-muted);">Zero token fees via local OpenCode</small></td>
+              <td>Paid per-token via OpenRouter<br /><small style="color: var(--text-muted);">(Rate limits & fees)</small></td>
+              <td>$20 – $200 / user / mo<br /><small style="color: var(--text-muted);">(Expensive seat licensing)</small></td>
+            </tr>
+            <tr>
+              <td><strong>Deliberation Process</strong></td>
+              <td class="col-featured">4-Stage Multi-Round Debate & Blind Review</td>
+              <td>Single generation script</td>
+              <td>Single model output</td>
+            </tr>
+            <tr>
+              <td><strong>Model Diversity</strong></td>
+              <td class="col-featured">Hybrid: Local (Ollama) + Cloud (Groq, Gemini, OpenRouter)</td>
+              <td>Locked to OpenRouter</td>
+              <td>Single proprietary vendor lock-in</td>
+            </tr>
+            <tr>
+              <td><strong>Deliberation UI</strong></td>
+              <td class="col-featured">Reactive Deliberation Suite + Live Progress Rails</td>
+              <td>CLI / Terminal logs only</td>
+              <td>Standard single-thread chat</td>
+            </tr>
+            <tr>
+              <td><strong>Privacy & Air-Gap</strong></td>
+              <td class="col-featured"><span class="chip chip-teal">100% Local Supported</span><br /><small style="color: var(--text-muted);">Runs fully air-gapped on your hardware</small></td>
+              <td>Requires cloud API keys</td>
+              <td>Cloud-hosted & telemetry logged</td>
+            </tr>
+            <tr>
+              <td><strong>Token Compression</strong></td>
+              <td class="col-featured"><span class="chip chip-yellow">Caveman Mode (~48% Token Savings)</span></td>
+              <td>None (Verbose raw output)</td>
+              <td>None (Standard prose filler)</td>
+            </tr>
+            <tr>
+              <td><strong>Human Steering</strong></td>
+              <td class="col-featured">Live Mid-Debate Steering Directives & URLs</td>
+              <td>Autonomous / Unsteerable</td>
+              <td>Manual prompt repetition</td>
+            </tr>
+            <tr>
+              <td><strong>Reports & Exports</strong></td>
+              <td class="col-featured">Executive + Technical Matrix, PDF, Markdown, ZIP</td>
+              <td>None</td>
+              <td>Basic copy-paste</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Terminal Quickstart Section -->
     <section id="quickstart" style="margin-bottom: 64px;">
-      <div class="card" style="background: #0F172A; border: none; padding: 36px; color: #FFFFFF;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+      <div class="card" style="background: #0F172A; border: none; padding: 40px; color: #FFFFFF;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
           <div>
-            <span class="chip chip-primary" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border-color: rgba(234, 88, 12, 0.4);">Quickstart</span>
-            <h3 style="color: #FFFFFF; margin-top: 8px;">Spin Up Locally in One Command</h3>
+            <span class="chip chip-primary" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border-color: rgba(234, 88, 12, 0.4);">One-Line Quickstart</span>
+            <h3 style="color: #FFFFFF; margin-top: 8px;">Run Free LLM Council on Your Machine</h3>
           </div>
-          <span style="font-family: var(--font-mono); font-size: 13px; color: #94A3B8;">Python 3.11+ • Node 18+</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: #94A3B8;">Python 3.11+ • Node 18+ • OpenCode</span>
         </div>
         <div class="terminal-box" style="background: #020617; border: 1px solid #1E293B;">
-          <code>git clone https://github.com/SriSatyaLokesh/free-llm-council.git && cd free-llm-council && ./start.sh</code>
+          <code>git clone https://github.com/SriSatyaLokesh/free-llm-council.git &amp;&amp; cd free-llm-council &amp;&amp; ./start.sh</code>
+        </div>
+        <div style="margin-top: 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+          <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">GitHub Repository</a>
+          <span style="color: #94A3B8; font-size: 14px;">Open http://localhost:5173 once launched</span>
         </div>
       </div>
     </section>
   </main>
 
-  <footer style="border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--text-muted); font-size: 14px;">
-    Free LLM Council • OpenCode Native Multi-Model Deliberation Engine • MIT License
+  <footer style="border-top: 1px solid var(--border); padding: 36px 24px; text-align: center; color: var(--text-muted); font-size: 14px; background: #FAFAFA;">
+    <p>Free LLM Council &bull; OpenCode Native Multi-Model Deliberation Engine &bull; MIT License</p>
   </footer>
 </body>
 </html>
