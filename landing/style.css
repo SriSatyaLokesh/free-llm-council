@@ -184,6 +184,60 @@ a:hover {
   font-size: 18px;
 }
 
+/* STEPPER & PIPELINE */
+.stepper-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.stepper-btn {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease-in-out;
+}
+
+.stepper-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.stepper-btn.active {
+  background: #FFF7ED;
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.stage-content {
+  display: none;
+}
+.stage-content.active {
+  display: block;
+}
+
+.transcript-card {
+  background: #0F172A;
+  color: #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  border: 1px solid #1E293B;
+  overflow-x: auto;
+}
+
 /* COMPARISON TABLE */
 .table-container {
   overflow-x: auto;

@@ -14,8 +14,10 @@
       <span style="font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: var(--text-main);">Free LLM Council</span>
     </div>
     <nav style="display: flex; gap: 20px; align-items: center;">
+      <a href="#pipeline" style="color: var(--text-muted); font-size: 14px;">Pipeline</a>
       <a href="#manifesto" style="color: var(--text-muted); font-size: 14px;">Manifesto</a>
       <a href="#comparison" style="color: var(--text-muted); font-size: 14px;">Comparison</a>
+      <a href="#models" style="color: var(--text-muted); font-size: 14px;">Models</a>
       <a href="#quickstart" style="color: var(--text-muted); font-size: 14px;">Quickstart</a>
       <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Star on GitHub</a>
     </nav>
@@ -38,7 +40,168 @@
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <a href="#quickstart" class="btn btn-primary btn-lg">Launch in 60s</a>
-        <a href="#comparison" class="btn btn-secondary btn-lg">View Deliberation Matrix</a>
+        <a href="#pipeline" class="btn btn-secondary btn-lg">Explore 4-Stage Pipeline</a>
+      </div>
+    </section>
+
+    <!-- 4-Stage Deliberation Pipeline Walkthrough -->
+    <section id="pipeline" style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="chip chip-primary">Interactive Architecture</span>
+        <h2>The 4-Stage Consensus Engine</h2>
+        <p>Explore step-by-step how independent models deliberate, cross-examine, and synthesize truth.</p>
+      </div>
+
+      <!-- Stepper Navigation -->
+      <div class="stepper-nav" role="tablist">
+        <button class="stepper-btn active" data-stage="stage-1" role="tab" aria-selected="true">
+          <small style="color: var(--primary); display: block; font-size: 11px;">STAGE 01</small>
+          Independent Research
+        </button>
+        <button class="stepper-btn" data-stage="stage-2" role="tab" aria-selected="false">
+          <small style="color: var(--secondary); display: block; font-size: 11px;">STAGE 02</small>
+          Named Peer Debate
+        </button>
+        <button class="stepper-btn" data-stage="stage-3" role="tab" aria-selected="false">
+          <small style="color: #B45309; display: block; font-size: 11px;">STAGE 03</small>
+          Blind Peer Review
+        </button>
+        <button class="stepper-btn" data-stage="stage-4" role="tab" aria-selected="false">
+          <small style="color: var(--success); display: block; font-size: 11px;">STAGE 04</small>
+          Chairman Verdict &amp; Caveman
+        </button>
+      </div>
+
+      <!-- Stage 1 Details -->
+      <div id="stage-1" class="stage-content active card card-highlight">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span class="chip chip-primary">Stage 1: Opening Positions</span>
+            <h3 style="margin-top: 8px;">Parallel Investigation with Zero Peer Bias</h3>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Concurrency: 3-5 Models in Parallel</span>
+        </div>
+        <p style="margin-bottom: 20px;">
+          Each seated council model independently searches live web tools and analyzes the prompt. No model is allowed to see what peers are writing, ensuring diverse viewpoints and preventing groupthink.
+        </p>
+        <div class="transcript-card">
+<span style="color: #38BDF8;">// Model A (Llama 3.3 70B via Groq)</span>
+Opening Stance: Recommends PostgreSQL + TimescaleDB for telemetry data due to mature tooling and relational JOIN capabilities.
+
+<span style="color: #4ADE80;">// Model B (DeepSeek-R1 via Ollama)</span>
+Opening Stance: Recommends ClickHouse due to vectorized column-oriented storage, yielding 10x higher ingestion throughput and 70% lower disk footprint.
+        </div>
+      </div>
+
+      <!-- Stage 2 Details -->
+      <div id="stage-2" class="stage-content card" style="border-left: 4px solid var(--secondary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span class="chip chip-teal">Stage 2: Multi-Round Debate</span>
+            <h3 style="margin-top: 8px;">Direct Rebuttals &amp; Persuasive Concessions</h3>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Rounds: 2 Rounds by Default</span>
+        </div>
+        <p style="margin-bottom: 20px;">
+          Models view each other's opening positions <strong>by name</strong>. Each model must challenge assumptions, cite counter-evidence, declare whether it is defending or updating its stance, and surface hidden drawbacks.
+        </p>
+        <div class="transcript-card">
+<span style="color: #2DD4BF;">// Model A Rebuttal to DeepSeek-R1:</span>
+"DeepSeek correctly highlights ClickHouse's raw ingestion speed. However, ClickHouse lacks ACID transactions on mutations and requires external coordination for complex JOINs. For teams with relational workloads, TimescaleDB avoids operational fragmentation."
+
+<span style="color: #FB923C;">// Model B Concession:</span>
+"Conceding Point: If immediate transactional updates are required, TimescaleDB is preferable. For pure append-only analytics at scale, ClickHouse remains mathematically superior."
+        </div>
+      </div>
+
+      <!-- Stage 3 Details -->
+      <div id="stage-3" class="stage-content card" style="border-left: 4px solid var(--tertiary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span class="chip chip-yellow">Stage 3: Blind Peer Review</span>
+            <h3 style="margin-top: 8px;">Anonymized Matrix Scoring Without Brand Bias</h3>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Scoring: 1 - 10 Factual Rubric</span>
+        </div>
+        <p style="margin-bottom: 20px;">
+          Candidate arguments are stripped of model names and randomized as <code>Response A</code>, <code>Response B</code>, and <code>Response C</code>. Models score peers objectively on factual correctness, clarity, and trade-off depth.
+        </p>
+        <div class="transcript-card">
+<span style="color: #FACC15;">// Blind Review Aggregate Matrix:</span>
+Response A (Llama 3.3):   Factual: 9.2/10 | Reasoning: 8.8/10 | Rank: #2
+Response B (DeepSeek-R1): Factual: 9.6/10 | Reasoning: 9.4/10 | Rank: #1
+Response C (Qwen 2.5):    Factual: 8.9/10 | Reasoning: 8.6/10 | Rank: #3
+
+Consensus Agreement: High agreement on ClickHouse for analytics and TimescaleDB for hybrid CRUD.
+        </div>
+      </div>
+
+      <!-- Stage 4 Details -->
+      <div id="stage-4" class="stage-content card" style="border-left: 4px solid var(--success);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span class="chip chip-success">Stage 4: Chairman Synthesis &amp; Caveman</span>
+            <h3 style="margin-top: 8px;">Executive Verdict with Optional Token Compression</h3>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Compression: Up to 48% Token Savings</span>
+        </div>
+        <p style="margin-bottom: 20px;">
+          The designated Chairman LLM reviews the full transcript and review matrix, crafting an actionable executive summary with trade-offs, dissenting opinions, and confidence ratings.
+        </p>
+        <div class="transcript-card">
+<span style="color: #4ADE80;">// Chairman Verdict:</span>
+DECISION: Adopt hybrid strategy — ClickHouse for time-series logs (>100k events/sec), PostgreSQL for metadata.
+CONFIDENCE: 94% (Consensus reached across 3 peer models)
+TRADE-OFFS: Higher infrastructure footprint vs unified query efficiency.
+CAVEMAN SAVINGS: ~48% reduction in intermediate token overhead.
+        </div>
+      </div>
+    </section>
+
+    <!-- Supported Model Providers Section -->
+    <section id="models" style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="chip chip-teal">Model Ecosystem</span>
+        <h2>Seat Any Open or Cloud Model</h2>
+        <p>Mix and match local private compute with ultra-fast free cloud tiers.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px;">Local Ollama</h3>
+            <span class="chip chip-success">100% Private</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Run completely air-gapped on your local hardware with zero network transmission.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Llama 3.3 • DeepSeek-R1 • Qwen 2.5</div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px;">Groq Cloud</h3>
+            <span class="chip chip-primary">300+ tok/s</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Ultra-fast LPU inference via Groq's generous free tier with zero subscription fees.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Llama 3.3 70B • Llama 3.1 8B</div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px;">Google Gemini</h3>
+            <span class="chip chip-teal">1M Context</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Connect Google AI Studio free tier keys for huge context windows and reasoning.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Gemini 2.0 Flash • Gemini 1.5 Pro</div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px;">BYOK Frontier</h3>
+            <span class="chip chip-yellow">Hybrid Seating</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Bring your own API key to seat Claude, GPT-4o, or OpenRouter alongside free models.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Claude 3.5 Sonnet • GPT-4o • o1</div>
+        </div>
       </div>
     </section>
 
@@ -188,5 +351,25 @@
   <footer style="border-top: 1px solid var(--border); padding: 36px 24px; text-align: center; color: var(--text-muted); font-size: 14px; background: #FAFAFA;">
     <p>Free LLM Council &bull; OpenCode Native Multi-Model Deliberation Engine &bull; MIT License</p>
   </footer>
+
+  <script>
+    // Lightweight Stepper Tab Switcher (< 20 lines)
+    document.querySelectorAll('.stepper-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-stage');
+        document.querySelectorAll('.stepper-btn').forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.stage-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) targetContent.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
