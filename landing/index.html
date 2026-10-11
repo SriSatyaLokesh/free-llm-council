@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free LLM Council — Sovereign Multi-Agent Deliberation</title>
+  <title>Free LLM Council — OpenCode Multi-Model Deliberation Engine</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -14,10 +14,11 @@
       <span style="font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: var(--text-main);">Free LLM Council</span>
     </div>
     <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+      <a href="#showcase" style="color: var(--text-muted); font-size: 14px;">Interface</a>
       <a href="#pipeline" style="color: var(--text-muted); font-size: 14px;">Pipeline</a>
-      <a href="#examples" style="color: var(--text-muted); font-size: 14px;">Live Reports</a>
+      <a href="#models" style="color: var(--text-muted); font-size: 14px;">OpenCode &amp; BYOK</a>
+      <a href="#examples" style="color: var(--text-muted); font-size: 14px;">Deliberation Reports</a>
       <a href="#benchmarks" style="color: var(--text-muted); font-size: 14px;">Benchmarks</a>
-      <a href="#comparison" style="color: var(--text-muted); font-size: 14px;">Comparison</a>
       <a href="#faq" style="color: var(--text-muted); font-size: 14px;">FAQ</a>
       <a href="https://github.com/SriSatyaLokesh/free-llm-council" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Star on GitHub</a>
     </nav>
@@ -25,22 +26,175 @@
 
   <main style="max-width: 1140px; margin: 0 auto; padding: 64px 24px;">
     <!-- Hero Section -->
-    <section style="text-align: center; margin-bottom: 80px;">
+    <section style="text-align: center; margin-bottom: 72px;">
       <div style="display: inline-flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
         <span class="chip chip-primary">OpenCode Native</span>
         <span class="chip chip-teal">Zero API Fees</span>
-        <span class="chip chip-yellow">4-Stage Deliberation</span>
+        <span class="chip chip-yellow">BYOK Hybrid Cloud</span>
         <span class="chip chip-success">Caveman Mode Ready</span>
       </div>
-      <h1 style="margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto;">
-        Unbiased AI Consensus.<br />Zero API Fees.
+      <h1 style="margin-bottom: 24px; max-width: 920px; margin-left: auto; margin-right: auto;">
+        Sovereign AI Deliberation.<br />Driven by OpenCode.
       </h1>
-      <p style="font-size: 20px; max-width: 760px; margin: 0 auto 36px auto; line-height: 1.6;">
-        Stop relying on a single model's hallucination. Free LLM Council pits leading open-source and free-tier LLMs against each other in multi-round peer debate, blind peer review, and chairman synthesis.
+      <p style="font-size: 20px; max-width: 780px; margin: 0 auto 36px auto; line-height: 1.6;">
+        Stop relying on a single model's hallucination. Free LLM Council connects directly to your local <strong>OpenCode</strong> service, orchestrating multi-round peer debate, blind peer review, and chairman synthesis across local and BYOK frontier models.
       </p>
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;">
         <a href="#quickstart" class="btn btn-primary btn-lg">Launch in 60s</a>
-        <a href="#examples" class="btn btn-secondary btn-lg">View Sample Deliberation Report</a>
+        <a href="#showcase" class="btn btn-secondary btn-lg">Explore Studio UI</a>
+      </div>
+
+      <!-- App Interface Screenshot / Showcase -->
+      <div id="showcase" class="card" style="padding: 12px; background: #0F172A; border-color: #1E293B; box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.25);">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; margin-bottom: 8px; border-bottom: 1px solid #1E293B;">
+          <div style="display: flex; gap: 6px;">
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: #EF4444; display: inline-block;"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: #EAB308; display: inline-block;"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: #22C55E; display: inline-block;"></span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: #94A3B8;">Free LLM Council Studio &bull; OpenCode Native Deliberation Workspace</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: #22C55E;">● OpenCode 127.0.0.1:4096 Connected</span>
+        </div>
+        <img src="./header.jpg" alt="Free LLM Council Studio Workspace" style="width: 100%; height: auto; display: block; border-radius: var(--radius-sm);" />
+      </div>
+    </section>
+
+    <!-- Real App UI Preview: Model Picker & Seating Roster -->
+    <section id="roster-ui" style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="chip chip-primary">App Component Showcase</span>
+        <h2>Council Seating Roster &amp; Model Picker</h2>
+        <p>Seat any OpenCode-discovered model, designate the Chairman, and configure reasoning depth on the fly.</p>
+      </div>
+
+      <div class="card" style="border: 1px solid var(--border); padding: 32px; background: #FFFFFF;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 20px;">Active Council Roster (4 Seated Members)</h3>
+            <p style="font-size: 14px;">Models discovered automatically via local OpenCode service (<code>http://127.0.0.1:4096</code>).</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <span class="chip chip-primary">Auto-Failover Enabled</span>
+            <span class="chip chip-teal">Canary Sandboxed</span>
+          </div>
+        </div>
+
+        <!-- Seated Model Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px;">
+          <!-- Model 1 (Chairman) -->
+          <div style="border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 18px; background: #FFF7ED;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="chip chip-primary" style="font-size: 11px;">★ Chairman</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">128k ctx</span>
+            </div>
+            <strong style="display: block; font-size: 16px; color: var(--text-main);">Qwen 2.5 72B</strong>
+            <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 12px;">Engine: OpenCode / Ollama</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+              <span>Reasoning:</span>
+              <span class="chip" style="background: #FFFFFF; border-color: #FFEDD5; color: var(--primary);">xHigh</span>
+            </div>
+          </div>
+
+          <!-- Model 2 -->
+          <div style="border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; background: var(--surface);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="chip chip-teal" style="font-size: 11px;">Member</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">128k ctx</span>
+            </div>
+            <strong style="display: block; font-size: 16px; color: var(--text-main);">Llama 3.3 70B</strong>
+            <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 12px;">Engine: OpenCode / Groq</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+              <span>Reasoning:</span>
+              <span class="chip" style="background: var(--surface-muted); color: var(--text-muted);">High</span>
+            </div>
+          </div>
+
+          <!-- Model 3 -->
+          <div style="border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; background: var(--surface);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="chip chip-yellow" style="font-size: 11px;">Member</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">64k ctx</span>
+            </div>
+            <strong style="display: block; font-size: 16px; color: var(--text-main);">DeepSeek-R1</strong>
+            <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 12px;">Engine: OpenCode / Ollama</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+              <span>Reasoning:</span>
+              <span class="chip" style="background: var(--surface-muted); color: var(--text-muted);">High</span>
+            </div>
+          </div>
+
+          <!-- Model 4 (BYOK Cloud) -->
+          <div style="border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; background: var(--surface);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="chip chip-success" style="font-size: 11px;">BYOK Hybrid</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">200k ctx</span>
+            </div>
+            <strong style="display: block; font-size: 16px; color: var(--text-main);">Claude 3.5 Sonnet</strong>
+            <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 12px;">Engine: OpenCode / Anthropic</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+              <span>Reasoning:</span>
+              <span class="chip" style="background: var(--surface-muted); color: var(--text-muted);">Full</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steering & Live Progress Dock -->
+        <div style="background: #0F172A; color: #F8FAFC; border-radius: var(--radius-md); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="color: #FB923C; font-weight: 700; font-size: 13px;">RUNRAIL STATUS:</span>
+            <span class="chip" style="background: rgba(34, 197, 94, 0.2); color: #4ADE80; font-size: 11px;">Stage 2: Named Peer Debate in Progress</span>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: #94A3B8;">
+            Mid-Debate Steering: <code>/steer prioritize ACID transactions over ingestion</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OpenCode Engine & BYOK Ecosystem Section -->
+    <section id="models" style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="chip chip-teal">OpenCode Core &amp; BYOK Hybrid</span>
+        <h2>How OpenCode Powers the Council</h2>
+        <p>Connecting your local OpenCode environment with zero API fees, live tools, and optional frontier cloud models.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <div class="card card-highlight">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px; color: var(--primary);">OpenCode Service</h3>
+            <span class="chip chip-primary">Port 4096</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Auto-detected on startup via <code>service.json</code>. Provides unified discovery, live web inspection, and cryptographic canary security.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">opencode service start</div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--secondary);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px; color: var(--secondary);">Local Ollama Engine</h3>
+            <span class="chip chip-teal">100% Free &amp; Air-Gapped</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Run private open-weights models through OpenCode with zero outbound telemetry or data leaving your network.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Llama 3.3 • DeepSeek-R1 • Qwen 2.5</div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--tertiary);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px; color: #B45309;">Free Cloud Providers</h3>
+            <span class="chip chip-yellow">Fast Inference</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Leverage generous zero-cost developer tiers through OpenCode: Groq LPU speed (300+ tok/s) and Google AI Studio (1M tokens).</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Groq Llama 3.3 • Gemini 2.0 Flash</div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--success);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 18px; color: var(--success);">BYOK Frontier Seating</h3>
+            <span class="chip chip-success">In-Memory Keys</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 12px;">Seat proprietary models (Claude 3.5 Sonnet, GPT-4o, o1) via in-app key modal. Keys remain purely in RAM.</p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">OpenRouter • OpenAI • Anthropic</div>
+        </div>
       </div>
     </section>
 
@@ -274,7 +428,7 @@ CAVEMAN SAVINGS: ~48% reduction in intermediate token overhead.
           <thead>
             <tr>
               <th>Capability</th>
-              <th class="col-featured">Free LLM Council (OpenCode)</th>
+              <th class="col-featured">Free LLM Council (OpenCode Native)</th>
               <th>Original Karpathy Concept</th>
               <th>Commercial Team Chatbots</th>
             </tr>
@@ -294,7 +448,7 @@ CAVEMAN SAVINGS: ~48% reduction in intermediate token overhead.
             </tr>
             <tr>
               <td><strong>Model Diversity</strong></td>
-              <td class="col-featured">Hybrid: Local (Ollama) + Cloud (Groq, Gemini, OpenRouter)</td>
+              <td class="col-featured">OpenCode: Local (Ollama) + Free Tiers + BYOK Frontier</td>
               <td>Locked to OpenRouter</td>
               <td>Single proprietary vendor lock-in</td>
             </tr>
@@ -333,40 +487,47 @@ CAVEMAN SAVINGS: ~48% reduction in intermediate token overhead.
       </div>
     </section>
 
-    <!-- FAQ Accordion (Native HTML details/summary) -->
+    <!-- FAQ Accordion (Mutually exclusive with native name="faq-group") -->
     <section id="faq" style="margin-bottom: 80px;">
       <div class="section-header">
         <span class="chip chip-teal">Frequently Asked Questions</span>
         <h2>Everything You Need to Know</h2>
-        <p>Common questions about setup, air-gapped operations, and provider support.</p>
+        <p>Common questions about OpenCode, local setup, air-gapped operations, and model seating.</p>
       </div>
 
       <div class="faq-list">
-        <details class="faq-item" open>
+        <details class="faq-item" name="faq-group" open>
+          <summary class="faq-question">What is OpenCode and how does Free LLM Council use it?</summary>
+          <div class="faq-answer">
+            <strong>OpenCode</strong> (opencode.ai) is the native local engine powering Free LLM Council. It runs a lightweight background HTTP service (defaulting to <code>http://127.0.0.1:4096</code>) that discovers your configured AI models, provides live web search and read-only workspace inspection tools, and enforces cryptographic canary protections so council members cannot alter your files.
+          </div>
+        </details>
+
+        <details class="faq-item" name="faq-group">
           <summary class="faq-question">Is Free LLM Council genuinely 100% free?</summary>
           <div class="faq-answer">
-            Yes. Free LLM Council connects directly to local models hosted via OpenCode and Ollama (Llama 3.3, DeepSeek-R1, Qwen 2.5) with zero API charges. You can also connect free cloud tiers like Groq (fast LPU inference) and Google AI Studio (Gemini 2.0 Flash) without incurring monthly subscriptions.
+            Yes. When connected to local OpenCode models (via Ollama or local backends), there are zero API token fees, credit card requirements, or rate limits. You can also connect free cloud tiers from Groq (Llama 3.3 70B on fast LPUs) and Google AI Studio (Gemini 2.0 Flash) without incurring monthly subscriptions.
           </div>
         </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">How does this differ from Andrej Karpathy's original script?</summary>
+        <details class="faq-item" name="faq-group">
+          <summary class="faq-question">How does Bring-Your-Own-Key (BYOK) work alongside free models?</summary>
           <div class="faq-answer">
-            Karpathy's repository was an experimental single-file CLI script coupled to OpenRouter API keys. Free LLM Council expands the concept into a complete sovereign platform: a modern non-scrolling React UI, persistent sessions, project folders, live human mid-debate steering, blind rubric scoring, Caveman token reduction (~48% savings), and publication-grade PDF/ZIP report exports.
+            Through our hybrid seating architecture, you can open the in-app Provider Key modal to input keys for Claude 3.5 Sonnet, GPT-4o, or OpenRouter. These frontier models are seated alongside your free local models in the roster. Keys are held purely in memory and are never persisted to disk or sent to our servers.
           </div>
         </details>
 
-        <details class="faq-item">
+        <details class="faq-item" name="faq-group">
+          <summary class="faq-question">How does this differ from Andrej Karpathy's original prototype?</summary>
+          <div class="faq-answer">
+            Karpathy's repository was an experimental single-file CLI script coupled to OpenRouter API keys. Free LLM Council expands this into a full sovereign studio: a modern single-window React interface, persistent sessions, project folders, mid-debate human steering, blind scoring rubrics, Caveman token reduction (~48% savings), and publication-grade PDF/ZIP report exports.
+          </div>
+        </details>
+
+        <details class="faq-item" name="faq-group">
           <summary class="faq-question">Can I run completely offline / air-gapped?</summary>
           <div class="faq-answer">
-            Yes. When you configure local Ollama models in OpenCode, no prompts, deliberations, or code ever leave your local machine or internal enterprise network. Canaries enforce strict read-only sandboxing across all workspace inspections.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Can I seat commercial frontier models alongside free models?</summary>
-          <div class="faq-answer">
-            Yes. Our Bring-Your-Own-Key (BYOK) hybrid architecture allows you to seat Claude 3.5 Sonnet, GPT-4o, or OpenRouter models in the council roster right alongside your free local models whenever desired. Keys remain encrypted in memory and are never persisted to disk.
+            Yes. When you configure local Ollama models in OpenCode, no prompts, deliberations, or code ever leave your machine or local network. The entire deliberation, voting matrix, and report generation execute completely offline.
           </div>
         </details>
       </div>
@@ -419,6 +580,17 @@ CAVEMAN SAVINGS: ~48% reduction in intermediate token overhead.
         button.setAttribute('aria-selected', 'true');
         const targetContent = document.getElementById(targetId);
         if (targetContent) targetContent.classList.add('active');
+      });
+    });
+
+    // Mutually Exclusive FAQ Accordion Fallback
+    document.querySelectorAll('details[name="faq-group"]').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          document.querySelectorAll('details[name="faq-group"]').forEach(other => {
+            if (other !== item) other.open = false;
+          });
+        }
       });
     });
 

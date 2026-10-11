@@ -480,9 +480,15 @@
     "semantic_hash": ""
   },
   "landing/index.html": {
-    "mtime": 1791723942.2679021,
-    "seen": 1791723972.456926,
-    "ast_hash": "35c73c9b8607aa7dce1e7d906c91ce5d",
+    "mtime": 1791724454.1993544,
+    "seen": 1791724480.672299,
+    "ast_hash": "5348c523edf72424082ea5f3cb71abe5",
+    "semantic_hash": ""
+  },
+  "landing/public/header.jpg": {
+    "mtime": 1790659504.4777288,
+    "seen": 1791724480.6723084,
+    "ast_hash": "909633e731e29fc3e94cdb592515279b",
     "semantic_hash": ""
   }
 }
