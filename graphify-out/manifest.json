@@ -480,15 +480,15 @@
     "semantic_hash": ""
   },
   "landing/index.html": {
-    "mtime": 1791724506.942361,
-    "seen": 1791725087.3016164,
-    "ast_hash": "f126f7d87a889e1f80d6805af0c9b9c1",
+    "mtime": 1791725441.7593427,
+    "seen": 1791725474.8462048,
+    "ast_hash": "0f6b8d238bbf98b65c6ef0005d2b7635",
     "semantic_hash": ""
   },
-  "landing/public/header.jpg": {
-    "mtime": 1791724506.9471252,
-    "seen": 1791725087.301624,
-    "ast_hash": "909633e731e29fc3e94cdb592515279b",
+  "landing/public/free-llm-council.webp": {
+    "mtime": 1791725419.526263,
+    "seen": 1791725474.8462133,
+    "ast_hash": "aeb809a83f9fe31851a4492d2c68b523",
     "semantic_hash": ""
   }
 }
