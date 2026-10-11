@@ -366,8 +366,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791723073.9208965,
-    "seen": 1791723085.853305,
+    "mtime": 1791723177.137232,
+    "seen": 1791723285.2816455,
     "ast_hash": "9fa5b159716dcbe6ec1fd1996c291eeb",
     "semantic_hash": ""
   },
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "landing/package.json": {
-    "mtime": 1791722569.3487153,
-    "seen": 1791722706.521447,
-    "ast_hash": "92290eb9cd00f34c587b2cb4a6746c2a",
+    "mtime": 1791723177.1528022,
+    "seen": 1791723285.2816021,
+    "ast_hash": "fefac660634d914df7c0fc1d731b440c",
     "semantic_hash": ""
   },
   "landing/vite.config.js": {
-    "mtime": 1791722614.4293783,
-    "seen": 1791722706.5214489,
-    "ast_hash": "2be309a117bd27a88d1898f4c2ac9823",
+    "mtime": 1791723177.1528022,
+    "seen": 1791723285.281604,
+    "ast_hash": "7424e1b5cb0357aaf40182dd5eea1dfc",
     "semantic_hash": ""
   },
   "tests/unit/test_security_hardening.py": {
@@ -474,15 +474,15 @@
     "semantic_hash": ""
   },
   ".github/workflows/deploy-landing.yml": {
-    "mtime": 1791722654.4439654,
-    "seen": 1791722706.5214868,
-    "ast_hash": "88b1b0a7820a4fd1f94f8b31f01c6ddd",
+    "mtime": 1791723177.137232,
+    "seen": 1791723285.2816405,
+    "ast_hash": "5c966847d9622a066c5b43007cd26454",
     "semantic_hash": ""
   },
   "landing/index.html": {
-    "mtime": 1791723034.1456113,
-    "seen": 1791723085.8533096,
-    "ast_hash": "d2cab6cebe360bafe20be0a85c5e3de4",
+    "mtime": 1791723256.154068,
+    "seen": 1791723285.2816498,
+    "ast_hash": "82659aeb1e9386d093f8e20a45db93c2",
     "semantic_hash": ""
   }
 }
