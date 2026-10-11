@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "frontend/src/App.jsx": {
-    "mtime": 1791404109.110106,
-    "seen": 1791404112.5159514,
-    "ast_hash": "9ede6880fb1ebe699dae6927291ca746",
+    "mtime": 1791724952.3236527,
+    "seen": 1791725087.3015184,
+    "ast_hash": "b7c80923576373c8a6f55c5ae685742e",
     "semantic_hash": ""
   },
   "frontend/src/api.js": {
@@ -480,14 +480,14 @@
     "semantic_hash": ""
   },
   "landing/index.html": {
-    "mtime": 1791724454.1993544,
-    "seen": 1791724480.672299,
-    "ast_hash": "5348c523edf72424082ea5f3cb71abe5",
+    "mtime": 1791724506.942361,
+    "seen": 1791725087.3016164,
+    "ast_hash": "f126f7d87a889e1f80d6805af0c9b9c1",
     "semantic_hash": ""
   },
   "landing/public/header.jpg": {
-    "mtime": 1790659504.4777288,
-    "seen": 1791724480.6723084,
+    "mtime": 1791724506.9471252,
+    "seen": 1791725087.301624,
     "ast_hash": "909633e731e29fc3e94cdb592515279b",
     "semantic_hash": ""
   }
