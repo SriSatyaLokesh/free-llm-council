@@ -628,6 +628,10 @@
   animation: sidebarSlideIn var(--dur-fast) var(--ease-out);
 }
 
+.council-sidebar-backdrop {
+  display: none;
+}
+
 @keyframes sidebarSlideIn {
   from {
     opacity: 0;
@@ -636,6 +640,15 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -740,5 +753,38 @@
 
   .send-button {
     width: 100%;
+  }
+}
+
+/* Tablet & Mobile responsive overlay drawer for Council Setup Sidebar */
+@media (max-width: 1024px) {
+  .council-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 49;
+    animation: fadeIn var(--dur-fast) var(--ease-out);
+  }
+
+  .council-config-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 380px;
+    max-width: 90vw;
+    z-index: 50;
+    box-shadow: -6px 0 24px rgba(0, 0, 0, 0.45);
+  }
+}
+
+@media (max-width: 767px) {
+  .council-config-sidebar {
+    width: 100vw;
+    max-width: 100vw;
+    box-shadow: none;
   }
 }

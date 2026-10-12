@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ChatInterface.jsx": {
-    "mtime": 1791725568.362953,
-    "seen": 1791725940.9250078,
-    "ast_hash": "421903260a9fdd937d71fee422b4fdee",
+    "mtime": 1791790668.25746,
+    "seen": 1791791927.7036488,
+    "ast_hash": "f679d988b1dc282adcc54d6044bf3e39",
     "semantic_hash": ""
   },
   "frontend/src/components/DebateMode.jsx": {
@@ -480,15 +480,21 @@
     "semantic_hash": ""
   },
   "landing/index.html": {
-    "mtime": 1791726773.7350245,
-    "seen": 1791726788.7289176,
-    "ast_hash": "c17c85895301f0bd600b5a30028ac011",
+    "mtime": 1791726928.798767,
+    "seen": 1791726930.6233912,
+    "ast_hash": "8f60c61124a1ad0855fec1e9b54d60f2",
     "semantic_hash": ""
   },
   "landing/public/free-llm-council.webp": {
     "mtime": 1791725568.3787503,
     "seen": 1791725940.925093,
     "ast_hash": "aeb809a83f9fe31851a4492d2c68b523",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ErrorBoundary.jsx": {
+    "mtime": 1791790608.4944203,
+    "seen": 1791791927.7036521,
+    "ast_hash": "6457722b402280d55d4047b6481126a3",
     "semantic_hash": ""
   }
 }
