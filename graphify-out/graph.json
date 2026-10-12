@@ -17,19 +17,6 @@
       "source_location": "L523"
     },
     {
-      "id": "backend_main_sendmessagerequest",
-      "label": "SendMessageRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
-      "file_type": "code",
-      "norm_label": "sendmessagerequest",
-      "source_file": "backend/main.py",
-      "source_location": "L86"
-    },
-    {
       "id": "backend_main_conversation",
       "label": "Conversation",
       "_callable": true,
@@ -54,6 +41,19 @@
       "norm_label": "conversationmetadata",
       "source_file": "backend/main.py",
       "source_location": "L113"
+    },
+    {
+      "id": "backend_main_sendmessagerequest",
+      "label": "SendMessageRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "BaseModel",
+      "file_type": "code",
+      "norm_label": "sendmessagerequest",
+      "source_file": "backend/main.py",
+      "source_location": "L86"
     },
     {
       "id": "backend_main_updateconversationrequest",
@@ -95,19 +95,6 @@
       "source_location": "L7"
     },
     {
-      "id": "backend_opencode_client_opencodeunavailable",
-      "label": "OpencodeUnavailable",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "opencodeunavailable",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L68"
-    },
-    {
       "id": "backend_main_steerrequest",
       "label": "SteerRequest",
       "_callable": true,
@@ -134,13 +121,26 @@
       "source_location": "L61"
     },
     {
-      "id": "backend_main_createprojectrequest",
-      "label": "CreateProjectRequest",
+      "id": "backend_main_providerkeyupdate",
+      "label": "ProviderKeyUpdate",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 26,
       "community_name": "post",
+      "file_type": "code",
+      "norm_label": "providerkeyupdate",
+      "source_file": "backend/main.py",
+      "source_location": "L160"
+    },
+    {
+      "id": "backend_main_createprojectrequest",
+      "label": "CreateProjectRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "create_project",
       "file_type": "code",
       "norm_label": "createprojectrequest",
       "source_file": "backend/main.py",
@@ -160,19 +160,6 @@
       "source_location": "L290"
     },
     {
-      "id": "backend_main_providerkeyupdate",
-      "label": "ProviderKeyUpdate",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 56,
-      "community_name": "post_provider_key",
-      "file_type": "code",
-      "norm_label": "providerkeyupdate",
-      "source_file": "backend/main.py",
-      "source_location": "L160"
-    },
-    {
       "id": "backend_main_settingsupdate",
       "label": "SettingsUpdate",
       "_callable": true,
@@ -184,6 +171,19 @@
       "norm_label": "settingsupdate",
       "source_file": "backend/main.py",
       "source_location": "L104"
+    },
+    {
+      "id": "backend_opencode_client_opencodeunavailable",
+      "label": "OpencodeUnavailable",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "code",
+      "norm_label": "opencodeunavailable",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L68"
     },
     {
       "id": "backend_council_councilrun",
@@ -341,18 +341,6 @@
       "norm_label": "test_project_storage_crud()",
       "source_file": "tests/unit/test_projects_and_folders.py",
       "source_location": "L9"
-    },
-    {
-      "id": "backend_hybrid_client_hybridcouncilsession_init",
-      "label": ".__init__()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "CouncilSession",
-      "file_type": "code",
-      "norm_label": ".__init__()",
-      "source_file": "backend/hybrid_client.py",
-      "source_location": "L296"
     },
     {
       "id": "backend_opencode_client_councilsession_aenter",
@@ -535,24 +523,72 @@
       "source_location": "L276"
     },
     {
+      "id": "backend_opencode_client_auth_headers",
+      "label": "_auth_headers()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "_auth_headers",
+      "file_type": "code",
+      "norm_label": "_auth_headers()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L229"
+    },
+    {
+      "id": "backend_opencode_client_councilsession_init",
+      "label": ".__init__()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "_auth_headers",
+      "file_type": "code",
+      "norm_label": ".__init__()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L531"
+    },
+    {
       "id": "backend_council_generate_conversation_title",
       "label": "generate_conversation_title()",
       "_callable": true,
       "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
+      "community": 13,
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "generate_conversation_title()",
       "source_file": "backend/council.py",
       "source_location": "L1148"
     },
     {
+      "id": "backend_council_register_active_run",
+      "label": "register_active_run()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "register_active_run()",
+      "source_file": "backend/council.py",
+      "source_location": "L226"
+    },
+    {
+      "id": "backend_council_unregister_active_run",
+      "label": "unregister_active_run()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "unregister_active_run()",
+      "source_file": "backend/council.py",
+      "source_location": "L231"
+    },
+    {
       "id": "backend_main_send_message_stream",
       "label": "send_message_stream()",
       "_callable": true,
       "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
+      "community": 13,
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "send_message_stream()",
       "source_file": "backend/main.py",
@@ -563,8 +599,8 @@
       "label": "emit()",
       "_callable": true,
       "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
+      "community": 13,
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "emit()",
       "source_file": "backend/main.py",
@@ -575,8 +611,8 @@
       "label": "event_generator()",
       "_callable": true,
       "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
+      "community": 13,
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "event_generator()",
       "source_file": "backend/main.py",
@@ -587,8 +623,8 @@
       "label": "drive()",
       "_callable": true,
       "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
+      "community": 13,
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "drive()",
       "source_file": "backend/main.py",
@@ -600,7 +636,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "debate_prompt()",
       "source_file": "backend/prompts.py",
@@ -612,7 +648,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "parse_verdict()",
       "source_file": "backend/prompts.py",
@@ -624,7 +660,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "position_prompt()",
       "source_file": "backend/prompts.py",
@@ -636,7 +672,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "review_prompt()",
       "source_file": "backend/prompts.py",
@@ -648,7 +684,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "title_prompt()",
       "source_file": "backend/prompts.py",
@@ -660,7 +696,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "verdict_prompt()",
       "source_file": "backend/prompts.py",
@@ -672,7 +708,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "test_chairman_prompt_contains_expansion_directive_for_max()",
       "source_file": "tests/unit/test_caveman_max.py",
@@ -684,11 +720,59 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "test_prompts_integrate_max_contract()",
       "source_file": "tests/unit/test_caveman_max.py",
       "source_location": "L78"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_active_run_registry_and_steering_injection",
+      "label": "test_active_run_registry_and_steering_injection()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_active_run_registry_and_steering_injection()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L10"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict",
+      "label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L133"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock",
+      "label": "make_mock()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "make_mock()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L139"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock_ask_fake",
+      "label": "ask_fake()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "ask_fake()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L147"
     },
     {
       "id": "tests_unit_test_human_steering_test_prompts_integrate_human_guidance",
@@ -696,11 +780,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "test_prompts_integrate_human_guidance()",
       "source_file": "tests/unit/test_human_steering.py",
       "source_location": "L41"
+    },
+    {
+      "id": "tests_unit_test_human_steering_test_steer_http_api_endpoints",
+      "label": "test_steer_http_api_endpoints()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_steer_http_api_endpoints()",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L81"
     },
     {
       "id": "backend_main_get_provider_keys",
@@ -2467,52 +2563,16 @@
       "source_location": "L46"
     },
     {
-      "id": "backend_opencode_client_ensure_opencode_running",
-      "label": "ensure_opencode_running()",
+      "id": "backend_hybrid_client_hybridcouncilsession_init",
+      "label": ".__init__()",
       "_callable": true,
       "_origin": "ast",
       "community": 22,
-      "community_name": "ensure_opencode_running",
+      "community_name": ".__init__",
       "file_type": "code",
-      "norm_label": "ensure_opencode_running()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L168"
-    },
-    {
-      "id": "backend_opencode_client_is_opencode_responding",
-      "label": "is_opencode_responding()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "code",
-      "norm_label": "is_opencode_responding()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L156"
-    },
-    {
-      "id": "tests_unit_test_opencode_discovery_test_ensure_opencode_running_triggers_service_start",
-      "label": "test_ensure_opencode_running_triggers_service_start()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "code",
-      "norm_label": "test_ensure_opencode_running_triggers_service_start()",
-      "source_file": "tests/unit/test_opencode_discovery.py",
-      "source_location": "L103"
-    },
-    {
-      "id": "tests_unit_test_opencode_discovery_test_ensure_opencode_running_when_already_responding",
-      "label": "test_ensure_opencode_running_when_already_responding()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "code",
-      "norm_label": "test_ensure_opencode_running_when_already_responding()",
-      "source_file": "tests/unit/test_opencode_discovery.py",
-      "source_location": "L97"
+      "norm_label": ".__init__()",
+      "source_file": "backend/hybrid_client.py",
+      "source_location": "L296"
     },
     {
       "id": "backend_council_parse_ranking_from_text",
@@ -2551,40 +2611,16 @@
       "source_location": "L913"
     },
     {
-      "id": "backend_opencode_client_auth_headers",
-      "label": "_auth_headers()",
+      "id": "backend_opencode_client_ensure_opencode_running",
+      "label": "ensure_opencode_running()",
       "_callable": true,
       "_origin": "ast",
       "community": 24,
       "community_name": "list_models",
       "file_type": "code",
-      "norm_label": "_auth_headers()",
+      "norm_label": "ensure_opencode_running()",
       "source_file": "backend/opencode_client.py",
-      "source_location": "L229"
-    },
-    {
-      "id": "backend_opencode_client_councilsession_init",
-      "label": ".__init__()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": ".__init__()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L531"
-    },
-    {
-      "id": "backend_opencode_client_get_server_password",
-      "label": "get_server_password()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "get_server_password()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L90"
+      "source_location": "L168"
     },
     {
       "id": "backend_opencode_client_get_server_url",
@@ -2597,6 +2633,18 @@
       "norm_label": "get_server_url()",
       "source_file": "backend/opencode_client.py",
       "source_location": "L116"
+    },
+    {
+      "id": "backend_opencode_client_is_opencode_responding",
+      "label": "is_opencode_responding()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "list_models",
+      "file_type": "code",
+      "norm_label": "is_opencode_responding()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L156"
     },
     {
       "id": "backend_opencode_client_list_models",
@@ -2623,18 +2671,6 @@
       "source_location": "L851"
     },
     {
-      "id": "backend_opencode_client_service_config_candidates",
-      "label": "_service_config_candidates()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "_service_config_candidates()",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L76"
-    },
-    {
       "id": "backend_verify_opencode_main",
       "label": "main()",
       "_callable": true,
@@ -2645,6 +2681,18 @@
       "norm_label": "main()",
       "source_file": "backend/verify_opencode.py",
       "source_location": "L33"
+    },
+    {
+      "id": "tests_unit_test_opencode_discovery_test_ensure_opencode_running_when_already_responding",
+      "label": "test_ensure_opencode_running_when_already_responding()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "list_models",
+      "file_type": "code",
+      "norm_label": "test_ensure_opencode_running_when_already_responding()",
+      "source_file": "tests/unit/test_opencode_discovery.py",
+      "source_location": "L97"
     },
     {
       "id": "backend_council_get_active_run",
@@ -2683,16 +2731,16 @@
       "source_location": "L291"
     },
     {
-      "id": "backend_main_create_project",
-      "label": "create_project()",
+      "id": "backend_main_post_provider_key",
+      "label": "post_provider_key()",
       "_callable": true,
       "_origin": "ast",
       "community": 26,
       "community_name": "post",
       "file_type": "code",
-      "norm_label": "create_project()",
+      "norm_label": "post_provider_key()",
       "source_file": "backend/main.py",
-      "source_location": "L242"
+      "source_location": "L173"
     },
     {
       "id": "backend_main_prune_empty_conversations",
@@ -3019,88 +3067,16 @@
       "source_location": "L76"
     },
     {
-      "id": "backend_council_register_active_run",
-      "label": "register_active_run()",
+      "id": "backend_main_create_project",
+      "label": "create_project()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "test_human_steering.py",
+      "community_name": "create_project",
       "file_type": "code",
-      "norm_label": "register_active_run()",
-      "source_file": "backend/council.py",
-      "source_location": "L226"
-    },
-    {
-      "id": "backend_council_unregister_active_run",
-      "label": "unregister_active_run()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "unregister_active_run()",
-      "source_file": "backend/council.py",
-      "source_location": "L231"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_active_run_registry_and_steering_injection",
-      "label": "test_active_run_registry_and_steering_injection()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_active_run_registry_and_steering_injection()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L10"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict",
-      "label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_council_run_incorporates_steering_in_debate_and_verdict()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L133"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock",
-      "label": "make_mock()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "make_mock()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L139"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_council_run_incorporates_steering_in_debate_and_verdict_make_mock_ask_fake",
-      "label": "ask_fake()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "ask_fake()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L147"
-    },
-    {
-      "id": "tests_unit_test_human_steering_test_steer_http_api_endpoints",
-      "label": "test_steer_http_api_endpoints()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_steer_http_api_endpoints()",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L81"
+      "norm_label": "create_project()",
+      "source_file": "backend/main.py",
+      "source_location": "L242"
     },
     {
       "id": "backend_council_councilrun_make_session",
@@ -3348,7 +3324,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "code",
       "norm_label": "council_sessions()",
       "source_file": "backend/verify_api.py",
@@ -3360,23 +3336,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "backend/verify_api.py",
       "source_location": "L55"
-    },
-    {
-      "id": "backend_main_post_provider_key",
-      "label": "post_provider_key()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 56,
-      "community_name": "post_provider_key",
-      "file_type": "code",
-      "norm_label": "post_provider_key()",
-      "source_file": "backend/main.py",
-      "source_location": "L173"
     },
     {
       "id": "backend_main_post_settings",
@@ -3396,11 +3360,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 58,
-      "community_name": "diagnose_connection",
+      "community_name": "opencode_client.py",
       "file_type": "code",
       "norm_label": "diagnose_connection()",
       "source_file": "backend/opencode_client.py",
       "source_location": "L240"
+    },
+    {
+      "id": "backend_opencode_client_get_server_password",
+      "label": "get_server_password()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "code",
+      "norm_label": "get_server_password()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L90"
     },
     {
       "id": "backend_opencode_client_location_params",
@@ -3408,11 +3384,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 58,
-      "community_name": "diagnose_connection",
+      "community_name": "opencode_client.py",
       "file_type": "code",
       "norm_label": "_location_params()",
       "source_file": "backend/opencode_client.py",
       "source_location": "L235"
+    },
+    {
+      "id": "backend_opencode_client_service_config_candidates",
+      "label": "_service_config_candidates()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "code",
+      "norm_label": "_service_config_candidates()",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L76"
     },
     {
       "id": "tests_unit_test_non_reporting_agents_make_mock_session",
@@ -3485,6 +3473,18 @@
       "norm_label": "test_diagnose_connection_detects_port_conflict()",
       "source_file": "tests/unit/test_opencode_discovery.py",
       "source_location": "L61"
+    },
+    {
+      "id": "tests_unit_test_opencode_discovery_test_ensure_opencode_running_triggers_service_start",
+      "label": "test_ensure_opencode_running_triggers_service_start()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_opencode_discovery.py",
+      "file_type": "code",
+      "norm_label": "test_ensure_opencode_running_triggers_service_start()",
+      "source_file": "tests/unit/test_opencode_discovery.py",
+      "source_location": "L103"
     },
     {
       "id": "tests_unit_test_opencode_discovery_test_get_server_password_missing_raises_actionable_error",
@@ -4459,17 +4459,6 @@
       "source_location": "L10"
     },
     {
-      "id": "backend_hybrid_client_py_asyncclient",
-      "label": "AsyncClient",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "CouncilSession",
-      "file_type": "code",
-      "norm_label": "asyncclient",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "backend_opencode_client_py_any",
       "label": "Any",
       "_origin": "ast",
@@ -4479,18 +4468,6 @@
       "norm_label": "any",
       "source_file": "",
       "source_location": ""
-    },
-    {
-      "id": "claude_common_gotchas",
-      "label": "Common gotchas",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "CouncilSession",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "common gotchas",
-      "source_file": "CLAUDE.md",
-      "source_location": "L306"
     },
     {
       "id": "backend_opencode_client_rationale_482",
@@ -4904,55 +4881,67 @@
       "source_location": "L1117"
     },
     {
-      "id": "backend_council_rationale_1149",
-      "label": "Short title for a conversation, using the fastest available model.",
+      "id": "backend_opencode_client_py_asyncclient",
+      "label": "AsyncClient",
       "_origin": "ast",
       "community": 12,
-      "community_name": "generate_conversation_title",
-      "file_type": "rationale",
-      "norm_label": "short title for a conversation, using the fastest available model.",
-      "source_file": "backend/council.py",
-      "source_location": "L1149"
+      "community_name": "_auth_headers",
+      "file_type": "code",
+      "norm_label": "asyncclient",
+      "source_file": "",
+      "source_location": ""
     },
     {
-      "id": "backend_main_rationale_523",
-      "label": "Send a message and stream the council as it runs. Emits Server-Sent Events as\u2026",
+      "id": "claude_common_gotchas",
+      "label": "Common gotchas",
       "_origin": "ast",
       "community": 12,
-      "community_name": "generate_conversation_title",
-      "file_type": "rationale",
-      "norm_label": "send a message and stream the council as it runs. emits server-sent events as...",
-      "source_file": "backend/main.py",
-      "source_location": "L523"
-    },
-    {
-      "id": "backend_main_rationale_87",
-      "label": "Request to send a message in a conversation.",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "generate_conversation_title",
-      "file_type": "rationale",
-      "norm_label": "request to send a message in a conversation.",
-      "source_file": "backend/main.py",
-      "source_location": "L87"
+      "community_name": "_auth_headers",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "common gotchas",
+      "source_file": "CLAUDE.md",
+      "source_location": "L306"
     },
     {
       "id": "backend_prompts",
       "label": "prompts.py",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "code",
       "norm_label": "prompts.py",
       "source_file": "backend/prompts.py",
       "source_location": "L1"
     },
     {
+      "id": "tests_unit_test_human_steering",
+      "label": "test_human_steering.py",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "test_human_steering.py",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_human_steering_py_asyncio",
+      "label": "asyncio",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "code",
+      "norm_label": "asyncio",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "claude_prompt_design",
       "label": "Prompt design",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "prompt design",
@@ -4960,11 +4949,55 @@
       "source_location": "L118"
     },
     {
+      "id": "backend_council_rationale_1149",
+      "label": "Short title for a conversation, using the fastest available model.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "short title for a conversation, using the fastest available model.",
+      "source_file": "backend/council.py",
+      "source_location": "L1149"
+    },
+    {
+      "id": "backend_council_rationale_227",
+      "label": "Register an ongoing CouncilRun by conversation ID.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "register an ongoing councilrun by conversation id.",
+      "source_file": "backend/council.py",
+      "source_location": "L227"
+    },
+    {
+      "id": "backend_council_rationale_232",
+      "label": "Unregister an ongoing CouncilRun by conversation ID.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "unregister an ongoing councilrun by conversation id.",
+      "source_file": "backend/council.py",
+      "source_location": "L232"
+    },
+    {
+      "id": "backend_main_rationale_523",
+      "label": "Send a message and stream the council as it runs. Emits Server-Sent Events as\u2026",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "send a message and stream the council as it runs. emits server-sent events as...",
+      "source_file": "backend/main.py",
+      "source_location": "L523"
+    },
+    {
       "id": "backend_prompts_rationale_1",
       "label": "Prompts for the four council stages. Kept in one place so the wording of each\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "prompts for the four council stages. kept in one place so the wording of each...",
       "source_file": "backend/prompts.py",
@@ -4975,7 +5008,7 @@
       "label": "Stage 3: blind, anonymized scoring of the positions.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "stage 3: blind, anonymized scoring of the positions.",
       "source_file": "backend/prompts.py",
@@ -4986,7 +5019,7 @@
       "label": "Stage 4: the chairman's decision. Never compressed - a human reads this.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "stage 4: the chairman's decision. never compressed - a human reads this.",
       "source_file": "backend/prompts.py",
@@ -4997,7 +5030,7 @@
       "label": "Stage 1: independent first opinion. Never compressed - a human reads this.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "stage 1: independent first opinion. never compressed - a human reads this.",
       "source_file": "backend/prompts.py",
@@ -5008,7 +5041,7 @@
       "label": "Split a chairman response into its sections. Falls back to putting everything\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "split a chairman response into its sections. falls back to putting everything...",
       "source_file": "backend/prompts.py",
@@ -5019,7 +5052,7 @@
       "label": "Short conversation title.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "short conversation title.",
       "source_file": "backend/prompts.py",
@@ -5030,7 +5063,7 @@
       "label": "Stage 2: named cross-examination, one round at a time. `caveman_instruction` is\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "stage 2: named cross-examination, one round at a time. `caveman_instruction` is...",
       "source_file": "backend/prompts.py",
@@ -5041,7 +5074,7 @@
       "label": "Verify that verdict_prompt alerts the chairman to expand compressed debate\u2026",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "verify that verdict_prompt alerts the chairman to expand compressed debate...",
       "source_file": "tests/unit/test_caveman_max.py",
@@ -5052,22 +5085,66 @@
       "label": "Verify that debate_prompt embeds the Caveman max instruction cleanly.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "verify that debate_prompt embeds the caveman max instruction cleanly.",
       "source_file": "tests/unit/test_caveman_max.py",
       "source_location": "L79"
     },
     {
+      "id": "tests_unit_test_human_steering_rationale_1",
+      "label": "Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering\u2026",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "unit and integration tests for phase 11: human-in-the-loop mid-debate steering...",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_11",
+      "label": "Verify active run registration and steering injection on CouncilRun.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify active run registration and steering injection on councilrun.",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_134",
+      "label": "Verify that steering injected into a CouncilRun appears in debate prompt, queue\u2026",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify that steering injected into a councilrun appears in debate prompt, queue...",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L134"
+    },
+    {
       "id": "tests_unit_test_human_steering_rationale_42",
       "label": "Verify debate and verdict prompts include human guidance and directives.",
       "_origin": "ast",
       "community": 13,
-      "community_name": "prompts.py",
+      "community_name": "test_human_steering.py",
       "file_type": "rationale",
       "norm_label": "verify debate and verdict prompts include human guidance and directives.",
       "source_file": "tests/unit/test_human_steering.py",
       "source_location": "L42"
+    },
+    {
+      "id": "tests_unit_test_human_steering_rationale_82",
+      "label": "Verify HTTP POST /api/conversations/{id}/steer behavior.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "test_human_steering.py",
+      "file_type": "rationale",
+      "norm_label": "verify http post /api/conversations/{id}/steer behavior.",
+      "source_file": "tests/unit/test_human_steering.py",
+      "source_location": "L82"
     },
     {
       "id": "backend_main",
@@ -5530,6 +5607,17 @@
       "norm_label": "request to update a conversation (project assignment, title, or archive status).",
       "source_file": "backend/main.py",
       "source_location": "L79"
+    },
+    {
+      "id": "backend_main_rationale_87",
+      "label": "Request to send a message in a conversation.",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "BaseModel",
+      "file_type": "rationale",
+      "norm_label": "request to send a message in a conversation.",
+      "source_file": "backend/main.py",
+      "source_location": "L87"
     },
     {
       "id": "backend_settings",
@@ -6247,18 +6335,6 @@
       "source_location": "L16"
     },
     {
-      "id": "claude_frontend",
-      "label": "Frontend",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "icons.jsx",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "frontend",
-      "source_file": "CLAUDE.md",
-      "source_location": "L259"
-    },
-    {
       "id": "design_b_workspace_header_breadcrumbs",
       "label": "B. Workspace Header & Breadcrumbs",
       "_origin": "ast",
@@ -6645,48 +6721,15 @@
       "source_location": "L87"
     },
     {
-      "id": "backend_opencode_client_rationale_157",
-      "label": "Check if the OpenCode server is currently responding.",
+      "id": "backend_hybrid_client_py_asyncclient",
+      "label": "AsyncClient",
       "_origin": "ast",
       "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "rationale",
-      "norm_label": "check if the opencode server is currently responding.",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L157"
-    },
-    {
-      "id": "backend_opencode_client_rationale_169",
-      "label": "Ensure the OpenCode service is running. If not running, automatically start it.\u2026",
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "rationale",
-      "norm_label": "ensure the opencode service is running. if not running, automatically start it....",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L169"
-    },
-    {
-      "id": "tests_unit_test_opencode_discovery_rationale_104",
-      "label": "If opencode is not responding, ensure_opencode_running runs opencode service\u2026",
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "rationale",
-      "norm_label": "if opencode is not responding, ensure_opencode_running runs opencode service...",
-      "source_file": "tests/unit/test_opencode_discovery.py",
-      "source_location": "L104"
-    },
-    {
-      "id": "tests_unit_test_opencode_discovery_rationale_98",
-      "label": "If opencode is already responding, ensure_opencode_running returns True\u2026",
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "ensure_opencode_running",
-      "file_type": "rationale",
-      "norm_label": "if opencode is already responding, ensure_opencode_running returns true...",
-      "source_file": "tests/unit/test_opencode_discovery.py",
-      "source_location": "L98"
+      "community_name": ".__init__",
+      "file_type": "code",
+      "norm_label": "asyncclient",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "agents_skills_taste_skill_4_10_quotes_testimonials",
@@ -6833,39 +6876,6 @@
       "source_location": "L161"
     },
     {
-      "id": "backend_opencode_client_py_asyncclient",
-      "label": "AsyncClient",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "asyncclient",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_opencode_client_py_path",
-      "label": "Path",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "path",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "runtimeerror",
-      "label": "RuntimeError",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "code",
-      "norm_label": "runtimeerror",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "claude_backend_structure",
       "label": "Backend structure",
       "_origin": "ast",
@@ -6900,6 +6910,28 @@
       "source_location": "L117"
     },
     {
+      "id": "backend_opencode_client_rationale_157",
+      "label": "Check if the OpenCode server is currently responding.",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "list_models",
+      "file_type": "rationale",
+      "norm_label": "check if the opencode server is currently responding.",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L157"
+    },
+    {
+      "id": "backend_opencode_client_rationale_169",
+      "label": "Ensure the OpenCode service is running. If not running, automatically start it.\u2026",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "list_models",
+      "file_type": "rationale",
+      "norm_label": "ensure the opencode service is running. if not running, automatically start it....",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L169"
+    },
+    {
       "id": "backend_opencode_client_rationale_353",
       "label": "Fetch the models available inside opencode. This is the council roster -\u2026",
       "_origin": "ast",
@@ -6909,28 +6941,6 @@
       "norm_label": "fetch the models available inside opencode. this is the council roster -...",
       "source_file": "backend/opencode_client.py",
       "source_location": "L353"
-    },
-    {
-      "id": "backend_opencode_client_rationale_69",
-      "label": "Raised when the local opencode server cannot be reached.",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "rationale",
-      "norm_label": "raised when the local opencode server cannot be reached.",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L69"
-    },
-    {
-      "id": "backend_opencode_client_rationale_77",
-      "label": "Possible locations of opencode's service.json.",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "list_models",
-      "file_type": "rationale",
-      "norm_label": "possible locations of opencode's service.json.",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L77"
     },
     {
       "id": "backend_opencode_client_rationale_857",
@@ -6955,15 +6965,15 @@
       "source_location": "L887"
     },
     {
-      "id": "backend_opencode_client_rationale_91",
-      "label": "Resolve the opencode server password. Order: OPENCODE_SERVER_PASSWORD env var,\u2026",
+      "id": "tests_unit_test_opencode_discovery_rationale_98",
+      "label": "If opencode is already responding, ensure_opencode_running returns True\u2026",
       "_origin": "ast",
       "community": 24,
       "community_name": "list_models",
       "file_type": "rationale",
-      "norm_label": "resolve the opencode server password. order: opencode_server_password env var,...",
-      "source_file": "backend/opencode_client.py",
-      "source_location": "L91"
+      "norm_label": "if opencode is already responding, ensure_opencode_running returns true...",
+      "source_file": "tests/unit/test_opencode_discovery.py",
+      "source_location": "L98"
     },
     {
       "id": "backend_council_rationale_237",
@@ -6999,15 +7009,26 @@
       "source_location": "L99"
     },
     {
-      "id": "backend_main_rationale_243",
-      "label": "Create a new project workspace folder.",
+      "id": "backend_main_rationale_161",
+      "label": "Payload to configure or remove a provider API key.",
       "_origin": "ast",
       "community": 26,
       "community_name": "post",
       "file_type": "rationale",
-      "norm_label": "create a new project workspace folder.",
+      "norm_label": "payload to configure or remove a provider api key.",
       "source_file": "backend/main.py",
-      "source_location": "L243"
+      "source_location": "L161"
+    },
+    {
+      "id": "backend_main_rationale_174",
+      "label": "Update or remove a provider API key dynamically.",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "post",
+      "file_type": "rationale",
+      "norm_label": "update or remove a provider api key dynamically.",
+      "source_file": "backend/main.py",
+      "source_location": "L174"
     },
     {
       "id": "backend_main_rationale_292",
@@ -7041,17 +7062,6 @@
       "norm_label": "request to create a new conversation.",
       "source_file": "backend/main.py",
       "source_location": "L62"
-    },
-    {
-      "id": "backend_main_rationale_67",
-      "label": "Request to create a new project workspace folder.",
-      "_origin": "ast",
-      "community": 26,
-      "community_name": "post",
-      "file_type": "rationale",
-      "norm_label": "request to create a new project workspace folder.",
-      "source_file": "backend/main.py",
-      "source_location": "L67"
     },
     {
       "id": "readme",
@@ -8197,92 +8207,26 @@
       "source_location": "L783"
     },
     {
-      "id": "tests_unit_test_human_steering",
-      "label": "test_human_steering.py",
+      "id": "backend_main_rationale_243",
+      "label": "Create a new project workspace folder.",
       "_origin": "ast",
       "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "test_human_steering.py",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_human_steering_py_asyncio",
-      "label": "asyncio",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "code",
-      "norm_label": "asyncio",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_council_rationale_227",
-      "label": "Register an ongoing CouncilRun by conversation ID.",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
+      "community_name": "create_project",
       "file_type": "rationale",
-      "norm_label": "register an ongoing councilrun by conversation id.",
-      "source_file": "backend/council.py",
-      "source_location": "L227"
+      "norm_label": "create a new project workspace folder.",
+      "source_file": "backend/main.py",
+      "source_location": "L243"
     },
     {
-      "id": "backend_council_rationale_232",
-      "label": "Unregister an ongoing CouncilRun by conversation ID.",
+      "id": "backend_main_rationale_67",
+      "label": "Request to create a new project workspace folder.",
       "_origin": "ast",
       "community": 4,
-      "community_name": "test_human_steering.py",
+      "community_name": "create_project",
       "file_type": "rationale",
-      "norm_label": "unregister an ongoing councilrun by conversation id.",
-      "source_file": "backend/council.py",
-      "source_location": "L232"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_1",
-      "label": "Unit and integration tests for Phase 11: Human-in-the-Loop Mid-Debate Steering\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "unit and integration tests for phase 11: human-in-the-loop mid-debate steering...",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_11",
-      "label": "Verify active run registration and steering injection on CouncilRun.",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify active run registration and steering injection on councilrun.",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L11"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_134",
-      "label": "Verify that steering injected into a CouncilRun appears in debate prompt, queue\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify that steering injected into a councilrun appears in debate prompt, queue...",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L134"
-    },
-    {
-      "id": "tests_unit_test_human_steering_rationale_82",
-      "label": "Verify HTTP POST /api/conversations/{id}/steer behavior.",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "test_human_steering.py",
-      "file_type": "rationale",
-      "norm_label": "verify http post /api/conversations/{id}/steer behavior.",
-      "source_file": "tests/unit/test_human_steering.py",
-      "source_location": "L82"
+      "norm_label": "request to create a new project workspace folder.",
+      "source_file": "backend/main.py",
+      "source_location": "L67"
     },
     {
       "id": "agents_skills_taste_skill_3_a_stack",
@@ -9476,21 +9420,10 @@
       "label": "config.py",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "code",
       "norm_label": "config.py",
       "source_file": "backend/config.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "backend_opencode_client",
-      "label": "opencode_client.py",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "opencode_client.py",
-      "file_type": "code",
-      "norm_label": "opencode_client.py",
-      "source_file": "backend/opencode_client.py",
       "source_location": "L1"
     },
     {
@@ -9498,7 +9431,7 @@
       "label": "verify_api.py",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "code",
       "norm_label": "verify_api.py",
       "source_file": "backend/verify_api.py",
@@ -9509,7 +9442,7 @@
       "label": "verify_opencode.py",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "code",
       "norm_label": "verify_opencode.py",
       "source_file": "backend/verify_opencode.py",
@@ -9520,21 +9453,10 @@
       "label": "Configuration for the LLM Council. The council runs entirely on models that are\u2026",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "rationale",
       "norm_label": "configuration for the llm council. the council runs entirely on models that are...",
       "source_file": "backend/config.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "backend_opencode_client_rationale_1",
-      "label": "Client for the local opencode server. This module replaces the old OpenRouter\u2026",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "opencode_client.py",
-      "file_type": "rationale",
-      "norm_label": "client for the local opencode server. this module replaces the old openrouter...",
-      "source_file": "backend/opencode_client.py",
       "source_location": "L1"
     },
     {
@@ -9542,7 +9464,7 @@
       "label": "End-to-end test of the HTTP API, including the SSE streaming path. Creates a\u2026",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "rationale",
       "norm_label": "end-to-end test of the http api, including the sse streaming path. creates a...",
       "source_file": "backend/verify_api.py",
@@ -9553,7 +9475,7 @@
       "label": "Council sessions currently left in the user's opencode session list.",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "rationale",
       "norm_label": "council sessions currently left in the user's opencode session list.",
       "source_file": "backend/verify_api.py",
@@ -9564,33 +9486,11 @@
       "label": "Verification script for the opencode client and the council sandbox. Run with:\u2026",
       "_origin": "ast",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "file_type": "rationale",
       "norm_label": "verification script for the opencode client and the council sandbox. run with:...",
       "source_file": "backend/verify_opencode.py",
       "source_location": "L1"
-    },
-    {
-      "id": "backend_main_rationale_161",
-      "label": "Payload to configure or remove a provider API key.",
-      "_origin": "ast",
-      "community": 56,
-      "community_name": "post_provider_key",
-      "file_type": "rationale",
-      "norm_label": "payload to configure or remove a provider api key.",
-      "source_file": "backend/main.py",
-      "source_location": "L161"
-    },
-    {
-      "id": "backend_main_rationale_174",
-      "label": "Update or remove a provider API key dynamically.",
-      "_origin": "ast",
-      "community": 56,
-      "community_name": "post_provider_key",
-      "file_type": "rationale",
-      "norm_label": "update or remove a provider api key dynamically.",
-      "source_file": "backend/main.py",
-      "source_location": "L174"
     },
     {
       "id": "backend_main_rationale_105",
@@ -9615,11 +9515,55 @@
       "source_location": "L214"
     },
     {
+      "id": "backend_opencode_client",
+      "label": "opencode_client.py",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "code",
+      "norm_label": "opencode_client.py",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_opencode_client_py_path",
+      "label": "Path",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "runtimeerror",
+      "label": "RuntimeError",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "code",
+      "norm_label": "runtimeerror",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_opencode_client_rationale_1",
+      "label": "Client for the local opencode server. This module replaces the old OpenRouter\u2026",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "rationale",
+      "norm_label": "client for the local opencode server. this module replaces the old openrouter...",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L1"
+    },
+    {
       "id": "backend_opencode_client_rationale_236",
       "label": "Every opencode call is scoped to the council's workspace directory.",
       "_origin": "ast",
       "community": 58,
-      "community_name": "diagnose_connection",
+      "community_name": "opencode_client.py",
       "file_type": "rationale",
       "norm_label": "every opencode call is scoped to the council's workspace directory.",
       "source_file": "backend/opencode_client.py",
@@ -9630,11 +9574,44 @@
       "label": "Actively inspect the connection to the OpenCode server and return a detailed\u2026",
       "_origin": "ast",
       "community": 58,
-      "community_name": "diagnose_connection",
+      "community_name": "opencode_client.py",
       "file_type": "rationale",
       "norm_label": "actively inspect the connection to the opencode server and return a detailed...",
       "source_file": "backend/opencode_client.py",
       "source_location": "L241"
+    },
+    {
+      "id": "backend_opencode_client_rationale_69",
+      "label": "Raised when the local opencode server cannot be reached.",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "rationale",
+      "norm_label": "raised when the local opencode server cannot be reached.",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L69"
+    },
+    {
+      "id": "backend_opencode_client_rationale_77",
+      "label": "Possible locations of opencode's service.json.",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "rationale",
+      "norm_label": "possible locations of opencode's service.json.",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L77"
+    },
+    {
+      "id": "backend_opencode_client_rationale_91",
+      "label": "Resolve the opencode server password. Order: OPENCODE_SERVER_PASSWORD env var,\u2026",
+      "_origin": "ast",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "file_type": "rationale",
+      "norm_label": "resolve the opencode server password. order: opencode_server_password env var,...",
+      "source_file": "backend/opencode_client.py",
+      "source_location": "L91"
     },
     {
       "id": "tests_unit_test_non_reporting_agents",
@@ -9723,6 +9700,17 @@
       "norm_label": "unit tests for opencode discovery, port resilience, and health diagnostics.",
       "source_file": "tests/unit/test_opencode_discovery.py",
       "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_opencode_discovery_rationale_104",
+      "label": "If opencode is not responding, ensure_opencode_running runs opencode service\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_opencode_discovery.py",
+      "file_type": "rationale",
+      "norm_label": "if opencode is not responding, ensure_opencode_running runs opencode service...",
+      "source_file": "tests/unit/test_opencode_discovery.py",
+      "source_location": "L104"
     },
     {
       "id": "tests_unit_test_opencode_discovery_rationale_17",
@@ -10485,6 +10473,18 @@
       "source_location": "L106"
     },
     {
+      "id": "claude_frontend",
+      "label": "Frontend",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "verify_caveman.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "frontend",
+      "source_file": "CLAUDE.md",
+      "source_location": "L259"
+    },
+    {
       "id": "claude_graphify",
       "label": "graphify",
       "_origin": "ast",
@@ -11144,22 +11144,10 @@
       "label": "asyncio",
       "_origin": "semantic",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "asyncio",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "base64",
-      "label": "base64",
-      "_origin": "semantic",
-      "community": 55,
-      "community_name": "opencode_client.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "base64",
       "source_file": "",
       "type": "external"
     },
@@ -11168,7 +11156,7 @@
       "label": "dotenv",
       "_origin": "semantic",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "dotenv",
@@ -11180,7 +11168,7 @@
       "label": "os",
       "_origin": "semantic",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "os",
@@ -11188,26 +11176,14 @@
       "type": "external"
     },
     {
-      "id": "shutil",
-      "label": "shutil",
+      "id": "pathlib",
+      "label": "pathlib",
       "_origin": "semantic",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "shutil",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "subprocess",
-      "label": "subprocess",
-      "_origin": "semantic",
-      "community": 55,
-      "community_name": "opencode_client.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "subprocess",
+      "norm_label": "pathlib",
       "source_file": "",
       "type": "external"
     },
@@ -11216,7 +11192,7 @@
       "label": "sys",
       "_origin": "semantic",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "sys",
@@ -11228,7 +11204,7 @@
       "label": "urllib_request",
       "_origin": "semantic",
       "community": 55,
-      "community_name": "opencode_client.py",
+      "community_name": "verify_api.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "urllib_request",
@@ -11236,14 +11212,38 @@
       "type": "external"
     },
     {
-      "id": "pathlib",
-      "label": "pathlib",
+      "id": "base64",
+      "label": "base64",
       "_origin": "semantic",
-      "community": 6,
-      "community_name": "test_opencode_discovery.py",
+      "community": 58,
+      "community_name": "opencode_client.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "pathlib",
+      "norm_label": "base64",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "shutil",
+      "label": "shutil",
+      "_origin": "semantic",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "shutil",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "subprocess",
+      "label": "subprocess",
+      "_origin": "semantic",
+      "community": 58,
+      "community_name": "opencode_client.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "subprocess",
       "source_file": "",
       "type": "external"
     },
@@ -19611,54 +19611,6 @@
       "context": "import",
       "source_file": "frontend/src/components/ChatInterface.jsx",
       "source_location": "L25",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_chatinterface",
-      "target": "frontend_src_components_runrail_runrail",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "frontend/src/components/ChatInterface.jsx",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_chatinterface",
-      "target": "frontend_src_components_verdicthero_verdicthero",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "frontend/src/components/ChatInterface.jsx",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_chatinterface",
-      "target": "frontend_src_components_processpanel_processpanel",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "frontend/src/components/ChatInterface.jsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_chatinterface",
-      "target": "frontend_src_components_modelroster_modelroster",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "frontend/src/components/ChatInterface.jsx",
-      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -33878,5 +33830,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "aa756f11fa7c60f10b2b419594329c4520e67a8d"
+  "built_at_commit": "19a5f53252afa4e8319a86498ab7815708502228"
 }
