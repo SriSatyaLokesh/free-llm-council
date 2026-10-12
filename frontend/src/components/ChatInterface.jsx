@@ -4,6 +4,7 @@ import RunRail from './RunRail';
 import VerdictHero from './VerdictHero';
 import ProcessPanel from './ProcessPanel';
 import ModelRoster from './ModelRoster';
+import ErrorBoundary from './ErrorBoundary';
 import { api } from '../api';
 import {
   Folder,
@@ -371,9 +372,9 @@ export default function ChatInterface({
             </p>
           </div>
         ) : (
-          conversation.messages.map((msg, index) => {
-            const isLastUser = msg.role === 'user' && index >= conversation.messages.length - 2;
-            const isLastAssistant = msg.role === 'assistant' && index === conversation.messages.length - 1;
+          (conversation?.messages || []).map((msg, index) => {
+            const isLastUser = msg.role === 'user' && index >= (conversation?.messages?.length || 0) - 2;
+            const isLastAssistant = msg.role === 'assistant' && index === (conversation?.messages?.length || 0) - 1;
 
             return msg.role === 'user' ? (
               <div
@@ -487,44 +488,53 @@ export default function ChatInterface({
 
     {/* Council Models & Configuration Sidebar */}
     {isCouncilSidebarOpen && (
-      <aside className="council-config-sidebar">
-        <div className="council-sidebar-header">
-          <div className="council-sidebar-title">
-            <UsersIcon size={16} />
-            <h3>Council Setup</h3>
-            <span className="council-sidebar-count-badge">
-              {councilConfig.members?.length || 0} Seated
-            </span>
+      <>
+        <div
+          className="council-sidebar-backdrop"
+          onClick={() => setIsCouncilSidebarOpen(false)}
+          aria-hidden="true"
+        />
+        <aside className="council-config-sidebar">
+          <div className="council-sidebar-header">
+            <div className="council-sidebar-title">
+              <UsersIcon size={16} />
+              <h3>Council Setup</h3>
+              <span className="council-sidebar-count-badge">
+                {councilConfig.members?.length || 0} Seated
+              </span>
+            </div>
+            <button
+              type="button"
+              className="council-sidebar-close"
+              onClick={() => setIsCouncilSidebarOpen(false)}
+              title="Close Council Setup Sidebar"
+              aria-label="Close Council Setup Sidebar"
+            >
+              <XMark size={16} />
+            </button>
           </div>
-          <button
-            type="button"
-            className="council-sidebar-close"
-            onClick={() => setIsCouncilSidebarOpen(false)}
-            title="Close Council Setup Sidebar"
-            aria-label="Close Council Setup Sidebar"
-          >
-            <XMark size={16} />
-          </button>
-        </div>
-        <div className="council-sidebar-body">
-          <ModelRoster
-            config={councilConfig}
-            onChange={onConfigChange}
-            disabled={isLoading}
-            evictedModels={
-              [...(conversation.messages || [])]
-                .reverse()
-                .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
-            }
-            retiredModels={
-              [...(conversation.messages || [])]
-                .reverse()
-                .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
-            }
-            isSidebar={true}
-          />
-        </div>
-      </aside>
+          <div className="council-sidebar-body">
+            <ErrorBoundary>
+              <ModelRoster
+                config={councilConfig}
+                onChange={onConfigChange}
+                disabled={isLoading}
+                evictedModels={
+                  [...(conversation?.messages || [])]
+                    .reverse()
+                    .find((m) => m.role === 'assistant')?.council?.metadata?.evicted_models || []
+                }
+                retiredModels={
+                  [...(conversation?.messages || [])]
+                    .reverse()
+                    .find((m) => m.role === 'assistant')?.council?.metadata?.retired_models || []
+                }
+                isSidebar={true}
+              />
+            </ErrorBoundary>
+          </div>
+        </aside>
+      </>
     )}
   </div>
 );

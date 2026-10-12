@@ -130,6 +130,38 @@
   grid-template-columns: 1fr;
 }
 
+.roster-sidebar-panel .roster-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.roster-sidebar-panel .roster-field {
+  width: 100%;
+}
+
+.roster-sidebar-panel .roster-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+.roster-sidebar-panel .budget-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.roster-sidebar-panel .budget-grid .roster-field {
+  width: 100%;
+}
+
+.roster-sidebar-panel .budget-grid .roster-field select {
+  width: 100%;
+  min-width: 0;
+}
+
 .roster-models {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
